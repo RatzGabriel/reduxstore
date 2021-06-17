@@ -4,8 +4,14 @@ import testLogo from '../../Assets/testLogo.jpeg';
 import { Link } from 'react-router-dom';
 import { auth, signInWithGoogle } from '../../firebase/Utils';
 import Button from '../Elements/Button/Button';
+import { connect, useSelector } from 'react-redux';
 
-function Header({ currentUser }) {
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+function Header() {
+  const { currentUser } = useSelector(mapState);
   return (
     <DivHeader>
       <Wrap>
@@ -23,7 +29,15 @@ function Header({ currentUser }) {
   );
 }
 
-export default Header;
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+Header.defaultProps = {
+  currentUser: null,
+};
+
+export default connect(mapStateToProps, null)(Header);
 
 //Styled Components
 

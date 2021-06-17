@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
 import { auth } from '../../firebase/Utils';
+import { useHistory } from 'react-router';
 
 function SignIn({ currentUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const onFormSubmit = async (event) => {
     event.preventDefault();
     try {
       console.log(email);
       await auth.signInWithEmailAndPassword(email, password);
+      history.push('/');
     } catch (err) {
       // console.log(err);
     }
