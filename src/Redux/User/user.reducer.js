@@ -1,5 +1,4 @@
 import userTypes from './user.types';
-import React from 'react';
 
 const initialUser = {
   currentUser: null,
