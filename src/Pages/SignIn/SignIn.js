@@ -15,6 +15,8 @@ function SignIn({ currentUser }) {
       console.log(email);
       await auth.signInWithEmailAndPassword(email, password);
       history.push('/');
+      setEmail('');
+      setPassword('');
     } catch (err) {
       // console.log(err);
     }

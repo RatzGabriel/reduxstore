@@ -12,20 +12,19 @@ GoogleProvider.setCustomParameters({ prompt: 'select_account' });
 
 export const signInWithGoogle = () => auth.signInWithPopup(GoogleProvider);
 
+export const resetEmail = (email) => auth.sendPasswordResetEmail(email);
+
 export const handleUserProfile = async (userAuth, additionalData) => {
   if (!userAuth) return;
-
   const { uid } = userAuth;
 
   const userRef = firestore.doc(`users/${uid}`);
   const snapshot = await userRef.get();
-
   if (!snapshot.exists) {
     const { displayName, email } = userAuth;
     const timestamp = new Date();
 
     try {
-      console.log('trying');
       await userRef.set({
         displayName,
         email,
@@ -33,7 +32,7 @@ export const handleUserProfile = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (err) {
-      console.log('err', err);
+      // console.log('err', err);
     }
   }
   return userRef;

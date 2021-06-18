@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory, withRouter } from 'react-router';
 import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
 import { auth, handleUserProfile } from '../../firebase/Utils';
@@ -10,24 +11,32 @@ function Registration() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [err, setError] = useState([]);
 
+  const reset = () => {
+    setError([]);
+    setDisplayName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       setError(['Passwords dont Match']);
       return;
     } else {
-      setError([]);
       try {
         const { user } = await auth.createUserWithEmailAndPassword(
           email,
           password
         );
-        await handleUserProfile(user, displayName);
-        setError([]);
+        await handleUserProfile(user, { displayName });
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
+
+    reset();
   };
 
   return (

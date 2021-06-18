@@ -20,6 +20,7 @@ function Header() {
         </Link>
         <Link to="/registration">Registration</Link>
         <Link to="/signIn">Sign In</Link>
+        <Link to="forgotPassword">Forgot Password</Link>
         {!currentUser && (
           <Button onClick={signInWithGoogle}>Sign in with Google</Button>
         )}
