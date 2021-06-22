@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
-import { useHistory, withRouter } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
-import { auth, handleUserProfile } from '../../firebase/Utils';
+import { signUpUser } from '../../Redux/User/user.actions';
+
+const mapState = ({ user }) => ({
+  signUpSuccess: user.signUpSuccess,
+  signUpError: user.SIGN_UP_ERROR,
+});
 
 function Registration() {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [err, setError] = useState([]);
+  const [error, setError] = useState([]);
+
+  const { signUpSuccess, signUpError } = useSelector(mapState);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (signUpSuccess) {
+      reset();
+    }
+  }, [signUpSuccess]);
+
+  useEffect(() => {
+    if (Array.isArray(signUpError) && signUpError.length > 0) {
+      setError(signUpError);
+    }
+  }, [signUpError]);
 
   const reset = () => {
     setError([]);
@@ -19,23 +39,9 @@ function Registration() {
     setConfirmPassword('');
   };
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
-    if (password !== confirmPassword) {
-      setError(['Passwords dont Match']);
-      return;
-    } else {
-      try {
-        const { user } = await auth.createUserWithEmailAndPassword(
-          email,
-          password
-        );
-        await handleUserProfile(user, { displayName });
-      } catch (error) {
-        // console.log(error);
-      }
-    }
-
+    dispatch(signUpUser({ displayName, email, password, confirmPassword }));
     reset();
   };
 
@@ -67,7 +73,8 @@ function Registration() {
           value={confirmPassword}
         />
         <Button type="submit">Form Submit</Button>
-        {err && <div>{err}</div>}
+
+        {error && <div>{error}</div>}
       </form>
     </div>
   );

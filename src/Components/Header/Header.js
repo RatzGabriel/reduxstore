@@ -2,9 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import testLogo from '../../Assets/testLogo.jpeg';
 import { Link } from 'react-router-dom';
-import { auth, signInWithGoogle } from '../../firebase/Utils';
+import { auth } from '../../firebase/Utils';
 import Button from '../Elements/Button/Button';
-import { connect, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  signInWithGoogle,
+  signOutUserStart,
+} from '../../Redux/User/user.actions';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -12,9 +16,18 @@ const mapState = ({ user }) => ({
 
 function Header() {
   const { currentUser } = useSelector(mapState);
+
+  const dispatch = useDispatch();
+
+  const signOut = async () => {
+    // dispatch(signOutUserStart());
+
+    dispatch(signOutUserStart());
+  };
+
   return (
-    <DivHeader>
-      <Wrap>
+    <MainDiv>
+      <WrapDiv>
         <Link to="/">
           <LogoImg src={testLogo} alt="logo image" />
         </Link>
@@ -24,31 +37,28 @@ function Header() {
         {!currentUser && (
           <Button onClick={signInWithGoogle}>Sign in with Google</Button>
         )}
-        {currentUser && <Button onClick={() => auth.signOut()}>Logout</Button>}
-      </Wrap>
-    </DivHeader>
+        {currentUser && <Button onClick={() => signOut()}>Logout</Button>}
+        {<button onClick={() => console.log(currentUser)}></button>}
+      </WrapDiv>
+    </MainDiv>
   );
 }
-
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
-});
 
 Header.defaultProps = {
   currentUser: null,
 };
 
-export default connect(mapStateToProps, null)(Header);
+export default Header;
 
 //Styled Components
 
-const DivHeader = styled.div`
+const MainDiv = styled.div`
   color: red;
   background-color: black;
   height: 10rem;
 `;
 
-const Wrap = styled.div`
+const WrapDiv = styled.div`
   height: 100%;
   display: flex;
   align-items: center;

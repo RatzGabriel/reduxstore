@@ -12,6 +12,7 @@ import FortgotPassword from './Pages/ForgotPassword/FortgotPassword';
 const App = (props) => {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
+
   useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
       if (!userAuth) return setCurrentUser(null);
@@ -49,12 +50,4 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
