@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
-import { signUpUser } from '../../Redux/User/user.actions';
+import {
+  resetAllAuthForms,
+  signUpUserStart,
+} from '../../Redux/User/user.actions';
 
 const mapState = ({ user }) => ({
-  signUpSuccess: user.signUpSuccess,
-  signUpError: user.SIGN_UP_ERROR,
+  currentUser: user.currentUser,
+  userErr: user.userErr,
 });
 
 function Registration() {
@@ -16,20 +19,21 @@ function Registration() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState([]);
 
-  const { signUpSuccess, signUpError } = useSelector(mapState);
+  const { currentUser, userErr } = useSelector(mapState);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (signUpSuccess) {
+    if (currentUser) {
       reset();
+      resetAllAuthForms();
     }
-  }, [signUpSuccess]);
+  }, [currentUser]);
 
   useEffect(() => {
-    if (Array.isArray(signUpError) && signUpError.length > 0) {
-      setError(signUpError);
+    if (Array.isArray(userErr) && userErr.length > 0) {
+      setError(userErr);
     }
-  }, [signUpError]);
+  }, [userErr]);
 
   const reset = () => {
     setError([]);
@@ -41,7 +45,9 @@ function Registration() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    dispatch(signUpUser({ displayName, email, password, confirmPassword }));
+    dispatch(
+      signUpUserStart({ displayName, email, password, confirmPassword })
+    );
     reset();
   };
 

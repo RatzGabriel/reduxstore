@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import testLogo from '../../Assets/testLogo.jpeg';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase/Utils';
 import Button from '../Elements/Button/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  signInWithGoogle,
+  googleSignInStart,
   signOutUserStart,
 } from '../../Redux/User/user.actions';
 
@@ -19,10 +18,12 @@ function Header() {
 
   const dispatch = useDispatch();
 
-  const signOut = async () => {
-    // dispatch(signOutUserStart());
-
+  const signOut = () => {
     dispatch(signOutUserStart());
+  };
+
+  const signIn = () => {
+    dispatch(googleSignInStart());
   };
 
   return (
@@ -34,9 +35,7 @@ function Header() {
         <Link to="/registration">Registration</Link>
         <Link to="/signIn">Sign In</Link>
         <Link to="forgotPassword">Forgot Password</Link>
-        {!currentUser && (
-          <Button onClick={signInWithGoogle}>Sign in with Google</Button>
-        )}
+        {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
         {currentUser && <Button onClick={() => signOut()}>Logout</Button>}
         {<button onClick={() => console.log(currentUser)}></button>}
       </WrapDiv>

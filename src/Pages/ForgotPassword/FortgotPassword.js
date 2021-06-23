@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router';
 import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
-import { resetPassword } from '../../Redux/User/user.actions';
+import {
+  resetPasswordStart,
+  resetUserState,
+} from '../../Redux/User/user.actions';
 
 const mapState = ({ user }) => ({
-  resetPasswordError: user.resetPasswordError,
   resetPasswordSuccess: user.resetPasswordSuccess,
+  userErr: user.userErr,
 });
 
 function FortgotPassword() {
@@ -15,22 +17,23 @@ function FortgotPassword() {
   const [errors, setErrors] = useState([]);
 
   const dispatch = useDispatch();
-  const { resetPasswordError, resetPasswordSuccess } = useSelector(mapState);
+  const { resetPasswordSuccess, userErr } = useSelector(mapState);
 
   useEffect(() => {
-    if (Array.isArray(resetPasswordError) && resetPasswordError.length > 0) {
-      setErrors(resetPasswordError);
+    if (Array.isArray(userErr) && userErr.length > 0) {
+      setErrors(userErr);
     }
-  }, [resetPasswordError]);
+  }, [userErr]);
 
   useEffect(() => {
-    setErrors([]);
-    setEmail('');
+    if (resetPasswordSuccess) {
+      dispatch(resetUserState);
+    }
   }, [resetPasswordSuccess]);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    dispatch(resetPassword({ email }));
+    dispatch(resetPasswordStart({ email }));
   };
   return (
     <div>

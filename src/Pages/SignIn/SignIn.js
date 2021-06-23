@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
-import { auth } from '../../firebase/Utils';
-import { useHistory, withRouter } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInUser, signInWithGoogle } from '../../Redux/User/user.actions';
+import {
+  resetAllAuthForms,
+  emailSignInStart,
+  googleSignInStart,
+} from '../../Redux/User/user.actions';
 
 const mapState = ({ user }) => ({
-  signInSuccess: user.signInSuccess,
+  currentUser: user.currentUser,
 });
 
 function SignIn() {
@@ -15,23 +17,23 @@ function SignIn() {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const { signInSuccess } = useSelector(mapState);
+  const { currentUser } = useSelector(mapState);
 
   useEffect(() => {
-    console.log('signInsuccess', signInSuccess);
-    if (signInSuccess) {
+    if (currentUser) {
       setEmail('');
       setPassword('');
+      dispatch(resetAllAuthForms());
     }
-  }, [signInSuccess]);
+  }, [currentUser]);
 
   const handleGoogleSignIn = () => {
-    dispatch(signInWithGoogle());
+    dispatch(googleSignInStart());
   };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    dispatch(signInUser({ email, password }));
+    dispatch(emailSignInStart({ email, password }));
   };
 
   return (
