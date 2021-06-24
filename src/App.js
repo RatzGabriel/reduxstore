@@ -1,14 +1,20 @@
+import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+import Admin from './Pages/Admin/Admin';
 import MainPage from './Pages/MainPage/MainPage';
-import Header from './Components/Header/Header';
-import { Route } from 'react-router-dom';
 import Registration from './Pages/Registration/Registration';
 import SignIn from './Pages/SignIn/SignIn';
-import { checkUserSession } from './Redux/User/user.actions';
-import { useDispatch } from 'react-redux';
 import FortgotPassword from './Pages/ForgotPassword/FortgotPassword';
 
-const App = () => {
+import Header from './Components/Header/Header';
+
+import { checkUserSession } from './Redux/User/user.actions';
+import WithAdminAuth from './hoc/withAdminAuth';
+import AdminLayout from './Layouts/AdminLayout';
+
+const App = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,18 +24,21 @@ const App = () => {
   return (
     <div>
       <Header />
-      <Route exact path="/">
-        <MainPage />
-      </Route>
-      <Route path="/registration">
-        <Registration />
-      </Route>
-      <Route path="/signIn">
-        <SignIn />
-      </Route>
-      <Route path="/forgotPassword">
-        <FortgotPassword />
-      </Route>
+      <Switch>
+        <Route exact path="/" render={() => <MainPage />} />
+        <Route path="/registration" render={() => <Registration />} />
+        <Route path="/signIn" render={() => <SignIn />} />
+        <Route path="/forgotPassword">
+          <FortgotPassword />
+        </Route>
+        <Route path="/admin">
+          <WithAdminAuth>
+            <AdminLayout>
+              <Admin />
+            </AdminLayout>
+          </WithAdminAuth>
+        </Route>
+      </Switch>
     </div>
   );
 };

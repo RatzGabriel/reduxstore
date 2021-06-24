@@ -3,7 +3,6 @@ import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  resetAllAuthForms,
   emailSignInStart,
   googleSignInStart,
 } from '../../Redux/User/user.actions';
@@ -23,7 +22,6 @@ function SignIn() {
     if (currentUser) {
       setEmail('');
       setPassword('');
-      dispatch(resetAllAuthForms());
     }
   }, [currentUser]);
 

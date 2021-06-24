@@ -6,6 +6,7 @@ import {
   resetPasswordStart,
   resetUserState,
 } from '../../Redux/User/user.actions';
+import { useHistory } from 'react-router';
 
 const mapState = ({ user }) => ({
   resetPasswordSuccess: user.resetPasswordSuccess,
@@ -13,10 +14,10 @@ const mapState = ({ user }) => ({
 });
 
 function FortgotPassword() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState([]);
-
-  const dispatch = useDispatch();
   const { resetPasswordSuccess, userErr } = useSelector(mapState);
 
   useEffect(() => {
@@ -27,7 +28,8 @@ function FortgotPassword() {
 
   useEffect(() => {
     if (resetPasswordSuccess) {
-      dispatch(resetUserState);
+      dispatch(resetUserState());
+      console.log(history);
     }
   }, [resetPasswordSuccess]);
 

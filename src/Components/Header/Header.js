@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import testLogo from '../../Assets/testLogo.jpeg';
 import { Link } from 'react-router-dom';
-import Button from '../Elements/Button/Button';
 import { useSelector, useDispatch } from 'react-redux';
+
+import testLogo from '../../Assets/testLogo.jpeg';
+import Button from '../Elements/Button/Button';
 import {
   googleSignInStart,
   signOutUserStart,
 } from '../../Redux/User/user.actions';
+import { checkUserIsAdmin } from '../../CustomHooks/checkUserIsAdmin';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -35,6 +37,7 @@ function Header() {
         <Link to="/registration">Registration</Link>
         <Link to="/signIn">Sign In</Link>
         <Link to="forgotPassword">Forgot Password</Link>
+        {checkUserIsAdmin(currentUser) && <Link to="/admin">Admin</Link>}
         {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
         {currentUser && <Button onClick={() => signOut()}>Logout</Button>}
         {<button onClick={() => console.log(currentUser)}></button>}

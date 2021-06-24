@@ -102,6 +102,7 @@ export function* onSignOutUserStart() {
 }
 
 export function* resetPassword({ payload: { email } }) {
+  console.log('email', email);
   try {
     yield call(handleResetPasswordAPI, email);
     yield put(resetPasswordSuccess());
@@ -111,6 +112,7 @@ export function* resetPassword({ payload: { email } }) {
 }
 
 export function* onResetPasswordStart() {
+  console.log('first');
   yield takeLatest(userTypes.RESET_PASSWORD_START, resetPassword);
 }
 
