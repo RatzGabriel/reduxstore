@@ -13,6 +13,7 @@ import Header from './Components/Header/Header';
 import { checkUserSession } from './Redux/User/user.actions';
 import WithAdminAuth from './hoc/withAdminAuth';
 import AdminLayout from './Layouts/AdminLayout';
+import Search from './Pages/Search/Search';
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ const App = (props) => {
               <Admin />
             </AdminLayout>
           </WithAdminAuth>
+        </Route>
+        <Route path="/search">
+          <Search />
         </Route>
       </Switch>
     </div>

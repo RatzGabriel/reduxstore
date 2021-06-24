@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addProductStart,
+  deleteProductStart,
   fetchProductsStart,
 } from '../../Redux/Products/products.actions';
 import Button from '../../Components/Elements/Button/Button';
@@ -27,6 +28,15 @@ const Admin = () => {
     dispatch(fetchProductsStart());
   }, []);
 
+  const resetForm = () => {
+    setProductCategory('mens');
+    setProductName('');
+    setProductThumbnail('');
+    setProductPrice(0);
+    setHideModal(true);
+    setProductDescription('');
+  };
+
   const toggleModal = () => setHideModal(!hideModal);
 
   const configModal = {
@@ -44,6 +54,7 @@ const Admin = () => {
         productPrice,
       })
     );
+    resetForm();
   };
 
   return (
@@ -102,7 +113,7 @@ const Admin = () => {
         </div>
       </Modal>
 
-      {/* <div className="manageProducts">
+      <div className="manageProducts">
         <table border="0" cellPadding="0" cellSpacing="0">
           <tbody>
             <tr>
@@ -119,9 +130,9 @@ const Admin = () => {
                   cellSpacing="0"
                 >
                   <tbody>
-                    {Array.isArray(data) &&
-                      data.length > 0 &&
-                      data.map((product, index) => {
+                    {Array.isArray(products) &&
+                      products.length > 0 &&
+                      products.map((product, index) => {
                         const {
                           productName,
                           productThumbnail,
@@ -164,7 +175,7 @@ const Admin = () => {
                 <table border="0" cellPadding="10px" cellSpacing="0">
                   <tbody>
                     <tr>
-                      <td>{!isLastPage && <LoadMore {...configLoadMore} />}</td>
+                      {/* <td>{!isLastPage && <LoadMore {...configLoadMore} />}</td> */}
                     </tr>
                   </tbody>
                 </table>
@@ -181,7 +192,7 @@ const Admin = () => {
             </tr>
           </tbody>
         </table>
-      </div> */}
+      </div>
     </div>
   );
 };
