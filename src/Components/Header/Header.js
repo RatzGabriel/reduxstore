@@ -36,7 +36,8 @@ function Header() {
         </Link>
         <Link to="/registration">Registration</Link>
         <Link to="/signIn">Sign In</Link>
-        <Link to="forgotPassword">Forgot Password</Link>
+        <Link to="/forgotPassword">Forgot Password</Link>
+        <Link to="/search">Search</Link>
         {checkUserIsAdmin(currentUser) && <Link to="/admin">Admin</Link>}
         {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
         {currentUser && <Button onClick={() => signOut()}>Logout</Button>}
