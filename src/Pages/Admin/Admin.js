@@ -18,7 +18,7 @@ const Admin = () => {
   const { products } = useSelector(mapState);
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
-  const [productCategory, setProductCategory] = useState('mens');
+  const [productCategory, setProductCategory] = useState('vasen');
   const [productName, setProductName] = useState('');
   const [productThumbnail, setProductThumbnail] = useState('');
   const [productPrice, setProductPrice] = useState(0);
@@ -29,7 +29,7 @@ const Admin = () => {
   }, []);
 
   const resetForm = () => {
-    setProductCategory('mens');
+    setProductCategory('vasen');
     setProductName('');
     setProductThumbnail('');
     setProductPrice(0);
@@ -45,6 +45,7 @@ const Admin = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log('submit', productCategory);
     e.preventDefault();
     dispatch(
       addProductStart({

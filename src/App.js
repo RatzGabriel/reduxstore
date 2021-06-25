@@ -39,7 +39,10 @@ const App = (props) => {
             </AdminLayout>
           </WithAdminAuth>
         </Route>
-        <Route path="/search">
+        <Route exact path="/search">
+          <Search />
+        </Route>
+        <Route path="/search/:filterType">
           <Search />
         </Route>
       </Switch>
