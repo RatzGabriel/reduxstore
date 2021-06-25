@@ -16,11 +16,13 @@ function ProductResults() {
   const { filterType } = useParams();
   const { products } = useSelector(mapState);
 
+  const { data, queryDoc, isLastPage } = products;
+
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));
   }, [filterType]);
 
-  if (!Array.isArray(products)) return null;
+  if (!Array.isArray(data)) return null;
 
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
@@ -45,7 +47,7 @@ function ProductResults() {
     ],
     handleChange: handleFilter,
   };
-  if (products.length < 1) {
+  if (data.length < 1) {
     return (
       <div>
         <FormSelect {...configFilters}></FormSelect>
@@ -54,17 +56,26 @@ function ProductResults() {
     );
   }
 
-  const handleLoadMore = () => {};
+  const handleLoadMore = () => {
+    console.log('loadmore');
+    dispatch(
+      fetchProductsStart({
+        filterType,
+        startAfterDoc: queryDoc,
+        persistProducts: data,
+      })
+    );
+  };
 
-  const cofigLoadMore = {
-    onLoadMoreEvent: handleLoadMore,
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadMore,
   };
 
   return (
     <div>
       <FormSelect {...configFilters}></FormSelect>
       <div>
-        {products.map((product, position) => {
+        {data.map((product, position) => {
           const { productThumbnail, productName, productPrice } = product;
 
           if (
@@ -82,7 +93,7 @@ function ProductResults() {
           return <Product {...configProduct} />;
         })}
       </div>
-      <Loadmore {...cofigLoadMore} />
+      {!isLastPage && <Loadmore {...configLoadMore} />}
     </div>
   );
 }

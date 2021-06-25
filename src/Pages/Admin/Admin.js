@@ -16,6 +16,7 @@ const mapState = ({ productsData }) => ({
 
 const Admin = () => {
   const { products } = useSelector(mapState);
+  const { data } = products;
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('vasen');
@@ -131,9 +132,9 @@ const Admin = () => {
                   cellSpacing="0"
                 >
                   <tbody>
-                    {Array.isArray(products) &&
-                      products.length > 0 &&
-                      products.map((product, index) => {
+                    {Array.isArray(data) &&
+                      data.length > 0 &&
+                      data.map((product, index) => {
                         const {
                           productName,
                           productThumbnail,
