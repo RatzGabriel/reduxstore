@@ -6,6 +6,7 @@ import {
   setProduct,
 } from '../../Redux/Products/products.actions';
 import Button from '../Elements/Button/Button';
+import { addProduct } from '../../Redux/Cart/cart.action';
 
 const mapState = (state) => ({
   product: state.productsData.product,
@@ -19,6 +20,7 @@ function ProductCard() {
     product;
 
   useEffect(() => {
+    console.log(productID);
     dispatch(fetchProductStart(productID));
 
     return () => {
@@ -29,12 +31,21 @@ function ProductCard() {
   const configAddToCartBtn = {
     type: 'button',
   };
+
+  const handleAddToCart = (product) => {
+    console.log('>>>>>CONAN', product);
+    if (!product) return;
+    dispatch(addProduct(product));
+  };
+
   return (
     <div>
       <img src={productThumbnail} alt="" />
       <h1>{productName}</h1>
       <h2>{productPrice}</h2>
-      <Button {...configAddToCartBtn}>Add to Cart Btn</Button>
+      <Button {...configAddToCartBtn} onClick={() => handleAddToCart(product)}>
+        Add to Cart Btn
+      </Button>
       <li>
         <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
       </li>

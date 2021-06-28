@@ -21,7 +21,7 @@ export const deleteProductStart = (productId) => ({
 });
 
 export const fetchProductStart = (productID) => ({
-  type: productsTypes.FETCH_PRODUCTS_START,
+  type: productsTypes.FETCH_PRODUCT_START,
   payload: productID,
 });
 

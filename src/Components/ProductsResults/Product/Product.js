@@ -6,6 +6,7 @@ import { addProduct } from '../../../Redux/Cart/cart.action';
 
 function Product(product) {
   const { productThumbnail, productName, productPrice, documentID } = product;
+
   const dispatch = useDispatch();
   if (
     !productThumbnail ||
@@ -19,7 +20,7 @@ function Product(product) {
     type: 'button',
   };
 
-  const handleAddToCart = (product) => {
+  const handleAddToCard = (product) => {
     if (!product) return;
     dispatch(addProduct(product));
   };
@@ -33,10 +34,10 @@ function Product(product) {
       </Link>
       <div>
         <Button
-          onClick={() => handleAddToCart(product)}
+          onClick={() => handleAddToCard(product)}
           {...configAddToCartBtn}
         >
-          Add to Cart
+          Add to Card
         </Button>
       </div>
     </div>

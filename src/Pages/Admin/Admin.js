@@ -61,7 +61,6 @@ const Admin = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log('submit', productCategory);
     e.preventDefault();
     dispatch(
       addProductStart({

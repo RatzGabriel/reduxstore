@@ -3,7 +3,7 @@ import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Product from './Product/Product';
 import FormSelect from '../Elements/FormSelect/FormSelect';
-import { useHistory, useParams, Link } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Loadmore from '../Loadmore/Loadmore';
 
 const mapState = ({ productsData }) => ({
@@ -85,13 +85,11 @@ function ProductResults() {
           ) {
             return null;
           }
+
           const configProduct = {
-            productThumbnail,
-            productName,
-            productPrice,
-            documentID,
+            ...product,
           };
-          return <Product {...configProduct} />;
+          return <Product key={position} {...configProduct} />;
         })}
       </div>
       {!isLastPage && <Loadmore {...configLoadMore} />}

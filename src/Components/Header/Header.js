@@ -10,13 +10,15 @@ import {
   signOutUserStart,
 } from '../../Redux/User/user.actions';
 import { checkUserIsAdmin } from '../../CustomHooks/checkUserIsAdmin';
+import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
 
-const mapState = ({ user }) => ({
-  currentUser: user.currentUser,
+const mapState = (state) => ({
+  currentUser: state.user.currentUser,
+  totalNumCartItems: selectCartItemsCount(state),
 });
 
 function Header() {
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, totalNumCartItems } = useSelector(mapState);
 
   const dispatch = useDispatch();
 
@@ -38,10 +40,11 @@ function Header() {
         <Link to="/signIn">Sign In</Link>
         <Link to="/forgotPassword">Forgot Password</Link>
         <Link to="/search">Search</Link>
+        <Link to="/cart">Cart</Link>
         {checkUserIsAdmin(currentUser) && <Link to="/admin">Admin</Link>}
         {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
         {currentUser && <Button onClick={() => signOut()}>Logout</Button>}
-        {<button onClick={() => console.log(currentUser)}></button>}
+        <Link to="/cart">Your Cart ({totalNumCartItems})</Link>
       </WrapDiv>
     </MainDiv>
   );

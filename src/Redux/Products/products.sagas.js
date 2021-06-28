@@ -58,16 +58,18 @@ export function* onDeleteProductStart() {
 }
 
 export function* fetchProduct({ payload }) {
+  console.log('PAYLOAD=', payload);
   try {
     const product = yield handleFetchProduct(payload);
+    console.log('SINGLEPRODUCT', product);
     yield put(setProduct(product));
   } catch (err) {
-    console.log(err);
+    console.log('EEEEEEEEEEEEEERRRRRRR', err);
   }
 }
 
 export function* onFetchProductStart() {
-  yield takeLatest(productsTypes.FETCH_PRODUCTS_START, fetchProduct);
+  yield takeLatest(productsTypes.FETCH_PRODUCT_START, fetchProduct);
 }
 
 export default function* productsSagas() {
