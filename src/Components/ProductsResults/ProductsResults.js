@@ -3,7 +3,7 @@ import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Product from './Product/Product';
 import FormSelect from '../Elements/FormSelect/FormSelect';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import Loadmore from '../Loadmore/Loadmore';
 
 const mapState = ({ productsData }) => ({
@@ -57,7 +57,6 @@ function ProductResults() {
   }
 
   const handleLoadMore = () => {
-    console.log('loadmore');
     dispatch(
       fetchProductsStart({
         filterType,
@@ -76,7 +75,8 @@ function ProductResults() {
       <FormSelect {...configFilters}></FormSelect>
       <div>
         {data.map((product, position) => {
-          const { productThumbnail, productName, productPrice } = product;
+          const { productThumbnail, productName, productPrice, documentID } =
+            product;
 
           if (
             !productThumbnail ||
@@ -89,6 +89,7 @@ function ProductResults() {
             productThumbnail,
             productName,
             productPrice,
+            documentID,
           };
           return <Product {...configProduct} />;
         })}

@@ -14,6 +14,7 @@ import { checkUserSession } from './Redux/User/user.actions';
 import WithAdminAuth from './hoc/withAdminAuth';
 import AdminLayout from './Layouts/AdminLayout';
 import Search from './Pages/Search/Search';
+import ProductDetails from './Pages/ProductDetails.js/ProductDetails';
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -44,6 +45,9 @@ const App = (props) => {
         </Route>
         <Route path="/search/:filterType">
           <Search />
+        </Route>
+        <Route path="/product/:productID">
+          <ProductDetails></ProductDetails>
         </Route>
       </Switch>
     </div>

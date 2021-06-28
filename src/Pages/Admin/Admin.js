@@ -9,6 +9,8 @@ import Button from '../../Components/Elements/Button/Button';
 import FormSelect from '../../Components/Elements/FormSelect/FormSelect';
 import FormInput from '../../Components/Elements/Form/Form';
 import Modal from '../../Components/Modal/Modal';
+import LoadMore from '../../Components/Loadmore/Loadmore';
+import { CKEditor } from 'ckeditor4-react';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -16,7 +18,7 @@ const mapState = ({ productsData }) => ({
 
 const Admin = () => {
   const { products } = useSelector(mapState);
-  const { data } = products;
+  const { data, isLastPage, queryDoc } = products;
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('vasen');
@@ -45,6 +47,19 @@ const Admin = () => {
     toggleModal,
   };
 
+  const handleLoadMore = () => {
+    dispatch(
+      fetchProductsStart({
+        startAfterDoc: queryDoc,
+        persistProducts: data,
+      })
+    );
+  };
+
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadMore,
+  };
+
   const handleSubmit = (e) => {
     console.log('submit', productCategory);
     e.preventDefault();
@@ -54,6 +69,7 @@ const Admin = () => {
         productName,
         productThumbnail,
         productPrice,
+        productDescription,
       })
     );
     resetForm();
@@ -109,7 +125,10 @@ const Admin = () => {
               value={productPrice}
               onChange={(e) => setProductPrice(e.target.value)}
             />
-
+            <CKEditor
+              onChange={(evt) => setProductDescription(evt.editor.getData())}
+            ></CKEditor>
+            <br />
             <Button type="submit">Add product</Button>
           </form>
         </div>
@@ -177,7 +196,7 @@ const Admin = () => {
                 <table border="0" cellPadding="10px" cellSpacing="0">
                   <tbody>
                     <tr>
-                      {/* <td>{!isLastPage && <LoadMore {...configLoadMore} />}</td> */}
+                      <td>{!isLastPage && <LoadMore {...configLoadMore} />}</td>
                     </tr>
                   </tbody>
                 </table>

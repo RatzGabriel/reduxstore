@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '../../Elements/Button/Button';
+import { Link } from 'react-router-dom';
 
-function Product({ productThumbnail, productName, productPrice }) {
+function Product({ productThumbnail, productName, productPrice, documentID }) {
   if (
     !productThumbnail ||
     !productName ||
@@ -17,7 +18,10 @@ function Product({ productThumbnail, productName, productPrice }) {
   return (
     <div>
       <h1>Products</h1>
-      {productName}${productPrice}
+      <Link to={`/product/${documentID}`}>{productName}</Link>${productPrice}
+      <Link to={`/product/${documentID}`}>
+        <img src={productThumbnail} alt={productName} />
+      </Link>
       <div>
         <Button {...configAddToCartBtn}>Add to Cart</Button>
       </div>
