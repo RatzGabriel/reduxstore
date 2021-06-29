@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
@@ -18,7 +18,12 @@ import ProductDetails from './Pages/ProductDetails.js/ProductDetails';
 import Cart from './Pages/Cart/Cart';
 import Payment from './Pages/Payment/Payment';
 
+const mapState = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
 const App = (props) => {
+  const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,7 +60,8 @@ const App = (props) => {
           <Cart />
         </Route>
         <Route path="/payment">
-          <Payment />
+          {currentUser && <Payment></Payment>}
+          {!currentUser && <SignIn></SignIn>}
         </Route>
       </Switch>
     </div>

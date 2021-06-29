@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import FormInput from '../Elements/Form/Form';
 import { CountryDropdown } from 'react-country-region-selector';
-import { CardElement, useElements } from '@stripe/react-stripe-js';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import Button from '../Elements/Button/Button';
+import { apiInstance } from '../../CustomHooks/checkUserIsAdmin';
+import { selectCartTotal } from '../../Redux/Cart/cart.selectors';
+import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
 
 const initialAdressState = {
   line1: '',
@@ -13,8 +17,14 @@ const initialAdressState = {
   country: '',
 };
 
+const mapState = createStructuredSelector({
+  total: selectCartTotal,
+});
+
 function PaymentDetails() {
   const elements = useElements();
+  const stripe = useStripe();
+  const { total } = useSelector(mapState);
   const [billingAdress, setBillingAdress] = useState({ ...initialAdressState });
   const [shippingAdress, setShippingAdress] = useState({
     ...initialAdressState,
@@ -40,24 +50,59 @@ function PaymentDetails() {
 
   const handleFormSubmit = async (evt) => {
     evt.preventDefault();
+
     const cardElemet = elements.getElement('card');
 
     if (
       !shippingAdress.line1 ||
       !shippingAdress.city ||
       !shippingAdress.state ||
-      shippingAdress.postal_code ||
-      shippingAdress.country ||
-      billingAdress.line1 ||
-      billingAdress.city ||
-      billingAdress.state ||
-      billingAdress.postal_code ||
-      billingAdress.country ||
+      !shippingAdress.postal_code ||
+      !shippingAdress.country ||
+      !billingAdress.line1 ||
+      !billingAdress.city ||
+      !billingAdress.state ||
+      !billingAdress.postal_code ||
+      !billingAdress.country ||
       !recipientName ||
       !nameOnCard
     ) {
+      console.log('error');
       return;
     }
+
+    apiInstance
+      .post('/payments/create', {
+        amount: total * 100,
+        shipping: {
+          name: recipientName,
+          address: {
+            ...shippingAdress,
+          },
+        },
+      })
+      .then(({ data: clientSecret }) => {
+        stripe
+          .createPaymentMethod({
+            type: 'card',
+            card: cardElemet,
+            billing_details: {
+              name: nameOnCard,
+              adress: {
+                ...billingAdress,
+              },
+            },
+          })
+          .then(({ paymentMethod }) => {
+            stripe
+              .confirmCardPayment(clientSecret, {
+                payment_method: paymentMethod.id,
+              })
+              .then(({ paymentIntent }) => {
+                console.log(paymentIntent);
+              });
+          });
+      });
   };
 
   const configCardElement = {

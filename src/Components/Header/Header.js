@@ -43,6 +43,7 @@ function Header() {
         <Link to="/cart">Cart</Link>
         {checkUserIsAdmin(currentUser) && <Link to="/admin">Admin</Link>}
         {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
+        {currentUser && <Link to="/payment">Payment</Link>}
         {currentUser && <Button onClick={() => signOut()}>Logout</Button>}
         <Link to="/cart">Your Cart ({totalNumCartItems})</Link>
       </WrapDiv>
