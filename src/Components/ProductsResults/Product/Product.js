@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../Elements/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../../Redux/Cart/cart.action';
 
@@ -8,6 +8,7 @@ function Product(product) {
   const { productThumbnail, productName, productPrice, documentID } = product;
 
   const dispatch = useDispatch();
+  const history = useHistory();
   if (
     !productThumbnail ||
     !productName ||
@@ -23,6 +24,7 @@ function Product(product) {
   const handleAddToCard = (product) => {
     if (!product) return;
     dispatch(addProduct(product));
+    history.push('/cart');
   };
 
   return (
