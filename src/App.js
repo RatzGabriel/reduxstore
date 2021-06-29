@@ -16,6 +16,7 @@ import AdminLayout from './Layouts/AdminLayout';
 import Search from './Pages/Search/Search';
 import ProductDetails from './Pages/ProductDetails.js/ProductDetails';
 import Cart from './Pages/Cart/Cart';
+import Payment from './Pages/Payment/Payment';
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -52,6 +53,9 @@ const App = (props) => {
         </Route>
         <Route path="/cart">
           <Cart />
+        </Route>
+        <Route path="/payment">
+          <Payment />
         </Route>
       </Switch>
     </div>
