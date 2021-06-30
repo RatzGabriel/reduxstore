@@ -1,8 +1,8 @@
+/* eslint-disable max-len */
 const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
 const stripe = require('stripe')(
-  // eslint-disable-next-line max-len
   'sk_test_51J7YskE10YBEl8LCp820SefJ6zE6vakNkSuwQPZ2pmsLfo3oRle23R4CKjpCgHmsPdLx3rOo4qTKJBN1w1CsJ0lK00OK54gvEa'
 );
 
@@ -21,7 +21,7 @@ app.post('/payments/create', async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       shipping,
       amount,
-      currency: 'eur',
+      currency: 'usd',
     });
 
     res.status(200).send(paymentIntent.client_secret);

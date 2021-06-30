@@ -2,6 +2,7 @@ import React from 'react';
 
 const UserProfile = (props) => {
   const { currentUser } = props;
+
   const { displayName } = currentUser;
 
   return (

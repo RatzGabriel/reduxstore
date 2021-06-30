@@ -11,6 +11,7 @@ import {
 } from '../../Redux/User/user.actions';
 import { checkUserIsAdmin } from '../../CustomHooks/checkUserIsAdmin';
 import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
+import Dashboard from '../../Pages/Dashboard/Dashboard';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -45,6 +46,7 @@ function Header() {
         {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
         {currentUser && <Link to="/payment">Payment</Link>}
         {currentUser && <Button onClick={() => signOut()}>Logout</Button>}
+        {currentUser && <Link to="/dashboard">Dashboard</Link>}
         <Link to="/cart">Your Cart ({totalNumCartItems})</Link>
       </WrapDiv>
     </MainDiv>

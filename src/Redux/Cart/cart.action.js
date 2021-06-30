@@ -16,5 +16,5 @@ export const reduceCartItem = (cartItem) => ({
 });
 
 export const clearCart = () => ({
-  type: cartTypes.clearCart,
+  type: cartTypes.CLEAR_CART,
 });

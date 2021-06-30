@@ -17,6 +17,9 @@ import Search from './Pages/Search/Search';
 import ProductDetails from './Pages/ProductDetails.js/ProductDetails';
 import Cart from './Pages/Cart/Cart';
 import Payment from './Pages/Payment/Payment';
+import DashBoardLayout from './Layouts/DashboardLayout';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Order from './Pages/Order/Order';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -62,6 +65,21 @@ const App = (props) => {
         <Route path="/payment">
           {currentUser && <Payment></Payment>}
           {!currentUser && <SignIn></SignIn>}
+        </Route>
+        <Route path="/dashboard">
+          {currentUser && (
+            <DashBoardLayout>
+              <Dashboard />{' '}
+            </DashBoardLayout>
+          )}
+          {!currentUser && <SignIn></SignIn>}
+        </Route>
+        <Route path="/order/:orderID">
+          {currentUser && (
+            <DashBoardLayout>
+              <Order />
+            </DashBoardLayout>
+          )}
         </Route>
       </Switch>
     </div>

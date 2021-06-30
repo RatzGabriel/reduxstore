@@ -8,7 +8,7 @@ import rootSaga from './rootSaga';
 import { persistStore } from 'redux-persist';
 
 const sagaMiddleware = createSagaMiddle();
-export const middlewares = [thunk, logger, sagaMiddleware];
+export const middlewares = [thunk, sagaMiddleware, logger];
 
 export const store = createStore(
   rootReducer,

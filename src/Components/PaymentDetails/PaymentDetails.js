@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormInput from '../Elements/Form/Form';
 import { CountryDropdown } from 'react-country-region-selector';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import Button from '../Elements/Button/Button';
 import { apiInstance } from '../../CustomHooks/checkUserIsAdmin';
-import { selectCartTotal } from '../../Redux/Cart/cart.selectors';
+import {
+  selectCartTotal,
+  selectCartItemsCount,
+  selectCartItems,
+} from '../../Redux/Cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { saveOrderHistory } from '../../Redux/Orders/orders.actions';
 const initialAdressState = {
   line1: '',
   line2: '',
@@ -19,18 +24,27 @@ const initialAdressState = {
 
 const mapState = createStructuredSelector({
   total: selectCartTotal,
+  itemCount: selectCartItemsCount,
+  cartItems: selectCartItems,
 });
 
 function PaymentDetails() {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const elements = useElements();
   const stripe = useStripe();
-  const { total } = useSelector(mapState);
+  const { total, itemCount, cartItems } = useSelector(mapState);
   const [billingAdress, setBillingAdress] = useState({ ...initialAdressState });
   const [shippingAdress, setShippingAdress] = useState({
     ...initialAdressState,
   });
   const [recipientName, setRecipientName] = useState('');
   const [nameOnCard, setNameOnCard] = useState('');
+
+  useEffect(() => {
+    if (itemCount < 1) {
+    }
+  }, [itemCount]);
 
   const handleShipping = (evt) => {
     const { name, value } = evt.target;
@@ -67,7 +81,6 @@ function PaymentDetails() {
       !recipientName ||
       !nameOnCard
     ) {
-      console.log('error');
       return;
     }
 
@@ -88,7 +101,7 @@ function PaymentDetails() {
             card: cardElemet,
             billing_details: {
               name: nameOnCard,
-              adress: {
+              address: {
                 ...billingAdress,
               },
             },
@@ -99,7 +112,27 @@ function PaymentDetails() {
                 payment_method: paymentMethod.id,
               })
               .then(({ paymentIntent }) => {
-                console.log(paymentIntent);
+                const configOrder = {
+                  orderTotal: total,
+                  orderItems: cartItems.map((item) => {
+                    const {
+                      documentID,
+                      productThumbnail,
+                      productName,
+                      productPrice,
+                      quantity,
+                    } = item;
+
+                    return {
+                      documentID,
+                      productThumbnail,
+                      productName,
+                      productPrice,
+                      quantity,
+                    };
+                  }),
+                };
+                dispatch(saveOrderHistory(configOrder));
               });
           });
       });
