@@ -11,7 +11,6 @@ import {
 } from '../../Redux/User/user.actions';
 import { checkUserIsAdmin } from '../../CustomHooks/checkUserIsAdmin';
 import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
-import Dashboard from '../../Pages/Dashboard/Dashboard';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -34,20 +33,36 @@ function Header() {
   return (
     <MainDiv>
       <WrapDiv>
-        <Link to="/">
-          <LogoImg src={testLogo} alt="logo image" />
-        </Link>
-        <Link to="/registration">Registration</Link>
-        <Link to="/signIn">Sign In</Link>
-        <Link to="/forgotPassword">Forgot Password</Link>
-        <Link to="/search">Search</Link>
-        <Link to="/cart">Cart</Link>
-        {checkUserIsAdmin(currentUser) && <Link to="/admin">Admin</Link>}
-        {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
-        {currentUser && <Link to="/payment">Payment</Link>}
-        {currentUser && <Button onClick={() => signOut()}>Logout</Button>}
-        {currentUser && <Link to="/dashboard">Dashboard</Link>}
-        <Link to="/cart">Your Cart ({totalNumCartItems})</Link>
+        <div>
+          <Link to="/">
+            <LogoImg src={testLogo} alt="logo image" />
+          </Link>
+        </div>
+        <div>
+          <StyledLink to="/search">Search</StyledLink>
+          <StyledLink to="/cart">Cart</StyledLink>
+        </div>
+        <div>
+          {checkUserIsAdmin(currentUser) && (
+            <StyledLink to="/admin">Admin</StyledLink>
+          )}
+          {!currentUser && (
+            <StyledLink to="/registration">Registration</StyledLink>
+          )}
+          {!currentUser && <StyledLink to="/signIn">Sign In</StyledLink>}
+          {!currentUser && (
+            <Button onClick={signIn}>Sign in with Google</Button>
+          )}
+          {!currentUser && (
+            <StyledLink to="/forgotPassword">Forgot Password</StyledLink>
+          )}
+          {currentUser && <StyledLink to="/payment">Payment</StyledLink>}
+          {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>}
+          <StyledLink to="/cart">Your Cart ({totalNumCartItems})</StyledLink>
+          {currentUser && (
+            <StyledLink onClick={() => signOut()}>Logout</StyledLink>
+          )}
+        </div>
       </WrapDiv>
     </MainDiv>
   );
@@ -62,9 +77,10 @@ export default Header;
 //Styled Components
 
 const MainDiv = styled.div`
-  color: red;
-  background-color: black;
   height: 10rem;
+  background-color: transparent;
+  position: fixed;
+  width: 100%;
 `;
 
 const WrapDiv = styled.div`
@@ -72,6 +88,16 @@ const WrapDiv = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: space-around;
+`;
+
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: larger;
 `;
 
 const LogoImg = styled.img`

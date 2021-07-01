@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   emailSignInStart,
   googleSignInStart,

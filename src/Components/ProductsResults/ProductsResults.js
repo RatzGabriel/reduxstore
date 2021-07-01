@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+
+import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import Product from './Product/Product';
 import FormSelect from '../Elements/FormSelect/FormSelect';
-import { useHistory, useParams } from 'react-router-dom';
 import Loadmore from '../Loadmore/Loadmore';
 
 const mapState = ({ productsData }) => ({

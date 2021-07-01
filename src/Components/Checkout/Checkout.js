@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+
+import Button from '../Elements/Button/Button';
+import Item from './Item/Item';
 import {
   selectCartItems,
   selectCartTotal,
 } from '../../Redux/Cart/cart.selectors';
-import { createStructuredSelector } from 'reselect';
-import Button from '../Elements/Button/Button';
-import Item from './Item/Item';
-import { useHistory } from 'react-router-dom';
 
 const mapState = createStructuredSelector({
   cartItems: selectCartItems,

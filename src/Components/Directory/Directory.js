@@ -26,6 +26,8 @@ function Directory() {
 
 export default Directory;
 
+//Styled Components
+
 const MainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;

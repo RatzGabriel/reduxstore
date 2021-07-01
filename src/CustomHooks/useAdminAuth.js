@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import { checkUserIsAdmin } from './checkUserIsAdmin';
 
 const mapState = ({ user }) => ({

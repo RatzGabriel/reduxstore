@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import FormInput from '../Elements/Form/Form';
+import { useHistory } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
 import { CountryDropdown } from 'react-country-region-selector';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+
+import FormInput from '../Elements/Form/Form';
 import Button from '../Elements/Button/Button';
 import { apiInstance } from '../../CustomHooks/checkUserIsAdmin';
 import {
@@ -9,10 +12,9 @@ import {
   selectCartItemsCount,
   selectCartItems,
 } from '../../Redux/Cart/cart.selectors';
-import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { saveOrderHistory } from '../../Redux/Orders/orders.actions';
+
 const initialAdressState = {
   line1: '',
   line2: '',

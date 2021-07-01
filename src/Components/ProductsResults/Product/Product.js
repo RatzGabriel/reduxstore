@@ -1,7 +1,8 @@
 import React from 'react';
-import Button from '../../Elements/Button/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
+import Button from '../../Elements/Button/Button';
 import { addProduct } from '../../../Redux/Cart/cart.action';
 
 function Product(product) {
