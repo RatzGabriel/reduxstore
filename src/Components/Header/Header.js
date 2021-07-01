@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
 import testLogo from '../../Assets/testLogo.jpeg';
 import Button from '../Elements/Button/Button';
 import {
@@ -11,6 +10,10 @@ import {
 } from '../../Redux/User/user.actions';
 import { checkUserIsAdmin } from '../../CustomHooks/checkUserIsAdmin';
 import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
+//Material Imports
+import SearchIcon from '@material-ui/icons/Search';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -33,19 +36,26 @@ function Header() {
   return (
     <MainDiv>
       <WrapDiv>
-        <div>
+        <LeftDiv>
           <Link to="/">
             <LogoImg src={testLogo} alt="logo image" />
           </Link>
-        </div>
-        <div>
-          <StyledLink to="/search">Search</StyledLink>
-          <StyledLink to="/cart">Cart</StyledLink>
-        </div>
-        <div>
-          {checkUserIsAdmin(currentUser) && (
+          <LogoText>Machua Peru</LogoText>
+        </LeftDiv>
+        <WrapDiv>
+          <StyledLink to="/search">
+            <WrapDiv>
+              <SearchIcon />
+              <CategoryP>Vasen</CategoryP>
+              <CategoryP>Teller</CategoryP>
+              <CategoryP>Becher</CategoryP>
+            </WrapDiv>
+          </StyledLink>
+        </WrapDiv>
+        <MediumDiv>
+          {/* {checkUserIsAdmin(currentUser) && (
             <StyledLink to="/admin">Admin</StyledLink>
-          )}
+          )} */}
           {!currentUser && (
             <StyledLink to="/registration">Registration</StyledLink>
           )}
@@ -56,13 +66,20 @@ function Header() {
           {!currentUser && (
             <StyledLink to="/forgotPassword">Forgot Password</StyledLink>
           )}
-          {currentUser && <StyledLink to="/payment">Payment</StyledLink>}
-          {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>}
-          <StyledLink to="/cart">Your Cart ({totalNumCartItems})</StyledLink>
+          {currentUser && (
+            <StyledLink to="/payment">
+              <EuroSymbolIcon />
+            </StyledLink>
+          )}
+          {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
+          <StyledLink to="/cart">
+            <ShoppingCartIcon />
+            <ItemCountP>({totalNumCartItems})</ItemCountP>
+          </StyledLink>
           {currentUser && (
             <StyledLink onClick={() => signOut()}>Logout</StyledLink>
           )}
-        </div>
+        </MediumDiv>
       </WrapDiv>
     </MainDiv>
   );
@@ -77,10 +94,11 @@ export default Header;
 //Styled Components
 
 const MainDiv = styled.div`
-  height: 10rem;
-  background-color: transparent;
+  height: 5rem;
+  background-color: white;
   position: fixed;
   width: 100%;
+  border-bottom: 1px solid black;
 `;
 
 const WrapDiv = styled.div`
@@ -88,7 +106,17 @@ const WrapDiv = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  justify-content: space-around;
+  justify-content: space-between;
+`;
+
+const MediumDiv = styled.div`
+  display: flex;
+`;
+
+const LeftDiv = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
 `;
 
 const StyledLink = styled(Link)`
@@ -98,10 +126,25 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: larger;
+  padding-right: 2rem;
+  display: flex;
 `;
 
 const LogoImg = styled.img`
   height: 40px;
   margin-left: 1rem;
   border-radius: 20%;
+`;
+
+const ItemCountP = styled.p`
+  font-size: 10px;
+`;
+
+const CategoryP = styled.p`
+  padding-left: 1rem;
+`;
+
+const LogoText = styled.p`
+  font-size: 2rem;
+  font-family: 'Montserrat', sans-serif;
 `;

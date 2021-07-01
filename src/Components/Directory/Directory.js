@@ -31,8 +31,9 @@ export default Directory;
 const MainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background-color: beige;
-  height: 89vh;
+  height: 100vh;
+  width: 80%;
+  margin: auto auto;
 `;
 
 const QuarterDiv = styled.div`
