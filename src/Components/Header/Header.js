@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,6 +14,8 @@ import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
+import NavItem from './NavItem';
+import DropdownMenu from './DropdownMenu';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -43,19 +45,25 @@ function Header() {
           <LogoText>Machua Peru</LogoText>
         </LeftDiv>
         <WrapDiv>
-          <StyledLink to="/search">
+          <div>
             <WrapDiv>
               <SearchIcon />
-              <CategoryP>Vasen</CategoryP>
-              <CategoryP>Teller</CategoryP>
-              <CategoryP>Becher</CategoryP>
+              <NavItem itemName={'Vase'}>
+                <DropdownMenu />
+              </NavItem>
+              <NavItem itemName={'andere'}>
+                <DropdownMenu />
+              </NavItem>
+              <NavItem itemName={'more'}>
+                <DropdownMenu />
+              </NavItem>
             </WrapDiv>
-          </StyledLink>
+          </div>
         </WrapDiv>
         <MediumDiv>
-          {/* {checkUserIsAdmin(currentUser) && (
+          {checkUserIsAdmin(currentUser) && (
             <StyledLink to="/admin">Admin</StyledLink>
-          )} */}
+          )}
           {!currentUser && (
             <StyledLink to="/registration">Registration</StyledLink>
           )}
@@ -125,7 +133,7 @@ const StyledLink = styled(Link)`
   text-transform: uppercase;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
-  font-size: larger;
+  font-size: 1rem;
   padding-right: 2rem;
   display: flex;
 `;
@@ -141,7 +149,13 @@ const ItemCountP = styled.p`
 `;
 
 const CategoryP = styled.p`
-  padding-left: 1rem;
+  padding: 1rem 1rem;
+
+  &:hover {
+    filter: brightness(1.2);
+    background-color: black;
+    color: white;
+  }
 `;
 
 const LogoText = styled.p`

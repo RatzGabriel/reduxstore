@@ -4,23 +4,38 @@ import One from '../../Assets/One.jpg';
 import Two from '../../Assets/Two.jpg';
 import Three from '../../Assets/Three.jpg';
 import Four from '../../Assets/Four.jpg';
+import Footer from '../Footer/Footer';
+import { Link } from 'react-router-dom';
 
 function Directory() {
   return (
-    <MainWrapper>
-      <QuarterDiv one>
-        <A href="">Teller</A>
-      </QuarterDiv>
-      <QuarterDiv two>
-        <A href="">Tassen</A>
-      </QuarterDiv>
-      <QuarterDiv three>
-        <A href="">Vasen</A>
-      </QuarterDiv>
-      <QuarterDiv four>
-        <A href="">Extras</A>
-      </QuarterDiv>
-    </MainWrapper>
+    <MainDiv>
+      <MainWrapper>
+        <QuarterDiv two>
+          <StyledLink to="/search/vasen">Tassen</StyledLink>
+        </QuarterDiv>
+
+        <QuarterDiv four>
+          <StyledLink to="/search/andere">Andere</StyledLink>
+        </QuarterDiv>
+        <div>
+          <Div>
+            <iframe
+              width="800"
+              height="775"
+              src="https://www.youtube.com/embed/0pt0MdReMts"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </Div>
+          <div>
+            <Footer />
+          </div>
+        </div>
+      </MainWrapper>
+    </MainDiv>
   );
 }
 
@@ -28,17 +43,23 @@ export default Directory;
 
 //Styled Components
 
+const MainDiv = styled.div`
+  height: 100%;
+  background-color: gray;
+  width: 100%;
+`;
+
 const MainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
   width: 80%;
-  margin: auto auto;
+
+  margin: auto;
 `;
 
 const QuarterDiv = styled.div`
-  height: 50%;
-  width: 50%;
+  width: 70%;
+  height: 80vh;
   display: flex;
   background-size: cover;
 
@@ -51,6 +72,7 @@ const QuarterDiv = styled.div`
     props.two &&
     css`
       background-image: url(${Two});
+      height: 50vh;
     `}
     ${(props) =>
     props.three &&
@@ -64,7 +86,13 @@ const QuarterDiv = styled.div`
     `}
 `;
 
-const A = styled.a`
+const Div = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const StyledLink = styled(Link)`
   margin: auto auto;
   text-decoration: none;
   color: black;

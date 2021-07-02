@@ -20,6 +20,9 @@ import Payment from './Pages/Payment/Payment';
 import DashBoardLayout from './Layouts/DashboardLayout';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Order from './Pages/Order/Order';
+import Footer from './Components/Footer/Footer';
+
+import styled from 'styled-components';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
