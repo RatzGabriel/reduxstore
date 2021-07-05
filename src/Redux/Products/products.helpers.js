@@ -19,7 +19,7 @@ export const handleFetchProducts = ({
   persistProducts = [],
 }) => {
   return new Promise((resolve, reject) => {
-    const pageSize = 6;
+    const pageSize = 1000;
 
     let ref = firestore
       .collection('products')
@@ -42,7 +42,6 @@ export const handleFetchProducts = ({
             };
           }),
         ];
-
         resolve({
           data,
           queryDoc: snapshot.docs[totalCount - 1],

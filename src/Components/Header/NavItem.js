@@ -5,8 +5,7 @@ function NavItem(props) {
   const [open, setOpen] = useState(false);
   return (
     <Li onMouseEnter={() => setOpen(!open)} onMouseLeave={() => setOpen(!open)}>
-      <a href="d"> {props.itemName}</a>
-
+      {props.itemName}
       {open && props.children}
     </Li>
   );
@@ -19,6 +18,4 @@ const Li = styled.li`
   text-decoration: none;
   display: flex;
   width: 5rem;
-
-  margin-right: 1rem;
 `;

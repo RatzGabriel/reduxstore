@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import Button from '../../Elements/Button/Button';
 import { addProduct } from '../../../Redux/Cart/cart.action';
 
+import styled from 'styled-components';
+
 function Product(product) {
   const { productThumbnail, productName, productPrice, documentID } = product;
 
@@ -29,12 +31,11 @@ function Product(product) {
   };
 
   return (
-    <div>
-      <h1>Products</h1>
-      <Link to={`/product/${documentID}`}>{productName}</Link>${productPrice}
-      <Link to={`/product/${documentID}`}>
-        <img src={productThumbnail} alt={productName} />
-      </Link>
+    <MainDiv>
+      €{productPrice}
+      <StyledLink to={`/product/${documentID}`}>
+        <ProductImage src={productThumbnail} alt={productName} />
+      </StyledLink>
       <div>
         <Button
           onClick={() => handleAddToCard(product)}
@@ -43,8 +44,34 @@ function Product(product) {
           Add to Card
         </Button>
       </div>
-    </div>
+    </MainDiv>
   );
 }
 
 export default Product;
+
+const MainDiv = styled.div`
+  background-color: gray;
+  margin: 2rem 2rem;
+  display: flex;
+  width: 30rem;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+`;
+
+const ProductImage = styled.img`
+  height: 13rem;
+`;
+
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  padding-right: 2rem;
+  display: flex;
+`;

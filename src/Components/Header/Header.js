@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import testLogo from '../../Assets/testLogo.jpeg';
 import Button from '../Elements/Button/Button';
 import {
   googleSignInStart,
@@ -40,14 +39,14 @@ function Header() {
       <WrapDiv>
         <LeftDiv>
           <Link to="/">
-            <LogoImg src={testLogo} alt="logo image" />
+            <LogoImg src={'/images/testLogo.jpeg'} alt="logo image" />
           </Link>
           <LogoText>Machua Peru</LogoText>
+          <SearchIcon />
         </LeftDiv>
         <WrapDiv>
           <div>
             <WrapDiv>
-              <SearchIcon />
               <NavItem itemName={'Vase'}>
                 <DropdownMenu />
               </NavItem>
@@ -104,7 +103,6 @@ export default Header;
 const MainDiv = styled.div`
   height: 5rem;
   background-color: white;
-  position: fixed;
   width: 100%;
   border-bottom: 1px solid black;
 `;
@@ -115,6 +113,10 @@ const WrapDiv = styled.div`
   align-items: center;
   position: relative;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const MediumDiv = styled.div`
@@ -160,5 +162,7 @@ const CategoryP = styled.p`
 
 const LogoText = styled.p`
   font-size: 2rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 500;
+  padding-left: 3rem;
 `;

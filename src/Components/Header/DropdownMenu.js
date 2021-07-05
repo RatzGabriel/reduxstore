@@ -1,5 +1,5 @@
 import React from 'react';
-import Four from '../../Assets/Four.jpg';
+
 import styled from 'styled-components';
 import FadeIn from 'react-fade-in';
 
@@ -10,18 +10,21 @@ function DropdownMenu(props) {
 
   return (
     <DropDown>
-      <FadeIn delay={100} transitionDuration={800}>
+      <FadeIn delay={0} transitionDuration={400}>
         <DropDownDiv>
           <DropdownItem>Item One </DropdownItem>
-          <DropdownImage src={Four} alt="" />
+          <DropdownImage src={'/images/Four.jpg'} alt="" />
+          <DropdownImage src={'/images/Four.jpg'} alt="" />
         </DropDownDiv>
         <DropDownDiv>
           <DropdownItem>Item One </DropdownItem>
-          <DropdownImage src={Four} alt="" />
+          <DropdownImage src={'/images/Four.jpg'} alt="" />
+          <DropdownImage src={'/images/Four.jpg'} alt="" />
         </DropDownDiv>
         <DropDownDiv>
           <DropdownItem>Item One </DropdownItem>
-          <DropdownImage src={Four} alt="" />
+          <DropdownImage src={'/images/Four.jpg'} alt="" />
+          <DropdownImage src={'/images/Four.jpg'} alt="" />
         </DropDownDiv>
       </FadeIn>
     </DropDown>
@@ -31,7 +34,10 @@ function DropdownMenu(props) {
 export default DropdownMenu;
 
 const DropdownImage = styled.img`
-  width: 5rem;
+  width: 10rem;
+  height: 12rem;
+  padding: 1rem 1rem;
+  cursor: pointer;
 `;
 
 const DropDownDiv = styled.div`
@@ -43,8 +49,8 @@ const DropDownDiv = styled.div`
 
 const DropDown = styled.div`
   position: absolute;
-  transform: translateY(20%);
-  width: 30rem;
+  transform: translateY(3%);
+  width: 40rem;
 `;
 
 const AItem = styled.a`

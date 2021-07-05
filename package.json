@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/utils": "^4.11.2",
+    "@material/image-list": "^11.0.0",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.15.1",
     "@testing-library/jest-dom": "^5.14.1",
@@ -19,6 +21,7 @@
     "react-country-region-selector": "^3.1.0",
     "react-dom": "^17.0.2",
     "react-fade-in": "^2.0.1",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
