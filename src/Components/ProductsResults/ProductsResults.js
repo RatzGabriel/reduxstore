@@ -1,43 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { ImageList } from '@material/image-list';
-
-import ImageListItem from '@material/image-list';
+import ImageList, { Button } from '@material-ui/core';
 
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import Product from './Product/Product';
 import FormSelect from '../Elements/FormSelect/FormSelect';
 import Loadmore from '../Loadmore/Loadmore';
 
+import CardActions from '@material-ui/core/CardActions';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
 import styled from 'styled-components';
 
 import { makeStyles } from '@material-ui/core/styles';
-
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
+  icon: {
+    marginRight: theme.spacing(2),
   },
-  gridList: {
-    width: '100%',
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   },
-  paper: {
-    height: '50%',
+  cardMedia: {
+    paddingTop: '100%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
   },
 }));
-
 function ProductResults() {
+  function srcset(image, size, rows = 1, cols = 1) {
+    return `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format 1x,
+    ${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format&dpr=2 2x`;
+  }
   const dispatch = useDispatch();
   const history = useHistory();
   const { filterType } = useParams();
@@ -47,11 +69,6 @@ function ProductResults() {
 
   const { data, queryDoc, isLastPage } = products;
   console.log(isLastPage);
-
-  function srcset(image, size, rows = 1, cols = 1) {
-    return `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format 1x,
-    ${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format&dpr=2 2x`;
-  }
 
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));
@@ -106,95 +123,39 @@ function ProductResults() {
   };
 
   return (
-    <ImageList
-      sx={{ width: 500, height: 450 }}
-      variant="quilted"
-      cols={4}
-      rowHeight={121}
-    >
-      {data.map((item) => (
-        <ImageListItem
-          key={item.img}
-          cols={item.cols || 1}
-          rows={item.rows || 1}
-        >
-          <img
-            srcSet={srcset(item.img, 121, item.rows, item.cols)}
-            alt={item.title}
-            loading="lazy"
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
+    <Container className={classes.cardGrid} maxWidth="md">
+      {/* End hero unit */}
+      <Grid container spacing={4}>
+        {data.map((card) => (
+          <Grid item key={card} xs={12} sm={6} md={4}>
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.cardMedia}
+                image={card.productThumbnail}
+                title="Image title"
+              />
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {card.productName}
+                </Typography>
+                <Typography>This is a beautiful Gem</Typography>
+                <Typography>{card.productPrice}€</Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" color="primary">
+                  View
+                </Button>
+                <Button size="small" color="primary">
+                  Edit
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 }
-//   <div className={classes.root} style={{ width: 'auto', height: 'auto' }}>
-//     <FormSelect {...configFilters}></FormSelect>
-//     <Grid container spacing={1}>
-//       {data.map((item) => {
-//         return (
-//           <Grid
-//             key={item.productThumbnail}
-//             item
-//             md={item.cols || 2}
-//             xs={12}
-//             sm={6}
-//           >
-//             <Paper>
-//               {
-//                 <img
-//                   style={{ width: '100%', height: '50%' }}
-//                   src={item.productThumbnail}
-//                   alt={item.productName}
-//                 />
-//               }
-//             </Paper>
-//           </Grid>
-//         );
-//       })}
-//     </Grid>
-
-//     {/* {data.map((tile) => (
-//         <GridListTile key={tile.productThumbnail} cols={tile.cols || 1}>
-//           <img src={tile.productThumbnail} alt={tile.productName} />
-//         </GridListTile>
-//       ))} */}
-//   </div>
-// );
-//   <div>
-//     <FormSelect {...configFilters}></FormSelect>
-//     <h1>Products</h1>
-
-//     {/* <div>
-//       <GridList cellHeight={360} cols={4}>
-//         {data.map((tile) => (
-//           <GridListTile key={tile.productThumbnail} cols={tile.cols || 1}>
-//             <img src={tile.productThumbnail} alt={tile.productName} />
-//           </GridListTile>
-//         ))}
-//       </GridList>
-//     </div> */}
-//     {/* <MainDiv>
-//       {data.map((product, position) => {
-//         const { productThumbnail, productName, productPrice } = product;
-
-//         if (
-//           !productThumbnail ||
-//           !productName ||
-//           typeof productPrice === 'undefined'
-//         ) {
-//           return null;
-//         }
-
-//         const configProduct = {
-//           ...product,
-//         };
-//         return <Product key={position} {...configProduct} />;
-//       })}
-//     </MainDiv> */}
-//     {!isLastPage && <Loadmore {...configLoadMore} />}
-//   </div>
-// );
 
 export default ProductResults;
 
@@ -203,4 +164,9 @@ const MainDiv = styled.div`
   flex-wrap: wrap;
   height: 100vh;
   margin: 0 auto;
+`;
+
+const ImageDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
