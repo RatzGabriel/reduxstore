@@ -35,60 +35,51 @@ function Header() {
   };
 
   return (
-    <MainDiv>
-      <WrapDiv>
-        <LeftDiv>
-          <Link to="/">
-            <LogoImg src={'/images/testLogo.jpeg'} alt="logo image" />
-          </Link>
+    <WrapDiv>
+      <LeftDiv>
+        <Link to="/">
+          <LogoImg src={'/images/testLogo.jpeg'} alt="logo image" />
+        </Link>
+        <StyledLink to="/">
           <LogoText>Machua Peru</LogoText>
-          <SearchIcon />
-        </LeftDiv>
-        <WrapDiv>
-          <div>
-            <WrapDiv>
-              <NavItem itemName={'Vase'}>
-                <DropdownMenu />
-              </NavItem>
-              <NavItem itemName={'andere'}>
-                <DropdownMenu />
-              </NavItem>
-              <NavItem itemName={'more'}>
-                <DropdownMenu />
-              </NavItem>
-            </WrapDiv>
-          </div>
-        </WrapDiv>
-        <MediumDiv>
-          {checkUserIsAdmin(currentUser) && (
-            <StyledLink to="/admin">Admin</StyledLink>
-          )}
-          {!currentUser && (
-            <StyledLink to="/registration">Registration</StyledLink>
-          )}
-          {!currentUser && <StyledLink to="/signIn">Sign In</StyledLink>}
-          {!currentUser && (
-            <Button onClick={signIn}>Sign in with Google</Button>
-          )}
-          {!currentUser && (
-            <StyledLink to="/forgotPassword">Forgot Password</StyledLink>
-          )}
-          {currentUser && (
-            <StyledLink to="/payment">
-              <EuroSymbolIcon />
-            </StyledLink>
-          )}
-          {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
-          <StyledLink to="/cart">
-            <ShoppingCartIcon />
-            <ItemCountP>({totalNumCartItems})</ItemCountP>
+        </StyledLink>
+        <SearchIcon />
+      </LeftDiv>
+      <LeftDiv>
+        <NavItem itemName={'Vase'}>
+          <DropdownMenu />
+        </NavItem>
+        <NavItem itemName={'andere'}>
+          <DropdownMenu />
+        </NavItem>
+      </LeftDiv>
+      <RightDiv>
+        {checkUserIsAdmin(currentUser) && (
+          <StyledLink to="/admin">Admin</StyledLink>
+        )}
+        {!currentUser && (
+          <StyledLink to="/registration">Registration</StyledLink>
+        )}
+        {!currentUser && <StyledLink to="/signIn">Sign In</StyledLink>}
+        {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
+        {!currentUser && (
+          <StyledLink to="/forgotPassword">Forgot Password</StyledLink>
+        )}
+        {currentUser && (
+          <StyledLink to="/payment">
+            <EuroSymbolIcon />
           </StyledLink>
-          {currentUser && (
-            <StyledLink onClick={() => signOut()}>Logout</StyledLink>
-          )}
-        </MediumDiv>
-      </WrapDiv>
-    </MainDiv>
+        )}
+        {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
+        <StyledLink to="/cart">
+          <ShoppingCartIcon />
+          <ItemCountP>({totalNumCartItems})</ItemCountP>
+        </StyledLink>
+        {currentUser && (
+          <StyledLink onClick={() => signOut()}>Logout</StyledLink>
+        )}
+      </RightDiv>
+    </WrapDiv>
   );
 }
 
@@ -99,13 +90,6 @@ Header.defaultProps = {
 export default Header;
 
 //Styled Components
-
-const MainDiv = styled.div`
-  height: 5rem;
-  background-color: white;
-  width: 100%;
-  border-bottom: 1px solid black;
-`;
 
 const WrapDiv = styled.div`
   height: 100%;
@@ -119,11 +103,13 @@ const WrapDiv = styled.div`
   }
 `;
 
-const MediumDiv = styled.div`
+const LeftDiv = styled.div`
   display: flex;
+  height: 100%;
+  align-items: center;
 `;
 
-const LeftDiv = styled.div`
+const RightDiv = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
@@ -150,18 +136,8 @@ const ItemCountP = styled.p`
   font-size: 10px;
 `;
 
-const CategoryP = styled.p`
-  padding: 1rem 1rem;
-
-  &:hover {
-    filter: brightness(1.2);
-    background-color: black;
-    color: white;
-  }
-`;
-
 const LogoText = styled.p`
-  font-size: 2rem;
+  font-size: 1rem;
   font-family: 'Dancing Script', cursive;
   font-weight: 500;
   padding-left: 3rem;

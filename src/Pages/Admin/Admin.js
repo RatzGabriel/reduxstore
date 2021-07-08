@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import styled from 'styled-components';
 import {
   addProductStart,
   deleteProductStart,
@@ -76,16 +76,19 @@ const Admin = () => {
     );
     resetForm();
   };
+  const configAddToCartBtn = {
+    type: 'button',
+    color: 'white',
+    bg: 'black',
+  };
 
   return (
-    <div className="admin">
-      <div className="callToActions">
-        <ul>
-          <li>
-            <Button onClick={() => toggleModal()}>Add new product</Button>
-          </li>
-        </ul>
-      </div>
+    <div>
+      <CallToActionDiv>
+        <Button {...configAddToCartBtn} onClick={() => toggleModal()}>
+          Add new product
+        </Button>
+      </CallToActionDiv>
       <Modal {...configModal}>
         <div>
           <h1>My Admin</h1>
@@ -164,9 +167,9 @@ const Admin = () => {
                         } = product;
 
                         return (
-                          <tr key={index}>
+                          <Trow key={index}>
                             <td>
-                              <img
+                              <AdminImages
                                 className="thumb"
                                 src={productThumbnail}
                                 alt="thumb"
@@ -176,6 +179,7 @@ const Admin = () => {
                             <td>£{productPrice}</td>
                             <td>
                               <Button
+                                {...configAddToCartBtn}
                                 onClick={() =>
                                   dispatch(deleteProductStart(documentID))
                                 }
@@ -183,7 +187,7 @@ const Admin = () => {
                                 Delete
                               </Button>
                             </td>
-                          </tr>
+                          </Trow>
                         );
                       })}
                   </tbody>
@@ -221,3 +225,15 @@ const Admin = () => {
 };
 
 export default Admin;
+
+const CallToActionDiv = styled.div`
+  width: 15rem;
+`;
+
+const AdminImages = styled.img`
+  height: 10rem;
+`;
+
+const Trow = styled.tr`
+  font-size: 1.5rem;
+`;

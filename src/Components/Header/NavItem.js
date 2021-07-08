@@ -18,4 +18,7 @@ const Li = styled.li`
   text-decoration: none;
   display: flex;
   width: 5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
 `;
