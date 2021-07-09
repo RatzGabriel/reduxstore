@@ -7,6 +7,15 @@ import {
   fetchProductsStart,
 } from '../../Redux/Products/products.actions';
 
+import CardActions from '@material-ui/core/CardActions';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
 //Components
 import Button from '../../Components/Elements/Button/Button';
 import FormSelect from '../../Components/Elements/FormSelect/FormSelect';
@@ -21,7 +30,7 @@ const mapState = ({ productsData }) => ({
 
 const Admin = () => {
   const { products } = useSelector(mapState);
-  const { data, isLastPage, queryDoc } = products;
+  const { data, isLastPage, queryDoc, documentID } = products;
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('vasen');
@@ -33,6 +42,33 @@ const Admin = () => {
   useEffect(() => {
     dispatch(fetchProductsStart());
   }, []);
+
+  const useStyles = makeStyles((theme) => ({
+    cardGrid: {
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(8),
+    },
+    card: {
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    cardMedia: {
+      paddingTop: '100%', // 16:9
+    },
+    cardContent: {
+      flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    cardAcions: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+  }));
+
+  const classes = useStyles();
 
   const resetForm = () => {
     setProductCategory('vasen');
@@ -139,87 +175,38 @@ const Admin = () => {
         </div>
       </Modal>
 
-      <div className="manageProducts">
-        <table border="0" cellPadding="0" cellSpacing="0">
-          <tbody>
-            <tr>
-              <th>
-                <h1>Manage Products</h1>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <table
-                  className="results"
-                  border="0"
-                  cellPadding="10"
-                  cellSpacing="0"
-                >
-                  <tbody>
-                    {Array.isArray(data) &&
-                      data.length > 0 &&
-                      data.map((product, index) => {
-                        const {
-                          productName,
-                          productThumbnail,
-                          productPrice,
-                          documentID,
-                        } = product;
+      <Container className={classes.cardGrid} maxWidth="md">
+        {/* End hero unit */}
+        <Grid container spacing={4}>
+          {Array.isArray(data) &&
+            data.length > 0 &&
+            data.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={4} lg={3}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image={card.productThumbnail}
+                    title="Image title"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Price: {card.productPrice}€
+                    </Typography>
 
-                        return (
-                          <Trow key={index}>
-                            <td>
-                              <AdminImages
-                                className="thumb"
-                                src={productThumbnail}
-                                alt="thumb"
-                              />
-                            </td>
-                            <td>{productName}</td>
-                            <td>£{productPrice}</td>
-                            <td>
-                              <Button
-                                {...configAddToCartBtn}
-                                onClick={() =>
-                                  dispatch(deleteProductStart(documentID))
-                                }
-                              >
-                                Delete
-                              </Button>
-                            </td>
-                          </Trow>
-                        );
-                      })}
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-            </tr>
-            <tr>
-              <td>
-                <table border="0" cellPadding="10px" cellSpacing="0">
-                  <tbody>
-                    <tr>
-                      <td>{!isLastPage && <LoadMore {...configLoadMore} />}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <table border="0" cellPadding="10" cellSpacing="0">
-                  <tbody>
-                    <tr></tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                    <Typography>Price: {card.productPrice}€</Typography>
+                    <Button
+                      {...configAddToCartBtn}
+                      onClick={() => dispatch(deleteProductStart(documentID))}
+                    >
+                      Delete
+                    </Button>
+                  </CardContent>
+                  <CardActions className={classes.cardAcions}></CardActions>
+                </Card>
+              </Grid>
+            ))}
+        </Grid>
+      </Container>
     </div>
   );
 };
@@ -228,12 +215,4 @@ export default Admin;
 
 const CallToActionDiv = styled.div`
   width: 15rem;
-`;
-
-const AdminImages = styled.img`
-  height: 10rem;
-`;
-
-const Trow = styled.tr`
-  font-size: 1.5rem;
 `;

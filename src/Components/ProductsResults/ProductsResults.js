@@ -57,7 +57,6 @@ function ProductResults() {
   const classes = useStyles();
 
   const { data, queryDoc, isLastPage } = products;
-  console.log(isLastPage);
 
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));

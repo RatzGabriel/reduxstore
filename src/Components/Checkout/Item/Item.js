@@ -9,12 +9,11 @@ import {
 } from '../../../Redux/Cart/cart.action';
 
 function Item(product) {
-  const { productName, productThumbNail, productPrice, quantity, documentID } =
+  const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
   const dispatch = useDispatch();
-
+  console.log(productThumbnail, productName);
   const handleRemoveCartItem = (documentID) => {
-    console.log('ID', documentID);
     dispatch(removeCartItem(documentID));
   };
 
@@ -31,7 +30,7 @@ function Item(product) {
       <tbody>
         <tr>
           <td>
-            <img src={productThumbNail} alt={productName} />
+            <img src={productThumbnail} alt={productName} />
           </td>
           <td>{productName}</td>
           <td>

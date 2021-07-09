@@ -61,7 +61,7 @@ const MainWrapper = styled.div`
 
 const HalfDiv = styled.div`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   max-width: 100vw;
   background-size: cover;
   background-position: center;
