@@ -37,10 +37,12 @@ const FormDiv = styled.div`
 `;
 
 const Zelect = styled.select`
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-family: 'Montserrat', sans-serif;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 35px;
+  font-weight: 600;
+  min-height: 40px;
+  font-size: 18px;
+  background-color: brown;
   color: white;
-  background-color: black;
-  cursor: pointer;
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -9,7 +9,8 @@ import styled from 'styled-components';
 
 function Product(product) {
   const { productThumbnail, productName, productPrice, documentID } = product;
-
+  const [buttonStatus, setButtonStatus] = useState('none');
+  const [backGround, setBackground] = useState(1);
   const dispatch = useDispatch();
   const history = useHistory();
   if (
@@ -31,19 +32,27 @@ function Product(product) {
   };
 
   return (
-    <MainDiv>
-      €{productPrice}
+    <MainDiv
+      onMouseEnter={() => {
+        setBackground(0.6);
+        setButtonStatus('block');
+      }}
+      onMouseLeave={() => {
+        setBackground(1);
+        setButtonStatus('none');
+      }}
+    >
       <StyledLink to={`/product/${documentID}`}>
-        <ProductImage src={productThumbnail} alt={productName} />
+        <CardDiv image={productThumbnail} hover={backGround}>
+          <ButtonElement
+            vis={buttonStatus}
+            onClick={() => handleAddToCard(product)}
+            {...configAddToCartBtn}
+          >
+            {productPrice} €
+          </ButtonElement>
+        </CardDiv>
       </StyledLink>
-      <div>
-        <Button
-          onClick={() => handleAddToCard(product)}
-          {...configAddToCartBtn}
-        >
-          Add to Card
-        </Button>
-      </div>
     </MainDiv>
   );
 }
@@ -51,9 +60,8 @@ function Product(product) {
 export default Product;
 
 const MainDiv = styled.div`
-  background-color: gray;
-  margin: 2rem 2rem;
   display: flex;
+  margin: 2rem 2rem;
   width: 30rem;
   justify-content: center;
   flex-direction: column;
@@ -61,17 +69,35 @@ const MainDiv = styled.div`
   padding: 1rem;
 `;
 
-const ProductImage = styled.img`
-  height: 13rem;
+const StyledLink = styled(Link)`
+  display: flex;
+  color: black;
+  cursor: pointer;
 `;
 
-const StyledLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-  text-transform: uppercase;
+const ButtonElement = styled.button`
+  color: ${(props) => props.color || 'black'};
+  background-color: ${(props) => props.bg || 'white'};
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 35px;
+  font-weight: 600;
+  min-height: 40px;
+  font-size: 18px;
+  width: 6rem;
+  border: none;
+  position: absolute;
+  display: ${(props) => (props.vis === 'none' ? 'none' : 'block')};
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
-  padding-right: 2rem;
+`;
+
+const CardDiv = styled.div`
+  position: relative;
+  background-image: url('${(props) => props.image}');
+  height: 30rem;
+  width: 30rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
 `;

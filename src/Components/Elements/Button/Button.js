@@ -7,9 +7,15 @@ function Button({ children, ...otherProps }) {
 
 export default Button;
 
-const ButtonElement = styled.div`
+const ButtonElement = styled.button`
   color: ${(props) => props.color || 'black'};
   background-color: ${(props) => props.bg || 'white'};
-  padding: 1em;
-  margin: 1em;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 35px;
+  font-weight: 600;
+  min-height: 40px;
+  font-size: 18px;
+  width: 6rem;
+  border: none;
 `;

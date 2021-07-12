@@ -2,7 +2,11 @@ import React from 'react';
 import Button from '../Elements/Button/Button';
 
 const LoadMore = ({ onLoadMoreEvt = () => {} }) => {
-  return <Button onClick={() => onLoadMoreEvt()}>Load More</Button>;
+  return (
+    <Button color={'white'} bg={'brown'} onClick={() => onLoadMoreEvt()}>
+      Load More
+    </Button>
+  );
 };
 
 export default LoadMore;
