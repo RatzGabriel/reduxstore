@@ -22,4 +22,5 @@ const Li = styled.li`
   font-size: 1rem;
   text-transform: uppercase;
   z-index: 999;
+  cursor: pointer;
 `;

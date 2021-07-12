@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function MainPageImage({ imgUrl, buttonText }) {
   return (
     <MainDiv imgUrl={imgUrl}>
-      <StyledLink to="/search/andere">{buttonText}</StyledLink>
+      <StyledLink to="/search/">{buttonText}</StyledLink>
       <DownArrow src={'/images/down-arrow.svg'}></DownArrow>
     </MainDiv>
   );

@@ -36,24 +36,26 @@ function Header() {
 
   return (
     <WrapDiv>
-      <LeftDiv>
-        <Link to="/">
-          <LogoImg src={'/images/testLogo.jpeg'} alt="logo image" />
-        </Link>
+      <HeaderDivs>
+        <StyledLink to="/">
+          <LogoImg src={'/images/Two.jpg'} alt="logo image" />
+        </StyledLink>
         <StyledLink to="/">
           <LogoText>Machua Peru</LogoText>
         </StyledLink>
-        <SearchIcon />
-      </LeftDiv>
-      <LeftDiv>
+        <StyledLink to="/">
+          <SearchIcon />
+        </StyledLink>
+      </HeaderDivs>
+      <HeaderDivs>
         <NavItem itemName={'Vase'}>
           <DropdownMenu />
         </NavItem>
         <NavItem itemName={'andere'}>
           <DropdownMenu />
         </NavItem>
-      </LeftDiv>
-      <RightDiv>
+      </HeaderDivs>
+      <HeaderDivs>
         {checkUserIsAdmin(currentUser) && (
           <StyledLink to="/admin">Admin</StyledLink>
         )}
@@ -78,7 +80,7 @@ function Header() {
         {currentUser && (
           <StyledLink onClick={() => signOut()}>Logout</StyledLink>
         )}
-      </RightDiv>
+      </HeaderDivs>
     </WrapDiv>
   );
 }
@@ -89,34 +91,28 @@ Header.defaultProps = {
 
 export default Header;
 
-//Styled Components
-
 const WrapDiv = styled.div`
-  height: 10vh;
   display: flex;
+  height: 10vh;
   align-items: center;
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
+  border-bottom: 1px solid black;
 
   @media (max-width: 768px) {
     display: none;
   }
 `;
 
-const LeftDiv = styled.div`
-  display: flex;
-  height: 100%;
-  align-items: center;
-`;
-
-const RightDiv = styled.div`
+const HeaderDivs = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
 `;
 
 const StyledLink = styled(Link)`
+  display: flex;
   color: black;
   text-decoration: none;
   text-transform: uppercase;
@@ -124,7 +120,6 @@ const StyledLink = styled(Link)`
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   padding-right: 2rem;
-  display: flex;
 `;
 
 const LogoImg = styled.img`

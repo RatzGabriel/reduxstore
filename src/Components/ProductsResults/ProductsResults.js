@@ -18,6 +18,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { addProduct } from '../../Redux/Cart/cart.action';
 import Button from '../Elements/Button/Button';
 
+import styled from 'styled-components';
+
 const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
@@ -26,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
+    backgroundColor: 'red',
   },
   card: {
     height: '100%',
@@ -117,13 +120,13 @@ function ProductResults() {
   // };
 
   return (
-    <div>
+    <MainDiv>
       <FormSelect {...configFilters} />
-      <Container className={classes.cardGrid} maxWidth="md">
+      <Container className={classes.cardGrid}>
         {/* End hero unit */}
         <Grid container spacing={4}>
           {data.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={4} lg={3}>
+            <Grid item key={card} xs={12} sm={6} md={4} lg={4}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.cardMedia}
@@ -150,8 +153,12 @@ function ProductResults() {
           ))}
         </Grid>
       </Container>
-    </div>
+    </MainDiv>
   );
 }
 
 export default ProductResults;
+
+const MainDiv = styled.div`
+  background-color: gray;
+`;
