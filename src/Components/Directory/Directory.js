@@ -2,38 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
+import MainPageImage from './MainPageItems';
 
 function Directory() {
   return (
     <MainDiv>
       <MainWrapper>
-        <HalfDiv bgImage={'Two'}>
-          <StyledLink to="/search/">Shop</StyledLink>
-          <DownArrow src="/images/down-arrow.svg"></DownArrow>
-        </HalfDiv>
-
-        <HalfDiv bgImage={'Three'}>
-          <StyledLink to="/search/andere">Andere</StyledLink>
-          <DownArrow src="/images/down-arrow.svg"></DownArrow>
-        </HalfDiv>
+        <MainPageImage imgUrl={'/images/Two.jpg'} buttonText={'Shop'} />
+        <MainPageImage imgUrl={'/images/26.jpeg'} buttonText={'Vasen'} />
       </MainWrapper>
-      <MainWrapper></MainWrapper>
       <MainWrapper>
         <HalfDiv>
-          <iframe
-            width="800"
-            height="775"
+          <Iframe
             src="https://www.youtube.com/embed/0pt0MdReMts"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
-          ></iframe>
+          ></Iframe>
           <DownArrow src={'/images/down-arrow.svg'}></DownArrow>
         </HalfDiv>
       </MainWrapper>
       <MainWrapper>
-        {' '}
         <Footer />
       </MainWrapper>
     </MainDiv>
@@ -45,7 +35,6 @@ export default Directory;
 const MainDiv = styled.div`
   min-height: 100vh;
   height: 100%;
-  background-color: gray;
   width: 100%;
 `;
 
@@ -55,7 +44,6 @@ const MainWrapper = styled.div`
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  background-color: lightgrey;
   overflow: hidden;
 `;
 
@@ -68,20 +56,7 @@ const HalfDiv = styled.div`
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  background-image: ${(props) => `url("/images/${props.bgImage}.jpg")`};
-`;
-
-const StyledLink = styled(Link)`
-  margin: auto auto;
-  text-decoration: none;
-  color: black;
-  text-transform: uppercase;
-  letter-spacing: 0.3rem;
-  font-weight: 400;
-  background-color: white;
-  padding: 10px 10px;
 `;
 
 const DownArrow = styled.img`
@@ -89,4 +64,9 @@ const DownArrow = styled.img`
   animation: animateDown infinite 1.5s;
   overflow-x: hidden;
   padding-bottom: 1rem;
+`;
+
+const Iframe = styled.iframe`
+  height: 100vh;
+  width: 100%;
 `;

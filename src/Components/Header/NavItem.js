@@ -21,4 +21,5 @@ const Li = styled.li`
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   text-transform: uppercase;
+  z-index: 999;
 `;

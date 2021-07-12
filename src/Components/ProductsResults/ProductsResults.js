@@ -14,8 +14,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import styled from 'styled-components';
-
 import { makeStyles } from '@material-ui/core/styles';
 import { addProduct } from '../../Redux/Cart/cart.action';
 import Button from '../Elements/Button/Button';
@@ -56,7 +54,7 @@ function ProductResults() {
 
   const classes = useStyles();
 
-  const { data, queryDoc, isLastPage } = products;
+  const { data } = products;
 
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));

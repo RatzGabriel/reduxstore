@@ -92,11 +92,12 @@ export default Header;
 //Styled Components
 
 const WrapDiv = styled.div`
-  height: 100%;
+  height: 10vh;
   display: flex;
   align-items: center;
-  position: relative;
   justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
 
   @media (max-width: 768px) {
     display: none;

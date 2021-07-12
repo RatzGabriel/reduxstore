@@ -49,7 +49,7 @@ export function* deleteProduct({ payload }) {
     yield handleDeleteProduct(payload);
     yield put(fetchProductsStart());
   } catch (err) {
-    // console.log(err);
+    console.log('err,', err);
   }
 }
 

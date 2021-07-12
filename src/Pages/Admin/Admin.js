@@ -21,7 +21,6 @@ import Button from '../../Components/Elements/Button/Button';
 import FormSelect from '../../Components/Elements/FormSelect/FormSelect';
 import FormInput from '../../Components/Elements/Form/Form';
 import Modal from '../../Components/Modal/Modal';
-import LoadMore from '../../Components/Loadmore/Loadmore';
 import { CKEditor } from 'ckeditor4-react';
 
 const mapState = ({ productsData }) => ({
@@ -30,7 +29,7 @@ const mapState = ({ productsData }) => ({
 
 const Admin = () => {
   const { products } = useSelector(mapState);
-  const { data, isLastPage, queryDoc, documentID } = products;
+  const { data } = products;
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('vasen');
@@ -86,19 +85,6 @@ const Admin = () => {
     toggleModal,
   };
 
-  const handleLoadMore = () => {
-    dispatch(
-      fetchProductsStart({
-        startAfterDoc: queryDoc,
-        persistProducts: data,
-      })
-    );
-  };
-
-  const configLoadMore = {
-    onLoadMoreEvt: handleLoadMore,
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
@@ -119,11 +105,10 @@ const Admin = () => {
   };
 
   return (
-    <div>
+    <MainDiv>
+      <h1>Admin Page</h1>
       <CallToActionDiv>
-        <Button {...configAddToCartBtn} onClick={() => toggleModal()}>
-          Add new product
-        </Button>
+        <Button onClick={() => toggleModal()}>Add new product</Button>
       </CallToActionDiv>
       <Modal {...configModal}>
         <div>
@@ -174,7 +159,6 @@ const Admin = () => {
           </form>
         </div>
       </Modal>
-
       <Container className={classes.cardGrid} maxWidth="md">
         {/* End hero unit */}
         <Grid container spacing={4}>
@@ -196,7 +180,9 @@ const Admin = () => {
                     <Typography>Price: {card.productPrice}€</Typography>
                     <Button
                       {...configAddToCartBtn}
-                      onClick={() => dispatch(deleteProductStart(documentID))}
+                      onClick={() =>
+                        dispatch(deleteProductStart(card.documentID))
+                      }
                     >
                       Delete
                     </Button>
@@ -207,7 +193,7 @@ const Admin = () => {
             ))}
         </Grid>
       </Container>
-    </div>
+    </MainDiv>
   );
 };
 
@@ -215,4 +201,8 @@ export default Admin;
 
 const CallToActionDiv = styled.div`
   width: 15rem;
+`;
+
+const MainDiv = styled.div`
+  background-color: black;
 `;
