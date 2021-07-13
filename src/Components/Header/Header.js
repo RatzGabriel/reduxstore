@@ -101,7 +101,6 @@ function Header() {
                   to="/cart"
                 >
                   <ShoppingCartIcon />
-                  Checkout
                 </StyledMobileLinks>
               </BurgerLinksDiv>
             )}
@@ -258,7 +257,6 @@ const StyledMobileLinks = styled(Link)`
     letter-spacing: 3px;
     font-weight: bold;
     font-size: 14px;
-    margin-top: 1em;
   }
 `;
 
