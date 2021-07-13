@@ -15,6 +15,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
 import NavItem from './NavItem';
 import DropdownMenu from './DropdownMenu';
+import GoogleButton from 'react-google-button';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -36,37 +37,37 @@ function Header() {
 
   return (
     <WrapDiv>
-      <HeaderDivs>
-        <StyledLink to="/">
+      <LogoDiv>
+        <StyledLinkLogoImage to="/">
           <LogoImg src={'/images/Two.jpg'} alt="logo image" />
-        </StyledLink>
-        <StyledLink to="/">
-          <LogoText>Machua Peru</LogoText>
-        </StyledLink>
-        <StyledLink to="/">
-          <SearchIcon />
-        </StyledLink>
-      </HeaderDivs>
-      <HeaderDivs>
+        </StyledLinkLogoImage>
+        <ShopNameDiv>
+          <LogoTextUpper>Machua</LogoTextUpper>
+          <LogoTextLower>Peru</LogoTextLower>
+        </ShopNameDiv>
+      </LogoDiv>
+      {/* <HeaderDivs>
         <NavItem itemName={'Vase'}>
           <DropdownMenu />
         </NavItem>
         <NavItem itemName={'andere'}>
           <DropdownMenu />
         </NavItem>
-      </HeaderDivs>
+      </HeaderDivs> */}
       <HeaderDivs>
         {checkUserIsAdmin(currentUser) && (
           <StyledLink to="/admin">Admin</StyledLink>
         )}
+        {<StyledLink to="/search">Shop</StyledLink>}
         {!currentUser && (
           <StyledLink to="/registration">Registration</StyledLink>
         )}
+
         {!currentUser && <StyledLink to="/signIn">Sign In</StyledLink>}
-        {!currentUser && <Button onClick={signIn}>Sign in with Google</Button>}
         {!currentUser && (
-          <StyledLink to="/forgotPassword">Forgot Password</StyledLink>
+          <GoogleImg src={'/images/google.png'} onClick={signIn} />
         )}
+
         {currentUser && (
           <StyledLink to="/payment">
             <EuroSymbolIcon />
@@ -96,19 +97,65 @@ const WrapDiv = styled.div`
   height: 10vh;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
-  border-bottom: 1px solid black;
 
   @media (max-width: 768px) {
     display: none;
   }
 `;
 
+const LogoDiv = styled.div`
+  display: flex;
+  font-size: 1em;
+  height: 100%;
+  align-items: center;
+`;
+
+const StyledLinkLogoImage = styled(Link)`
+  display: flex;
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  margin-left: 1.5rem;
+`;
+
+const LogoImg = styled.img`
+  height: 60px;
+  border-radius: 50%;
+`;
+
+const ShopNameDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  height: 50%;
+`;
+
+const LogoTextLower = styled.p`
+  font-family: 'Dancing Script', cursive;
+  font-weight: 800;
+  color: black;
+  margin: 0;
+`;
+const LogoTextUpper = styled.p`
+  font-family: 'Dancing Script', cursive;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+`;
+
 const HeaderDivs = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
+  width: 40%;
+  justify-content: space-around;
 `;
 
 const StyledLink = styled(Link)`
@@ -119,22 +166,13 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
-  padding-right: 2rem;
-`;
-
-const LogoImg = styled.img`
-  height: 40px;
-  margin-left: 1rem;
-  border-radius: 20%;
 `;
 
 const ItemCountP = styled.p`
   font-size: 10px;
 `;
 
-const LogoText = styled.p`
-  font-size: 1rem;
-  font-family: 'Dancing Script', cursive;
-  font-weight: 500;
-  padding-left: 3rem;
+const GoogleImg = styled.img`
+  cursor: pointer;
+  height: 2rem;
 `;

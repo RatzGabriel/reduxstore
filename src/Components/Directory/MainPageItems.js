@@ -16,10 +16,10 @@ export default MainPageImage;
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 3rem auto 3rem auto;
+  margin: 0 auto 3rem auto;
   background-image: ${(props) => `url(${props.imgUrl})`};
-  height: 80vh;
-  width: 80%;
+  height: 90vh;
+  width: 100%;
   background-size: cover;
   border-radius: 0.9%;
   background-size: cover;

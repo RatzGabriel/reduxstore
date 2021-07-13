@@ -89,6 +89,9 @@ const ButtonElement = styled.button`
   position: absolute;
   display: ${(props) => (props.vis === 'none' ? 'none' : 'block')};
   cursor: pointer;
+  @media only screen and (max-width: 1100px) {
+    display: block;
+  }
 `;
 
 const CardDiv = styled.div`

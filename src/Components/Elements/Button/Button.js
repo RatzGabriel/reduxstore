@@ -13,9 +13,10 @@ const ButtonElement = styled.button`
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 35px;
-  font-weight: 600;
+  font-weight: ${(props) => props.fw || '600'};
   min-height: 40px;
   font-size: 18px;
   width: 6rem;
   border: none;
+  cursor: pointer;
 `;
