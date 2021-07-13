@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from '../Elements/Button/Button';
 import {
   googleSignInStart,
   signOutUserStart,
@@ -17,6 +16,11 @@ import NavItem from './NavItem';
 import DropdownMenu from './DropdownMenu';
 import GoogleButton from 'react-google-button';
 
+import HomeIcon from '@material-ui/icons/Home';
+import StorefrontIcon from '@material-ui/icons/Storefront';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import ClearIcon from '@material-ui/icons/Clear';
+
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
   totalNumCartItems: selectCartItemsCount(state),
@@ -24,6 +28,7 @@ const mapState = (state) => ({
 
 function Header() {
   const { currentUser, totalNumCartItems } = useSelector(mapState);
+  const [statusNavBar, setStatusNavBar] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -54,6 +59,55 @@ function Header() {
           <DropdownMenu />
         </NavItem>
       </HeaderDivs> */}
+      {
+        <BurgerDiv>
+          <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
+            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+          </BurgerDivMain>
+          <Nav>
+            {statusNavBar && (
+              <BurgerLinksDiv>
+                <StyledMobileLinks
+                  onClick={() => setStatusNavBar(false)}
+                  to="/"
+                >
+                  <ClearIcon></ClearIcon>
+                </StyledMobileLinks>
+                <StyledMobileLinks
+                  onClick={() => setStatusNavBar(false)}
+                  to="/"
+                >
+                  <HomeIcon></HomeIcon>
+                  Home
+                </StyledMobileLinks>
+                <StyledMobileLinks
+                  onClick={() => setStatusNavBar(false)}
+                  to="/search"
+                >
+                  <StorefrontIcon />
+                  Shop
+                </StyledMobileLinks>
+                <StyledMobileLinks
+                  onClick={() => setStatusNavBar(false)}
+                  to="/registration"
+                >
+                  <VpnKeyIcon />
+                  Registration
+                </StyledMobileLinks>
+                <StyledMobileLinks
+                  onClick={() => setStatusNavBar(false)}
+                  to="/cart"
+                >
+                  <ShoppingCartIcon />
+                  Checkout
+                </StyledMobileLinks>
+              </BurgerLinksDiv>
+            )}
+          </Nav>
+        </BurgerDiv>
+      }
       <HeaderDivs>
         {checkUserIsAdmin(currentUser) && (
           <StyledLink to="/admin">Admin</StyledLink>
@@ -99,10 +153,6 @@ const WrapDiv = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 0 auto;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const LogoDiv = styled.div`
@@ -156,6 +206,9 @@ const HeaderDivs = styled.div`
   align-items: center;
   width: 40%;
   justify-content: space-around;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -175,4 +228,61 @@ const ItemCountP = styled.p`
 const GoogleImg = styled.img`
   cursor: pointer;
   height: 2rem;
+`;
+
+const Nav = styled.nav`
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    min-height: 8vh;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 999;
+    margin-top: 17em;
+  }
+`;
+
+const BurgerDiv = styled.div`
+  display: flex;
+  z-index: 999;
+`;
+
+const StyledMobileLinks = styled(Link)`
+  @media (max-width: 768px) {
+    right: 0px;
+    height: 3vh;
+    display: flex;
+    top: 8vh;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 1em;
+  }
+`;
+
+const BurgerDivMain = styled.div`
+  display: none;
+  margin-top: 10em;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const BurgerDivLine = styled.div`
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 3px;
+`;
+
+const BurgerLinksDiv = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    align-items: flex-start;
+  }
 `;
