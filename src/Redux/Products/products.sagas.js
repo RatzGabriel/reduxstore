@@ -32,8 +32,10 @@ export function* onAddProductStart() {
 }
 
 export function* fetchProducts({ payload }) {
+  console.log('payloat', payload);
   try {
     const products = yield handleFetchProducts(payload);
+
     yield put(setProducts(products));
   } catch (err) {
     // console.log(err);

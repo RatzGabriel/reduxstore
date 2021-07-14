@@ -14,20 +14,23 @@ export const handleAddProduct = (product) => {
 };
 
 export const handleFetchProducts = ({
+  bestseller,
   filterType,
   startAfterDoc,
   persistProducts = [],
 }) => {
   return new Promise((resolve, reject) => {
-    const pageSize = 6;
-
+    const pageSize = 8;
+    console.log('bes', bestseller, 'filt', filterType);
     let ref = firestore
       .collection('products')
       .orderBy('createdDate')
       .limit(pageSize);
 
     if (filterType) ref = ref.where('productCategory', '==', filterType);
+    if (bestseller) ref = ref.where('bestseller', '==', bestseller);
     if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
+
     ref
       .get()
       .then((snapshot) => {
@@ -49,6 +52,7 @@ export const handleFetchProducts = ({
         });
       })
       .catch((err) => {
+        console.log('err', err);
         reject(err);
       });
   });

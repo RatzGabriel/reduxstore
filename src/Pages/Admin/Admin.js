@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+
 import {
   addProductStart,
   deleteProductStart,
@@ -22,6 +23,7 @@ import FormSelect from '../../Components/Elements/FormSelect/FormSelect';
 import FormInput from '../../Components/Elements/Form/Form';
 import Modal from '../../Components/Modal/Modal';
 import { CKEditor } from 'ckeditor4-react';
+import LoadMore from '../../Components/Loadmore/Loadmore';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -29,12 +31,14 @@ const mapState = ({ productsData }) => ({
 
 const Admin = () => {
   const { products } = useSelector(mapState);
-  const { data } = products;
+  const { data, isLastPage, queryDoc } = products;
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('vasen');
+  const [bestseller, setBestseller] = useState('noBestseller');
   const [productName, setProductName] = useState('');
   const [productThumbnail, setProductThumbnail] = useState('');
+  const [secondImage, setSecondImage] = useState('');
   const [productPrice, setProductPrice] = useState(0);
   const [productDescription, setProductDescription] = useState('');
 
@@ -94,6 +98,8 @@ const Admin = () => {
         productThumbnail,
         productPrice,
         productDescription,
+        secondImage,
+        bestseller,
       })
     );
     resetForm();
@@ -102,6 +108,17 @@ const Admin = () => {
     type: 'button',
     color: 'white',
     bg: 'black',
+  };
+  const handleLoadMore = () => {
+    dispatch(
+      fetchProductsStart({
+        startAfterDoc: queryDoc,
+        persistProducts: data,
+      })
+    );
+  };
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadMore,
   };
 
   return (
@@ -141,6 +158,12 @@ const Admin = () => {
               value={productThumbnail}
               onChange={(e) => setProductThumbnail(e.target.value)}
             />
+            <FormInput
+              label="2nd Image"
+              type="url"
+              value={secondImage}
+              onChange={(e) => setSecondImage(e.target.value)}
+            />
 
             <FormInput
               label="Price"
@@ -150,6 +173,20 @@ const Admin = () => {
               step="0.01"
               value={productPrice}
               onChange={(e) => setProductPrice(e.target.value)}
+            />
+            <FormSelect
+              label="Category"
+              options={[
+                {
+                  value: 'noBestseller',
+                  name: 'noBestseller',
+                },
+                {
+                  value: 'bestseller',
+                  name: 'bestseller',
+                },
+              ]}
+              handleChange={(e) => setBestseller(e.target.value)}
             />
             <CKEditor
               onChange={(evt) => setProductDescription(evt.editor.getData())}
@@ -162,6 +199,7 @@ const Admin = () => {
       <Container className={classes.cardGrid} maxWidth="md">
         {/* End hero unit */}
         <Grid container spacing={4}>
+          {console.log(data)}
           {Array.isArray(data) &&
             data.length > 0 &&
             data.map((card) => (
@@ -172,6 +210,13 @@ const Admin = () => {
                     image={card.productThumbnail}
                     title="Image title"
                   />
+                  {card.secondImage && (
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={card.secondImage}
+                      title="Image title"
+                    />
+                  )}
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
                       Price: {card.productPrice}€
@@ -192,6 +237,7 @@ const Admin = () => {
               </Grid>
             ))}
         </Grid>
+        {!isLastPage && <LoadMore {...configLoadMore} />}
       </Container>
     </MainDiv>
   );
@@ -204,5 +250,5 @@ const CallToActionDiv = styled.div`
 `;
 
 const MainDiv = styled.div`
-  background-color: black;
+  background-color: white;
 `;
