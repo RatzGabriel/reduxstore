@@ -123,10 +123,14 @@ const Admin = () => {
 
   return (
     <MainDiv>
-      <h1>Admin Page</h1>
-      <CallToActionDiv>
-        <Button onClick={() => toggleModal()}>Add new product</Button>
-      </CallToActionDiv>
+      <HeaderDiv>
+        <h1>Admin Page</h1>
+        <CallToActionDiv>
+          <Button bg="black " color="white" onClick={() => toggleModal()}>
+            Add new product
+          </Button>
+        </CallToActionDiv>
+      </HeaderDiv>
       <Modal {...configModal}>
         <div>
           <h1>My Admin</h1>
@@ -251,4 +255,11 @@ const CallToActionDiv = styled.div`
 
 const MainDiv = styled.div`
   background-color: white;
+`;
+
+const HeaderDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: gray;
+  align-items: center;
 `;

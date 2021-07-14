@@ -8,7 +8,6 @@ import {
   fetchProductStart,
   setProduct,
 } from '../../Redux/Products/products.actions';
-import Button from '../Elements/Button/Button';
 import { addProduct } from '../../Redux/Cart/cart.action';
 
 const mapState = (state) => ({
@@ -36,12 +35,6 @@ function ProductCard() {
     };
   }, []);
 
-  const configAddToCartBtn = {
-    type: 'button',
-    bg: 'black',
-    color: 'white',
-  };
-
   const handleAddToCart = (product) => {
     if (!product) return;
     dispatch(addProduct(product));
@@ -61,9 +54,7 @@ function ProductCard() {
         <EuroIcon />
       </h2>
 
-      <Button {...configAddToCartBtn} onClick={() => handleAddToCart(product)}>
-        Add to Cart Btn
-      </Button>
+      <Button onClick={() => handleAddToCart(product)}>Add to Cart Btn</Button>
       <Li>
         <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
       </Li>
@@ -76,15 +67,20 @@ export default ProductCard;
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  justify-content: center;
   align-items: center;
+  background-color: beige;
+
   @media (max-width: 768px) {
     justify-content: center;
   }
 `;
 
 const Image = styled.img`
-  height: 20em;
-  width: 15em;
+  height: 40em;
+  width: 30em;
+  padding-left: 4em;
 `;
 
 const H1 = styled.h1`
@@ -94,4 +90,21 @@ const H1 = styled.h1`
 const Li = styled.li`
   border: 1px solid black;
   list-style: none;
+`;
+
+const Button = styled.button`
+  color: ${(props) => props.color || 'white'};
+  background-color: ${(props) => props.bg || 'brown'};
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 35px;
+  font-weight: ${(props) => props.fw || '600'};
+  font-size: 18px;
+  width: 8rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 `;

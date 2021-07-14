@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import MainPageImage from './MainPageItems';
-import Button from '../Elements/Button/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 
@@ -19,9 +18,8 @@ function Directory() {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
   }, []);
 
-  console.log('products', products);
   const { data } = products;
-  console.log('data', data);
+
   return (
     <MainDiv>
       <MainWrapper>
@@ -90,17 +88,17 @@ function Directory() {
             <img src={'/images/Two.jpg'} alt="" />
           </div>
           <TextDiv style={{ paddingLeft: '2em' }}>
-            <h2>Our Customer</h2>
+            <h1>Our Customer</h1>
             <p>
               There are many variations of passages of Lorem Ipsum available,
               but the majority have suffered alteration in some form .
             </p>
-            <h2>Our Product</h2>
+            <h1>Our Product</h1>
             <p>
               There are many variations of passages of Lorem Ipsum available,
               but the majority have suffered alteration in some form .
             </p>
-            <h2>Our Services</h2>
+            <h1>Our Services</h1>
             <p>
               There are many variations of passages of Lorem Ipsum available,
               but the majority have suffered alteration in some form{' '}
@@ -113,10 +111,10 @@ function Directory() {
             <H1>Meet The Minds Shaping An Industry</H1>
           </BestsellerTitleDiv>
           <MindShapingDiv>
-            <MindShapingImg src={'/images/Two.jpg'} alt="" />
-            <MindShapingImg src={'/images/Two.jpg'} alt="" />
-            <MindShapingImg src={'/images/Two.jpg'} alt="" />
-            <MindShapingImg src={'/images/Two.jpg'} alt="" />
+            <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+            <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+            <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+            <MindShapingImg src={'/images/Musk.jpg'} alt="" />
           </MindShapingDiv>
         </div>
       </MainWrapper>
@@ -196,6 +194,11 @@ const MiddleDiv = styled.div`
   height: 50em;
   justify-content: space-between;
   margin: 10em 0em 0em 0em;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+  }
 `;
 
 const TextDiv = styled.div`
@@ -211,6 +214,10 @@ const Img = styled.img`
   height: 60%;
   padding-top: ${(props) => props.pt || 0}em;
   width: 90%;
+  @media (max-width: 768px) {
+    padding-bottom: 2em;
+    padding-top: 2em;
+  }
 `;
 
 const SmallDiv = styled.div`
@@ -229,7 +236,11 @@ const H1 = styled.h1`
 `;
 
 const BestSellerDiv = styled.div`
-  background-color: lightgray;
+  background: linear-gradient(
+    180deg,
+    rgb(154, 154, 154) 0%,
+    rgb(198, 198, 198)
+  );
 `;
 
 const BestsellerCards = styled.div`
@@ -259,6 +270,12 @@ const BestsellerTitleDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 5em;
+  }
 `;
 
 const ButtonDiv = styled.div`
@@ -282,6 +299,7 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+  margin-bottom: 3em;
 `;
 
 const QuoteDiv = styled.div`
@@ -305,9 +323,16 @@ const MindShapingDiv = styled.div`
   margin: 0 auto;
   padding-bottom: 3em;
   width: 90vw;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const MindShapingImg = styled.img`
   width: 20em;
   height: 30em;
+  @media (max-width: 768px) {
+    padding-bottom: 2em;
+  }
 `;
