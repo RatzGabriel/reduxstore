@@ -35,9 +35,9 @@ function Directory() {
               n a professional context it often happens that private or
               corporate clients corder a publication to be made and presented .
             </p>
-            <Button bg="brown" color="white">
+            <StyledLink bg="brown" color="white">
               Read more
-            </Button>
+            </StyledLink>
           </TextDiv>
 
           <SmallDiv>
@@ -76,6 +76,49 @@ function Directory() {
             <StyledLink to="/search">Go To Shop</StyledLink>
           </ButtonDiv>
         </BestSellerDiv>
+        <MiddleDiv>
+          <TextDiv>
+            <P>About Us</P>
+            <h1>An Exceptionally Unique Experience Tailored To You</h1>
+            <p>
+              There are many variations of passages of Lorem Ipsum available,
+              but the majority have suffered alteration in some form .
+            </p>
+            <StyledLink>Get Started</StyledLink>
+          </TextDiv>
+          <div>
+            <img src={'/images/Two.jpg'} alt="" />
+          </div>
+          <TextDiv style={{ paddingLeft: '2em' }}>
+            <h2>Our Customer</h2>
+            <p>
+              There are many variations of passages of Lorem Ipsum available,
+              but the majority have suffered alteration in some form .
+            </p>
+            <h2>Our Product</h2>
+            <p>
+              There are many variations of passages of Lorem Ipsum available,
+              but the majority have suffered alteration in some form .
+            </p>
+            <h2>Our Services</h2>
+            <p>
+              There are many variations of passages of Lorem Ipsum available,
+              but the majority have suffered alteration in some form{' '}
+            </p>
+          </TextDiv>
+        </MiddleDiv>
+        <div>
+          <BestsellerTitleDiv>
+            <P>Our Team</P>
+            <H1>Meet The Minds Shaping An Industry</H1>
+          </BestsellerTitleDiv>
+          <MindShapingDiv>
+            <MindShapingImg src={'/images/Two.jpg'} alt="" />
+            <MindShapingImg src={'/images/Two.jpg'} alt="" />
+            <MindShapingImg src={'/images/Two.jpg'} alt="" />
+            <MindShapingImg src={'/images/Two.jpg'} alt="" />
+          </MindShapingDiv>
+        </div>
       </MainWrapper>
 
       <MainWrapper>
@@ -90,6 +133,15 @@ function Directory() {
           <DownArrow src={'/images/down-arrow.svg'}></DownArrow>
         </HalfDiv>
       </MainWrapper>
+      <QuoteDiv>
+        <QuoteTextDiv>
+          <h1>
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Consequatur necessitatibus inventore ducimus itaque laudantium
+            voluptatem ullam quia temporibus. Beatae, assumenda!" Gabriel Ratz
+          </h1>
+        </QuoteTextDiv>
+      </QuoteDiv>
       <MainWrapper>
         <Footer />
       </MainWrapper>
@@ -116,7 +168,7 @@ const MainWrapper = styled.div`
 
 const HalfDiv = styled.div`
   height: 100vh;
-  width: 100%;
+  width: 90%;
   max-width: 100vw;
   background-size: cover;
   background-position: center;
@@ -168,6 +220,8 @@ const SmallDiv = styled.div`
 
 const P = styled.p`
   color: brown;
+  padding-top: 3em;
+  letter-spacing: 0.2em;
 `;
 
 const H1 = styled.h1`
@@ -228,4 +282,32 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+`;
+
+const QuoteDiv = styled.div`
+  height: 70vh;
+  background-color: black;
+  padding-bottom: 2em;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const QuoteTextDiv = styled.div`
+  width: 50%;
+`;
+
+const MindShapingDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding-bottom: 3em;
+  width: 90vw;
+`;
+
+const MindShapingImg = styled.img`
+  width: 20em;
+  height: 30em;
 `;
