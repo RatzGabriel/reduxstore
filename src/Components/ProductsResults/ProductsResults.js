@@ -89,8 +89,8 @@ const ProductResults = ({}) => {
   console.log(data);
 
   return (
-    <Div1 className="1">
-      <Div2 className="2">
+    <Div1>
+      <Div2>
         <Div2InnerDiv>
           <Product product={data[0]} />
           <Product product={data[1]} />
@@ -103,47 +103,48 @@ const ProductResults = ({}) => {
           <Product product={data[4]} />
         </Div2InnerDiv>
       </Div2>
-      <Div2 className="2">
-        <Product product={data[13]} />
-        <Product pt={'3em'} product={data[6]} />
-
-        <Product pt={'13em'} product={data[7]} />
-        <Product product={data[8]} />
+      <Div2>
+        <Div2InnerDivQuatro>
+          <Product product={data[0]} />
+          <Product pt={'3em'} product={data[6]} />
+          <Product pt={'3em'} product={data[7]} />
+          <Product product={data[8]} />
+        </Div2InnerDivQuatro>
       </Div2>
-      <Div2 className="2">
+      <Div2>
         <Div2InnerDivBig>
-          <Product product={data[9]} />
+          <Product product={data[1]} />
         </Div2InnerDivBig>
         <Div2InnerDiv>
-          <Product product={data[10]} />
-          <Product product={data[11]} />
-        </Div2InnerDiv>
-
-        <Div2InnerDiv>
-          <Product product={data[13]} />
-          <Product product={data[14]} />
-        </Div2InnerDiv>
-      </Div2>
-      <Div2 className="2">
-        <Div2InnerDiv>
-          <Product product={data[0]} />
+          <Product product={data[1]} />
           <Product product={data[1]} />
         </Div2InnerDiv>
 
         <Div2InnerDiv>
-          <Product product={data[3]} />
+          <Product product={data[1]} />
+          <Product product={data[1]} />
+        </Div2InnerDiv>
+      </Div2>
+      <Div2>
+        <Div2InnerDiv>
+          <Product product={data[0]} />
+          <Product product={data[1]} />
+        </Div2InnerDiv>
+        <Div2InnerDiv>
+          <Product product={data[1]} />
           <Product product={data[4]} />
         </Div2InnerDiv>
         <Div2InnerDivBig>
           <Product product={data[2]} />
         </Div2InnerDivBig>
       </Div2>
-      <Div2 className="2">
-        <Product product={data[0]} />
-        <Product product={data[1]} />
-
-        <Product product={data[3]} />
-        <Product product={data[4]} />
+      <Div2>
+        <Div2InnerDivQuatro>
+          <Product product={data[1]} />
+          <Product product={data[1]} />
+          <Product product={data[1]} />
+          <Product product={data[1]} />
+        </Div2InnerDivQuatro>
       </Div2>
     </Div1>
   );
@@ -157,7 +158,7 @@ const Div1 = styled.div`
 `;
 const Div2 = styled.div`
   display: flex;
-  @media (max-width: 375px) {
+  @media (max-width: 775px) {
     display: block;
     margin: 0 auto;
   }
@@ -167,19 +168,30 @@ const Div2InnerDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  @media (max-width: 375px) {
+  @media (max-width: 775px) {
     display: block;
     margin: 0 auto;
     width: 70%;
+    max-width: 70%;
+  }
+`;
+const Div2InnerDivQuatro = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  @media (max-width: 775px) {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    max-width: 70%;
   }
 `;
 
 const Div2InnerDivBig = styled.div`
   display: flex;
   width: 50%;
-  @media (max-width: 375px) {
-    width: 70%;
-    margin: 0 auto;
+  @media (max-width: 775px) {
+    display: none;
   }
 `;
 

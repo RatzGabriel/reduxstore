@@ -7,7 +7,7 @@ import { addProduct } from '../../../Redux/Cart/cart.action';
 
 import styled from 'styled-components';
 
-function Product({ product, pt, margin }) {
+function Product({ product, pt, margin, pb, wd }) {
   const { productThumbnail, productName, productPrice, documentID } = product;
   const [buttonStatus, setButtonStatus] = useState('none');
   const [backGround, setBackground] = useState(1);
@@ -35,6 +35,8 @@ function Product({ product, pt, margin }) {
     <StyledLink
       paddin={pt}
       margin={pt}
+      pb={pb}
+      wd={wd}
       to={`/product/${documentID}`}
       onMouseEnter={() => {
         setBackground(0.6);
@@ -52,6 +54,8 @@ function Product({ product, pt, margin }) {
         {...configAddToCartBtn}
       >
         {productPrice} €
+        <br />
+        Shop Item
       </ButtonElement>
     </StyledLink>
   );
@@ -60,6 +64,7 @@ function Product({ product, pt, margin }) {
 export default Product;
 
 const StyledLink = styled(Link)`
+  position: relative;
   display: flex;
   color: black;
   cursor: pointer;
@@ -67,30 +72,36 @@ const StyledLink = styled(Link)`
   align-items: center;
   width: 100%;
   align-items: flex-start;
-
+  padding: 1em;
   padding-top: ${(props) => props.padding || '1em'};
+  padding-bottom: ${(props) => props.pb || '0em'};
   margin-top: ${(props) => props.margin || '1em'};
-  @media only screen and (max-width: 1100px) {
+  @media (max-width: 1100px) {
     display: block;
+    width: ${(props) => props.wd || '100%'};
   }
 `;
 
 const ButtonElement = styled.button`
   color: ${(props) => props.color || 'white'};
   background-color: ${(props) => props.bg || 'brown'};
-  padding-left: 10em;
-  padding-right: 10em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 3%;
+  padding-bottom: 3%;
   border-radius: 35px;
   font-weight: 600;
-  min-height: 40px;
-  font-size: 18px;
-  width: 6rem;
+  font-size: 1rem;
   border: none;
   position: absolute;
+  top: 50%;
   display: ${(props) => (props.vis === 'none' ? 'none' : 'block')};
   cursor: pointer;
   @media only screen and (max-width: 1100px) {
-    display: block;
+    display: inline-block;
+    position: static;
+    border-radius: 0;
+    width: 100%;
   }
 `;
 
@@ -101,4 +112,7 @@ const Img = styled.img`
   justify-content: center;
   align-items: center;
   width: 100%;
+  @media only screen and (max-width: 1100px) {
+    display: block;
+  }
 `;
