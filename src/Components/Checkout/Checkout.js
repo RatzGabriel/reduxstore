@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import styled from 'styled-components';
 
 import Button from '../Elements/Button/Button';
 import Item from './Item/Item';
