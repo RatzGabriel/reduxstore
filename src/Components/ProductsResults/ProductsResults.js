@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import Masonry from 'react-masonry-css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import FormSelect from '../Elements/FormSelect/FormSelect';
@@ -106,18 +105,18 @@ const ProductResults = ({}) => {
       <Div2>
         <Div2InnerDivQuatro>
           <Product product={data[0]} />
-          <Product pt={'3em'} product={data[6]} />
-          <Product pt={'3em'} product={data[7]} />
-          <Product product={data[8]} />
+          <Product pt={'1.5em'} height={'102%'} product={data[0]} />
+          <Product pt={'1.5em'} height={'102%'} product={data[0]} />
+          <Product product={data[0]} />
         </Div2InnerDivQuatro>
       </Div2>
       <Div2>
         <Div2InnerDivBig>
-          <Product product={data[1]} />
+          <Product product={data[0]} />
         </Div2InnerDivBig>
         <Div2InnerDiv>
-          <Product product={data[1]} />
-          <Product product={data[1]} />
+          <Product product={data[0]} />
+          <Product product={data[0]} />
         </Div2InnerDiv>
 
         <Div2InnerDiv>
@@ -125,7 +124,7 @@ const ProductResults = ({}) => {
           <Product product={data[1]} />
         </Div2InnerDiv>
       </Div2>
-      <Div2>
+      <Div2 pt={'2em'}>
         <Div2InnerDiv>
           <Product product={data[0]} />
           <Product product={data[1]} />
@@ -158,6 +157,17 @@ const Div1 = styled.div`
 `;
 const Div2 = styled.div`
   display: flex;
+  margin: 1em 0em;
+  @media (max-width: 775px) {
+    display: block;
+    margin: 0 auto;
+  }
+`;
+
+const Div3 = styled.div`
+  display: flex;
+  margin: 1em 0em;
+  background-color: green;
   @media (max-width: 775px) {
     display: block;
     margin: 0 auto;
@@ -168,6 +178,7 @@ const Div2InnerDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
+
   @media (max-width: 775px) {
     display: block;
     margin: 0 auto;
@@ -179,6 +190,7 @@ const Div2InnerDivQuatro = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  margin-bottom: 1em;
   @media (max-width: 775px) {
     display: block;
     margin: 0 auto;

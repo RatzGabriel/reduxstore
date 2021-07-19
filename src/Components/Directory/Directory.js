@@ -181,6 +181,8 @@ const DownArrow = styled.img`
   animation: animateDown infinite 1.5s;
   overflow-x: hidden;
   padding-bottom: 1rem;
+  position: fixed;
+  bottom: 0;
 `;
 
 const Iframe = styled.iframe`
