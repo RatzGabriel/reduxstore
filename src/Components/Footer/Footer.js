@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { keyframes } from 'styled-components';
 
 function Footer() {
   return (
@@ -34,12 +35,25 @@ function Footer() {
 }
 
 export default Footer;
+const animation = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+`;
 
 const ColumnTextDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
+  animation-name: ${animation};
+  animation-duration: 1s;
+  animation-iteration-count: 1;
 `;
 
 const MainDiv = styled.div`
@@ -66,6 +80,9 @@ const ShopNameDiv = styled.div`
   justify-content: center;
   margin-left: 1rem;
   height: 50%;
+  animation-name: ${animation};
+  animation-duration: 1s;
+  animation-iteration-count: 1;
 `;
 
 const LogoTextLower = styled.p`

@@ -20,6 +20,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ClearIcon from '@material-ui/icons/Clear';
+import { keyframes } from 'styled-components';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -145,6 +146,17 @@ Header.defaultProps = {
 
 export default Header;
 
+const animation = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+`;
+
 const WrapDiv = styled.div`
   display: flex;
   height: 10vh;
@@ -152,6 +164,9 @@ const WrapDiv = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 0 auto;
+  animation-name: ${animation};
+  animation-duration: 1s;
+  animation-iteration-count: 1;
 `;
 
 const LogoDiv = styled.div`

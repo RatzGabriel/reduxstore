@@ -6,6 +6,10 @@ import MainPageImage from './MainPageItems';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 
+import { keyframes } from 'styled-components';
+import 'react-on-scroll-animation/build/index.css';
+import Rosa from 'react-on-scroll-animation';
+
 const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
@@ -39,13 +43,31 @@ function Directory() {
           </TextDiv>
 
           <SmallDiv>
-            <Img src={'/images/Two.jpg'} alt="" />
+            <Rosa
+              animation="fade-up"
+              duration={800}
+              anchorPlacement="top-bottom"
+            >
+              <Img src={'/images/Two.jpg'} alt="" />
+            </Rosa>
           </SmallDiv>
           <SmallDiv>
-            <Img pt={'7em'} src={'/images/Two.jpg'} alt="" />
+            <Rosa
+              animation="fade-down"
+              duration={800}
+              anchorPlacement="top-bottom"
+            >
+              <Img pt={'7em'} src={'/images/Two.jpg'} alt="" />
+            </Rosa>
           </SmallDiv>
           <SmallDiv>
-            <Img src={'/images/Two.jpg'} alt="" />
+            <Rosa
+              animation="fade-up"
+              duration={800}
+              anchorPlacement="top-bottom"
+            >
+              <Img src={'/images/Two.jpg'} alt="" />
+            </Rosa>
           </SmallDiv>
         </MiddleDiv>
         <BestSellerDiv>
@@ -78,47 +100,58 @@ function Directory() {
             <StyledLink to="/search">Go To Shop</StyledLink>
           </ButtonDiv>
         </BestSellerDiv>
-        <MiddleDiv>
-          <TextDiv>
-            <P>About Us</P>
-            <h1>An Exceptionally Unique Experience Tailored To You</h1>
-            <p>
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form .
-            </p>
-            <StyledLink>Get Started</StyledLink>
-          </TextDiv>
-          <div>
-            <img src={'/images/Two.jpg'} alt="" />
-          </div>
-          <TextDiv style={{ paddingLeft: '2em' }}>
-            <h1>Our Customer</h1>
-            <p>
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form .
-            </p>
-            <h1>Our Product</h1>
-            <p>
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form .
-            </p>
-            <h1>Our Services</h1>
-            <p>
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form{' '}
-            </p>
-          </TextDiv>
-        </MiddleDiv>
+        <Rosa animation="fade-right" duration={900}>
+          <MiddleDiv>
+            <TextDiv>
+              <P>About Us</P>
+              <h1>An Exceptionally Unique Experience Tailored To You</h1>
+              <p>
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form .
+              </p>
+              <StyledLink>Get Started</StyledLink>
+            </TextDiv>
+
+            <div>
+              <img src={'/images/Two.jpg'} alt="" />
+            </div>
+            <TextDiv style={{ paddingLeft: '2em' }}>
+              <h1>Our Customer</h1>
+              <p>
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form .
+              </p>
+              <h1>Our Product</h1>
+              <p>
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form .
+              </p>
+              <h1>Our Services</h1>
+              <p>
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form{' '}
+              </p>
+            </TextDiv>
+          </MiddleDiv>
+        </Rosa>
         <div>
           <BestsellerTitleDiv>
             <P>Our Team</P>
             <H1>Meet The Minds Shaping An Industry</H1>
           </BestsellerTitleDiv>
           <MindShapingDiv>
-            <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-            <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-            <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-            <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+            <Rosa animation="fade-right" duration={500} once>
+              <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+            </Rosa>
+            <Rosa animation="fade-right" duration={500} once>
+              <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+            </Rosa>
+            <Rosa animation="fade-left" duration={500} once>
+              <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+            </Rosa>
+            <Rosa animation="fade-left" duration={500} once>
+              <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+            </Rosa>
           </MindShapingDiv>
         </div>
       </MainWrapper>
@@ -152,6 +185,17 @@ function Directory() {
 }
 
 export default Directory;
+
+const animation = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+`;
 
 const MainDiv = styled.div`
   min-height: 100vh;

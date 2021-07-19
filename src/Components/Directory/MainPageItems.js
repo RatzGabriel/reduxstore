@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { keyframes } from 'styled-components';
 
 function MainPageImage({ imgUrl, buttonText }) {
   return (
@@ -20,6 +21,17 @@ function MainPageImage({ imgUrl, buttonText }) {
 
 export default MainPageImage;
 
+const animation = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+`;
+
 const H1 = styled.h1`
   font-size: 6em;
 `;
@@ -34,6 +46,9 @@ const TestDiv = styled.div`
   width: 50%;
   text-align: center;
   color: white;
+  animation-name: ${animation};
+  animation-duration: 1s;
+  animation-iteration-count: 1;
 `;
 
 const MainDiv = styled.div`
