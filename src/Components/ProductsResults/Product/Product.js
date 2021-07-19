@@ -83,7 +83,6 @@ const ButtonElement = styled.button`
   background-color: ${(props) => props.bg || 'brown'};
   z-index: ${(props) => (props.vis ? '99' : '-999')};
   visibility: ${(props) => (props.vis ? 'visible' : 'hidden')};
-
   top: ${(props) => (props.vis ? '50%' : '48%')};
   padding: 3% 1em;
   border-radius: 35px;

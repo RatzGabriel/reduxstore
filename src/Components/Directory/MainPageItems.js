@@ -5,13 +5,36 @@ import { Link } from 'react-router-dom';
 function MainPageImage({ imgUrl, buttonText }) {
   return (
     <MainDiv imgUrl={imgUrl}>
-      <StyledLink to="/search/">{buttonText}</StyledLink>
-      <DownArrow src={'/images/down-arrow.svg'}></DownArrow>
+      <TestDiv>
+        <H1>Ceramic is our passion</H1>
+        <P>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam maxime
+          hic cumque molestias, eligendi doloribus eos voluptates soluta commodi
+          tenetur?
+        </P>
+        <StyledLink to="/search/">{buttonText}</StyledLink>
+      </TestDiv>
     </MainDiv>
   );
 }
 
 export default MainPageImage;
+
+const H1 = styled.h1`
+  font-size: 6em;
+`;
+
+const P = styled.p`
+  font-size: 1.3em;
+  padding: 2em 0em;
+`;
+
+const TestDiv = styled.div`
+  margin: auto auto;
+  width: 50%;
+  text-align: center;
+  color: white;
+`;
 
 const MainDiv = styled.div`
   display: flex;
@@ -28,23 +51,19 @@ const MainDiv = styled.div`
   position: relative;
 `;
 
-const DownArrow = styled.img`
-  position: absolute;
-  height: 40px;
-  animation: animateDown infinite 1.5s;
-  overflow-x: hidden;
-  padding-bottom: 1rem;
-  bottom: 0;
-  left: 50%;
-`;
-
 const StyledLink = styled(Link)`
   margin: auto auto;
   text-decoration: none;
-  color: black;
+  color: brown;
   text-transform: uppercase;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.2rem;
   font-weight: 400;
   background-color: white;
   padding: 1rem 1rem;
+  border-radius: 5%;
+  font-size: 1.3em;
+  &:hover {
+    background-color: brown;
+    color: white;
+  }
 `;

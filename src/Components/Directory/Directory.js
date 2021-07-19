@@ -28,7 +28,7 @@ function Directory() {
         <MiddleDiv>
           <TextDiv>
             <P>Our Services</P>
-            <H1>Fresh Product From Our Farm To Your Home</H1>
+            <H1 color={'black'}>Fresh Product From Our Farm To Your Home</H1>
             <p>
               n a professional context it often happens that private or
               corporate clients corder a publication to be made and presented .
@@ -42,7 +42,7 @@ function Directory() {
             <Img src={'/images/Two.jpg'} alt="" />
           </SmallDiv>
           <SmallDiv>
-            <Img pt={7} src={'/images/Two.jpg'} alt="" />
+            <Img pt={'7em'} src={'/images/Two.jpg'} alt="" />
           </SmallDiv>
           <SmallDiv>
             <Img src={'/images/Two.jpg'} alt="" />
@@ -61,10 +61,14 @@ function Directory() {
                   return (
                     <MiniDiv id={index}>
                       <BestsellerImages src={item.productThumbnail} alt="" />
-                      {item.productName && <h2>{item.productName}</h2>}
-                      {item.productPrice && (
-                        <BestsellerP>{item.productPrice}.00Euro</BestsellerP>
-                      )}
+                      <TestDiv>
+                        {item.productName && <h2>{item.productName}</h2>}
+                        {item.productPrice && (
+                          <StyledLink bg="brown" color="white">
+                            {item.productPrice} €
+                          </StyledLink>
+                        )}
+                      </TestDiv>
                     </MiniDiv>
                   );
                 } else console.log(item.bestseller);
@@ -195,6 +199,7 @@ const MiddleDiv = styled.div`
   display: flex;
   height: 50em;
   justify-content: space-between;
+  align-items: center;
   margin: 10em 0em 0em 0em;
   @media (max-width: 768px) {
     flex-direction: column;
@@ -207,14 +212,16 @@ const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+  text-align: center;
   padding-right: 2em;
-  height: 60%;
+  height: ${(props) => props.height || '100%'};
   width: 40%;
 `;
 
 const Img = styled.img`
-  height: 60%;
-  padding-top: ${(props) => props.pt || 0}em;
+  height: ${(props) => props.height || '60%'};
+  margin-top: ${(props) => props.pt || 0};
   width: 90%;
   @media (max-width: 768px) {
     padding-bottom: 2em;
@@ -225,6 +232,8 @@ const Img = styled.img`
 const SmallDiv = styled.div`
   display: flex;
   justify-content: center;
+  height: 100%;
+  align-items: center;
 `;
 
 const P = styled.p`
@@ -235,13 +244,15 @@ const P = styled.p`
 
 const H1 = styled.h1`
   font-size: 3em;
+  color: ${(props) => props.color || 'white'};
 `;
 
 const BestSellerDiv = styled.div`
   background: linear-gradient(
-    180deg,
-    rgb(154, 154, 154) 0%,
-    rgb(198, 198, 198)
+    183deg,
+    rgb(114, 114, 114) 0%,
+    rgb(197, 197, 197) 46%,
+    rgb(114, 114, 114) 100%
   );
 `;
 
@@ -249,6 +260,7 @@ const BestsellerCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding: 3em;
 `;
 
 const BestsellerImages = styled.img`
@@ -260,11 +272,20 @@ const MiniDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0em 5em 5em 0em;
+  text-align: center;
+  justify-content: center;
+  background-color: white;
+  margin: 3em 3em 0em 3em;
+`;
+
+const TestDiv = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const BestsellerP = styled.p`
-  color: green;
+  color: brown;
 `;
 
 const BestsellerTitleDiv = styled.div`
