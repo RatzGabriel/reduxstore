@@ -2,18 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { keyframes } from 'styled-components';
+import Rosa from 'react-on-scroll-animation';
 
-function MainPageImage({ imgUrl, buttonText }) {
+function MainPageImage({ imgUrl, buttonText, buttonTextTwo }) {
   return (
     <MainDiv imgUrl={imgUrl}>
       <TestDiv>
-        <H1>Ceramic is our passion</H1>
-        <P>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam maxime
-          hic cumque molestias, eligendi doloribus eos voluptates soluta commodi
-          tenetur?
-        </P>
-        <StyledLink to="/search/">{buttonText}</StyledLink>
+        <Rosa animation="zoom-out" duration={1200} anchorPlacement="top-bottom">
+          <H1>Ceramic is our passion</H1>
+          <P>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
+            maxime hic cumque molestias, eligendi doloribus eos voluptates
+            soluta commodi tenetur?
+          </P>
+        </Rosa>
+        <TestingAgain>
+          <Rosa animation="fade-right" duration={2000} offset={1200}>
+            <StyledLink bg="black" to="/search/">
+              {buttonTextTwo}
+            </StyledLink>
+          </Rosa>
+          <Rosa animation="fade-left" duration={2000} offset={1200}>
+            <StyledLink bg="black" to="/search/">
+              {buttonText}
+            </StyledLink>
+          </Rosa>
+        </TestingAgain>
       </TestDiv>
     </MainDiv>
   );
@@ -21,19 +35,19 @@ function MainPageImage({ imgUrl, buttonText }) {
 
 export default MainPageImage;
 
-const animation = keyframes`
-  0% {
-    transform: translateX(-100%);
+const TestingAgain = styled.div`
+  display: flex;
+  justify-content: center;
+  @media (max-width: 960px) {
+    display: block;
   }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 `;
 
 const H1 = styled.h1`
   font-size: 6em;
+  @media (max-width: 960px) {
+    font-size: 3em;
+  }
 `;
 
 const P = styled.p`
@@ -46,9 +60,9 @@ const TestDiv = styled.div`
   width: 50%;
   text-align: center;
   color: white;
-  animation-name: ${animation};
-  animation-duration: 1s;
-  animation-iteration-count: 1;
+  @media (max-width: 960px) {
+    width: 80%;
+  }
 `;
 
 const MainDiv = styled.div`
@@ -64,21 +78,27 @@ const MainDiv = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+
+  @media (max-width: 960px) {
+  }
 `;
 
 const StyledLink = styled(Link)`
-  margin: auto auto;
+  margin: auto 1rem;
   text-decoration: none;
-  color: brown;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 400;
-  background-color: white;
-  padding: 1rem 1rem;
-  border-radius: 5%;
+  background-color: ${(props) => props.bg || 'white'};
+  color: white;
+  padding: 1rem 3rem;
   font-size: 1.3em;
   &:hover {
     background-color: brown;
     color: white;
+  }
+  @media (max-width: 960px) {
+    display: block;
+    margin: 1em;
   }
 `;

@@ -54,18 +54,31 @@ const ColumnTextDiv = styled.div`
   animation-name: ${animation};
   animation-duration: 1s;
   animation-iteration-count: 1;
+  @media (max-width: 962px) {
+    padding: 1em;
+  }
 `;
 
 const MainDiv = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  height: 100%;
   padding: 2em;
+
+  @media (max-width: 962px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const LogoDiv = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 962px) {
+    padding: 1em;
+  }
 `;
 
 const LogoImg = styled.img`

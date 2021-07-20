@@ -27,7 +27,11 @@ function Directory() {
   return (
     <MainDiv>
       <MainWrapper>
-        <MainPageImage imgUrl={'/images/Two.jpg'} buttonText={'Shop'} />
+        <MainPageImage
+          imgUrl={'/images/Two.jpg'}
+          buttonText={'Shop'}
+          buttonTextTwo={'Read More'}
+        />
 
         <MiddleDiv>
           <TextDiv>
@@ -75,100 +79,157 @@ function Directory() {
             <P>Best Selling</P>
             <H1>Best Sellers products</H1>
           </BestsellerTitleDiv>
-          <BestsellerCards>
-            {Array.isArray(data) &&
-              data.length > 0 &&
-              data.map((item, index) => {
-                if (item.bestseller === 'bestseller') {
-                  return (
-                    <MiniDiv id={index}>
-                      <BestsellerImages src={item.productThumbnail} alt="" />
-                      <TestDiv>
-                        {item.productName && <h2>{item.productName}</h2>}
-                        {item.productPrice && (
-                          <StyledLink bg="brown" color="white">
-                            {item.productPrice} €
-                          </StyledLink>
-                        )}
-                      </TestDiv>
-                    </MiniDiv>
-                  );
-                } else console.log(item.bestseller);
-              })}
-          </BestsellerCards>
+          <Rosa
+            animation="fade-up"
+            duration={1600}
+            anchorPlacement="top-bottom"
+          >
+            <BestsellerCards>
+              {Array.isArray(data) &&
+                data.length > 0 &&
+                data.map((item, index) => {
+                  if (item.bestseller === 'bestseller') {
+                    return (
+                      <MiniDiv id={index}>
+                        <BestsellerImages src={item.productThumbnail} alt="" />
+                        <TestDiv>
+                          {item.productName && <h1>{item.productName}</h1>}
+                          {item.productPrice && (
+                            <StyledLinkBestProduct bg="brown" color="white">
+                              {item.productPrice} €
+                            </StyledLinkBestProduct>
+                          )}
+                        </TestDiv>
+                      </MiniDiv>
+                    );
+                  } else console.log(item.bestseller);
+                })}
+            </BestsellerCards>
+          </Rosa>
           <ButtonDiv>
             <StyledLink to="/search">Go To Shop</StyledLink>
           </ButtonDiv>
         </BestSellerDiv>
-        <Rosa animation="fade-right" duration={900}>
-          <MiddleDiv>
-            <TextDiv>
+
+        <MiddleDiv>
+          <TextDiv>
+            <Rosa
+              animation="fade-left"
+              duration={800}
+              anchorPlacement={'top-center'}
+              offset={400}
+              once
+            >
               <P>About Us</P>
+            </Rosa>
+            <Rosa
+              animation="fade-up"
+              duration={800}
+              anchorPlacement={'top-center'}
+              offset={600}
+              once
+            >
               <h1>An Exceptionally Unique Experience Tailored To You</h1>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form .
               </p>
-              <StyledLink>Get Started</StyledLink>
-            </TextDiv>
+            </Rosa>
+            <Rosa
+              animation="fade-down"
+              duration={800}
+              anchorPlacement={'top-center'}
+              offset={600}
+              once
+            >
+              <ButtonDiv>
+                <StyledLink to="/search">Get Started</StyledLink>
+              </ButtonDiv>
+            </Rosa>
+          </TextDiv>
 
-            <div>
+          <div>
+            <Rosa animation="fade-up" duration={800} once>
               <img src={'/images/Two.jpg'} alt="" />
-            </div>
-            <TextDiv style={{ paddingLeft: '2em' }}>
+            </Rosa>
+          </div>
+          <TextDiv style={{ paddingLeft: '2em' }}>
+            <Rosa animation="fade-up" duration={400} once>
               <h1>Our Customer</h1>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form .
               </p>
+            </Rosa>
+            <Rosa
+              animation="fade-up"
+              duration={600}
+              anchorPlacement={'top-center'}
+              offset={600}
+              once
+            >
               <h1>Our Product</h1>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form .
               </p>
+            </Rosa>
+            <Rosa
+              animation="fade-up"
+              duration={800}
+              anchorPlacement={'top-center'}
+              offset={600}
+              once
+            >
               <h1>Our Services</h1>
               <p>
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form{' '}
               </p>
-            </TextDiv>
-          </MiddleDiv>
-        </Rosa>
+            </Rosa>
+          </TextDiv>
+        </MiddleDiv>
+
         <div>
           <BestsellerTitleDiv>
-            <P>Our Team</P>
-            <H1>Meet The Minds Shaping An Industry</H1>
+            <Rosa animation="fade-up" duration={800} once>
+              <P color="black">Our Team</P>
+            </Rosa>
+            <Rosa animation="fade-down" duration={800} once>
+              <H1 color="black">Meet The Minds Shaping An Industry</H1>
+            </Rosa>
           </BestsellerTitleDiv>
           <MindShapingDiv>
-            <Rosa animation="fade-right" duration={500} once>
+            <Rosa animation="fade-right" duration={1500} once>
               <MindShapingImg src={'/images/Musk.jpg'} alt="" />
             </Rosa>
-            <Rosa animation="fade-right" duration={500} once>
+            <Rosa animation="fade-right" duration={1500} once>
               <MindShapingImg src={'/images/Musk.jpg'} alt="" />
             </Rosa>
-            <Rosa animation="fade-left" duration={500} once>
+            <Rosa animation="fade-left" duration={1500} once>
               <MindShapingImg src={'/images/Musk.jpg'} alt="" />
             </Rosa>
-            <Rosa animation="fade-left" duration={500} once>
+            <Rosa animation="fade-left" duration={1500} once>
               <MindShapingImg src={'/images/Musk.jpg'} alt="" />
             </Rosa>
           </MindShapingDiv>
         </div>
       </MainWrapper>
-
-      <MainWrapper>
-        <HalfDiv>
-          <Iframe
-            src="https://www.youtube.com/embed/0pt0MdReMts"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></Iframe>
-          <DownArrow src={'/images/down-arrow.svg'}></DownArrow>
-        </HalfDiv>
-      </MainWrapper>
-      <QuoteDiv>
+      <Rosa animation="fade-right" duration={800} once>
+        <MainWrapper>
+          <HalfDiv>
+            <Iframe
+              src="https://www.youtube.com/embed/0pt0MdReMts"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></Iframe>
+            <DownArrow src={'/images/down-arrow.svg'}></DownArrow>
+          </HalfDiv>
+        </MainWrapper>
+      </Rosa>
+      {/* <QuoteDiv>
         <QuoteTextDiv>
           <h1>
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -176,31 +237,21 @@ function Directory() {
             voluptatem ullam quia temporibus. Beatae, assumenda!" Gabriel Ratz
           </h1>
         </QuoteTextDiv>
-      </QuoteDiv>
-      <MainWrapper>
-        <Footer />
-      </MainWrapper>
+      </QuoteDiv> */}
+
+      <Footer />
     </MainDiv>
   );
 }
 
 export default Directory;
 
-const animation = keyframes`
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-`;
-
 const MainDiv = styled.div`
   min-height: 100vh;
   height: 100%;
   width: 100%;
+  @media (max-width: 960px) {
+  }
 `;
 
 const MainWrapper = styled.div`
@@ -210,6 +261,9 @@ const MainWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  @media (max-width: 960px) {
+  }
 `;
 
 const HalfDiv = styled.div`
@@ -222,6 +276,8 @@ const HalfDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 960px) {
+  }
 `;
 
 const DownArrow = styled.img`
@@ -236,6 +292,7 @@ const DownArrow = styled.img`
 const Iframe = styled.iframe`
   height: 100vh;
   width: 100%;
+  margin: 2em;
 `;
 
 const MiddleDiv = styled.div`
@@ -244,8 +301,8 @@ const MiddleDiv = styled.div`
   height: 50em;
   justify-content: space-between;
   align-items: center;
-  margin: 10em 0em 0em 0em;
-  @media (max-width: 768px) {
+  margin: 0em 0em 0em 0em;
+  @media (max-width: 960px) {
     flex-direction: column;
     height: 100%;
     align-items: center;
@@ -261,15 +318,19 @@ const TextDiv = styled.div`
   padding-right: 2em;
   height: ${(props) => props.height || '100%'};
   width: 40%;
+  @media (max-width: 960px) {
+    padding: 1em;
+    margin: 2em;
+  }
 `;
 
 const Img = styled.img`
   height: ${(props) => props.height || '60%'};
   margin-top: ${(props) => props.pt || 0};
   width: 90%;
-  @media (max-width: 768px) {
-    padding-bottom: 2em;
-    padding-top: 2em;
+  @media (max-width: 960px) {
+    padding-bottom: 1em;
+    margin-top: 0;
   }
 `;
 
@@ -278,6 +339,9 @@ const SmallDiv = styled.div`
   justify-content: center;
   height: 100%;
   align-items: center;
+  @media (max-width: 960px) {
+    margin: 1em;
+  }
 `;
 
 const P = styled.p`
@@ -298,6 +362,10 @@ const BestSellerDiv = styled.div`
     rgb(197, 197, 197) 46%,
     rgb(114, 114, 114) 100%
   );
+
+  @media (max-width: 960px) {
+    text-align: center;
+  }
 `;
 
 const BestsellerCards = styled.div`
@@ -310,6 +378,7 @@ const BestsellerCards = styled.div`
 const BestsellerImages = styled.img`
   width: 15em;
   height: 15em;
+  border-radius: 15%;
 `;
 
 const MiniDiv = styled.div`
@@ -318,7 +387,7 @@ const MiniDiv = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  background-color: white;
+
   margin: 3em 3em 0em 3em;
 `;
 
@@ -326,10 +395,7 @@ const TestDiv = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-`;
-
-const BestsellerP = styled.p`
-  color: brown;
+  padding: 2em;
 `;
 
 const BestsellerTitleDiv = styled.div`
@@ -337,8 +403,9 @@ const BestsellerTitleDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding: 4em 0;
 
-  @media (max-width: 768px) {
+  @media (max-width: 962px) {
     width: 70%;
     margin: 0 auto;
     padding-bottom: 5em;
@@ -367,6 +434,16 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   text-align: center;
   margin-bottom: 3em;
+  @media (max-width: 768px) {
+    font-size: 1em;
+  }
+`;
+
+const StyledLinkBestProduct = styled(Link)`
+  color: black;
+  text-decoration: none;
+  font-size: 1.5em;
+  padding: 1em;
 `;
 
 const QuoteDiv = styled.div`
@@ -388,9 +465,10 @@ const MindShapingDiv = styled.div`
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
-  padding-bottom: 3em;
+  padding: 5em 0em 5em 0em;
   width: 90vw;
-  @media (max-width: 768px) {
+
+  @media (max-width: 962px) {
     flex-direction: column;
     align-items: center;
   }
@@ -399,7 +477,8 @@ const MindShapingDiv = styled.div`
 const MindShapingImg = styled.img`
   width: 20em;
   height: 30em;
-  @media (max-width: 768px) {
+  @media (max-width: 962px) {
     padding-bottom: 2em;
+    margin: 3em;
   }
 `;
