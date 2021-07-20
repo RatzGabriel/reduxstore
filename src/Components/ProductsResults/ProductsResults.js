@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
-
+import Rosa from 'react-on-scroll-animation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import FormSelect from '../Elements/FormSelect/FormSelect';
@@ -77,79 +77,86 @@ const ProductResults = ({}) => {
   const configLoadMore = {
     onLoadMoreEvt: handleLoadMore,
   };
-  const breakpointColumnsObj = {
-    default: 6,
-    2300: 4,
-    1200: 3,
-    992: 2,
-    768: 2,
-    576: 1,
-  };
-  console.log(data);
 
   return (
     <Div1>
-      <Div2>
-        <Div2InnerDiv>
-          <Product product={data[0]} />
-          <Product product={data[1]} />
-        </Div2InnerDiv>
-        <Div2InnerDivBig>
-          <Product product={data[2]} />
-        </Div2InnerDivBig>
-        <Div2InnerDiv>
-          <Product product={data[3]} />
-          <Product product={data[4]} />
-        </Div2InnerDiv>
-      </Div2>
-      <Div2>
-        <Div2InnerDivQuatro>
-          <Product product={data[0]} />
-          <Product pt={'1.5em'} height={'102%'} product={data[0]} />
-          <Product pt={'1.5em'} height={'102%'} product={data[0]} />
-          <Product product={data[0]} />
-        </Div2InnerDivQuatro>
-      </Div2>
-      <Div2>
-        <Div2InnerDivBig>
-          <Product product={data[0]} />
-        </Div2InnerDivBig>
-        <Div2InnerDiv>
-          <Product product={data[0]} />
-          <Product product={data[0]} />
-        </Div2InnerDiv>
+      <TextDiv>
+        <h1>Browse</h1>
+        <FormSelect {...configFilters} />
+      </TextDiv>
+      <Rosa
+        animation="fade-down"
+        duration={1600}
+        anchorPlacement={'top-center'}
+        offset={1200}
+      >
+        <Div2>
+          <Div2InnerDiv>
+            <Product product={data[0]} />
+            <Product product={data[1]} />
+          </Div2InnerDiv>
+          <Div2InnerDivBig>
+            <Product product={data[2]} />
+          </Div2InnerDivBig>
+          <Div2InnerDiv>
+            <Product product={data[3]} />
+            <Product product={data[4]} />
+          </Div2InnerDiv>
+        </Div2>
+        <Div2>
+          <Div2InnerDivQuatro>
+            <Product product={data[0]} />
+            <Product pt={'1.5em'} height={'102%'} product={data[0]} />
+            <Product pt={'1.5em'} height={'102%'} product={data[0]} />
+            <Product product={data[0]} />
+          </Div2InnerDivQuatro>
+        </Div2>
+        <Div2>
+          <Div2InnerDivBig>
+            <Product product={data[0]} />
+          </Div2InnerDivBig>
+          <Div2InnerDiv>
+            <Product product={data[0]} />
+            <Product product={data[0]} />
+          </Div2InnerDiv>
 
-        <Div2InnerDiv>
-          <Product product={data[1]} />
-          <Product product={data[1]} />
-        </Div2InnerDiv>
-      </Div2>
-      <Div2 pt={'2em'}>
-        <Div2InnerDiv>
-          <Product product={data[0]} />
-          <Product product={data[1]} />
-        </Div2InnerDiv>
-        <Div2InnerDiv>
-          <Product product={data[1]} />
-          <Product product={data[4]} />
-        </Div2InnerDiv>
-        <Div2InnerDivBig>
-          <Product product={data[2]} />
-        </Div2InnerDivBig>
-      </Div2>
-      <Div2>
-        <Div2InnerDivQuatro>
-          <Product product={data[1]} />
-          <Product product={data[1]} />
-          <Product product={data[1]} />
-          <Product product={data[1]} />
-        </Div2InnerDivQuatro>
-      </Div2>
+          <Div2InnerDiv>
+            <Product product={data[1]} />
+            <Product product={data[1]} />
+          </Div2InnerDiv>
+        </Div2>
+        <Div2 pt={'2em'}>
+          <Div2InnerDiv>
+            <Product product={data[0]} />
+            <Product product={data[1]} />
+          </Div2InnerDiv>
+          <Div2InnerDiv>
+            <Product product={data[1]} />
+            <Product product={data[4]} />
+          </Div2InnerDiv>
+          <Div2InnerDivBig>
+            <Product product={data[2]} />
+          </Div2InnerDivBig>
+        </Div2>
+        <Div2>
+          <Div2InnerDivQuatro>
+            <Product product={data[1]} />
+            <Product product={data[1]} />
+            <Product product={data[1]} />
+            <Product product={data[1]} />
+          </Div2InnerDivQuatro>
+        </Div2>
+      </Rosa>
     </Div1>
   );
 };
 
 export default ProductResults;
+
+const TextDiv = styled.div`
+  justify-content: center;
+  display: flex;
+`;
 
 const Div1 = styled.div`
   display: flex;

@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../../Redux/Cart/cart.action';
 import styled from 'styled-components';
+import Rosa from 'react-on-scroll-animation';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 function Product({ product, pt, pb, wd, height }) {
   const dispatch = useDispatch();
@@ -41,20 +43,42 @@ function Product({ product, pt, pb, wd, height }) {
     >
       <Img src={productThumbnail}></Img>
 
-      <ButtonElement
-        type="button"
-        vis={buttonStatus}
-        onClick={() => handleAddToCard(product)}
-      >
-        {productPrice} €
-        <br />
-        Shop Item
-      </ButtonElement>
+      {buttonStatus && (
+        <TestDiv>
+          <Rosa
+            animation="fade-down"
+            duration={300}
+            anchorPlacement={'top-center'}
+            offset={1200}
+          >
+            <ButtonElement
+              eye={<VisibilityIcon></VisibilityIcon>}
+              type="button"
+              vis={buttonStatus}
+              onClick={() => handleAddToCard(product)}
+            >
+              <span> {productPrice} €</span>
+            </ButtonElement>
+          </Rosa>
+        </TestDiv>
+      )}
     </StyledLink>
   );
 }
 
 export default Product;
+
+const TestDiv = styled.div`
+  top: 50%;
+  cursor: pointer;
+  position: absolute;
+  @media only screen and (max-width: 1100px) {
+    display: inline-block;
+    position: static;
+    border-radius: 0;
+    width: 100%;
+  }
+`;
 
 const StyledLink = styled(Link)`
   position: relative;
@@ -62,7 +86,6 @@ const StyledLink = styled(Link)`
   color: black;
   cursor: pointer;
   justify-content: center;
-  align-items: center;
   width: 100%;
   height: ${(props) => props.height || '100%'};
   align-items: flex-start;
@@ -70,7 +93,6 @@ const StyledLink = styled(Link)`
   padding-top: ${(props) => props.padding || '1em'};
   padding-bottom: ${(props) => props.pb || '0em'};
   margin-top: ${(props) => props.margin || '1em'};
-  transition: top 2s ease 0s;
 
   @media (max-width: 1100px) {
     display: block;
@@ -81,20 +103,20 @@ const StyledLink = styled(Link)`
 const ButtonElement = styled.button`
   color: ${(props) => props.color || 'white'};
   background-color: ${(props) => props.bg || 'brown'};
-  z-index: ${(props) => (props.vis ? '99' : '-999')};
-  visibility: ${(props) => (props.vis ? 'visible' : 'hidden')};
-  top: ${(props) => (props.vis ? '50%' : '48%')};
-  padding: 3% 1em;
+  padding: 1em 3em;
   border-radius: 35px;
   font-weight: 600;
   border: none;
   cursor: pointer;
-  position: absolute;
-  transition: top 0.6s;
+  &:hover span {
+    display: none;
+  }
+  &:hover:before {
+    content: '${'Shop it'}';
+  }
   &:hover {
     background-color: black;
   }
-
   @media only screen and (max-width: 1100px) {
     display: inline-block;
     position: static;
@@ -106,12 +128,7 @@ const ButtonElement = styled.button`
 const Img = styled.img`
   height: 100%;
   width: 100%;
-  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
   &:hover {
     transition: all 0.3s ease;
     opacity: 0.7;
