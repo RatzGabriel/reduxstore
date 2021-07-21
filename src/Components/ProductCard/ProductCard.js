@@ -107,11 +107,11 @@ const ButtonProduct = styled.button`
 
 const Img = styled.img`
   width: 90%;
-  height: 98%;
 `;
 
 const ImageDiv = styled.div`
   width: 70%;
+
   @media (max-width: 962px) {
     display: flex;
   }
@@ -132,7 +132,7 @@ const ProductDiv = styled.div`
   display: flex;
   width: 90%;
   height: 80%;
-  padding: 5em 0em 0em 0em;
+  padding: 0em 0em 0em 0em;
   @media (max-width: 962px) {
     display: flex;
     flex-direction: column;
@@ -143,7 +143,6 @@ const ProductDiv = styled.div`
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
 

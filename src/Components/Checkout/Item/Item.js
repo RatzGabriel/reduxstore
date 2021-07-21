@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
 //action
 import {
@@ -26,26 +27,47 @@ function Item(product) {
   };
 
   return (
-    <table border="0" cellPadding="10" cellSpacing="0">
-      <tbody>
-        <tr>
-          <td>
-            <img src={productThumbnail} alt={productName} />
-          </td>
-          <td>{productName}</td>
-          <td>
-            <span onClick={() => removeItem(product)}>{`<`}</span>
-            <span>{quantity} Items</span>
-            <span onClick={() => handleAddProduct(product)}>{`>`}</span>
-          </td>
-          <td>${productPrice}</td>
-          <td align="center">
-            <span onClick={() => handleRemoveCartItem(documentID)}>X</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <ItemDiv>
+      <Img src={productThumbnail} alt={productName} />
+      <TestDiv>
+        {productName}{' '}
+        <span>
+          <P> {productPrice} Euro</P>
+        </span>
+      </TestDiv>
+      <div>
+        <span onClick={() => removeItem(product)}>{`<`}</span>
+
+        <span>Count: {quantity}</span>
+        <span onClick={() => handleAddProduct(product)}>{`>`}</span>
+      </div>
+      <span onClick={() => handleRemoveCartItem(documentID)}>
+        <P>Remove</P>
+      </span>
+    </ItemDiv>
   );
 }
 
 export default Item;
+
+const P = styled.p`
+  font-size: 0.3em;
+  cursor: pointer;
+`;
+
+const TestDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ItemDiv = styled.div`
+  background-color: beige;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const Img = styled.img`
+  height: 3em;
+  padding: 0.4em;
+`;

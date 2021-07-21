@@ -27,11 +27,14 @@ function Directory() {
   return (
     <MainDiv>
       <MainWrapper>
-        <MainPageImage
-          imgUrl={'/images/Two.jpg'}
-          buttonText={'Shop'}
-          buttonTextTwo={'Read More'}
-        />
+        <Testing>
+          <h1>Ceramic is our passion</h1>
+          <MainPageImage
+            imgUrl={'/images/Two.jpg'}
+            buttonText={'Shop'}
+            buttonTextTwo={'Read More'}
+          />
+        </Testing>
 
         <MiddleDiv>
           <TextDiv>
@@ -245,6 +248,14 @@ function Directory() {
 }
 
 export default Directory;
+
+const Testing = styled.div`
+  width: 50%;
+  height: 50%;
+  @media (max-width: 962px) {
+    width: 100%;
+  }
+`;
 
 const MainDiv = styled.div`
   min-height: 100vh;
