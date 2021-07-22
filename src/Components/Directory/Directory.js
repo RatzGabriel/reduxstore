@@ -50,31 +50,13 @@ function Directory() {
           </TextDiv>
 
           <SmallDiv>
-            <Rosa
-              animation="fade-up"
-              duration={800}
-              anchorPlacement="top-bottom"
-            >
-              <Img src={'/images/Two.jpg'} alt="" />
-            </Rosa>
+            <Img src={'/images/Two.jpg'} alt="" />
           </SmallDiv>
           <SmallDiv>
-            <Rosa
-              animation="fade-down"
-              duration={800}
-              anchorPlacement="top-bottom"
-            >
-              <Img pt={'7em'} src={'/images/Two.jpg'} alt="" />
-            </Rosa>
+            <Img pt={'7em'} src={'/images/Two.jpg'} alt="" />
           </SmallDiv>
           <SmallDiv>
-            <Rosa
-              animation="fade-up"
-              duration={800}
-              anchorPlacement="top-bottom"
-            >
-              <Img src={'/images/Two.jpg'} alt="" />
-            </Rosa>
+            <Img src={'/images/Two.jpg'} alt="" />
           </SmallDiv>
         </MiddleDiv>
         <BestSellerDiv>
@@ -316,7 +298,6 @@ const MiddleDiv = styled.div`
   @media (max-width: 960px) {
     flex-direction: column;
     height: 100%;
-    align-items: center;
   }
 `;
 
@@ -330,8 +311,8 @@ const TextDiv = styled.div`
   height: ${(props) => props.height || '100%'};
   width: 40%;
   @media (max-width: 960px) {
-    padding: 1em;
     margin: 2em;
+    text-align: center;
   }
 `;
 

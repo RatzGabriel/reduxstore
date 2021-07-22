@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,6 +22,8 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ClearIcon from '@material-ui/icons/Clear';
 import { keyframes } from 'styled-components';
 
+import { HideScroll } from 'react-hide-on-scroll';
+
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
   totalNumCartItems: selectCartItemsCount(state),
@@ -42,101 +44,99 @@ function Header() {
   };
 
   return (
-    <WrapDiv>
-      <LogoDiv>
-        <StyledLinkLogoImage to="/">
-          <LogoImg src={'/images/Two.jpg'} alt="logo image" />
-        </StyledLinkLogoImage>
-        <ShopNameDiv>
-          <LogoTextUpper>Machua</LogoTextUpper>
-          <LogoTextLower>Peru</LogoTextLower>
-        </ShopNameDiv>
-      </LogoDiv>
-      {/* <HeaderDivs>
-        <NavItem itemName={'Vase'}>
-          <DropdownMenu />
-        </NavItem>
-        <NavItem itemName={'andere'}>
-          <DropdownMenu />
-        </NavItem>
-      </HeaderDivs> */}
-      {
-        <BurgerDiv>
-          <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
-            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-          </BurgerDivMain>
-          <Nav>
-            {statusNavBar && (
-              <BurgerLinksDiv>
-                <StyledMobileLinks
-                  onClick={() => setStatusNavBar(false)}
-                  to="/"
-                >
-                  <ClearIcon></ClearIcon>
-                </StyledMobileLinks>
-                <StyledMobileLinks
-                  onClick={() => setStatusNavBar(false)}
-                  to="/"
-                >
-                  <HomeIcon></HomeIcon>
-                  Home
-                </StyledMobileLinks>
-                <StyledMobileLinks
-                  onClick={() => setStatusNavBar(false)}
-                  to="/search"
-                >
-                  <StorefrontIcon />
-                  Shop
-                </StyledMobileLinks>
-                <StyledMobileLinks
-                  onClick={() => setStatusNavBar(false)}
-                  to="/registration"
-                >
-                  <VpnKeyIcon />
-                  Registration
-                </StyledMobileLinks>
-                <StyledMobileLinks
-                  onClick={() => setStatusNavBar(false)}
-                  to="/cart"
-                >
-                  <ShoppingCartIcon />
-                </StyledMobileLinks>
-              </BurgerLinksDiv>
-            )}
-          </Nav>
-        </BurgerDiv>
-      }
-      <HeaderDivs>
-        {checkUserIsAdmin(currentUser) && (
-          <StyledLink to="/admin">Admin</StyledLink>
+    <HideScroll variant="down">
+      <MainMainDiv>
+        {statusNavBar && (
+          <BurgerLinksDiv>
+            <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
+              <ClearIcon></ClearIcon>
+            </StyledMobileLinks>
+            <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
+              <div>
+                <HomeIcon></HomeIcon>
+                <p>Home</p>
+              </div>
+            </StyledMobileLinks>
+            <StyledMobileLinks
+              onClick={() => setStatusNavBar(false)}
+              to="/search"
+            >
+              <div>
+                <StorefrontIcon />
+                <p>Shop</p>
+              </div>
+            </StyledMobileLinks>
+            <StyledMobileLinks
+              onClick={() => setStatusNavBar(false)}
+              to="/registration"
+            >
+              <div>
+                <VpnKeyIcon />
+                <p>Registration</p>
+              </div>
+            </StyledMobileLinks>
+            <StyledMobileLinks
+              onClick={() => setStatusNavBar(false)}
+              to="/cart"
+            >
+              <div>
+                <ShoppingCartIcon />
+                <p>Cart</p>
+              </div>
+            </StyledMobileLinks>
+          </BurgerLinksDiv>
         )}
-        {<StyledLink to="/search">Shop</StyledLink>}
-        {!currentUser && (
-          <StyledLink to="/registration">Registration</StyledLink>
-        )}
+        {
+          <WrapDiv>
+            <LogoDiv>
+              <StyledLinkLogoImage to="/">
+                <LogoImg src={'/images/Two.jpg'} alt="logo image" />
+              </StyledLinkLogoImage>
+              <ShopNameDiv>
+                <LogoTextUpper>Machua</LogoTextUpper>
+                <LogoTextLower>Peru</LogoTextLower>
+              </ShopNameDiv>
+            </LogoDiv>
 
-        {!currentUser && <StyledLink to="/signIn">Sign In</StyledLink>}
-        {!currentUser && (
-          <GoogleImg src={'/images/google.png'} onClick={signIn} />
-        )}
+            <BurgerDiv>
+              <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
+                {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+                {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+                {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+              </BurgerDivMain>
+            </BurgerDiv>
+            <HeaderDivs>
+              {checkUserIsAdmin(currentUser) && (
+                <StyledLink to="/admin">Admin</StyledLink>
+              )}
+              {<StyledLink to="/search">Shop</StyledLink>}
+              {!currentUser && (
+                <StyledLink to="/registration">Registration</StyledLink>
+              )}
 
-        {currentUser && (
-          <StyledLink to="/payment">
-            <EuroSymbolIcon />
-          </StyledLink>
-        )}
-        {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
-        <StyledLink to="/cart">
-          <ShoppingCartIcon />
-          <ItemCountP>({totalNumCartItems})</ItemCountP>
-        </StyledLink>
-        {currentUser && (
-          <StyledLink onClick={() => signOut()}>Logout</StyledLink>
-        )}
-      </HeaderDivs>
-    </WrapDiv>
+              {!currentUser && <StyledLink to="/signIn">Sign In</StyledLink>}
+              {!currentUser && (
+                <GoogleImg src={'/images/google.png'} onClick={signIn} />
+              )}
+
+              {currentUser && (
+                <StyledLink to="/payment">
+                  <EuroSymbolIcon />
+                </StyledLink>
+              )}
+              {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
+              <StyledLink to="/cart">
+                <ShoppingCartIcon />
+                <ItemCountP>({totalNumCartItems})</ItemCountP>
+              </StyledLink>
+              {currentUser && (
+                <StyledLink onClick={() => signOut()}>Logout</StyledLink>
+              )}
+            </HeaderDivs>
+          </WrapDiv>
+        }
+      </MainMainDiv>
+    </HideScroll>
   );
 }
 
@@ -145,6 +145,13 @@ Header.defaultProps = {
 };
 
 export default Header;
+
+const TestTiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const animation = keyframes`
   0% {
@@ -157,6 +164,15 @@ const animation = keyframes`
 
 `;
 
+const MainMainDiv = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  height: 10vh;
+  z-index: 999;
+`;
+
 const WrapDiv = styled.div`
   display: flex;
   height: 10vh;
@@ -164,9 +180,14 @@ const WrapDiv = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 0 auto;
-  animation-name: ${animation};
-  animation-duration: 1s;
-  animation-iteration-count: 1;
+  @media (max-width: 962px) {
+    width: 100%;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    transition: top 0.6s;
+    flex-direction: row-reverse;
+  }
 `;
 
 const LogoDiv = styled.div`
@@ -244,42 +265,30 @@ const GoogleImg = styled.img`
   height: 2rem;
 `;
 
-const Nav = styled.nav`
-  @media (max-width: 768px) {
-    display: flex;
-    align-items: center;
-    min-height: 8vh;
-    font-family: 'Montserrat', sans-serif;
-    z-index: 999;
-    margin-top: 17em;
-  }
-`;
-
 const BurgerDiv = styled.div`
   display: flex;
   z-index: 999;
 `;
 
 const StyledMobileLinks = styled(Link)`
-  @media (max-width: 768px) {
-    right: 0px;
-    height: 3vh;
+  @media (max-width: 962px) {
     display: flex;
-    top: 8vh;
     align-items: center;
     color: white;
     text-decoration: none;
     letter-spacing: 3px;
     font-weight: bold;
     font-size: 14px;
+    padding: 2em 1em;
   }
 `;
 
 const BurgerDivMain = styled.div`
   display: none;
-  margin-top: 10em;
-  @media (max-width: 768px) {
+
+  @media (max-width: 962px) {
     display: block;
+    padding-right: 1em;
   }
 `;
 
@@ -288,14 +297,26 @@ const BurgerDivLine = styled.div`
   height: 3px;
   background-color: black;
   margin: 3px;
+  z-index: 999;
 `;
 
 const BurgerLinksDiv = styled.div`
-  @media (max-width: 768px) {
+  @media (max-width: 962px) {
     display: flex;
     flex-direction: column;
-    position: relative;
-
     align-items: flex-start;
+    background-color: black;
+    z-index: 999;
+    position: fixed;
+    width: 100%;
   }
 `;
+
+/* <HeaderDivs>
+        <NavItem itemName={'Vase'}>
+          <DropdownMenu />
+        </NavItem>
+        <NavItem itemName={'andere'}>
+          <DropdownMenu />
+        </NavItem>
+      </HeaderDivs> */
