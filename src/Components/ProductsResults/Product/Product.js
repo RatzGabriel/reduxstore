@@ -5,8 +5,10 @@ import { addProduct } from '../../../Redux/Cart/cart.action';
 import styled from 'styled-components';
 import Rosa from 'react-on-scroll-animation';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
-function Product({ product, pt, pb, wd, height }) {
+function Product({ product, pt, pb, wd, height, pName, pPrice }) {
   const dispatch = useDispatch();
 
   const { productThumbnail, productName, productPrice, documentID } = product;
@@ -27,53 +29,115 @@ function Product({ product, pt, pb, wd, height }) {
   };
 
   return (
-    <StyledLink
-      height={height}
-      paddin={pt}
-      margin={pt}
-      pb={pb}
-      wd={wd}
-      to={`/product/${documentID}`}
-      onMouseEnter={() => {
-        setButtonStatus(true);
-      }}
-      onMouseLeave={() => {
-        setButtonStatus(false);
-      }}
-    >
-      <Img src={productThumbnail}></Img>
-
+    <div>
       {buttonStatus && (
-        <TestDiv>
-          <Rosa
-            animation="fade-down"
-            duration={300}
-            anchorPlacement={'top-center'}
-            offset={1200}
-          >
-            <ButtonElement
-              eye={<VisibilityIcon></VisibilityIcon>}
-              type="button"
-              vis={buttonStatus}
-              onClick={() => handleAddToCard(product)}
+        <StyledLink
+          height={height}
+          paddin={pt}
+          margin={pt}
+          pb={pb}
+          wd={wd}
+          to={`/product/${documentID}`}
+          onMouseEnter={() => {
+            setButtonStatus(true);
+          }}
+          onMouseLeave={() => {
+            setButtonStatus(false);
+          }}
+        >
+          <Img src={productThumbnail}></Img>
+
+          <TestDiv>
+            <Rosa
+              animation="fade-down"
+              duration={300}
+              anchorPlacement={'top-center'}
+              offset={1200}
             >
-              <span> {productPrice} €</span>
-            </ButtonElement>
-          </Rosa>
-        </TestDiv>
+              <ButtonElement
+                eye={<VisibilityIcon></VisibilityIcon>}
+                type="button"
+                vis={buttonStatus}
+                onClick={() => handleAddToCard(product)}
+              >
+                <span> {productPrice} € </span>
+              </ButtonElement>
+            </Rosa>
+          </TestDiv>
+        </StyledLink>
       )}
-    </StyledLink>
+      <StyledLink
+        mobile={'flex'}
+        to={`/product/${documentID}`}
+        onMouseEnter={() => {
+          setButtonStatus(true);
+        }}
+        onMouseLeave={() => {
+          setButtonStatus(false);
+        }}
+      >
+        <PositionDiv>
+          <Img src={productThumbnail}></Img>
+        </PositionDiv>
+        <TestDivText>
+          <ButtonElementMobile
+            eye={<VisibilityIcon></VisibilityIcon>}
+            type="button"
+            vis={buttonStatus}
+            onClick={() => handleAddToCard(product)}
+          >
+            <span>
+              <FavoriteIcon />
+            </span>
+          </ButtonElementMobile>
+
+          <P>{pPrice || productPrice} Euro</P>
+
+          <ButtonElementMobile
+            eye={<VisibilityIcon></VisibilityIcon>}
+            type="button"
+            vis={buttonStatus}
+            onClick={() => handleAddToCard(product)}
+          >
+            <span>
+              <ShoppingCartIcon />
+            </span>
+          </ButtonElementMobile>
+        </TestDivText>
+      </StyledLink>
+    </div>
   );
 }
 
 export default Product;
+
+const P = styled.p`
+  margin: 1em;
+`;
+
+const PositionDiv = styled.div``;
+
+const ButtonElementMobile = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+const TestDivText = styled.div`
+  display: flex;
+  background-color: brown;
+  align-items: center;
+  justify-content: space-around;
+  width: 92%;
+  margin-top: 3em;
+  color: white;
+`;
 
 const TestDiv = styled.div`
   top: 50%;
   cursor: pointer;
   position: absolute;
   @media only screen and (max-width: 1100px) {
-    display: inline-block;
     position: static;
     border-radius: 0;
     width: 100%;
@@ -94,9 +158,17 @@ const StyledLink = styled(Link)`
   padding-bottom: ${(props) => props.pb || '0em'};
   margin-top: ${(props) => props.margin || '1em'};
 
-  @media (max-width: 1100px) {
-    display: block;
-    width: ${(props) => props.wd || '100%'};
+  @media (max-width: 962px) {
+    display: ${(props) => props.mobile || 'none'};
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 1em;
+    margin: 1em;
+    position: sticky;
+    text-decoration: none;
+    padding: 0em 0em 0em 0em;
+    margin: 0em auto;
   }
 `;
 
@@ -129,11 +201,14 @@ const Img = styled.img`
   height: 100%;
   width: 100%;
   display: flex;
+
   &:hover {
     transition: all 0.3s ease;
     opacity: 0.7;
   }
   @media only screen and (max-width: 1100px) {
     display: block;
+    padding: 0em 1em 0em 1em;
+    margin-top: 3em;
   }
 `;

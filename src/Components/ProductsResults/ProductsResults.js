@@ -81,7 +81,6 @@ const ProductResults = ({}) => {
   return (
     <Div1>
       <TextDiv>
-        <h1>Browse</h1>
         <FormSelect {...configFilters} />
       </TextDiv>
       <Rosa
@@ -156,6 +155,7 @@ export default ProductResults;
 const TextDiv = styled.div`
   justify-content: center;
   display: flex;
+  padding-top: 6em;
 `;
 
 const Div1 = styled.div`
@@ -165,17 +165,7 @@ const Div1 = styled.div`
 const Div2 = styled.div`
   display: flex;
   margin: 1em 0em;
-  @media (max-width: 775px) {
-    display: block;
-    margin: 0 auto;
-  }
-`;
-
-const Div3 = styled.div`
-  display: flex;
-  margin: 1em 0em;
-  background-color: green;
-  @media (max-width: 775px) {
+  @media (max-width: 962px) {
     display: block;
     margin: 0 auto;
   }
@@ -186,11 +176,10 @@ const Div2InnerDiv = styled.div`
   flex-direction: column;
   width: 25%;
 
-  @media (max-width: 775px) {
-    display: block;
-    margin: 0 auto;
-    width: 70%;
-    max-width: 70%;
+  @media (max-width: 962px) {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: row;
   }
 `;
 const Div2InnerDivQuatro = styled.div`
@@ -198,18 +187,16 @@ const Div2InnerDivQuatro = styled.div`
   justify-content: space-around;
   width: 100%;
   margin-bottom: 1em;
-  @media (max-width: 775px) {
-    display: block;
-    margin: 0 auto;
-    width: 70%;
-    max-width: 70%;
+  @media (max-width: 962px) {
+    flex-direction: row;
+    display: none;
   }
 `;
 
 const Div2InnerDivBig = styled.div`
   display: flex;
   width: 50%;
-  @media (max-width: 775px) {
+  @media (max-width: 962px) {
     display: none;
   }
 `;

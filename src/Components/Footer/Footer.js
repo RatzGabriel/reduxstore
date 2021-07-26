@@ -35,25 +35,12 @@ function Footer() {
 }
 
 export default Footer;
-const animation = keyframes`
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-`;
 
 const ColumnTextDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
-  animation-name: ${animation};
-  animation-duration: 1s;
-  animation-iteration-count: 1;
   @media (max-width: 962px) {
     padding: 1em;
   }
@@ -61,15 +48,10 @@ const ColumnTextDiv = styled.div`
 
 const MainDiv = styled.div`
   display: flex;
-  justify-content: space-around;
   width: 100%;
-  height: 100%;
-  padding: 2em;
 
   @media (max-width: 962px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
   }
 `;
 
@@ -78,6 +60,7 @@ const LogoDiv = styled.div`
   align-items: center;
   @media (max-width: 962px) {
     padding: 1em;
+    display: none;
   }
 `;
 
@@ -93,9 +76,6 @@ const ShopNameDiv = styled.div`
   justify-content: center;
   margin-left: 1rem;
   height: 50%;
-  animation-name: ${animation};
-  animation-duration: 1s;
-  animation-iteration-count: 1;
 `;
 
 const LogoTextLower = styled.p`

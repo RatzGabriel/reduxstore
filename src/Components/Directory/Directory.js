@@ -6,9 +6,13 @@ import MainPageImage from './MainPageItems';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 
-import { keyframes } from 'styled-components';
 import 'react-on-scroll-animation/build/index.css';
 import Rosa from 'react-on-scroll-animation';
+import HeaderTextComponent from './HeaderTextComponent';
+import Button from '../Elements/Button/Button';
+import InformationText from './InformationText';
+import Product from '../ProductsResults/Product/Product';
+import ProductComponent from '../ProductsResults/Product/ProductComponent';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -35,19 +39,18 @@ function Directory() {
             buttonTextTwo={'Read More'}
           />
         </Testing>
-
+        <Button adress="search">Shop</Button>
         <MiddleDiv>
-          <TextDiv>
-            <P>Our Services</P>
-            <H1 color={'black'}>Fresh Product From Our Farm To Your Home</H1>
-            <p>
-              n a professional context it often happens that private or
-              corporate clients corder a publication to be made and presented .
-            </p>
-            <StyledLink bg="brown" color="white">
-              Read more
-            </StyledLink>
-          </TextDiv>
+          <HeaderTextComponent
+            headerText="Our Services"
+            title="Fresh Product From Our Farm To Your Home"
+            text=" In a professional context it often happens that private or
+              corporate clients corder a publication to be made and presented ."
+          />
+
+          <Button buttonText="Read More" adress="/search">
+            Read More
+          </Button>
 
           <SmallDiv>
             <Img src={'/images/Two.jpg'} alt="" />
@@ -68,6 +71,7 @@ function Directory() {
             animation="fade-up"
             duration={1600}
             anchorPlacement="top-bottom"
+            once
           >
             <BestsellerCards>
               {Array.isArray(data) &&
@@ -76,15 +80,11 @@ function Directory() {
                   if (item.bestseller === 'bestseller') {
                     return (
                       <MiniDiv id={index}>
-                        <BestsellerImages src={item.productThumbnail} alt="" />
-                        <TestDiv>
-                          {item.productName && <h1>{item.productName}</h1>}
-                          {item.productPrice && (
-                            <StyledLinkBestProduct bg="brown" color="white">
-                              {item.productPrice} €
-                            </StyledLinkBestProduct>
-                          )}
-                        </TestDiv>
+                        <ProductComponent
+                          product={item}
+                          pPrice={item.productPrice}
+                          pName={item.productName}
+                        />
                       </MiniDiv>
                     );
                   } else console.log(item.bestseller);
@@ -95,110 +95,37 @@ function Directory() {
             <StyledLink to="/search">Go To Shop</StyledLink>
           </ButtonDiv>
         </BestSellerDiv>
-
         <MiddleDiv>
-          <TextDiv>
-            <Rosa
-              animation="fade-left"
-              duration={800}
-              anchorPlacement={'top-center'}
-              offset={400}
-              once
-            >
-              <P>About Us</P>
-            </Rosa>
-            <Rosa
-              animation="fade-up"
-              duration={800}
-              anchorPlacement={'top-center'}
-              offset={600}
-              once
-            >
-              <h1>An Exceptionally Unique Experience Tailored To You</h1>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form .
-              </p>
-            </Rosa>
-            <Rosa
-              animation="fade-down"
-              duration={800}
-              anchorPlacement={'top-center'}
-              offset={600}
-              once
-            >
-              <ButtonDiv>
-                <StyledLink to="/search">Get Started</StyledLink>
-              </ButtonDiv>
-            </Rosa>
-          </TextDiv>
+          <HeaderTextComponent
+            headerText="About Us"
+            title="An Exceptionally Unique Experience Tailored To You"
+            text="  There are many variations of passages of Lorem Ipsum available,
+            but the majority have suffered alteration in some form ."
+          />
 
+          <Button>Get Started</Button>
+        </MiddleDiv>
+        <MiddleDiv>
           <div>
             <Rosa animation="fade-up" duration={800} once>
-              <img src={'/images/Two.jpg'} alt="" />
+              <HideImgOnMobile src={'/images/Two.jpg'} alt="" />
             </Rosa>
           </div>
-          <TextDiv style={{ paddingLeft: '2em' }}>
-            <Rosa animation="fade-up" duration={400} once>
-              <h1>Our Customer</h1>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form .
-              </p>
-            </Rosa>
-            <Rosa
-              animation="fade-up"
-              duration={600}
-              anchorPlacement={'top-center'}
-              offset={600}
-              once
-            >
-              <h1>Our Product</h1>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form .
-              </p>
-            </Rosa>
-            <Rosa
-              animation="fade-up"
-              duration={800}
-              anchorPlacement={'top-center'}
-              offset={600}
-              once
-            >
-              <h1>Our Services</h1>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form{' '}
-              </p>
-            </Rosa>
-          </TextDiv>
+          <InformationText />
+        </MiddleDiv>
+        <MiddleDiv>
+          <HeaderTextComponent
+            title="Meet The Minds Shaping An Industry"
+            headerText="Our Team"
+          />
         </MiddleDiv>
 
-        <div>
-          <BestsellerTitleDiv>
-            <Rosa animation="fade-up" duration={800} once>
-              <P color="black">Our Team</P>
-            </Rosa>
-            <Rosa animation="fade-down" duration={800} once>
-              <H1 color="black">Meet The Minds Shaping An Industry</H1>
-            </Rosa>
-          </BestsellerTitleDiv>
-          <MindShapingDiv>
-            <Rosa animation="fade-right" duration={1500} once>
-              <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-            </Rosa>
-            <Rosa animation="fade-right" duration={1500} once>
-              <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-            </Rosa>
-            <Rosa animation="fade-left" duration={1500} once>
-              <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-            </Rosa>
-            <Rosa animation="fade-left" duration={1500} once>
-              <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-            </Rosa>
-          </MindShapingDiv>
-        </div>
+        <MindShapingDiv>
+          <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+          <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+          <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+          <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+        </MindShapingDiv>
       </MainWrapper>
       <Rosa animation="fade-right" duration={800} once>
         <MainWrapper>
@@ -214,15 +141,6 @@ function Directory() {
           </HalfDiv>
         </MainWrapper>
       </Rosa>
-      {/* <QuoteDiv>
-        <QuoteTextDiv>
-          <h1>
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Consequatur necessitatibus inventore ducimus itaque laudantium
-            voluptatem ullam quia temporibus. Beatae, assumenda!" Gabriel Ratz
-          </h1>
-        </QuoteTextDiv>
-      </QuoteDiv> */}
 
       <Footer />
     </MainDiv>
@@ -270,6 +188,7 @@ const HalfDiv = styled.div`
   flex-direction: column;
   align-items: center;
   @media (max-width: 960px) {
+    width: 100%;
   }
 `;
 
@@ -295,24 +214,11 @@ const MiddleDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0em 0em 0em 0em;
-  @media (max-width: 960px) {
-    flex-direction: column;
-    height: 100%;
-  }
-`;
-
-const TextDiv = styled.div`
-  display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+
   text-align: center;
-  padding-right: 2em;
-  height: ${(props) => props.height || '100%'};
-  width: 40%;
   @media (max-width: 960px) {
-    margin: 2em;
-    text-align: center;
+    height: 100%;
   }
 `;
 
@@ -332,7 +238,7 @@ const SmallDiv = styled.div`
   height: 100%;
   align-items: center;
   @media (max-width: 960px) {
-    margin: 1em;
+    display: none;
   }
 `;
 
@@ -363,31 +269,15 @@ const BestSellerDiv = styled.div`
 const BestsellerCards = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 3em;
-`;
-
-const BestsellerImages = styled.img`
-  width: 15em;
-  height: 15em;
-  border-radius: 15%;
 `;
 
 const MiniDiv = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-
-  margin: 3em 3em 0em 3em;
-`;
-
-const TestDiv = styled.div`
-  display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 2em;
+  width: 40%;
+  margin: 2em auto;
+  padding: 1em;
 `;
 
 const BestsellerTitleDiv = styled.div`
@@ -396,11 +286,12 @@ const BestsellerTitleDiv = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 4em 0;
-
   @media (max-width: 962px) {
     width: 70%;
-    margin: 0 auto;
-    padding-bottom: 5em;
+    margin: 0em auto 3em auto;
+    padding-bottom: 0em;
+    align-items: center;
+    text-align: center;
   }
 `;
 
@@ -431,33 +322,11 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const StyledLinkBestProduct = styled(Link)`
-  color: black;
-  text-decoration: none;
-  font-size: 1.5em;
-  padding: 1em;
-`;
-
-const QuoteDiv = styled.div`
-  height: 70vh;
-  background-color: black;
-  padding-bottom: 2em;
-  width: 100%;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const QuoteTextDiv = styled.div`
-  width: 50%;
-`;
-
 const MindShapingDiv = styled.div`
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
-  padding: 5em 0em 5em 0em;
+  padding: 0em 0em 5em 0em;
   width: 90vw;
 
   @media (max-width: 962px) {
@@ -474,3 +343,78 @@ const MindShapingImg = styled.img`
     margin: 3em;
   }
 `;
+
+const HideImgOnMobile = styled.img`
+  @media (max-width: 962px) {
+    display: none;
+  }
+`;
+
+/* <TextDiv>
+            <P>Our Services</P>
+            <H1 color={'black'}>Fresh Product From Our Farm To Your Home</H1>
+            <p>
+              In a professional context it often happens that private or
+              corporate clients corder a publication to be made and presented .
+            </p>
+            <ButtonDivCentral>
+              <StyledLink bg="brown" color="white">
+                Read more
+              </StyledLink>
+            </ButtonDivCentral>
+          </TextDiv> */
+
+/* <QuoteDiv>
+        <QuoteTextDiv>
+          <h1>
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Consequatur necessitatibus inventore ducimus itaque laudantium
+            voluptatem ullam quia temporibus. Beatae, assumenda!" Gabriel Ratz
+          </h1>
+        </QuoteTextDiv>
+      </QuoteDiv> */
+
+/* <BestsellerTitleDiv>
+          <Rosa animation="fade-up" duration={800} once>
+            <P color="black">Our Team</P>
+          </Rosa>
+          <Rosa animation="fade-down" duration={800} once>
+            <H1 color="black">Meet The Minds Shaping An Industry</H1>
+          </Rosa>
+        </BestsellerTitleDiv> */
+
+/* <TextDiv>
+            <Rosa
+              animation="fade-left"
+              duration={800}
+              anchorPlacement={'top-center'}
+              offset={400}
+              once
+            >
+              <P>About Us</P>
+            </Rosa>
+            <Rosa
+              animation="fade-up"
+              duration={800}
+              anchorPlacement={'top-center'}
+              offset={600}
+              once
+            >
+              <h1>An Exceptionally Unique Experience Tailored To You</h1>
+              <p>
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form .
+              </p>
+            </Rosa>
+            <Rosa
+              animation="fade-down"
+              duration={800}
+              anchorPlacement={'top-center'}
+              offset={600}
+              once
+            >
+              <ButtonDiv>
+                <StyledLink to="/search">Get Started</StyledLink>
+              </ButtonDiv>
+            </Rosa>
+          </TextDiv> */
