@@ -22,9 +22,9 @@ function Checkout() {
   const errMsg = 'You have no items in your cart.';
   return (
     <MainMainDiv>
-      <HeadingDiv>
-        <h1>Checkout</h1>
-      </HeadingDiv>
+      <div>
+        <img src="./images/cart.jpeg" alt="" />
+      </div>
       <div>
         {cartItems.length > 0 ? (
           <MainDiv>
@@ -55,21 +55,14 @@ function Checkout() {
 
 export default Checkout;
 
-const HeadingDiv = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 90%;
-  margin: 0 auto;
-  padding: 1em 0em 0em 0em;
-`;
-
 const MainMainDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const BuyDiv = styled.div`
-  padding: 2em;
+  display: flex;
+  flex-direction: column;
 `;
 
 const MainDiv = styled.div`
@@ -78,28 +71,26 @@ const MainDiv = styled.div`
 `;
 
 const ItemDiv = styled.div`
-  height: 10vh;
-  padding: 1em;
-  margin: 1em;
-  width: 90%;
+  height: 8vh;
+  margin: 1em 0em;
+  display: flex;
+  background-color: gray;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 `;
 
 const StyledLink = styled(Link)`
   color: ${(props) => props.color || 'white'};
   background-color: ${(props) => props.bg || 'brown'};
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 15px;
-  padding-bottom: 15px;
   border-radius: 35px;
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;
-  width: 8rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  margin-bottom: 3em;
+  margin: 1em 0em;
+  padding: 1em;
   @media (max-width: 768px) {
     font-size: 1em;
   }

@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 import {
   fetchProductStart,
@@ -45,18 +49,46 @@ function ProductCard() {
     history.push('/cart');
   };
 
+  var settings = {
+    customPaging: function (i) {
+      return (
+        <a>
+          <img alt="test " src={`${product.thumbnailArray[i + 1]}`} />
+        </a>
+      );
+    },
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    draggable: true,
+    fade: true,
+    adaptiveHeight: true,
+  };
   return (
     <MainDiv>
+      <Testing>
+        <Carousel infiniteLoop={true} showStatus={false}>
+          {Array.isArray(product.thumbnailArray) &&
+            product.thumbnailArray.length > 0 &&
+            product.thumbnailArray.map((item, index) => {
+              return (
+                <div>
+                  <img src={item} alt="test" />
+                </div>
+              );
+            })}
+        </Carousel>
+      </Testing>
       <ProductDiv>
-        <ImageDiv>
-          <Img src={img} alt="" />
-        </ImageDiv>
         <ProductDetailsDiv>
+          <h1>{productName}</h1>
           <p>{productPrice}€</p>
-          <h3>{productName}</h3>
-          <ButtonProduct>Add to cart</ButtonProduct>
-          <ButtonProduct>Buy with Gpay</ButtonProduct>
           <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
+          <Name>Add to cart</Name>
+          <ButtonProduct>Buy with Gpay</ButtonProduct>
         </ProductDetailsDiv>
       </ProductDiv>
       <DivSmallImg>
@@ -78,6 +110,24 @@ function ProductCard() {
 }
 
 export default ProductCard;
+
+const Testing = styled.div`
+  width: 50%;
+  height: 50%;
+  @media (max-width: 962px) {
+    width: 100%;
+  }
+`;
+
+const Name = styled.button`
+  color: black;
+  border: none;
+  top: 10%;
+  left: 40%;
+  color: white;
+  background-color: brown;
+  width: 100%;
+`;
 
 const DivSmallImg = styled.div`
   display: flex;
@@ -105,23 +155,11 @@ const ButtonProduct = styled.button`
   border: none;
 `;
 
-const Img = styled.img`
-  width: 90%;
-`;
-
-const ImageDiv = styled.div`
-  width: 70%;
-
-  @media (max-width: 962px) {
-    display: flex;
-  }
-`;
-
 const ProductDetailsDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 30%;
+  width: 70%;
   justify-content: flex-start;
   @media (max-width: 962px) {
     padding: 3em 0em;
@@ -132,6 +170,7 @@ const ProductDiv = styled.div`
   display: flex;
   width: 90%;
   height: 80%;
+
   padding: 0em 0em 0em 0em;
   @media (max-width: 962px) {
     display: flex;
@@ -149,55 +188,6 @@ const MainDiv = styled.div`
   @media (max-width: 962px) {
     width: 90%;
     margin: 0 auto;
+    padding-top: 8em;
   }
 `;
-
-// const Image = styled.img`
-//   height: 40em;
-//   width: 30em;
-//   padding-left: 4em;
-// `;
-
-// const H1 = styled.h1`
-//   border-bottom: 1px solid black;
-// `;
-
-// const Li = styled.li`
-//   border: 1px solid black;
-//   list-style: none;
-// `;
-
-// const Button = styled.button`
-//   color: ${(props) => props.color || 'white'};
-//   background-color: ${(props) => props.bg || 'brown'};
-//   padding-left: 24px;
-//   padding-right: 24px;
-//   padding-top: 15px;
-//   padding-bottom: 15px;
-//   border-radius: 35px;
-//   font-weight: ${(props) => props.fw || '600'};
-//   font-size: 18px;
-//   width: 8rem;
-//   border: none;
-//   cursor: pointer;
-//   text-decoration: none;
-//   text-align: center;
-// `;
-
-// <MainDiv>
-//   <div>
-//     <Image src={productThumbnail} alt="" />
-//     {secondImage && <Image src={secondImage} alt="" />}
-//   </div>
-//   <H1>{productName}</H1>
-
-//   <h2>
-//     Price:{productPrice}
-//     <EuroIcon />
-//   </h2>
-
-//   <Button onClick={() => handleAddToCart(product)}>Add to Cart Btn</Button>
-//   <Li>
-//     <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
-//   </Li>
-// </MainDiv>

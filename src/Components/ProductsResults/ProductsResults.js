@@ -80,73 +80,78 @@ const ProductResults = ({}) => {
 
   return (
     <Div1>
-      <TextDiv>
-        <FormSelect {...configFilters} />
-      </TextDiv>
-      <Rosa
-        animation="fade-down"
-        duration={1600}
-        anchorPlacement={'top-center'}
-        offset={1200}
-      >
-        <Div2>
-          <Div2InnerDiv>
-            <Product product={data[0]} />
-            <Product product={data[1]} />
-          </Div2InnerDiv>
-          <Div2InnerDivBig>
-            <Product product={data[2]} />
-          </Div2InnerDivBig>
-          <Div2InnerDiv>
-            <Product product={data[3]} />
-            <Product product={data[4]} />
-          </Div2InnerDiv>
-        </Div2>
-        <Div2>
-          <Div2InnerDivQuatro>
-            <Product product={data[0]} />
-            <Product pt={'1.5em'} height={'102%'} product={data[0]} />
-            <Product pt={'1.5em'} height={'102%'} product={data[0]} />
-            <Product product={data[0]} />
-          </Div2InnerDivQuatro>
-        </Div2>
-        <Div2>
-          <Div2InnerDivBig>
-            <Product product={data[0]} />
-          </Div2InnerDivBig>
-          <Div2InnerDiv>
-            <Product product={data[0]} />
-            <Product product={data[0]} />
-          </Div2InnerDiv>
-
-          <Div2InnerDiv>
-            <Product product={data[1]} />
-            <Product product={data[1]} />
-          </Div2InnerDiv>
-        </Div2>
-        <Div2 pt={'2em'}>
-          <Div2InnerDiv>
-            <Product product={data[0]} />
-            <Product product={data[1]} />
-          </Div2InnerDiv>
-          <Div2InnerDiv>
-            <Product product={data[1]} />
-            <Product product={data[4]} />
-          </Div2InnerDiv>
-          <Div2InnerDivBig>
-            <Product product={data[2]} />
-          </Div2InnerDivBig>
-        </Div2>
-        <Div2>
-          <Div2InnerDivQuatro>
-            <Product product={data[1]} />
-            <Product product={data[1]} />
-            <Product product={data[1]} />
-            <Product product={data[1]} />
-          </Div2InnerDivQuatro>
-        </Div2>
-      </Rosa>
+      {data.map((item) => {
+        return <Product product={item} />;
+      })}
     </Div1>
+    // <Div1>
+    //   <TextDiv>
+    //     <FormSelect {...configFilters} />
+    //   </TextDiv>
+    //   <Rosa
+    //     animation="fade-down"
+    //     duration={1600}
+    //     anchorPlacement={'top-center'}
+    //     offset={1200}
+    //   >
+    //     <Div2>
+    //       <Div2InnerDiv>
+    //         <Product product={data[0]} />
+    //         <Product product={data[1]} />
+    //       </Div2InnerDiv>
+    //       <Div2InnerDivBig>
+    //         <Product product={data[2]} />
+    //       </Div2InnerDivBig>
+    //       <Div2InnerDiv>
+    //         <Product product={data[3]} />
+    //         <Product product={data[4]} />
+    //       </Div2InnerDiv>
+    //     </Div2>
+    //     <Div2>
+    //       <Div2InnerDivQuatro>
+    //         <Product product={data[0]} />
+    //         <Product pt={'1.5em'} height={'102%'} product={data[0]} />
+    //         <Product pt={'1.5em'} height={'102%'} product={data[0]} />
+    //         <Product product={data[0]} />
+    //       </Div2InnerDivQuatro>
+    //     </Div2>
+    //     <Div2>
+    //       <Div2InnerDivBig>
+    //         <Product product={data[0]} />
+    //       </Div2InnerDivBig>
+    //       <Div2InnerDiv>
+    //         <Product product={data[0]} />
+    //         <Product product={data[0]} />
+    //       </Div2InnerDiv>
+
+    //       <Div2InnerDiv>
+    //         <Product product={data[1]} />
+    //         <Product product={data[1]} />
+    //       </Div2InnerDiv>
+    //     </Div2>
+    //     <Div2 pt={'2em'}>
+    //       <Div2InnerDiv>
+    //         <Product product={data[0]} />
+    //         <Product product={data[1]} />
+    //       </Div2InnerDiv>
+    //       <Div2InnerDiv>
+    //         <Product product={data[1]} />
+    //         <Product product={data[4]} />
+    //       </Div2InnerDiv>
+    //       <Div2InnerDivBig>
+    //         <Product product={data[2]} />
+    //       </Div2InnerDivBig>
+    //     </Div2>
+    //     <Div2>
+    //       <Div2InnerDivQuatro>
+    //         <Product product={data[1]} />
+    //         <Product product={data[1]} />
+    //         <Product product={data[1]} />
+    //         <Product product={data[1]} />
+    //       </Div2InnerDivQuatro>
+    //     </Div2>
+    //   </Rosa>
+    // </Div1>
   );
 };
 

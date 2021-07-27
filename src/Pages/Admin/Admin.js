@@ -39,6 +39,7 @@ const Admin = () => {
   const [productName, setProductName] = useState('');
   const [productThumbnail, setProductThumbnail] = useState('');
   const [secondImage, setSecondImage] = useState('');
+  const [thirdImage, setThirdImage] = useState('');
   const [productPrice, setProductPrice] = useState(0);
   const [productDescription, setProductDescription] = useState('');
 
@@ -91,6 +92,8 @@ const Admin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let thumbnailArray = [productThumbnail, secondImage, thirdImage];
     dispatch(
       addProductStart({
         productCategory,
@@ -100,6 +103,7 @@ const Admin = () => {
         productDescription,
         secondImage,
         bestseller,
+        thumbnailArray,
       })
     );
     resetForm();
@@ -126,9 +130,9 @@ const Admin = () => {
       <HeaderDiv>
         <h1>Admin Page</h1>
         <CallToActionDiv>
-          <Button bg="black " color="white" onClick={() => toggleModal()}>
+          <button bg="black " color="white" onClick={() => toggleModal()}>
             Add new product
-          </Button>
+          </button>
         </CallToActionDiv>
       </HeaderDiv>
       <Modal {...configModal}>
@@ -168,6 +172,12 @@ const Admin = () => {
               value={secondImage}
               onChange={(e) => setSecondImage(e.target.value)}
             />
+            <FormInput
+              label="3rd Image"
+              type="url"
+              value={thirdImage}
+              onChange={(e) => setThirdImage(e.target.value)}
+            />
 
             <FormInput
               label="Price"
@@ -196,12 +206,11 @@ const Admin = () => {
               onChange={(evt) => setProductDescription(evt.editor.getData())}
             ></CKEditor>
             <br />
-            <Button type="submit">Add product</Button>
+            <button type="submit">Add product</button>
           </form>
         </div>
       </Modal>
       <Container className={classes.cardGrid} maxWidth="md">
-        {/* End hero unit */}
         <Grid container spacing={4}>
           {console.log(data)}
           {Array.isArray(data) &&
@@ -227,14 +236,14 @@ const Admin = () => {
                     </Typography>
 
                     <Typography>Price: {card.productPrice}€</Typography>
-                    <Button
+                    <button
                       {...configAddToCartBtn}
                       onClick={() =>
                         dispatch(deleteProductStart(card.documentID))
                       }
                     >
                       Delete
-                    </Button>
+                    </button>
                   </CardContent>
                   <CardActions className={classes.cardAcions}></CardActions>
                 </Card>
@@ -251,10 +260,13 @@ export default Admin;
 
 const CallToActionDiv = styled.div`
   width: 15rem;
+  padding-top: 23em;
 `;
 
 const MainDiv = styled.div`
   background-color: white;
+  width: 50%;
+  margin: 0 auto;
 `;
 
 const HeaderDiv = styled.div`
@@ -262,4 +274,6 @@ const HeaderDiv = styled.div`
   justify-content: center;
   background-color: gray;
   align-items: center;
+  margin: 0 auto;
+  width: 50%;
 `;

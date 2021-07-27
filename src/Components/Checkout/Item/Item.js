@@ -27,44 +27,91 @@ function Item(product) {
   };
 
   return (
-    <ItemDiv>
-      <Img src={productThumbnail} alt={productName} />
-      <TestDiv>
-        {productName}{' '}
-        <span>
-          <P> {productPrice} Euro</P>
-        </span>
-      </TestDiv>
-      <div>
-        <span onClick={() => removeItem(product)}>{`<`}</span>
+    <MainDiv>
+      <Left>
+        <Img src={productThumbnail} alt="" />
 
-        <span>Count: {quantity}</span>
-        <span onClick={() => handleAddProduct(product)}>{`>`}</span>
-      </div>
-      <span onClick={() => handleRemoveCartItem(documentID)}>
-        <P>Remove</P>
-      </span>
-    </ItemDiv>
+        <ColumnDiv>
+          {productName}
+          <SpanSmall>{productPrice} Euro</SpanSmall>
+        </ColumnDiv>
+      </Left>
+      <Right>
+        <RowDiv>
+          <Button onClick={() => removeItem(product)}>{`-`}</Button>
+          <span>{quantity}</span>
+          <Button onClick={() => handleAddProduct(product)}>{`+`}</Button>
+        </RowDiv>
+        <RowDiv>
+          <SpanSmall onClick={() => handleRemoveCartItem(documentID)}>
+            Remove
+          </SpanSmall>
+        </RowDiv>
+      </Right>
+    </MainDiv>
+    // <ItemDiv>
+    //   <Img src={productThumbnail} alt={productName} />
+
+    //   <TestDiv>
+    //     {productName}
+    //     <span>
+    //       <P> {productPrice} Euro</P>
+    //     </span>
+    //   </TestDiv>
+    //   <RightDiv>
+    //     <span onClick={() => removeItem(product)}>{`-`}</span>
+
+    //     <span>{quantity}</span>
+    //     <span onClick={() => handleAddProduct(product)}>{`+`}</span>
+    //   </RightDiv>
+    //   <RightDiv>
+    //     <span onClick={() => handleRemoveCartItem(documentID)}>
+    //       <P>Remove</P>
+    //     </span>
+    //   </RightDiv>
+    // </ItemDiv>
   );
 }
 
 export default Item;
 
-const P = styled.p`
-  font-size: 0.3em;
-  cursor: pointer;
+const Right = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
-const TestDiv = styled.div`
+const Left = styled.div`
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+`;
+
+const Button = styled.button`
+  display: flex;
+  border: none;
+  background-color: transparent;
+  color: white;
+`;
+
+const SpanSmall = styled.span`
+  font-size: 0.3em;
+`;
+const RowDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ColumnDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const ItemDiv = styled.div`
-  background-color: beige;
+const MainDiv = styled.div`
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 const Img = styled.img`

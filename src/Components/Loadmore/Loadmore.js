@@ -3,9 +3,9 @@ import Button from '../Elements/Button/Button';
 
 const LoadMore = ({ onLoadMoreEvt = () => {} }) => {
   return (
-    <Button color={'white'} bg={'brown'} onClick={() => onLoadMoreEvt()}>
+    <button color={'white'} bg={'brown'} onClick={() => onLoadMoreEvt()}>
       Load More
-    </Button>
+    </button>
   );
 };
 
