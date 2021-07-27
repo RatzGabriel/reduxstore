@@ -14,6 +14,7 @@ import {
 } from '../../Redux/Cart/cart.selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveOrderHistory } from '../../Redux/Orders/orders.actions';
+import styled from 'styled-components';
 
 const initialAdressState = {
   line1: '',
@@ -151,7 +152,7 @@ function PaymentDetails() {
   };
 
   return (
-    <div>
+    <MainDiv>
       <form onSubmit={handleFormSubmit} action="">
         <div>
           <h2>Shipping Address</h2>
@@ -280,14 +281,31 @@ function PaymentDetails() {
             }
           />
         </div>
-        <div>
+        <CardDetailsDiv>
+          {total} Euro
           <h2>Card Details</h2>
-          <CardElement options={configCardElement} />
-        </div>
+          <CardElementDiv>
+            <CardElement options={configCardElement} />
+          </CardElementDiv>
+        </CardDetailsDiv>
         <Button type="submit">Pay Now</Button>
       </form>
-    </div>
+    </MainDiv>
   );
 }
 
 export default PaymentDetails;
+
+const CardElementDiv = styled.div`
+  border: 1px solid black;
+`;
+
+const MainDiv = styled.div`
+  padding: 13em 0em;
+  width: 100%;
+`;
+
+const CardDetailsDiv = styled.div`
+  padding: 1em;
+  margin: 1em;
+`;

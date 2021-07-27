@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
 import { signUpUserStart } from '../../Redux/User/user.actions';
+import { googleSignInStart } from '../../Redux/User/user.actions';
 
 import styled from 'styled-components';
 
@@ -21,6 +22,10 @@ function Registration() {
 
   const { currentUser, userErr } = useSelector(mapState);
   const dispatch = useDispatch();
+
+  const signIn = () => {
+    dispatch(googleSignInStart());
+  };
 
   useEffect(() => {
     if (currentUser) {
@@ -79,12 +84,14 @@ function Registration() {
             type="password"
             value={confirmPassword}
           />
+
           <Button bg={'black'} type="submit" color={'white'} type="submit">
             Submit
           </Button>
 
           {error && <div>{error}</div>}
         </Form>
+        <GoogleImg src={'/images/google.png'} onClick={signIn} />
       </MediumDiv>
     </MainDiv>
   );
@@ -105,18 +112,22 @@ const MainDiv = styled.div`
 
 const MediumDiv = styled.div`
   background-color: white;
-  height: 50vh;
   display: flex;
   flex-direction: column;
-  width: 30vw;
+  width: 90%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  height: 50vw;
-  align-items: center;
+
   justify-content: space-around;
+`;
+
+const GoogleImg = styled.img`
+  cursor: pointer;
+  height: 2rem;
+  margin: 3em 0em;
 `;
