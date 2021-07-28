@@ -30,7 +30,7 @@ function Item(product, text) {
   const removeItem = (reduceCartIt) => {
     dispatch(reduceCartItem(reduceCartIt));
   };
-
+  console.log('<<<<<<', text.length);
   return (
     <MainDiv>
       <Left>
@@ -42,14 +42,16 @@ function Item(product, text) {
       </Left>
       <Right>
         <RowDiv>
-          {text && (
+          {text.length === undefined && (
             <Button
               onClick={() => handleAddProduct(product)}
             >{`Add to Cart`}</Button>
           )}
-          {!text && <Button onClick={() => removeItem(product)}>{`-`}</Button>}
-          {!text && <span>{quantity}</span>}
-          {!text && (
+          {text.length === undefined && (
+            <Button onClick={() => removeItem(product)}>{`-`}</Button>
+          )}
+          {text.length === undefined && <span>{quantity}</span>}
+          {text.length === undefined && (
             <Button onClick={() => handleAddProduct(product)}>{`+`}</Button>
           )}
         </RowDiv>
@@ -59,7 +61,7 @@ function Item(product, text) {
               Remove
             </SpanSmall>
           )}
-          {text && (
+          {text.length > 0 && (
             <SpanSmall onClick={() => handleRemoveWlItem(documentID)}>
               Remove from WishList
             </SpanSmall>

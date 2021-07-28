@@ -7,7 +7,6 @@ import Admin from './Pages/Admin/Admin';
 import Cart from './Pages/Cart/Cart';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import FortgotPassword from './Pages/ForgotPassword/FortgotPassword';
-import MainPage from './Pages/MainPage/MainPage';
 import Order from './Pages/Order/Order';
 import Registration from './Pages/Registration/Registration';
 import Search from './Pages/Search/Search';
@@ -24,6 +23,7 @@ import { checkUserSession } from './Redux/User/user.actions';
 import WithAdminAuth from './hoc/withAdminAuth';
 import AdminLayout from './Layouts/AdminLayout';
 import DashBoardLayout from './Layouts/DashboardLayout';
+import Directory from './Components/Directory/Directory';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -41,7 +41,7 @@ const App = () => {
     <div>
       <Header />
       <Switch>
-        <Route exact path="/" render={() => <MainPage />} />
+        <Route exact path="/" render={() => <Directory />} />
         <Route path="/registration" render={() => <Registration />} />
         <Route path="/signIn" render={() => <SignIn />} />
         <Route path="/forgotPassword">
@@ -61,7 +61,7 @@ const App = () => {
           <Search />
         </Route>
         <Route path="/product/:productID">
-          <ProductDetails></ProductDetails>
+          <ProductDetails />
         </Route>
         <Route path="/cart">
           <Cart />

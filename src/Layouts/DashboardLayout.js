@@ -1,37 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { signOutUserStart } from '../Redux/User/user.actions';
-import VerticalNav from '../Components/VerticalNav/VerticalNav';
+import styled from 'styled-components';
 
 const DashBoardLayout = (props) => {
-  const dispatch = useDispatch();
-
-  const signOut = () => {
-    dispatch(signOutUserStart());
-  };
-
   return (
-    <div className="dashboardLayout">
-      <div className="controlPanel">
-        <div className="sidebar">
-          <VerticalNav>
-            <ul>
-              <li>
-                <Link to="/dashboard">Home</Link>
-              </li>
-              <li>
-                <span className="signOut" onClick={() => signOut()}>
-                  Sign Out
-                </span>
-              </li>
-            </ul>
-          </VerticalNav>
-        </div>
-        <div className="content">{props.children}</div>
-      </div>
-    </div>
+    <ControlPanel>
+      <div className="content">{props.children}</div>
+    </ControlPanel>
   );
 };
 
 export default DashBoardLayout;
+
+const ControlPanel = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-height: 100%;
+  padding: 13rem 0 6rem 0;
+  border-bottom: 1px solid black;
+  margin: 12em 0em;
+`;
