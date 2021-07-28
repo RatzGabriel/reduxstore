@@ -50,11 +50,9 @@ const TextDiv = styled.div`
   justify-content: space-around;
   align-items: center;
   text-align: center;
-
   padding-left: ${(props) => props.pl};
   height: ${(props) => props.height || '100%'};
   width: 40%;
-
   @media (max-width: 960px) {
     margin: 2em;
     width: 100%;

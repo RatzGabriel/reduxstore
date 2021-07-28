@@ -2,34 +2,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+//Pages
 import Admin from './Pages/Admin/Admin';
-import MainPage from './Pages/MainPage/MainPage';
-import Registration from './Pages/Registration/Registration';
-import SignIn from './Pages/SignIn/SignIn';
+import Cart from './Pages/Cart/Cart';
+import Dashboard from './Pages/Dashboard/Dashboard';
 import FortgotPassword from './Pages/ForgotPassword/FortgotPassword';
+import MainPage from './Pages/MainPage/MainPage';
+import Order from './Pages/Order/Order';
+import Registration from './Pages/Registration/Registration';
+import Search from './Pages/Search/Search';
+import SignIn from './Pages/SignIn/SignIn';
+import Payment from './Pages/Payment/Payment';
+import ProductDetails from './Pages/ProductDetails.js/ProductDetails';
 
+//Components
 import Header from './Components/Header/Header';
+import WishList from './Components/Wishlist/WishList';
+import Footer from './Components/Footer/Footer';
 
 import { checkUserSession } from './Redux/User/user.actions';
 import WithAdminAuth from './hoc/withAdminAuth';
 import AdminLayout from './Layouts/AdminLayout';
-import Search from './Pages/Search/Search';
-import ProductDetails from './Pages/ProductDetails.js/ProductDetails';
-import Cart from './Pages/Cart/Cart';
-import Payment from './Pages/Payment/Payment';
 import DashBoardLayout from './Layouts/DashboardLayout';
-import Dashboard from './Pages/Dashboard/Dashboard';
-import Order from './Pages/Order/Order';
-import Footer from './Components/Footer/Footer';
-
-import styled from 'styled-components';
-import WishList from './Components/Wishlist/WishList';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
 });
 
-const App = (props) => {
+const App = () => {
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
 
@@ -89,6 +89,7 @@ const App = (props) => {
           )}
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 };

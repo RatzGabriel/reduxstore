@@ -7,8 +7,9 @@ import Rosa from 'react-on-scroll-animation';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { addToWL } from '../../../Redux/WishList/wishlist.action';
 
-function Product({ product, pt, pb, wd, height, pName, pPrice }) {
+function Product({ product, pt, pb, wd, height, pPrice }) {
   const dispatch = useDispatch();
 
   const { productThumbnail, productName, productPrice, documentID } = product;
@@ -26,6 +27,11 @@ function Product({ product, pt, pb, wd, height, pName, pPrice }) {
     if (!product) return;
     dispatch(addProduct(product));
     history.push('/cart');
+  };
+
+  const handleAddToWl = (product) => {
+    if (!product) return;
+    dispatch(addToWL(product));
   };
 
   return (
@@ -50,7 +56,7 @@ function Product({ product, pt, pb, wd, height, pName, pPrice }) {
           <TestDiv>
             <Rosa
               animation="fade-down"
-              duration={300}
+              duration={800}
               anchorPlacement={'top-center'}
               offset={1200}
             >
@@ -81,10 +87,9 @@ function Product({ product, pt, pb, wd, height, pName, pPrice }) {
         </PositionDiv>
         <TestDivText>
           <ButtonElementMobile
-            eye={<VisibilityIcon></VisibilityIcon>}
             type="button"
             vis={buttonStatus}
-            onClick={() => handleAddToCard(product)}
+            onClick={() => handleAddToWl(product)}
           >
             <span>
               <FavoriteIcon />
@@ -94,7 +99,6 @@ function Product({ product, pt, pb, wd, height, pName, pPrice }) {
           <P>{pPrice || productPrice} Euro</P>
 
           <ButtonElementMobile
-            eye={<VisibilityIcon></VisibilityIcon>}
             type="button"
             vis={buttonStatus}
             onClick={() => handleAddToCard(product)}

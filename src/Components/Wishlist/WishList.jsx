@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Button from '../Elements/Button/Button';
 import Item from '../../Components/Checkout/Item/Item';
 import {
   selectWlItems,

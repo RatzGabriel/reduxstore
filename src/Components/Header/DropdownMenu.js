@@ -1,9 +1,8 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import FadeIn from 'react-fade-in';
 
-function DropdownMenu(props) {
+function DropdownMenu() {
   function DropdownItem(props) {
     return <AItem href="">{props.children}</AItem>;
   }

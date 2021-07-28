@@ -14,7 +14,7 @@ const FormSelect = ({
     <FormDiv>
       {label && <label>{label}</label>}
 
-      <Zelect value={defaultValue} onChange={handleChange} {...otherProps}>
+      <Select value={defaultValue} onChange={handleChange} {...otherProps}>
         {options.map((option, index) => {
           const { value, name } = option;
 
@@ -24,7 +24,7 @@ const FormSelect = ({
             </option>
           );
         })}
-      </Zelect>
+      </Select>
     </FormDiv>
   );
 };
@@ -36,7 +36,7 @@ const FormDiv = styled.div`
   padding: 1em;
 `;
 
-const Zelect = styled.select`
+const Select = styled.select`
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 35px;

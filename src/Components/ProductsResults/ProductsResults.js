@@ -1,31 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
-import Rosa from 'react-on-scroll-animation';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import FormSelect from '../Elements/FormSelect/FormSelect';
-import LoadMore from '../Loadmore/Loadmore';
-import Product from './Product/Product';
-
 import styled from 'styled-components';
 
-import './ProductsResults.css';
+import Product from './Product/Product';
+
+import FormSelect from '../Elements/FormSelect/FormSelect';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
 
-const ProductResults = ({}) => {
-  const [buttonStatus, setButtonStatus] = useState('none');
-  const [backGround, setBackground] = useState(1);
+const ProductResults = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { filterType } = useParams();
   const { products } = useSelector(mapState);
 
-  const { data, queryDoc, isLastPage } = products;
+  const { data } = products;
 
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));
@@ -64,94 +58,15 @@ const ProductResults = ({}) => {
     handleChange: handleFilter,
   };
 
-  const handleLoadMore = () => {
-    dispatch(
-      fetchProductsStart({
-        filterType,
-        startAfterDoc: queryDoc,
-        persistProducts: data,
-      })
-    );
-  };
-
-  const configLoadMore = {
-    onLoadMoreEvt: handleLoadMore,
-  };
-
   return (
     <Div1>
+      <TextDiv>
+        <FormSelect {...configFilters} />
+      </TextDiv>
       {data.map((item) => {
         return <Product product={item} />;
       })}
     </Div1>
-    // <Div1>
-    //   <TextDiv>
-    //     <FormSelect {...configFilters} />
-    //   </TextDiv>
-    //   <Rosa
-    //     animation="fade-down"
-    //     duration={1600}
-    //     anchorPlacement={'top-center'}
-    //     offset={1200}
-    //   >
-    //     <Div2>
-    //       <Div2InnerDiv>
-    //         <Product product={data[0]} />
-    //         <Product product={data[1]} />
-    //       </Div2InnerDiv>
-    //       <Div2InnerDivBig>
-    //         <Product product={data[2]} />
-    //       </Div2InnerDivBig>
-    //       <Div2InnerDiv>
-    //         <Product product={data[3]} />
-    //         <Product product={data[4]} />
-    //       </Div2InnerDiv>
-    //     </Div2>
-    //     <Div2>
-    //       <Div2InnerDivQuatro>
-    //         <Product product={data[0]} />
-    //         <Product pt={'1.5em'} height={'102%'} product={data[0]} />
-    //         <Product pt={'1.5em'} height={'102%'} product={data[0]} />
-    //         <Product product={data[0]} />
-    //       </Div2InnerDivQuatro>
-    //     </Div2>
-    //     <Div2>
-    //       <Div2InnerDivBig>
-    //         <Product product={data[0]} />
-    //       </Div2InnerDivBig>
-    //       <Div2InnerDiv>
-    //         <Product product={data[0]} />
-    //         <Product product={data[0]} />
-    //       </Div2InnerDiv>
-
-    //       <Div2InnerDiv>
-    //         <Product product={data[1]} />
-    //         <Product product={data[1]} />
-    //       </Div2InnerDiv>
-    //     </Div2>
-    //     <Div2 pt={'2em'}>
-    //       <Div2InnerDiv>
-    //         <Product product={data[0]} />
-    //         <Product product={data[1]} />
-    //       </Div2InnerDiv>
-    //       <Div2InnerDiv>
-    //         <Product product={data[1]} />
-    //         <Product product={data[4]} />
-    //       </Div2InnerDiv>
-    //       <Div2InnerDivBig>
-    //         <Product product={data[2]} />
-    //       </Div2InnerDivBig>
-    //     </Div2>
-    //     <Div2>
-    //       <Div2InnerDivQuatro>
-    //         <Product product={data[1]} />
-    //         <Product product={data[1]} />
-    //         <Product product={data[1]} />
-    //         <Product product={data[1]} />
-    //       </Div2InnerDivQuatro>
-    //     </Div2>
-    //   </Rosa>
-    // </Div1>
   );
 };
 
@@ -167,99 +82,3 @@ const Div1 = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Div2 = styled.div`
-  display: flex;
-  margin: 1em 0em;
-  @media (max-width: 962px) {
-    display: block;
-    margin: 0 auto;
-  }
-`;
-
-const Div2InnerDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 25%;
-
-  @media (max-width: 962px) {
-    width: 100%;
-    max-width: 100%;
-    flex-direction: row;
-  }
-`;
-const Div2InnerDivQuatro = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-bottom: 1em;
-  @media (max-width: 962px) {
-    flex-direction: row;
-    display: none;
-  }
-`;
-
-const Div2InnerDivBig = styled.div`
-  display: flex;
-  width: 50%;
-  @media (max-width: 962px) {
-    display: none;
-  }
-`;
-
-// <MainDiv>
-//   <h1>Browse</h1>
-//   <FormSelect {...configFilters} />
-//   <Test>
-//     <Cont5>
-//       <Cont5RowDiv>
-//         <Cont5MidImg src={data[0].productThumbnail} alt="" />
-//         <Cont5MidImg src={data[1].productThumbnail} alt="" />
-//       </Cont5RowDiv>
-//       <Cont5Mid>
-//         <Cont5MidImgBig src={data[2].productThumbnail} alt="" />
-//       </Cont5Mid>
-//       <Cont5RowDiv>
-//         <Cont5MidImg src={data[3].productThumbnail} alt="" />
-//         <Cont5MidImg src={data[4].productThumbnail} alt="" />
-//       </Cont5RowDiv>
-//     </Cont5>
-//     {data[6] && data[8] && (
-//       <Cont5RowDivInner>
-//         <Cont4MidImg src={data[5].productThumbnail} alt="" />
-//         <Cont4MidImg src={data[6].productThumbnail} alt="" />
-//         <Cont4MidImg src={data[7].productThumbnail} alt="" />
-//         <Cont4MidImg src={data[8].productThumbnail} alt="" />
-//       </Cont5RowDivInner>
-//     )}
-//     {data[11] && data[13] && (
-//       <Cont5>
-//         <Cont5Mid>
-//           <Cont5MidImgBig src={data[11].productThumbnail} alt="" />
-//         </Cont5Mid>
-//         <Cont5RowDiv>
-//           <Cont5MidImg src={data[9].productThumbnail} alt="" />
-//           <Cont5MidImg src={data[10].productThumbnail} alt="" />
-//         </Cont5RowDiv>
-//         <Cont5RowDiv>
-//           <Cont5MidImg src={data[12].productThumbnail} alt="" />
-//           <Cont5MidImg src={data[13].productThumbnail} alt="" />
-//         </Cont5RowDiv>
-//       </Cont5>
-//     )}
-//   </Test>
-// </MainDiv>
-
-/* {data.map((product, pos) => {
-        const { productThumbnail, productName, productPrice } = product;
-        if (
-          !productThumbnail ||
-          !productName ||
-          typeof productPrice === 'undefined'
-        )
-          return <div>Null</div>;
-
-        const configProduct = {
-          ...product,
-        };
-        return <Product key={pos} {...configProduct} />;
-      })} */

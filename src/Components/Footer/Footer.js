@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { keyframes } from 'styled-components';
 
 function Footer() {
   return (
@@ -15,9 +14,13 @@ function Footer() {
       </LogoDiv>
       <ColumnTextDiv>
         <h1>Company</h1>
-        <p>Home</p>
-        <p>About us</p>
-        <a href="mailto:abc@example.com">Contact us</a>
+        <LinkElement adress="/">
+          <p>Home</p>
+        </LinkElement>
+        <LinkElement>
+          <p>About us</p>
+        </LinkElement>
+        <LinkElement>Contact us</LinkElement>
       </ColumnTextDiv>
       <ColumnTextDiv>
         <h1>Contact</h1>
@@ -89,4 +92,8 @@ const LogoTextUpper = styled.p`
   font-weight: 400;
   color: black;
   margin: 0;
+`;
+
+const LinkElement = styled(Link)`
+  text-decoration: none;
 `;

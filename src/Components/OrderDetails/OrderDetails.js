@@ -69,7 +69,6 @@ const OrderDetails = ({ order }) => {
             })}
           </TableRow>
         </TableHead>
-
         <TableBody>
           {Array.isArray(orderItems) &&
             orderItems.length > 0 &&

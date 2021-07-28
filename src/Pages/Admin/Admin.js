@@ -18,12 +18,12 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Components
-import Button from '../../Components/Elements/Button/Button';
-import FormSelect from '../../Components/Elements/FormSelect/FormSelect';
+
 import FormInput from '../../Components/Elements/Form/Form';
+import FormSelect from '../../Components/Elements/FormSelect/FormSelect';
+import LoadMore from '../../Components/Loadmore/Loadmore';
 import Modal from '../../Components/Modal/Modal';
 import { CKEditor } from 'ckeditor4-react';
-import LoadMore from '../../Components/Loadmore/Loadmore';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -31,8 +31,6 @@ const mapState = ({ productsData }) => ({
 
 const Admin = () => {
   const { products } = useSelector(mapState);
-  const { data, isLastPage, queryDoc } = products;
-  const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [productCategory, setProductCategory] = useState('vasen');
   const [bestseller, setBestseller] = useState('noBestseller');
@@ -42,6 +40,8 @@ const Admin = () => {
   const [thirdImage, setThirdImage] = useState('');
   const [productPrice, setProductPrice] = useState(0);
   const [productDescription, setProductDescription] = useState('');
+  const { data, isLastPage, queryDoc } = products;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProductsStart());
@@ -260,19 +260,23 @@ export default Admin;
 
 const CallToActionDiv = styled.div`
   width: 15rem;
-  padding-top: 23em;
+  padding: 3em 0em;
 `;
 
 const MainDiv = styled.div`
   background-color: white;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const HeaderDiv = styled.div`
   display: flex;
   justify-content: center;
-  background-color: gray;
+  background-color: black;
   align-items: center;
-  margin: 0 auto;
+  margin-top: 23em;
   width: 50%;
+  color: white;
 `;

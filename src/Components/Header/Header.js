@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,20 +9,13 @@ import {
 import { checkUserIsAdmin } from '../../CustomHooks/checkUserIsAdmin';
 import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
 //Material Imports
-import SearchIcon from '@material-ui/icons/Search';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
-import NavItem from './NavItem';
-import DropdownMenu from './DropdownMenu';
-import GoogleButton from 'react-google-button';
 
-import HomeIcon from '@material-ui/icons/Home';
-import StorefrontIcon from '@material-ui/icons/Storefront';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import ClearIcon from '@material-ui/icons/Clear';
-import { keyframes } from 'styled-components';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import { HideScroll } from 'react-hide-on-scroll';
+import SignedOut from './SignedOut';
+import MobileMenu from './MobileMenu';
+import LoggedIn from './LoggedIn';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -46,95 +39,38 @@ function Header() {
   return (
     <HideScroll variant="down">
       <MainMainDiv>
-        {statusNavBar && (
-          <BurgerLinksDiv>
-            <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
-              <ClearIcon></ClearIcon>
-            </StyledMobileLinks>
-            <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
-              <div>
-                <HomeIcon></HomeIcon>
-                <p>Home</p>
-              </div>
-            </StyledMobileLinks>
-            <StyledMobileLinks
-              onClick={() => setStatusNavBar(false)}
-              to="/search"
-            >
-              <div>
-                <StorefrontIcon />
-                <p>Shop</p>
-              </div>
-            </StyledMobileLinks>
-            <StyledMobileLinks
-              onClick={() => setStatusNavBar(false)}
-              to="/registration"
-            >
-              <div>
-                <VpnKeyIcon />
-                <p>Registration</p>
-              </div>
-            </StyledMobileLinks>
-            <StyledMobileLinks
-              onClick={() => setStatusNavBar(false)}
-              to="/cart"
-            >
-              <div>
-                <ShoppingCartIcon />
-                <p>Cart</p>
-              </div>
-            </StyledMobileLinks>
-          </BurgerLinksDiv>
-        )}
-        {
-          <WrapDiv>
-            <LogoDiv>
-              <StyledLinkLogoImage to="/">
-                <LogoImg src={'/images/Two.jpg'} alt="logo image" />
-              </StyledLinkLogoImage>
-              <ShopNameDiv>
-                <LogoTextUpper>Machua</LogoTextUpper>
-                <LogoTextLower>Peru</LogoTextLower>
-              </ShopNameDiv>
-            </LogoDiv>
-
-            <BurgerDiv>
-              <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
-                {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-                {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-                {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-              </BurgerDivMain>
-            </BurgerDiv>
-            <HeaderDivs>
-              {checkUserIsAdmin(currentUser) && (
-                <StyledLink to="/admin">Admin</StyledLink>
-              )}
-              {<StyledLink to="/search">Shop</StyledLink>}
-              {!currentUser && (
-                <StyledLink to="/registration">Registration</StyledLink>
-              )}
-
-              {!currentUser && <StyledLink to="/signIn">Sign In</StyledLink>}
-              {!currentUser && (
-                <GoogleImg src={'/images/google.png'} onClick={signIn} />
-              )}
-
-              {currentUser && (
-                <StyledLink to="/payment">
-                  <EuroSymbolIcon />
-                </StyledLink>
-              )}
-              {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
-              <StyledLink to="/cart">
-                <ShoppingCartIcon />
-                <ItemCountP>({totalNumCartItems})</ItemCountP>
-              </StyledLink>
-              {currentUser && (
-                <StyledLink onClick={() => signOut()}>Logout</StyledLink>
-              )}
-            </HeaderDivs>
-          </WrapDiv>
-        }
+        {statusNavBar && <MobileMenu setStatusNavBar={setStatusNavBar} />}
+        <WrapDiv>
+          <LogoDiv>
+            <StyledLinkLogoImage to="/">
+              <LogoImg src={'/images/Two.jpg'} alt="logo image" />
+            </StyledLinkLogoImage>
+            <ShopNameDiv>
+              <LogoTextUpper>Machua</LogoTextUpper>
+              <LogoTextLower>Peru</LogoTextLower>
+            </ShopNameDiv>
+          </LogoDiv>
+          <BurgerDiv>
+            <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
+              {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+              {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+              {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+            </BurgerDivMain>
+          </BurgerDiv>
+          <HeaderDivs>
+            {checkUserIsAdmin(currentUser) && (
+              <StyledLink to="/admin">Admin</StyledLink>
+            )}
+            {<StyledLink to="/search">Shop</StyledLink>}
+            {!currentUser && <SignedOut signIn={signIn} />}
+            {currentUser && <LoggedIn signOut={signOut} />}
+            {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
+            <StyledLink to="/cart">
+              <ShoppingCartIcon />
+              <ItemCountP>({totalNumCartItems})</ItemCountP>
+            </StyledLink>
+          </HeaderDivs>
+        </WrapDiv>
       </MainMainDiv>
     </HideScroll>
   );
@@ -145,24 +81,6 @@ Header.defaultProps = {
 };
 
 export default Header;
-
-const TestTiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const animation = keyframes`
-  0% {
-    transform: translateX(-5%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-`;
 
 const MainMainDiv = styled.div`
   position: fixed;
@@ -270,19 +188,6 @@ const BurgerDiv = styled.div`
   z-index: 999;
 `;
 
-const StyledMobileLinks = styled(Link)`
-  @media (max-width: 962px) {
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    letter-spacing: 3px;
-    font-weight: bold;
-    font-size: 14px;
-    padding: 2em 1em;
-  }
-`;
-
 const BurgerDivMain = styled.div`
   display: none;
 
@@ -298,18 +203,6 @@ const BurgerDivLine = styled.div`
   background-color: black;
   margin: 3px;
   z-index: 999;
-`;
-
-const BurgerLinksDiv = styled.div`
-  @media (max-width: 962px) {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: black;
-    z-index: 999;
-    position: fixed;
-    width: 100%;
-  }
 `;
 
 /* <HeaderDivs>

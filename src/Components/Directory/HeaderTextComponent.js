@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import Button from '../Elements/Button/Button';
 
 function HeaderTextComponent({ headerText, title, text, buttonText, linkTo }) {
@@ -35,7 +34,6 @@ const TextDiv = styled.div`
   padding-left: ${(props) => props.pl};
   height: ${(props) => props.height || '100%'};
   width: 90%;
-
   @media (max-width: 960px) {
     align-items: center;
     padding-left: 0em;

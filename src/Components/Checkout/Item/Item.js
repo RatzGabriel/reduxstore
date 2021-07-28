@@ -8,8 +8,7 @@ import {
   reduceCartItem,
   removeCartItem,
 } from '../../../Redux/Cart/cart.action';
-
-import { removeWlItem, clearWL } from '../../../Redux/WishList/wishlist.action';
+import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
 
 function Item(product, text) {
   const { productName, productThumbnail, productPrice, quantity, documentID } =
@@ -36,7 +35,6 @@ function Item(product, text) {
     <MainDiv>
       <Left>
         <Img src={productThumbnail} alt="" />
-
         <ColumnDiv>
           {productName}
           <SpanSmall>{productPrice} Euro</SpanSmall>
@@ -69,27 +67,6 @@ function Item(product, text) {
         </RowDiv>
       </Right>
     </MainDiv>
-    // <ItemDiv>
-    //   <Img src={productThumbnail} alt={productName} />
-
-    //   <TestDiv>
-    //     {productName}
-    //     <span>
-    //       <P> {productPrice} Euro</P>
-    //     </span>
-    //   </TestDiv>
-    //   <RightDiv>
-    //     <span onClick={() => removeItem(product)}>{`-`}</span>
-
-    //     <span>{quantity}</span>
-    //     <span onClick={() => handleAddProduct(product)}>{`+`}</span>
-    //   </RightDiv>
-    //   <RightDiv>
-    //     <span onClick={() => handleRemoveCartItem(documentID)}>
-    //       <P>Remove</P>
-    //     </span>
-    //   </RightDiv>
-    // </ItemDiv>
   );
 }
 

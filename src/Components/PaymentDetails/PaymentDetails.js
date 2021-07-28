@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { CountryDropdown } from 'react-country-region-selector';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
@@ -32,7 +31,6 @@ const mapState = createStructuredSelector({
 });
 
 function PaymentDetails() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const elements = useElements();
   const stripe = useStripe();

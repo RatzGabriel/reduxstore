@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-function Button({ children, adress }) {
+function LinkEement({ children, adress }) {
   return <StyledLink to={adress}>{children}</StyledLink>;
 }
 
-export default Button;
+export default LinkEement;
 
 const StyledLink = styled(Link)`
   color: ${(props) => props.color || 'white'};

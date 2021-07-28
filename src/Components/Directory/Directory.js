@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import Footer from '../Footer/Footer';
-import { Link, useHistory } from 'react-router-dom';
-import MainPageImage from './MainPageItems';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
-
 import 'react-on-scroll-animation/build/index.css';
 import Rosa from 'react-on-scroll-animation';
-import HeaderTextComponent from './HeaderTextComponent';
-import Button from '../Elements/Button/Button';
+
+import LinkEement from '../Elements/Button/Button';
 import InformationText from './InformationText';
-import Product from '../ProductsResults/Product/Product';
 import ProductComponent from '../ProductsResults/Product/ProductComponent';
+import HeaderTextComponent from './HeaderTextComponent';
+import MainPageImage from './MainPageImage';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -21,7 +19,6 @@ const mapState = ({ productsData }) => ({
 function Directory() {
   const { products } = useSelector(mapState);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
@@ -32,15 +29,18 @@ function Directory() {
   return (
     <MainDiv>
       <MainWrapper>
-        <Testing>
-          <h1>Ceramic is our passion</h1>
-          <MainPageImage
-            imgUrl={'/images/Two.jpg'}
-            buttonText={'Shop'}
-            buttonTextTwo={'Read More'}
-          />
-        </Testing>
-        <Button adress="search">Shop</Button>
+        <MainWrapperHeaderText>
+          <h1>Ceramic is our passion</h1>(
+          {Array.isArray(data) && data.length > 0 && (
+            <MainPageImage
+              productOne={data[0]}
+              productTwo={data[1]}
+              productThree={data[2]}
+              productFour={data[3]}
+            />
+          )}
+        </MainWrapperHeaderText>
+        <LinkEement adress="search">Shop</LinkEement>
         <MiddleDiv>
           <HeaderTextComponent
             headerText="Our Services"
@@ -48,11 +48,9 @@ function Directory() {
             text=" In a professional context it often happens that private or
               corporate clients corder a publication to be made and presented ."
           />
-
-          <Button buttonText="Read More" adress="/search">
+          <LinkEement buttonText="Read More" adress="/search">
             Read More
-          </Button>
-
+          </LinkEement>
           <SmallDiv>
             <Img src={'/images/Two.jpg'} alt="" />
           </SmallDiv>
@@ -104,7 +102,7 @@ function Directory() {
             but the majority have suffered alteration in some form ."
           />
 
-          <Button>Get Started</Button>
+          <LinkEement>Get Started</LinkEement>
         </MiddleDiv>
         <MiddleDiv>
           <div>
@@ -142,21 +140,11 @@ function Directory() {
           </HalfDiv>
         </MainWrapper>
       </Rosa>
-
-      <Footer />
     </MainDiv>
   );
 }
 
 export default Directory;
-
-const Testing = styled.div`
-  width: 50%;
-  height: 50%;
-  @media (max-width: 962px) {
-    width: 100%;
-  }
-`;
 
 const MainDiv = styled.div`
   min-height: 100vh;
@@ -173,23 +161,91 @@ const MainWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
   @media (max-width: 960px) {
   }
 `;
 
-const HalfDiv = styled.div`
-  height: 100vh;
+const MainWrapperHeaderText = styled.div`
+  width: 50%;
+  height: 50%;
+  @media (max-width: 962px) {
+    width: 100%;
+  }
+`;
+
+const MiddleDiv = styled.div`
   width: 90%;
-  max-width: 100vw;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   display: flex;
+  height: 50em;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0em 0em 0em 0em;
   flex-direction: column;
+  text-align: center;
+  @media (max-width: 960px) {
+    height: 100%;
+  }
+`;
+
+const SmallDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 100%;
   align-items: center;
   @media (max-width: 960px) {
-    width: 100%;
+    display: none;
+  }
+`;
+const BestSellerDiv = styled.div`
+  background: linear-gradient(
+    183deg,
+    rgb(114, 114, 114) 0%,
+    rgb(197, 197, 197) 46%,
+    rgb(114, 114, 114) 100%
+  );
+
+  @media (max-width: 960px) {
+    text-align: center;
+  }
+`;
+const BestsellerTitleDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 4em 0;
+  @media (max-width: 962px) {
+    width: 70%;
+    margin: 0em auto 3em auto;
+    padding-bottom: 0em;
+    align-items: center;
+    text-align: center;
+  }
+`;
+const P = styled.p`
+  color: brown;
+  padding-top: 3em;
+  letter-spacing: 0.2em;
+`;
+
+const H1 = styled.h1`
+  font-size: 3em;
+  color: ${(props) => props.color || 'white'};
+`;
+const BestsellerCards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5em;
+`;
+
+const HideImgOnMobile = styled.img`
+  @media (max-width: 962px) {
+    display: none;
   }
 `;
 
@@ -208,21 +264,6 @@ const Iframe = styled.iframe`
   margin: 2em;
 `;
 
-const MiddleDiv = styled.div`
-  width: 90%;
-  display: flex;
-  height: 50em;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0em 0em 0em 0em;
-  flex-direction: column;
-
-  text-align: center;
-  @media (max-width: 960px) {
-    height: 100%;
-  }
-`;
-
 const Img = styled.img`
   height: ${(props) => props.height || '60%'};
   margin-top: ${(props) => props.pt || 0};
@@ -233,45 +274,6 @@ const Img = styled.img`
   }
 `;
 
-const SmallDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  align-items: center;
-  @media (max-width: 960px) {
-    display: none;
-  }
-`;
-
-const P = styled.p`
-  color: brown;
-  padding-top: 3em;
-  letter-spacing: 0.2em;
-`;
-
-const H1 = styled.h1`
-  font-size: 3em;
-  color: ${(props) => props.color || 'white'};
-`;
-
-const BestSellerDiv = styled.div`
-  background: linear-gradient(
-    183deg,
-    rgb(114, 114, 114) 0%,
-    rgb(197, 197, 197) 46%,
-    rgb(114, 114, 114) 100%
-  );
-
-  @media (max-width: 960px) {
-    text-align: center;
-  }
-`;
-
-const BestsellerCards = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
 const MiniDiv = styled.div`
   display: flex;
   align-items: center;
@@ -279,27 +281,6 @@ const MiniDiv = styled.div`
   width: 40%;
   margin: 1em 1em;
   height: 13em;
-`;
-
-const BestsellerTitleDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 4em 0;
-  @media (max-width: 962px) {
-    width: 70%;
-    margin: 0em auto 3em auto;
-    padding-bottom: 0em;
-    align-items: center;
-    text-align: center;
-  }
-`;
-
-const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-bottom: 5em;
 `;
 
 const StyledLink = styled(Link)`
@@ -345,77 +326,17 @@ const MindShapingImg = styled.img`
   }
 `;
 
-const HideImgOnMobile = styled.img`
-  @media (max-width: 962px) {
-    display: none;
+const HalfDiv = styled.div`
+  height: 100vh;
+  width: 90%;
+  max-width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 960px) {
+    width: 100%;
   }
 `;
-
-/* <TextDiv>
-            <P>Our Services</P>
-            <H1 color={'black'}>Fresh Product From Our Farm To Your Home</H1>
-            <p>
-              In a professional context it often happens that private or
-              corporate clients corder a publication to be made and presented .
-            </p>
-            <ButtonDivCentral>
-              <StyledLink bg="brown" color="white">
-                Read more
-              </StyledLink>
-            </ButtonDivCentral>
-          </TextDiv> */
-
-/* <QuoteDiv>
-        <QuoteTextDiv>
-          <h1>
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Consequatur necessitatibus inventore ducimus itaque laudantium
-            voluptatem ullam quia temporibus. Beatae, assumenda!" Gabriel Ratz
-          </h1>
-        </QuoteTextDiv>
-      </QuoteDiv> */
-
-/* <BestsellerTitleDiv>
-          <Rosa animation="fade-up" duration={800} once>
-            <P color="black">Our Team</P>
-          </Rosa>
-          <Rosa animation="fade-down" duration={800} once>
-            <H1 color="black">Meet The Minds Shaping An Industry</H1>
-          </Rosa>
-        </BestsellerTitleDiv> */
-
-/* <TextDiv>
-            <Rosa
-              animation="fade-left"
-              duration={800}
-              anchorPlacement={'top-center'}
-              offset={400}
-              once
-            >
-              <P>About Us</P>
-            </Rosa>
-            <Rosa
-              animation="fade-up"
-              duration={800}
-              anchorPlacement={'top-center'}
-              offset={600}
-              once
-            >
-              <h1>An Exceptionally Unique Experience Tailored To You</h1>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form .
-              </p>
-            </Rosa>
-            <Rosa
-              animation="fade-down"
-              duration={800}
-              anchorPlacement={'top-center'}
-              offset={600}
-              once
-            >
-              <ButtonDiv>
-                <StyledLink to="/search">Get Started</StyledLink>
-              </ButtonDiv>
-            </Rosa>
-          </TextDiv> */
