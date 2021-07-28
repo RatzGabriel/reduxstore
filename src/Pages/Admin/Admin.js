@@ -265,7 +265,6 @@ const CallToActionDiv = styled.div`
 
 const MainDiv = styled.div`
   background-color: white;
-  width: 50%;
   margin: 0 auto;
 `;
 
