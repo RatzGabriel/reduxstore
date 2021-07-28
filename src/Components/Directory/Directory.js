@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Footer from '../Footer/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import MainPageImage from './MainPageItems';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
@@ -21,6 +21,7 @@ const mapState = ({ productsData }) => ({
 function Directory() {
   const { products } = useSelector(mapState);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
@@ -276,8 +277,8 @@ const MiniDiv = styled.div`
   align-items: center;
   flex-direction: column;
   width: 40%;
-  margin: 2em auto;
-  padding: 1em;
+  margin: 1em 1em;
+  height: 13em;
 `;
 
 const BestsellerTitleDiv = styled.div`

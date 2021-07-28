@@ -7,12 +7,20 @@ import Rosa from 'react-on-scroll-animation';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { addToWL } from '../../../Redux/WishList/wishlist.action';
 
 function ProductComponent({ product, pt, pb, wd, height, pName, pPrice }) {
   const dispatch = useDispatch();
   const { productThumbnail, productName, productPrice, documentID } = product;
   const [buttonStatus, setButtonStatus] = useState(false);
   const history = useHistory();
+
+  const handleAddToWl = (product) => {
+    console.log('test');
+    if (!product) return;
+    dispatch(addToWL(product));
+  };
+
   if (
     !productThumbnail ||
     !productName ||
@@ -29,13 +37,15 @@ function ProductComponent({ product, pt, pb, wd, height, pName, pPrice }) {
 
   return (
     <MainDiv>
-      <div>
+      <Link to={`/product/${documentID}`}>
         <Img src={productThumbnail} alt="" />
-      </div>
+      </Link>
       <PriceTagDiv>
-        <FavoriteIcon />
-        {pPrice}
-        <VisibilityIcon />
+        <FavoriteIcon onClick={() => handleAddToWl(product)} />
+        {pPrice}€
+        <Link to={`/product/${documentID}`}>
+          <VisibilityIcon />
+        </Link>
       </PriceTagDiv>
     </MainDiv>
   );
@@ -44,15 +54,21 @@ function ProductComponent({ product, pt, pb, wd, height, pName, pPrice }) {
 export default ProductComponent;
 
 const Img = styled.img`
-  width: 70%;
+  width: 100%;
+  height: 100%;
 `;
 
-const MainDiv = styled.div``;
+const MainDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+`;
 
 const PriceTagDiv = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: white;
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
 `;

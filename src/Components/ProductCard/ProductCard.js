@@ -49,24 +49,6 @@ function ProductCard() {
     history.push('/cart');
   };
 
-  var settings = {
-    customPaging: function (i) {
-      return (
-        <a>
-          <img alt="test " src={`${product.thumbnailArray[i + 1]}`} />
-        </a>
-      );
-    },
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    draggable: true,
-    fade: true,
-    adaptiveHeight: true,
-  };
   return (
     <MainDiv>
       <Testing>
@@ -91,20 +73,6 @@ function ProductCard() {
           <ButtonProduct>Buy with Gpay</ButtonProduct>
         </ProductDetailsDiv>
       </ProductDiv>
-      <DivSmallImg>
-        <ImgSmall
-          onClick={() => setImg(productThumbnail)}
-          src={productThumbnail}
-          alt=""
-        />
-        {secondImage && (
-          <ImgSmall
-            onClick={() => setImg(secondImage)}
-            src={productThumbnail}
-            alt=""
-          />
-        )}
-      </DivSmallImg>
     </MainDiv>
   );
 }

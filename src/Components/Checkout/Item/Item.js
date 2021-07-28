@@ -9,13 +9,19 @@ import {
   removeCartItem,
 } from '../../../Redux/Cart/cart.action';
 
-function Item(product) {
+import { removeWlItem, clearWL } from '../../../Redux/WishList/wishlist.action';
+
+function Item(product, text) {
   const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
   const dispatch = useDispatch();
-  console.log(productThumbnail, productName);
+
   const handleRemoveCartItem = (documentID) => {
     dispatch(removeCartItem(documentID));
+  };
+
+  const handleRemoveWlItem = (documentID) => {
+    dispatch(removeWlItem(documentID));
   };
 
   const handleAddProduct = (product) => {
@@ -38,14 +44,28 @@ function Item(product) {
       </Left>
       <Right>
         <RowDiv>
-          <Button onClick={() => removeItem(product)}>{`-`}</Button>
-          <span>{quantity}</span>
-          <Button onClick={() => handleAddProduct(product)}>{`+`}</Button>
+          {text && (
+            <Button
+              onClick={() => handleAddProduct(product)}
+            >{`Add to Cart`}</Button>
+          )}
+          {!text && <Button onClick={() => removeItem(product)}>{`-`}</Button>}
+          {!text && <span>{quantity}</span>}
+          {!text && (
+            <Button onClick={() => handleAddProduct(product)}>{`+`}</Button>
+          )}
         </RowDiv>
         <RowDiv>
-          <SpanSmall onClick={() => handleRemoveCartItem(documentID)}>
-            Remove
-          </SpanSmall>
+          {!text && (
+            <SpanSmall onClick={() => handleRemoveCartItem(documentID)}>
+              Remove
+            </SpanSmall>
+          )}
+          {text && (
+            <SpanSmall onClick={() => handleRemoveWlItem(documentID)}>
+              Remove from WishList
+            </SpanSmall>
+          )}
         </RowDiv>
       </Right>
     </MainDiv>

@@ -23,6 +23,7 @@ import Order from './Pages/Order/Order';
 import Footer from './Components/Footer/Footer';
 
 import styled from 'styled-components';
+import WishList from './Components/Wishlist/WishList';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -64,6 +65,9 @@ const App = (props) => {
         </Route>
         <Route path="/cart">
           <Cart />
+        </Route>
+        <Route path="/wishlist">
+          <WishList />
         </Route>
         <Route path="/payment">
           {currentUser && <Payment></Payment>}
