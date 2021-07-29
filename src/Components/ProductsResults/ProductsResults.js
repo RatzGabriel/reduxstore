@@ -4,9 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
-
 import Product from './Product/Product';
-
 import FormSelect from '../Elements/FormSelect/FormSelect';
 
 const mapState = ({ productsData }) => ({
@@ -63,22 +61,38 @@ const ProductResults = () => {
       <TextDiv>
         <FormSelect {...configFilters} />
       </TextDiv>
-      {data.map((item) => {
-        return <Product product={item} />;
-      })}
+      <InnerDiv>
+        {data.map((item) => {
+          return <Product product={item} />;
+        })}
+      </InnerDiv>
     </Div1>
   );
 };
 
 export default ProductResults;
 
+const InnerDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const TextDiv = styled.div`
   justify-content: center;
   display: flex;
-  padding-top: 6em;
+  padding: 8em 0 0 0;
+  @media (max-width: 962px) {
+  }
 `;
 
 const Div1 = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: 0 auto;
   flex-direction: column;
+  @media (max-width: 962px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;

@@ -31,7 +31,7 @@ function Checkout() {
             {cartItems.map((item, pos) => {
               return (
                 <ItemDiv key={pos}>
-                  <Item {...item} />
+                  <Item {...item} text="cart" />
                 </ItemDiv>
               );
             })}

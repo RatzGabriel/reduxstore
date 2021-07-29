@@ -37,9 +37,11 @@ function WishList() {
         {wlItems.length > 0 ? (
           <MainDiv>
             {wlItems.map((item, pos) => {
+              
               return (
                 <ItemDiv key={pos}>
-                  <Item {...item} text="add to Cart"/>
+                  
+                  <Item {...item} />
                 </ItemDiv>
               );
             })}

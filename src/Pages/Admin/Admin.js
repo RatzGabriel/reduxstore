@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import {
   addProductStart,
   deleteProductStart,
@@ -24,6 +24,7 @@ import FormSelect from '../../Components/Elements/FormSelect/FormSelect';
 import LoadMore from '../../Components/Loadmore/Loadmore';
 import Modal from '../../Components/Modal/Modal';
 import { CKEditor } from 'ckeditor4-react';
+import ButtonElement from '../../Components/Elements/Button/Button';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -130,9 +131,9 @@ const Admin = () => {
       <HeaderDiv>
         <h1>Admin Page</h1>
         <CallToActionDiv>
-          <button bg="black " color="white" onClick={() => toggleModal()}>
-            Add new product
-          </button>
+          <ButtonElement onClick={() => toggleModal()} adress="search">
+            Add new poduct
+          </ButtonElement>
         </CallToActionDiv>
       </HeaderDiv>
       <Modal {...configModal}>
@@ -236,14 +237,14 @@ const Admin = () => {
                     </Typography>
 
                     <Typography>Price: {card.productPrice}€</Typography>
-                    <button
+                    <ButtonElement
                       {...configAddToCartBtn}
                       onClick={() =>
                         dispatch(deleteProductStart(card.documentID))
                       }
                     >
                       Delete
-                    </button>
+                    </ButtonElement>
                   </CardContent>
                   <CardActions className={classes.cardAcions}></CardActions>
                 </Card>
@@ -274,9 +275,9 @@ const MainDiv = styled.div`
 const HeaderDiv = styled.div`
   display: flex;
   justify-content: center;
-  background-color: black;
+
   align-items: center;
   margin-top: 23em;
   width: 50%;
-  color: white;
+  color: black;
 `;

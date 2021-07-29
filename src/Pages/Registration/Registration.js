@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
 import { signUpUserStart } from '../../Redux/User/user.actions';
 import { googleSignInStart } from '../../Redux/User/user.actions';
@@ -85,9 +84,9 @@ function Registration() {
             value={confirmPassword}
           />
 
-          <Button bg={'black'} type="submit" color={'white'} type="submit">
+          <button bg={'black'} type="submit" color={'white'} type="submit">
             Submit
-          </Button>
+          </button>
 
           {error && <div>{error}</div>}
         </Form>

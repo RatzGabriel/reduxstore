@@ -15,3 +15,7 @@
     transform: translateY(3px);
   }
 }
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+}

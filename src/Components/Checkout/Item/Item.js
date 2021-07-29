@@ -11,6 +11,7 @@ import {
 import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
 
 function Item(product, text) {
+  console.log('text', text);
   const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function Item(product, text) {
   const removeItem = (reduceCartIt) => {
     dispatch(reduceCartItem(reduceCartIt));
   };
-  console.log('<<<<<<', text.length);
+
   return (
     <MainDiv>
       <Left>
@@ -42,7 +43,7 @@ function Item(product, text) {
       </Left>
       <Right>
         <RowDiv>
-          {text.length === undefined && (
+          {text === 'wishlist' && (
             <Button
               onClick={() => handleAddProduct(product)}
             >{`Add to Cart`}</Button>

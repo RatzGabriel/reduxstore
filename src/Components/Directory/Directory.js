@@ -6,11 +6,12 @@ import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import 'react-on-scroll-animation/build/index.css';
 import Rosa from 'react-on-scroll-animation';
 
-import LinkEement from '../Elements/Button/Button';
+import LinkEement from '../Elements/LinkElement/LinkElement';
 import InformationText from './InformationText';
 import ProductComponent from '../ProductsResults/Product/ProductComponent';
 import HeaderTextComponent from './HeaderTextComponent';
 import MainPageImage from './MainPageImage';
+import ButtonElement from '../Elements/Button/Button';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -29,18 +30,17 @@ function Directory() {
   return (
     <MainDiv>
       <MainWrapper>
-        <MainWrapperHeaderText>
-          <h1>Ceramic is our passion</h1>(
-          {Array.isArray(data) && data.length > 0 && (
-            <MainPageImage
-              productOne={data[0]}
-              productTwo={data[1]}
-              productThree={data[2]}
-              productFour={data[3]}
-            />
-          )}
-        </MainWrapperHeaderText>
-        <LinkEement adress="search">Shop</LinkEement>
+        {Array.isArray(data) && data.length > 0 && (
+          <SliderDiv>
+            <MainPageImage data={data} />
+          </SliderDiv>
+        )}
+        <DeskTopDivMain>
+          <DesktopImg src="/images/18.jpeg" alt="" />
+        </DeskTopDivMain>
+        <Link to="/search">
+          <ButtonElement adress="search">Shop</ButtonElement>
+        </Link>
         <MiddleDiv>
           <HeaderTextComponent
             headerText="Our Services"
@@ -48,23 +48,25 @@ function Directory() {
             text=" In a professional context it often happens that private or
               corporate clients corder a publication to be made and presented ."
           />
-          <LinkEement buttonText="Read More" adress="/search">
-            Read More
-          </LinkEement>
-          <SmallDiv>
-            <Img src={'/images/Two.jpg'} alt="" />
-          </SmallDiv>
-          <SmallDiv>
-            <Img pt={'7em'} src={'/images/Two.jpg'} alt="" />
-          </SmallDiv>
-          <SmallDiv>
-            <Img src={'/images/Two.jpg'} alt="" />
-          </SmallDiv>
+          <Link to="/search">
+            <ButtonElement adress="search">Read More</ButtonElement>
+          </Link>
+          <ImageRowDiv>
+            <SmallDiv>
+              <Img src={'/images/Two.jpg'} alt="" />
+            </SmallDiv>
+            <SmallDiv>
+              <Img pt={'7em'} src={'/images/2.jpeg'} alt="" />
+            </SmallDiv>
+            <SmallDiv>
+              <Img src={'/images/5.jpeg'} alt="" />
+            </SmallDiv>
+          </ImageRowDiv>
         </MiddleDiv>
         <BestSellerDiv>
           <BestsellerTitleDiv>
             <P>Best Selling</P>
-            <H1>Best Sellers products</H1>
+            <H1>Best Seller products</H1>
           </BestsellerTitleDiv>
           <Rosa
             animation="fade-up"
@@ -91,7 +93,9 @@ function Directory() {
             </BestsellerCards>
           </Rosa>
           <ButtonDiv>
-            <StyledLink to="/search">Go To Shop</StyledLink>
+            <Link to="/search">
+              <ButtonElement adress="search">Go To Shop</ButtonElement>
+            </Link>
           </ButtonDiv>
         </BestSellerDiv>
         <MiddleDiv>
@@ -102,7 +106,9 @@ function Directory() {
             but the majority have suffered alteration in some form ."
           />
 
-          <LinkEement>Get Started</LinkEement>
+          <Link to="/search">
+            <ButtonElement adress="search">Get Started</ButtonElement>
+          </Link>
         </MiddleDiv>
         <MiddleDiv>
           <div>
@@ -153,15 +159,35 @@ const MainDiv = styled.div`
   @media (max-width: 960px) {
   }
 `;
+const DeskTopDivMain = styled.div`
+  margin: 0 auto;
+  @media (max-width: 962px) {
+    display: none;
+  }
+`;
+
+const DesktopImg = styled.img`
+  height: 80vh;
+`;
+
+const SliderDiv = styled.div`
+  @media (min-width: 962px) {
+    display: none;
+  }
+`;
 
 const MainWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   margin: 0 auto;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
+
   @media (max-width: 960px) {
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
 `;
 
@@ -176,10 +202,10 @@ const MainWrapperHeaderText = styled.div`
 const MiddleDiv = styled.div`
   width: 90%;
   display: flex;
-  height: 50em;
+
   justify-content: space-between;
   align-items: center;
-  margin: 0em 0em 0em 0em;
+
   flex-direction: column;
   text-align: center;
   @media (max-width: 960px) {
@@ -187,15 +213,35 @@ const MiddleDiv = styled.div`
   }
 `;
 
+const ImageRowDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 8em 0;
+`;
+
 const SmallDiv = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
   align-items: center;
+  width: 20%;
+
   @media (max-width: 960px) {
     display: none;
   }
 `;
+const Img = styled.img`
+  height: ${(props) => props.height || '60%'};
+  margin-top: ${(props) => props.pt || 0};
+  width: 100%;
+  padding: 0em 1em;
+  @media (max-width: 960px) {
+    padding-bottom: 1em;
+    margin-top: 0;
+  }
+`;
+
 const BestSellerDiv = styled.div`
   background: linear-gradient(
     183deg,
@@ -203,9 +249,11 @@ const BestSellerDiv = styled.div`
     rgb(197, 197, 197) 46%,
     rgb(114, 114, 114) 100%
   );
-
+  width: 70%;
+  margin: 0 auto;
   @media (max-width: 960px) {
     text-align: center;
+    width: 100%;
   }
 `;
 const BestsellerTitleDiv = styled.div`
@@ -213,7 +261,7 @@ const BestsellerTitleDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding: 4em 0;
+
   @media (max-width: 962px) {
     width: 70%;
     margin: 0em auto 3em auto;
@@ -235,6 +283,7 @@ const H1 = styled.h1`
 const BestsellerCards = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin: 3em 0;
 `;
 
 const ButtonDiv = styled.div`
@@ -264,23 +313,20 @@ const Iframe = styled.iframe`
   margin: 2em;
 `;
 
-const Img = styled.img`
-  height: ${(props) => props.height || '60%'};
-  margin-top: ${(props) => props.pt || 0};
-  width: 90%;
-  @media (max-width: 960px) {
-    padding-bottom: 1em;
-    margin-top: 0;
-  }
-`;
-
 const MiniDiv = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 40%;
-  margin: 1em 1em;
-  height: 13em;
+  width: 50%;
+  height: 100%;
+  padding: 3em 0;
+  @media (max-width: 962px) {
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    margin: 1em 1em;
+    height: 13em;
+  }
 `;
 
 const StyledLink = styled(Link)`

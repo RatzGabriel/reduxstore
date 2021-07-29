@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import GoogleButton from 'react-google-button';
 
-import Button from '../../Components/Elements/Button/Button';
 import FormInput from '../../Components/Elements/Form/Form';
 import {
   emailSignInStart,
@@ -55,9 +54,9 @@ function SignIn() {
             value={password}
           ></FormInput>
 
-          <Button bg={'black'} type="submit" color={'white'}>
+          <button bg={'black'} type="submit" color={'white'}>
             Login
-          </Button>
+          </button>
           <div>
             <div>
               <GoogleButton onClick={handleGoogleSignIn}></GoogleButton>

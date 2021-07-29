@@ -4,7 +4,7 @@ import { CountryDropdown } from 'react-country-region-selector';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 import FormInput from '../Elements/Form/Form';
-import Button from '../Elements/Button/Button';
+
 import { apiInstance } from '../../CustomHooks/checkUserIsAdmin';
 import {
   selectCartTotal,
@@ -286,7 +286,7 @@ function PaymentDetails() {
             <CardElement options={configCardElement} />
           </CardElementDiv>
         </CardDetailsDiv>
-        <Button type="submit">Pay Now</Button>
+        <button type="submit">Pay Now</button>
       </form>
     </MainDiv>
   );

@@ -46,8 +46,13 @@ function ProductComponent({ product, pPrice }) {
 export default ProductComponent;
 
 const Img = styled.img`
-  width: 100%;
-  height: 100%;
+  height: 23em;
+  width: 23em;
+
+  @media (max-width: 962px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const MainDiv = styled.div`
