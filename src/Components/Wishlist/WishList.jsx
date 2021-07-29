@@ -12,6 +12,7 @@ import {
 } from '../../Redux/WishList/wishlist.selectors';
 import {clearWL} from "../../Redux/WishList/wishlist.action";
 import { useDispatch } from 'react-redux';
+import ButtonElement from '../Elements/Button/Button';
 
 const mapState = createStructuredSelector({
   wlItems: selectWlItems,
@@ -40,8 +41,7 @@ function WishList() {
               
               return (
                 <ItemDiv key={pos}>
-                  
-                  <Item {...item} />
+                  <Item product={item} text={"wishlist"} />
                 </ItemDiv>
               );
             })}
@@ -53,7 +53,7 @@ function WishList() {
               <StyledLink onClick={() => history.push('/payment')}>
                 Checkout
               </StyledLink>
-              <button onClick={()=>handleClearWl()}>Clear Wishlist</button>
+              <ButtonElement onClick={()=>handleClearWl()}>Clear Wishlist</ButtonElement>
             </BuyDiv>
           </MainDiv>
         ) : (
@@ -69,6 +69,10 @@ export default WishList;
 const MainMainDiv = styled.div`
   display: flex;
   flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+  
+  
 `;
 
 const BuyDiv = styled.div`
@@ -79,6 +83,7 @@ const BuyDiv = styled.div`
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
+  
 `;
 
 const ItemDiv = styled.div`
@@ -102,6 +107,7 @@ const StyledLink = styled(Link)`
   text-align: center;
   margin: 1em 0em;
   padding: 1em;
+  width: 13em;
   @media (max-width: 768px) {
     font-size: 1em;
   }

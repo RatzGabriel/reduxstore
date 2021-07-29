@@ -24,9 +24,4 @@ const StyledLink = styled(Link)`
   @media (max-width: 768px) {
     font-size: 1em;
   }
-
-  &:hover {
-    background-color: black;
-    color: white;
-  }
 `;

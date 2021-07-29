@@ -23,7 +23,7 @@ function Checkout() {
   return (
     <MainMainDiv>
       <div>
-        <img src="./images/cart.jpeg" alt="" />
+        <MainImg src="./images/cart.jpeg" alt="" />
       </div>
       <div>
         {cartItems.length > 0 ? (
@@ -31,12 +31,12 @@ function Checkout() {
             {cartItems.map((item, pos) => {
               return (
                 <ItemDiv key={pos}>
-                  <Item {...item} text="cart" />
+                  <Item product={item} text={'cart'} />
                 </ItemDiv>
               );
             })}
             <BuyDiv>
-              <h3>Total: £{total}</h3>
+              <h1>Total: £{total}</h1>
               <StyledLink onClick={() => history.goBack()}>
                 Continue Shopping
               </StyledLink>
@@ -55,9 +55,16 @@ function Checkout() {
 
 export default Checkout;
 
+const MainImg = styled.img`
+  width: 100%;
+  height: 50vh;
+`;
+
 const MainMainDiv = styled.div`
   display: flex;
   flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
 `;
 
 const BuyDiv = styled.div`
@@ -68,6 +75,10 @@ const BuyDiv = styled.div`
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 962px) {
+    width: 100%;
+  }
 `;
 
 const ItemDiv = styled.div`
@@ -91,6 +102,7 @@ const StyledLink = styled(Link)`
   text-align: center;
   margin: 1em 0em;
   padding: 1em;
+  width: 13em;
   @media (max-width: 768px) {
     font-size: 1em;
   }

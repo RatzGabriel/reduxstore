@@ -10,7 +10,7 @@ import {
 } from '../../../Redux/Cart/cart.action';
 import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
 
-function Item(product, text) {
+function Item({ product, text }) {
   console.log('text', text);
   const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
@@ -48,21 +48,21 @@ function Item(product, text) {
               onClick={() => handleAddProduct(product)}
             >{`Add to Cart`}</Button>
           )}
-          {text.length === undefined && (
+          {text === 'cart' && (
             <Button onClick={() => removeItem(product)}>{`-`}</Button>
           )}
-          {text.length === undefined && <span>{quantity}</span>}
-          {text.length === undefined && (
+          {text === 'cart' && <span>{quantity}</span>}
+          {text === 'cart' && (
             <Button onClick={() => handleAddProduct(product)}>{`+`}</Button>
           )}
         </RowDiv>
         <RowDiv>
-          {!text && (
+          {text === 'cart' && (
             <SpanSmall onClick={() => handleRemoveCartItem(documentID)}>
               Remove
             </SpanSmall>
           )}
-          {text.length > 0 && (
+          {text === 'wishlist' && (
             <SpanSmall onClick={() => handleRemoveWlItem(documentID)}>
               Remove from WishList
             </SpanSmall>

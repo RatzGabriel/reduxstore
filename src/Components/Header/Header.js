@@ -39,7 +39,13 @@ function Header() {
   return (
     <HideScroll variant="down">
       <MainMainDiv>
-        {statusNavBar && <MobileMenu setStatusNavBar={setStatusNavBar} />}
+        {statusNavBar && (
+          <MobileMenu
+            setStatusNavBar={setStatusNavBar}
+            checkUserIsAdmin={checkUserIsAdmin}
+            currentUser={currentUser}
+          />
+        )}
         <WrapDiv>
           <LogoDiv>
             <StyledLinkLogoImage to="/">
@@ -63,6 +69,7 @@ function Header() {
             )}
             {<StyledLink to="/search">Shop</StyledLink>}
             {!currentUser && <SignedOut signIn={signIn} />}
+
             {currentUser && <LoggedIn signOut={signOut} />}
             {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
             <StyledLink to="/cart">
@@ -157,7 +164,7 @@ const HeaderDivs = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
-  width: 40%;
+  width: 50%;
   justify-content: space-around;
   @media (max-width: 768px) {
     display: none;
@@ -176,11 +183,6 @@ const StyledLink = styled(Link)`
 
 const ItemCountP = styled.p`
   font-size: 10px;
-`;
-
-const GoogleImg = styled.img`
-  cursor: pointer;
-  height: 2rem;
 `;
 
 const BurgerDiv = styled.div`

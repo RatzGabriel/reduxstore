@@ -51,10 +51,12 @@ const ColumnTextDiv = styled.div`
 
 const MainDiv = styled.div`
   display: flex;
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
   justify-content: space-around;
   @media (max-width: 962px) {
     display: block;
+    width: 100%;
   }
 `;
 

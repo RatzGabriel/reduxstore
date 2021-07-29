@@ -5,9 +5,10 @@ import HomeIcon from '@material-ui/icons/Home';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-function MobileMenu({setStatusNavBar}) {
+function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser}) {
   return (
     <BurgerLinksDiv>
             <StyledMobileLinks onClick={() => setStatusNavBar(false)}>
@@ -19,6 +20,9 @@ function MobileMenu({setStatusNavBar}) {
                 <p>Home</p>
               </div>
             </StyledMobileLinks>
+            {checkUserIsAdmin(currentUser) && (
+              <StyledMobileLinks to="/admin">Admin</StyledMobileLinks>
+            )}
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/search"
@@ -39,6 +43,15 @@ function MobileMenu({setStatusNavBar}) {
             </StyledMobileLinks>
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
+              to="/wishlist"
+            >
+              <div>
+                <FavoriteBorderIcon />
+                <p>Wishlist</p>
+              </div>
+            </StyledMobileLinks>
+            <StyledMobileLinks
+              onClick={() => setStatusNavBar(false)}
               to="/cart"
             >
               <div>
@@ -46,6 +59,7 @@ function MobileMenu({setStatusNavBar}) {
                 <p>Cart</p>
               </div>
             </StyledMobileLinks>
+           
           </BurgerLinksDiv>
   )
 }

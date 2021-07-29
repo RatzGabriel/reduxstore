@@ -6,7 +6,6 @@ import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import 'react-on-scroll-animation/build/index.css';
 import Rosa from 'react-on-scroll-animation';
 
-import LinkEement from '../Elements/LinkElement/LinkElement';
 import InformationText from './InformationText';
 import ProductComponent from '../ProductsResults/Product/ProductComponent';
 import HeaderTextComponent from './HeaderTextComponent';
@@ -88,7 +87,7 @@ function Directory() {
                         />
                       </MiniDiv>
                     );
-                  } else console.log(item.bestseller);
+                  } else return console.log(item.bestseller);
                 })}
             </BestsellerCards>
           </Rosa>
@@ -188,14 +187,6 @@ const MainWrapper = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-  }
-`;
-
-const MainWrapperHeaderText = styled.div`
-  width: 50%;
-  height: 50%;
-  @media (max-width: 962px) {
-    width: 100%;
   }
 `;
 
@@ -326,27 +317,6 @@ const MiniDiv = styled.div`
     width: 40%;
     margin: 1em 1em;
     height: 13em;
-  }
-`;
-
-const StyledLink = styled(Link)`
-  color: ${(props) => props.color || 'white'};
-  background-color: ${(props) => props.bg || 'brown'};
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-radius: 35px;
-  font-weight: ${(props) => props.fw || '600'};
-  font-size: 18px;
-  width: 8rem;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  margin-bottom: 3em;
-  @media (max-width: 768px) {
-    font-size: 1em;
   }
 `;
 
