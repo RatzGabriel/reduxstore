@@ -19,7 +19,6 @@ function Order() {
 
   useEffect(() => {
     dispatch(getOrderDetailsStart(orderID));
-    console.log(orderTotal);
   }, []);
 
   return (

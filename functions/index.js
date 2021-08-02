@@ -17,6 +17,7 @@ app.use(express.json());
 
 app.post('/payments/create', async (req, res) => {
   try {
+    // eslint-disable-next-line object-curly-spacing
     const { amount, shipping } = req.body;
     const paymentIntent = await stripe.paymentIntents.create({
       shipping,

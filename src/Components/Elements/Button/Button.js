@@ -9,7 +9,7 @@ const ButtonStyle = styled.button`
   color: ${(props) => props.color || 'white'};
   background-color: ${(props) => props.bg || 'brown'};
   padding: 1em 1em;
-  margin: 5em 0em;
+  margin: 2em 0em;
   border-radius: 35px;
   border: none;
   cursor: pointer;

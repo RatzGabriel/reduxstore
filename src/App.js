@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-
+import Rosa from 'react-on-scroll-animation';
 //Pages
 import Admin from './Pages/Admin/Admin';
 import Cart from './Pages/Cart/Cart';
@@ -89,7 +89,14 @@ const App = () => {
           )}
         </Route>
       </Switch>
-      <Footer />
+      <Rosa
+        animation="fade-up"
+        duration={1600}
+        anchorPlacement="top-bottom"
+        once
+      >
+        <Footer />
+      </Rosa>
     </div>
   );
 };

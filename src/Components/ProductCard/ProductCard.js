@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -10,7 +10,6 @@ import {
   fetchProductStart,
   setProduct,
 } from '../../Redux/Products/products.actions';
-import { addProduct } from '../../Redux/Cart/cart.action';
 
 const mapState = (state) => ({
   product: state.productsData.product,
@@ -18,16 +17,10 @@ const mapState = (state) => ({
 
 function ProductCard() {
   const { product } = useSelector(mapState);
-  const history = useHistory();
   const dispatch = useDispatch();
   const { productID } = useParams();
-  const {
-    productName,
-    productThumbnail,
-    productPrice,
-    productDescription,
-    secondImage,
-  } = product;
+  const { productName, productThumbnail, productPrice, productDescription } =
+    product;
   const [img, setImg] = useState(productThumbnail);
 
   useEffect(() => {
@@ -41,12 +34,6 @@ function ProductCard() {
       dispatch(setProduct({}));
     };
   }, []);
-
-  const handleAddToCart = (product) => {
-    if (!product) return;
-    dispatch(addProduct(product));
-    history.push('/cart');
-  };
 
   return (
     <MainDiv>
@@ -94,26 +81,6 @@ const Name = styled.button`
   color: white;
   background-color: brown;
   width: 100%;
-`;
-
-const DivSmallImg = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  padding-bottom: 3em;
-  width: 90%;
-  @media (max-width: 962px) {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-`;
-
-const ImgSmall = styled.img`
-  height: 10em;
-  padding-right: 3em;
-  @media (max-width: 962px) {
-    display: none;
-  }
 `;
 
 const ButtonProduct = styled.button`

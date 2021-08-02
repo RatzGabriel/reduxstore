@@ -21,7 +21,7 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser}) {
               </div>
             </StyledMobileLinks>
             {checkUserIsAdmin(currentUser) && (
-              <StyledMobileLinks to="/admin">Admin</StyledMobileLinks>
+              <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/admin">Admin</StyledMobileLinks>
             )}
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}

@@ -15,34 +15,18 @@ function InformationText() {
         </Rosa>
       </InnerDiv>
       <InnerDiv>
-        <Rosa
-          animation="fade-up"
-          duration={600}
-          anchorPlacement={'top-center'}
-          offset={600}
-          once
-        >
-          <h1>Our Product</h1>
-          <p>
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority have suffered alteration in some form .
-          </p>
-        </Rosa>
+        <h1>Our Product</h1>
+        <p>
+          There are many variations of passages of Lorem Ipsum available, but
+          the majority have suffered alteration in some form .
+        </p>
       </InnerDiv>
       <InnerDiv>
-        <Rosa
-          animation="fade-up"
-          duration={800}
-          anchorPlacement={'top-center'}
-          offset={600}
-          once
-        >
-          <h1>Our Services</h1>
-          <p>
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority have suffered alteration in some form{' '}
-          </p>
-        </Rosa>
+        <h1>Our Services</h1>
+        <p>
+          There are many variations of passages of Lorem Ipsum available, but
+          the majority have suffered alteration in some form{' '}
+        </p>
       </InnerDiv>
     </TextDiv>
   );

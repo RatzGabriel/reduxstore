@@ -75,6 +75,8 @@ export default ProductResults;
 const InnerDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
 `;
 
 const TextDiv = styled.div`
@@ -88,8 +90,6 @@ const TextDiv = styled.div`
 const Div1 = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
-  margin: 0 auto;
   flex-direction: column;
   @media (max-width: 962px) {
     width: 100%;

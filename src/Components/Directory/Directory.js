@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import 'react-on-scroll-animation/build/index.css';
-import Rosa from 'react-on-scroll-animation';
 
 import InformationText from './InformationText';
 import ProductComponent from '../ProductsResults/Product/ProductComponent';
@@ -19,21 +18,25 @@ const mapState = ({ productsData }) => ({
 function Directory() {
   const { products } = useSelector(mapState);
   const dispatch = useDispatch();
+  const [bottom, setBottom] = useState(false);
+  useEffect(() => {
+    window.onscroll = function (ev) {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        setBottom(true);
+      } else {
+        setBottom(false);
+      }
+    };
+  }, [window.onscroll]);
 
   useEffect(() => {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
   }, []);
 
   const { data } = products;
-  const handleScroll = (e) => {
-    const target = e.target;
-    if (target.scrollHeight - target.scrollTop === target.clientHeight) {
-      console.log('end');
-    }
-  };
 
   return (
-    <MainDiv onScroll={(e) => handleScroll(e)}>
+    <MainDiv>
       <MainWrapper>
         {Array.isArray(data) && data.length > 0 && (
           <MainPageImage data={data} />
@@ -59,7 +62,13 @@ function Directory() {
               <Img src={'/images/Two.jpg'} alt="" />
             </SmallDiv>
             <SmallDiv>
-              <Img pt={'7em'} src={'/images/2.jpeg'} alt="" />
+              <Img
+                pt={'7em'}
+                src={
+                  'https://firebasestorage.googleapis.com/v0/b/store-clone-2752d.appspot.com/o/10.jpeg?alt=media&token=391d795c-9e3d-430c-843e-7493d7314a22'
+                }
+                alt=""
+              />
             </SmallDiv>
             <SmallDiv>
               <Img src={'/images/5.jpeg'} alt="" />
@@ -71,30 +80,25 @@ function Directory() {
             <P>Best Selling</P>
             <H1>Best Seller products</H1>
           </BestsellerTitleDiv>
-          <Rosa
-            animation="fade-up"
-            duration={1600}
-            anchorPlacement="top-bottom"
-            once
-          >
-            <BestsellerCards>
-              {Array.isArray(data) &&
-                data.length > 0 &&
-                data.map((item, index) => {
-                  if (item.bestseller === 'bestseller') {
-                    return (
-                      <MiniDiv id={index}>
-                        <ProductComponent
-                          product={item}
-                          pPrice={item.productPrice}
-                          pName={item.productName}
-                        />
-                      </MiniDiv>
-                    );
-                  } else return console.log(item.bestseller);
-                })}
-            </BestsellerCards>
-          </Rosa>
+
+          <BestsellerCards>
+            {Array.isArray(data) &&
+              data.length > 0 &&
+              data.map((item, index) => {
+                if (item.bestseller === 'bestseller') {
+                  return (
+                    <MiniDiv id={index}>
+                      <ProductComponent
+                        product={item}
+                        pPrice={item.productPrice}
+                        pName={item.productName}
+                      />
+                    </MiniDiv>
+                  );
+                } else return null;
+              })}
+          </BestsellerCards>
+
           <ButtonDiv>
             <Link to="/search">
               <ButtonElement adress="search">Go To Shop</ButtonElement>
@@ -133,20 +137,18 @@ function Directory() {
           <MindShapingImg src={'/images/Musk.jpg'} alt="" />
         </MindShapingDiv>
       </MainWrapper>
-      <Rosa animation="fade-right" duration={800} once>
-        <MainWrapper>
-          <HalfDiv>
-            <Iframe
-              src="https://www.youtube.com/embed/0pt0MdReMts"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></Iframe>
-            <DownArrow src={'/images/15.png'}></DownArrow>
-          </HalfDiv>
-        </MainWrapper>
-      </Rosa>
+
+      <HalfDiv>
+        <Iframe
+          src="https://www.youtube.com/embed/0pt0MdReMts"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></Iframe>
+      </HalfDiv>
+
+      {!bottom && <DownArrow src={'/images/15.png'}></DownArrow>}
     </MainDiv>
   );
 }
@@ -157,7 +159,10 @@ const MainDiv = styled.div`
   min-height: 100vh;
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   @media (max-width: 960px) {
   }
 `;
@@ -170,12 +175,6 @@ const DeskTopDivMain = styled.div`
 
 const DesktopImg = styled.img`
   height: 80vh;
-`;
-
-const SliderDiv = styled.div`
-  @media (min-width: 962px) {
-    display: none;
-  }
 `;
 
 const MainWrapper = styled.div`
@@ -302,9 +301,9 @@ const DownArrow = styled.img`
 `;
 
 const Iframe = styled.iframe`
-  height: 100vh;
+  height: 100%;
   width: 100%;
-  margin: 2em;
+  padding: 2em 0em;
 `;
 
 const MiniDiv = styled.div`
@@ -346,16 +345,9 @@ const MindShapingImg = styled.img`
 `;
 
 const HalfDiv = styled.div`
-  height: 100vh;
-  width: 90%;
-  max-width: 100vw;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 60vh;
+  margin: 0 auto;
   @media (max-width: 960px) {
-    width: 100%;
+    max-width: 100%;
   }
 `;

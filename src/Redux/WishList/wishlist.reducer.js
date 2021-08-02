@@ -10,7 +10,6 @@ const INITIAL_STATE = {
 };
 
 const wlReducer = (state = INITIAL_STATE, action) => {
-  console.log('actionttt', action);
   switch (action.type) {
     case wlTypes.ADD_TO_WL:
       return {
@@ -21,7 +20,6 @@ const wlReducer = (state = INITIAL_STATE, action) => {
         }),
       };
     case wlTypes.REDUCE_WL_ITEM:
-      console.log('REDUCER WL', state.cartItems, action.payload);
       return {
         ...state,
         wlItems: handleReduceWlItem({

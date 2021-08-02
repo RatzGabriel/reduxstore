@@ -84,7 +84,7 @@ function Registration() {
             value={confirmPassword}
           />
 
-          <button bg={'black'} type="submit" color={'white'} type="submit">
+          <button bg={'black'} type="submit" color={'white'}>
             Submit
           </button>
 

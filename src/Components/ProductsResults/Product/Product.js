@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../../Redux/Cart/cart.action';
 import styled from 'styled-components';
@@ -13,7 +13,7 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
 
   const { productThumbnail, productName, productPrice, documentID } = product;
   const [buttonStatus, setButtonStatus] = useState(false);
-  const history = useHistory();
+
   if (
     !productThumbnail ||
     !productName ||
@@ -25,7 +25,6 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
   const handleAddToCard = (product) => {
     if (!product) return;
     dispatch(addProduct(product));
-    history.push('/cart');
   };
 
   const handleAddToWl = (product) => {
@@ -91,27 +90,17 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
           </NewTestDiv>
         )}
       </StyledLink>
-
-      <StyledLinkTwo
-        to={`/product/${documentID}`}
-        onMouseEnter={() => {
-          setButtonStatus(true);
-        }}
-        onMouseLeave={() => {
-          setButtonStatus(false);
-        }}
-      >
+      {/* Mobile */}
+      <ProductDiv>
         <PositionDiv>
-          <Img src={productThumbnail}></Img>
+          <Link to={`/product/${documentID}`}>
+            <Img src={productThumbnail}></Img>
+          </Link>
         </PositionDiv>
         <TestDivText>
-          <ButtonElementMobile
-            type="button"
-            vis={buttonStatus}
-            onClick={() => handleAddToWl(product)}
-          >
+          <ButtonElementMobile type="button" vis={buttonStatus}>
             <span>
-              <FavoriteIcon />
+              <FavoriteIcon onClick={() => handleAddToWl(product)} />
             </span>
           </ButtonElementMobile>
 
@@ -127,7 +116,7 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
             </span>
           </ButtonElementMobile>
         </TestDivText>
-      </StyledLinkTwo>
+      </ProductDiv>
     </NewMainDiv>
   );
 }
@@ -143,9 +132,8 @@ const NewMainDiv = styled.div`
   display: flex;
   width: 30%;
   justify-content: space-around;
-  padding: 1em 0;
   @media (max-width: 962px) {
-    width: 50%;
+    width: 40%;
   }
 `;
 
@@ -207,7 +195,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const StyledLinkTwo = styled(Link)`
+const ProductDiv = styled.div`
   display: none;
   @media (max-width: 962px) {
     display: flex;
@@ -219,7 +207,6 @@ const StyledLinkTwo = styled(Link)`
     position: sticky;
     text-decoration: none;
     padding: 0em 0em 0em 0em;
-    margin: 0em auto;
   }
 `;
 
@@ -259,7 +246,7 @@ const Img = styled.img`
   }
   @media only screen and (max-width: 1100px) {
     display: block;
-    padding: 0em 1em 0em 1em;
+
     margin-top: 3em;
   }
 `;
