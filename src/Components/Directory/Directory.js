@@ -25,14 +25,18 @@ function Directory() {
   }, []);
 
   const { data } = products;
+  const handleScroll = (e) => {
+    const target = e.target;
+    if (target.scrollHeight - target.scrollTop === target.clientHeight) {
+      console.log('end');
+    }
+  };
 
   return (
-    <MainDiv>
+    <MainDiv onScroll={(e) => handleScroll(e)}>
       <MainWrapper>
         {Array.isArray(data) && data.length > 0 && (
-          <SliderDiv>
-            <MainPageImage data={data} />
-          </SliderDiv>
+          <MainPageImage data={data} />
         )}
         <DeskTopDivMain>
           <DesktopImg src="/images/18.jpeg" alt="" />
@@ -111,9 +115,7 @@ function Directory() {
         </MiddleDiv>
         <MiddleDiv>
           <div>
-            <Rosa animation="fade-up" duration={800} once>
-              <HideImgOnMobile src={'/images/Two.jpg'} alt="" />
-            </Rosa>
+            <HideImgOnMobile src={'/images/Two.jpg'} alt="" />
           </div>
           <InformationText />
         </MiddleDiv>
@@ -141,7 +143,7 @@ function Directory() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></Iframe>
-            <DownArrow src={'/images/down-arrow.svg'}></DownArrow>
+            <DownArrow src={'/images/15.png'}></DownArrow>
           </HalfDiv>
         </MainWrapper>
       </Rosa>
@@ -155,6 +157,7 @@ const MainDiv = styled.div`
   min-height: 100vh;
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
   @media (max-width: 960px) {
   }
 `;

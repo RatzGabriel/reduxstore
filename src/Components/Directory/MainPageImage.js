@@ -10,7 +10,9 @@ function MainPageImage({ data }) {
     <Carousel
       infiniteLoop={true}
       showStatus={false}
-      onClickItem={() => history.push('/search')}
+      onClickItem={(index, item) =>
+        history.push(`/product/${data[index].documentID}`)
+      }
     >
       <img src={data[0].productThumbnail} alt="" />
       <img src={data[1].productThumbnail} alt="" />
