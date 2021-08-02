@@ -98,4 +98,5 @@ const LogoTextUpper = styled.p`
 
 const LinkElement = styled(Link)`
   text-decoration: none;
+  color: black;
 `;
