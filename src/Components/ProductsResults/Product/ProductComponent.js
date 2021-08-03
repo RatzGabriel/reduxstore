@@ -40,16 +40,18 @@ function ProductComponent({ product, pPrice }) {
         <Img src={productThumbnail} alt="" />
       </Link>
       <PriceTagDiv>
-        <img
-          class={wobble}
-          src={'/images/favorite.png'}
-          alt="favorite"
-          onClick={() => {
-            handleAddToWl(product);
-            setWobble('on');
-            timeout();
-          }}
-        />
+        <FavDiv>
+          <img
+            class={wobble}
+            src={'/images/favorite.png'}
+            alt="favorite"
+            onClick={() => {
+              handleAddToWl(product);
+              setWobble('on');
+              timeout();
+            }}
+          />
+        </FavDiv>
         {pPrice}€
         <Link to={`/product/${documentID}`}>
           <VisibilityIcon />
@@ -60,6 +62,10 @@ function ProductComponent({ product, pPrice }) {
 }
 
 export default ProductComponent;
+
+const FavDiv = styled.div`
+  padding-left: 0.3em;
+`;
 
 const Img = styled.img`
   height: 23em;

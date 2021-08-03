@@ -21,11 +21,6 @@ function ProductCard() {
   const { productID } = useParams();
   const { productName, productThumbnail, productPrice, productDescription } =
     product;
-  const [img, setImg] = useState(productThumbnail);
-
-  useEffect(() => {
-    setImg(productThumbnail);
-  }, [productThumbnail]);
 
   useEffect(() => {
     dispatch(fetchProductStart(productID));
@@ -38,7 +33,7 @@ function ProductCard() {
   return (
     <MainDiv>
       <Testing>
-        <Carousel infiniteLoop={true} showStatus={false}>
+        <Carousel infiniteLoop={true} showStatus={false} showArrows={false}>
           {Array.isArray(product.thumbnailArray) &&
             product.thumbnailArray.length > 0 &&
             product.thumbnailArray.map((item, index) => {

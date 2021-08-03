@@ -13,7 +13,6 @@ const FormSelect = ({
   return (
     <FormDiv>
       {label && <label>{label}</label>}
-
       <Select value={defaultValue} onChange={handleChange} {...otherProps}>
         {options.map((option, index) => {
           const { value, name } = option;
@@ -33,7 +32,6 @@ export default FormSelect;
 
 const FormDiv = styled.div`
   margin-bottom: 1em;
-  padding: 1em;
 `;
 
 const Select = styled.select`
@@ -45,4 +43,5 @@ const Select = styled.select`
   font-size: 18px;
   background-color: brown;
   color: white;
+  border: none;
 `;

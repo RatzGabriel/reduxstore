@@ -16,15 +16,8 @@ const ProductResults = () => {
   const history = useHistory();
   const { filterType } = useParams();
   const { products } = useSelector(mapState);
-  const [wobble, setWobble] = useState('off');
 
   const { data } = products;
-
-  const timeout = () => {
-    setTimeout(function () {
-      setWobble('off');
-    }, 3000);
-  };
 
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));

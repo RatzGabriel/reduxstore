@@ -17,7 +17,7 @@ export default HeaderTextComponent;
 
 const P = styled.p`
   color: brown;
-  padding-top: 3em;
+
   letter-spacing: 0.2em;
 `;
 
@@ -34,7 +34,6 @@ const TextDiv = styled.div`
     height: ${(props) => props.height || '100%'};
     width: 90%;
     align-items: center;
-    padding-left: 0em;
-    margin: 0 0;
+    margin: 2em 0;
   }
 `;

@@ -90,6 +90,8 @@ const StyledMobileLinks = styled(Link)`
     font-weight: bold;
     font-size: 14px;
     padding: 2em 1em;
+    border-bottom:1px solid white;
+    width: 100%;
   }
 `;
 

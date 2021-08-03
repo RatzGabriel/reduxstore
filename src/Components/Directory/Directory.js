@@ -18,19 +18,21 @@ const mapState = ({ productsData }) => ({
 function Directory() {
   const { products } = useSelector(mapState);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
+  }, []);
+
   const [bottom, setBottom] = useState(false);
   useEffect(() => {
-    window.onscroll = function (ev) {
+    function handleScroll(e) {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         setBottom(true);
       } else {
         setBottom(false);
       }
-    };
-  }, [window.onscroll]);
-
-  useEffect(() => {
-    dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
+    }
+    window.addEventListener('scroll', handleScroll);
   }, []);
 
   const { data } = products;
@@ -45,7 +47,7 @@ function Directory() {
           <DesktopImg src="/images/18.jpeg" alt="" />
         </DeskTopDivMain>
         <Link to="/search">
-          <ButtonElement adress="search">Shop</ButtonElement>
+          <ButtonElement adress="search">See all products</ButtonElement>
         </Link>
         <MiddleDiv>
           <HeaderTextComponent
@@ -62,13 +64,7 @@ function Directory() {
               <Img src={'/images/Two.jpg'} alt="" />
             </SmallDiv>
             <SmallDiv>
-              <Img
-                pt={'7em'}
-                src={
-                  'https://firebasestorage.googleapis.com/v0/b/store-clone-2752d.appspot.com/o/10.jpeg?alt=media&token=391d795c-9e3d-430c-843e-7493d7314a22'
-                }
-                alt=""
-              />
+              <Img pt={'7em'} src={'/images/Two.jpg'} alt="" />
             </SmallDiv>
             <SmallDiv>
               <Img src={'/images/5.jpeg'} alt="" />
@@ -131,10 +127,9 @@ function Directory() {
         </MiddleDiv>
 
         <MindShapingDiv>
-          <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-          <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-          <MindShapingImg src={'/images/Musk.jpg'} alt="" />
-          <MindShapingImg src={'/images/Musk.jpg'} alt="" />
+          <MindShapingImg src={'/images/Musk.jpg'} alt="Elon Musk" />
+          <MindShapingImg src={'/images/einstein.jpg'} alt=" Einstein" />
+          <MindShapingImg src={'/images/buffett.jpeg'} alt="Warren Buffett" />
         </MindShapingDiv>
       </MainWrapper>
 
@@ -147,7 +142,6 @@ function Directory() {
           allowfullscreen
         ></Iframe>
       </HalfDiv>
-
       {!bottom && <DownArrow src={'/images/15.png'}></DownArrow>}
     </MainDiv>
   );
@@ -210,7 +204,10 @@ const ImageRowDiv = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  padding: 8em 0;
+  padding: 2em 0;
+  @media (max-width: 962px) {
+    padding: 0;
+  }
 `;
 
 const SmallDiv = styled.div`
@@ -257,7 +254,7 @@ const BestsellerTitleDiv = styled.div`
 
   @media (max-width: 962px) {
     width: 70%;
-    margin: 0em auto 3em auto;
+    margin: 0em auto 0em auto;
     padding-bottom: 0em;
     align-items: center;
     text-align: center;
@@ -282,7 +279,6 @@ const BestsellerCards = styled.div`
 const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 5em;
 `;
 
 const HideImgOnMobile = styled.img`
@@ -347,6 +343,7 @@ const MindShapingImg = styled.img`
 const HalfDiv = styled.div`
   height: 60vh;
   margin: 0 auto;
+  width: 100%;
   @media (max-width: 960px) {
     max-width: 100%;
   }

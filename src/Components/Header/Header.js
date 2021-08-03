@@ -12,7 +12,6 @@ import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
 
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-import { HideScroll } from 'react-hide-on-scroll';
 import SignedOut from './SignedOut';
 import MobileMenu from './MobileMenu';
 import LoggedIn from './LoggedIn';
@@ -37,49 +36,47 @@ function Header() {
   };
 
   return (
-    <HideScroll variant="down">
-      <MainMainDiv>
-        {statusNavBar && (
-          <MobileMenu
-            setStatusNavBar={setStatusNavBar}
-            checkUserIsAdmin={checkUserIsAdmin}
-            currentUser={currentUser}
-          />
-        )}
-        <WrapDiv>
-          <LogoDiv>
-            <StyledLinkLogoImage to="/">
-              <LogoImg src={'/images/Two.jpg'} alt="logo image" />
-            </StyledLinkLogoImage>
-            <ShopNameDiv>
-              <LogoTextUpper>Machua</LogoTextUpper>
-              <LogoTextLower>Peru</LogoTextLower>
-            </ShopNameDiv>
-          </LogoDiv>
-          <BurgerDiv>
-            <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
-              {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-              {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-              {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-            </BurgerDivMain>
-          </BurgerDiv>
-          <HeaderDivs>
-            {checkUserIsAdmin(currentUser) && (
-              <StyledLink to="/admin">Admin</StyledLink>
-            )}
-            {<StyledLink to="/search">Shop</StyledLink>}
-            {!currentUser && <SignedOut signIn={signIn} />}
+    <MainMainDiv>
+      {statusNavBar && (
+        <MobileMenu
+          setStatusNavBar={setStatusNavBar}
+          checkUserIsAdmin={checkUserIsAdmin}
+          currentUser={currentUser}
+        />
+      )}
+      <WrapDiv>
+        <LogoDiv>
+          <StyledLinkLogoImage to="/">
+            <LogoImg src={'/images/Two.jpg'} alt="logo image" />
+          </StyledLinkLogoImage>
+          <ShopNameDiv>
+            <LogoTextUpper>Machua</LogoTextUpper>
+            <LogoTextLower>Peru</LogoTextLower>
+          </ShopNameDiv>
+        </LogoDiv>
+        <BurgerDiv>
+          <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
+            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+          </BurgerDivMain>
+        </BurgerDiv>
+        <HeaderDivs>
+          {checkUserIsAdmin(currentUser) && (
+            <StyledLink to="/admin">Admin</StyledLink>
+          )}
+          {<StyledLink to="/search">Shop</StyledLink>}
+          {!currentUser && <SignedOut signIn={signIn} />}
 
-            {currentUser && <LoggedIn signOut={signOut} />}
-            {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
-            <StyledLink to="/cart">
-              <ShoppingCartIcon />
-              <ItemCountP>({totalNumCartItems})</ItemCountP>
-            </StyledLink>
-          </HeaderDivs>
-        </WrapDiv>
-      </MainMainDiv>
-    </HideScroll>
+          {currentUser && <LoggedIn signOut={signOut} />}
+          {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
+          <StyledLink to="/cart">
+            <ShoppingCartIcon />
+            <ItemCountP>({totalNumCartItems})</ItemCountP>
+          </StyledLink>
+        </HeaderDivs>
+      </WrapDiv>
+    </MainMainDiv>
   );
 }
 

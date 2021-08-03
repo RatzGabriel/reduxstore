@@ -9,6 +9,7 @@ function MainPageImage({ data }) {
   return (
     <HideOnDesktopDiv>
       <Carousel
+        showArrows={false}
         showThumbs={false}
         infiniteLoop={true}
         showStatus={false}
