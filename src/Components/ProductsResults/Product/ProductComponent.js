@@ -6,7 +6,7 @@ import { addToWL } from '../../../Redux/WishList/wishlist.action';
 import styled from 'styled-components';
 
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+
 import './ProductComponent.css';
 
 function ProductComponent({ product, pPrice }) {
@@ -50,11 +50,6 @@ function ProductComponent({ product, pPrice }) {
             timeout();
           }}
         />
-        {/* <FavoriteIcon
-          onClick={() => handleAddToWl(product) && setWobble(1)}
-          onAnimationEnd={() => setWobble(0)}
-          wobble={wobble}
-        /> */}
         {pPrice}€
         <Link to={`/product/${documentID}`}>
           <VisibilityIcon />

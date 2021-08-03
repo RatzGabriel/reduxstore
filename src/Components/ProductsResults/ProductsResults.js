@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
@@ -16,8 +16,15 @@ const ProductResults = () => {
   const history = useHistory();
   const { filterType } = useParams();
   const { products } = useSelector(mapState);
+  const [wobble, setWobble] = useState('off');
 
   const { data } = products;
+
+  const timeout = () => {
+    setTimeout(function () {
+      setWobble('off');
+    }, 3000);
+  };
 
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));

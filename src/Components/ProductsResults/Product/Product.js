@@ -13,6 +13,8 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
 
   const { productThumbnail, productName, productPrice, documentID } = product;
   const [buttonStatus, setButtonStatus] = useState(false);
+  const [wobble, setWobble] = useState('off');
+  const [wobbleCart, setWobbleCart] = useState('off');
 
   if (
     !productThumbnail ||
@@ -30,6 +32,13 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
   const handleAddToWl = (product) => {
     if (!product) return;
     dispatch(addToWL(product));
+  };
+
+  const timeout = () => {
+    setTimeout(function () {
+      setWobble('off');
+      setWobbleCart('off');
+    }, 2000);
   };
 
   return (
@@ -79,10 +88,21 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
                   content="Add to WishList"
                   type="button"
                   vis={buttonStatus}
-                  onClick={() => handleAddToCard(product)}
+                  onClick={() => {
+                    handleAddToCard(product);
+                  }}
                 >
                   <span>
-                    <FavoriteIcon></FavoriteIcon>
+                    <img
+                      class={wobble}
+                      src={'/images/favorite.png'}
+                      alt="favorite"
+                      onClick={() => {
+                        handleAddToWl(product);
+                        setWobble('on');
+                        timeout();
+                      }}
+                    />
                   </span>
                 </ButtonElement>
               </Rosa>
@@ -100,7 +120,16 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
         <TestDivText>
           <ButtonElementMobile type="button" vis={buttonStatus}>
             <span>
-              <FavoriteIcon onClick={() => handleAddToWl(product)} />
+              <img
+                class={wobble}
+                src={'/images/favorite.png'}
+                alt="favorite"
+                onClick={() => {
+                  handleAddToWl(product);
+                  setWobble('on');
+                  timeout();
+                }}
+              />
             </span>
           </ButtonElementMobile>
 
@@ -112,7 +141,15 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
             onClick={() => handleAddToCard(product)}
           >
             <span>
-              <ShoppingCartIcon />
+              <img
+                class={wobbleCart}
+                src={'/images/cart.jpg'}
+                alt="cart"
+                onClick={() => {
+                  setWobbleCart('on');
+                  timeout();
+                }}
+              />
             </span>
           </ButtonElementMobile>
         </TestDivText>

@@ -36,7 +36,7 @@ function Checkout() {
               );
             })}
             <BuyDiv>
-              <h1>Total: £{total}</h1>
+              <h1>Total: {(Math.round(total * 100) / 100).toFixed(2)}</h1>
               <StyledLink onClick={() => history.goBack()}>
                 Continue Shopping
               </StyledLink>
