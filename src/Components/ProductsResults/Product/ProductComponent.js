@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -7,14 +7,15 @@ import styled from 'styled-components';
 
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import './ProductComponent.css';
 
 function ProductComponent({ product, pPrice }) {
   const dispatch = useDispatch();
+  const [wobble, setWobble] = useState('off');
 
   const { productThumbnail, productName, productPrice, documentID } = product;
 
   const handleAddToWl = (product) => {
-    console.log('test');
     if (!product) return;
     dispatch(addToWL(product));
   };
@@ -27,13 +28,33 @@ function ProductComponent({ product, pPrice }) {
     return <div>nothing to show</div>;
   }
 
+  const timeout = () => {
+    setTimeout(function () {
+      setWobble('off');
+    }, 3000);
+  };
+
   return (
     <MainDiv>
       <Link to={`/product/${documentID}`}>
         <Img src={productThumbnail} alt="" />
       </Link>
       <PriceTagDiv>
-        <FavoriteIcon onClick={() => handleAddToWl(product)} />
+        <img
+          class={wobble}
+          src={'/images/favorite.png'}
+          alt="favorite"
+          onClick={() => {
+            handleAddToWl(product);
+            setWobble('on');
+            timeout();
+          }}
+        />
+        {/* <FavoriteIcon
+          onClick={() => handleAddToWl(product) && setWobble(1)}
+          onAnimationEnd={() => setWobble(0)}
+          wobble={wobble}
+        /> */}
         {pPrice}€
         <Link to={`/product/${documentID}`}>
           <VisibilityIcon />

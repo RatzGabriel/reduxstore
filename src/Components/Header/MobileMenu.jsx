@@ -76,6 +76,7 @@ const BurgerLinksDiv = styled.div`
     z-index: 999;
     position: fixed;
     width: 100%;
+    overflow: scroll;
   }
 `;
 
@@ -91,3 +92,5 @@ const StyledMobileLinks = styled(Link)`
     padding: 2em 1em;
   }
 `;
+
+

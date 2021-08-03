@@ -93,8 +93,20 @@ const Admin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let thumbnailArray = [];
+    let emptyCheck = () => {
+      if (productThumbnail !== '') {
+        thumbnailArray.push(productThumbnail);
+      }
+      if (secondImage !== '') {
+        thumbnailArray.push(secondImage);
+      }
+      if (thirdImage !== '') {
+        thumbnailArray.push(thirdImage);
+      }
+    };
+    emptyCheck();
 
-    let thumbnailArray = [productThumbnail, secondImage, thirdImage];
     dispatch(
       addProductStart({
         productCategory,
@@ -213,7 +225,6 @@ const Admin = () => {
       </Modal>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
-          {console.log(data)}
           {Array.isArray(data) &&
             data.length > 0 &&
             data.map((card) => (

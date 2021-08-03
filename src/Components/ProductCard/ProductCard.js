@@ -42,11 +42,13 @@ function ProductCard() {
           {Array.isArray(product.thumbnailArray) &&
             product.thumbnailArray.length > 0 &&
             product.thumbnailArray.map((item, index) => {
-              return (
-                <div>
-                  <img src={item} alt="test" />
-                </div>
-              );
+              if (item.length > 0) {
+                return (
+                  <div>
+                    <img src={item} alt="test" />
+                  </div>
+                );
+              }
             })}
         </Carousel>
       </Testing>
@@ -56,7 +58,7 @@ function ProductCard() {
           <p>{productPrice}€</p>
           <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
           <Name>Add to cart</Name>
-          <ButtonProduct>Buy with Gpay</ButtonProduct>
+          <ButtonProduct>Buy with Gpayy</ButtonProduct>
         </ProductDetailsDiv>
       </ProductDiv>
     </MainDiv>
