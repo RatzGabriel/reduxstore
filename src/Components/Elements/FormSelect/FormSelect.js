@@ -44,4 +44,5 @@ const Select = styled.select`
   background-color: brown;
   color: white;
   border: none;
+  outline: none;
 `;

@@ -88,8 +88,10 @@ export function* signUpUser({
     //   userAuth: user,
     //   additionalData: { displayName },
     // });
-  } catch (err) {
+  } catch (e) {
+    const err = [`${e}`];
     console.log(err);
+    yield put(userError(err));
   }
 }
 

@@ -5,7 +5,7 @@ export const existingWlItem = ({ prevWlItems, nextWlItem }) => {
 };
 
 export const handleAddToWl = ({ prevWlItems, nextWlItem }) => {
-  console.log('docid', prevWlItems, nextWlItem);
+  console.log('docid', prevWlItems, 'next', nextWlItem);
   const quantityIncrement = 1;
   const wlItemExists = existingWlItem({ prevWlItems, nextWlItem });
 
@@ -15,6 +15,7 @@ export const handleAddToWl = ({ prevWlItems, nextWlItem }) => {
         ? {
             ...wlItem,
             quantity: wlItem.quantity + quantityIncrement,
+            favorite: true,
           }
         : wlItem
     );

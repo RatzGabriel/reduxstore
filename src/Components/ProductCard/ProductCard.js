@@ -39,9 +39,9 @@ function ProductCard() {
             product.thumbnailArray.map((item, index) => {
               if (item.length > 0) {
                 return (
-                  <div>
-                    <img src={item} alt="test" />
-                  </div>
+                  <ImageDiv>
+                    <Image src={item} alt="test" />
+                  </ImageDiv>
                 );
               }
             })}
@@ -61,6 +61,13 @@ function ProductCard() {
 }
 
 export default ProductCard;
+const ImageDiv = styled.div`
+  height: 100%;
+`;
+
+const Image = styled.img`
+  height: 100%;
+`;
 
 const Testing = styled.div`
   width: 50%;

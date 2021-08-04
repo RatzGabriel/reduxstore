@@ -8,12 +8,11 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link} from "react-router-dom";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser}) {
+
+
+function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar}) {
   return (
-    <BurgerLinksDiv>
-            <StyledMobileLinks onClick={() => setStatusNavBar(false)}>
-              <ClearIcon></ClearIcon>
-            </StyledMobileLinks>
+    <Nav statusNavBar={statusNavBar}>
             <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
               <div>
                 <HomeIcon></HomeIcon>
@@ -36,11 +35,25 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser}) {
               onClick={() => setStatusNavBar(false)}
               to="/registration"
             >
+
               <div>
                 <VpnKeyIcon />
                 <p>Registration</p>
               </div>
             </StyledMobileLinks>
+            <StyledMobileLinks
+              onClick={() => setStatusNavBar(false)}
+              to="/signIn"
+            >
+
+              <div>
+              <VpnKeyIcon />
+                <p>Sign In</p>
+              </div>
+            </StyledMobileLinks>
+
+
+            
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/wishlist"
@@ -59,39 +72,44 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser}) {
                 <p>Cart</p>
               </div>
             </StyledMobileLinks>
-           
-          </BurgerLinksDiv>
+          </Nav>
   )
 }
 
 export default MobileMenu
 
 
-const BurgerLinksDiv = styled.div`
-  @media (max-width: 962px) {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: black;
-    z-index: 999;
-    position: fixed;
-    width: 100%;
-    overflow: scroll;
+const Nav = styled.nav`
+ transition: opacity 0.75s, visibility 0.75s, width 0.75s;
+ z-index:1;
+ width: ${props=>props.statusNavBar?"100%":"0%"};
+ display: flex;
+ flex-direction: column;
+ background-color: black;
+ align-items: center;
+ justify-content: center;
+ position: fixed;
+ opacity:${props=>props.statusNavBar?"1":"0"} ;
+ visibility: ${props=>props.statusNavBar?"visible":"hidden"};
+ height: ${props=>props.statusNavBar?'100vh':"100vh"};
+ overflow: hidden;
+ top: 10vh;
+  @media(min-width:962px){
+    display: none;
   }
 `;
 
 const StyledMobileLinks = styled(Link)`
   @media (max-width: 962px) {
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    letter-spacing: 3px;
-    font-weight: bold;
-    font-size: 14px;
-    padding: 2em 1em;
-    border-bottom:1px solid white;
-    width: 100%;
+   width: 100%;
+   text-align: center;
+   text-decoration: none;
+   font-size: 2rem;
+   color: white;
+   font-weight: 600;
+   padding: 0.5rem;
+   border-radius: 3px;
+   margin: 0 0.5rem;
   }
 `;
 

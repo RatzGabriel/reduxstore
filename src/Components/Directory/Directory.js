@@ -128,8 +128,6 @@ function Directory() {
 
         <MindShapingDiv>
           <MindShapingImg src={'/images/Musk.jpg'} alt="Elon Musk" />
-          <MindShapingImg src={'/images/einstein.jpg'} alt=" Einstein" />
-          <MindShapingImg src={'/images/buffett.jpeg'} alt="Warren Buffett" />
         </MindShapingDiv>
       </MainWrapper>
 

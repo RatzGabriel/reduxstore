@@ -37,13 +37,13 @@ function Header() {
 
   return (
     <MainMainDiv>
-      {statusNavBar && (
-        <MobileMenu
-          setStatusNavBar={setStatusNavBar}
-          checkUserIsAdmin={checkUserIsAdmin}
-          currentUser={currentUser}
-        />
-      )}
+      <MobileMenu
+        setStatusNavBar={setStatusNavBar}
+        checkUserIsAdmin={checkUserIsAdmin}
+        currentUser={currentUser}
+        statusNavBar={statusNavBar}
+      />
+
       <WrapDiv>
         <LogoDiv>
           <StyledLinkLogoImage to="/">
@@ -56,9 +56,9 @@ function Header() {
         </LogoDiv>
         <BurgerDiv>
           <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
-            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
-            {!statusNavBar && <BurgerDivLine></BurgerDivLine>}
+            <BarOne statusNavBar={statusNavBar}></BarOne>
+            <BarTwo statusNavBar={statusNavBar}></BarTwo>
+            <BarThree statusNavBar={statusNavBar}></BarThree>
           </BurgerDivMain>
         </BurgerDiv>
         <HeaderDivs>
@@ -85,6 +85,40 @@ Header.defaultProps = {
 };
 
 export default Header;
+
+const BarOne = styled.div`
+  width: 2rem;
+  height: 0.25rem;
+  background: #333b54;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+  transform: ${(props) => (props.statusNavBar ? 'rotate(45deg)' : 'rotate(0)')};
+`;
+const BarTwo = styled.div`
+  width: 2rem;
+  height: 0.25rem;
+  background: #333b54;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+  opacity: ${(props) => (props.statusNavBar ? '0' : 1)};
+  transform: ${(props) =>
+    props.statusNavBar ? 'translateX(20px)' : 'translateX(0)'};
+`;
+const BarThree = styled.div`
+  width: 2rem;
+  height: 0.25rem;
+  background: #333b54;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+  transform: ${(props) =>
+    props.statusNavBar ? 'rotate(-45deg)' : 'rotate(0)'};
+`;
 
 const MainMainDiv = styled.div`
   position: fixed;
@@ -185,14 +219,24 @@ const ItemCountP = styled.p`
 const BurgerDiv = styled.div`
   display: flex;
   z-index: 999;
+  @media (min-width: 962px) {
+    display: none;
+  }
 `;
 
 const BurgerDivMain = styled.div`
   display: none;
 
   @media (max-width: 962px) {
-    display: block;
-    padding-right: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+    top: 20px;
   }
 `;
 

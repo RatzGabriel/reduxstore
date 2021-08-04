@@ -83,12 +83,11 @@ function Registration() {
             type="password"
             value={confirmPassword}
           />
-
           <button bg={'black'} type="submit" color={'white'}>
             Submit
           </button>
 
-          {error && <div>{error}</div>}
+          <h1>{userErr}</h1>
         </Form>
         <GoogleImg src={'/images/google.png'} onClick={signIn} />
       </MediumDiv>

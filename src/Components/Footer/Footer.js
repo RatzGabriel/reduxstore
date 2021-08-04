@@ -24,8 +24,8 @@ function Footer() {
       </ColumnTextDiv>
       <ColumnTextDiv>
         <h1>Contact</h1>
-        <p>Tel: +6605685648</p>
-        <p>Email: pati@gmx.at</p>
+        <A href="tel:+499123456789">Call Us</A>
+        <A href="mailto:gabrielratz84@gmail.com">Mail us</A>
       </ColumnTextDiv>
       <ColumnTextDiv>
         <h1>Adress</h1>
@@ -38,6 +38,11 @@ function Footer() {
 }
 
 export default Footer;
+
+const A = styled.a`
+  text-decoration: none;
+  color: brown;
+`;
 
 const ColumnTextDiv = styled.div`
   display: flex;

@@ -76,6 +76,7 @@ const InnerDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
   margin: 0 auto;
 `;
 
@@ -83,6 +84,7 @@ const TextDiv = styled.div`
   justify-content: center;
   display: flex;
   padding: 8em 0 0 0;
+
   @media (max-width: 962px) {
   }
 `;
@@ -91,6 +93,7 @@ const Div1 = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+
   @media (max-width: 962px) {
     width: 100%;
     flex-direction: column;

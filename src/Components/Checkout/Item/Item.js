@@ -38,7 +38,9 @@ function Item({ product, text }) {
         <Img src={productThumbnail} alt="" />
         <ColumnDiv>
           {productName}
-          <SpanSmall>{productPrice} Euro</SpanSmall>
+          <SpanSmall>
+            {(Math.round(productPrice * 100) / 100).toFixed(2)} Euro
+          </SpanSmall>
         </ColumnDiv>
       </Left>
       <Right>
@@ -64,7 +66,7 @@ function Item({ product, text }) {
           )}
           {text === 'wishlist' && (
             <SpanSmall onClick={() => handleRemoveWlItem(documentID)}>
-              Remove from WishList
+              Remove
             </SpanSmall>
           )}
         </RowDiv>
@@ -95,7 +97,7 @@ const Button = styled.button`
 `;
 
 const SpanSmall = styled.span`
-  font-size: 0.3em;
+  font-size: 0.5em;
 `;
 const RowDiv = styled.div`
   display: flex;

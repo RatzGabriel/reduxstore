@@ -1,19 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { addToWL } from '../../../Redux/WishList/wishlist.action';
 import styled from 'styled-components';
+import {
+  selectWlItems,
+  selectWlTotal,
+} from '../../../Redux/WishList/wishlist.selectors';
+import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
 
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import './ProductComponent.css';
 
+const mapState = createStructuredSelector({
+  wlItems: selectWlItems,
+  total: selectWlTotal,
+});
+
 function ProductComponent({ product, pPrice }) {
   const dispatch = useDispatch();
+  const { wlItems } = useSelector(mapState);
   const [wobble, setWobble] = useState('off');
+  const [heartStatus, setHeartStatus] = useState('/images/favorite.png');
 
   const { productThumbnail, productName, productPrice, documentID } = product;
+
+  useEffect(() => {
+    if (wlItems.length > 0) {
+      wlItems.map((item) => {
+        if (item.documentID === documentID) {
+          console.log('yes');
+          setHeartStatus('/images/redheart.svg');
+        }
+      });
+    } else {
+      setHeartStatus('/images/favorite.png');
+    }
+  }, []);
+
+  const handleRemoveWlItem = (documentID) => {
+    dispatch(removeWlItem(documentID));
+  };
 
   const handleAddToWl = (product) => {
     if (!product) return;
@@ -34,6 +63,27 @@ function ProductComponent({ product, pPrice }) {
     }, 3000);
   };
 
+  const isItemInWl = (product) => {
+    if (wlItems.length > 0) {
+      for (let i = 0; i < wlItems.length; i++) {
+        if (wlItems[i].documentID === product.documentID) {
+          console.log('yes it isss');
+          handleRemoveWlItem(product.documentID);
+          setHeartStatus('/images/favorite.png');
+          return;
+        } else {
+          handleAddToWl(product);
+          setHeartStatus('/images/redheart.svg');
+        }
+      }
+    }
+    if (wlItems.length === 0) {
+      console.log('no it isssnt else');
+      handleAddToWl(product);
+      setHeartStatus('/images/redheart.svg');
+    }
+  };
+
   return (
     <MainDiv>
       <Link to={`/product/${documentID}`}>
@@ -43,11 +93,11 @@ function ProductComponent({ product, pPrice }) {
         <FavDiv>
           <img
             class={wobble}
-            src={'/images/favorite.png'}
+            src={heartStatus}
             alt="favorite"
             onClick={() => {
-              handleAddToWl(product);
               setWobble('on');
+              isItemInWl(product);
               timeout();
             }}
           />

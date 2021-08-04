@@ -31,7 +31,7 @@ function WishList() {
   return (
     <MainMainDiv>
       <div>
-        <img src="./images/cart.jpeg" alt="" />
+        <Img src="./images/cart.jpeg" alt="" />
         <h1>WishList:</h1>
       </div>
       <div>
@@ -46,7 +46,8 @@ function WishList() {
               );
             })}
             <BuyDiv>
-              <h3>Total: £{total}</h3>
+              <h3>Total: £{(Math.round(total * 100) / 100).toFixed(2)}</h3>
+              
               <StyledLink onClick={() => history.goBack()}>
                 Continue Shopping
               </StyledLink>
@@ -66,11 +67,18 @@ function WishList() {
 
 export default WishList;
 
+const Img=styled.img`
+width: 100%;
+`
+
 const MainMainDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 70%;
   margin: 0 auto;
+  @media(max-width:962px){
+    width: 100%;
+  }
   
   
 `;

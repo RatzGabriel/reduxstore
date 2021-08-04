@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import FadeIn from 'react-fade-in';
 
 function DropdownMenu() {
   function DropdownItem(props) {
@@ -9,23 +8,21 @@ function DropdownMenu() {
 
   return (
     <DropDown>
-      <FadeIn delay={0} transitionDuration={400}>
-        <DropDownDiv>
-          <DropdownItem>Item One </DropdownItem>
-          <DropdownImage src={'/images/Four.jpg'} alt="" />
-          <DropdownImage src={'/images/Four.jpg'} alt="" />
-        </DropDownDiv>
-        <DropDownDiv>
-          <DropdownItem>Item One </DropdownItem>
-          <DropdownImage src={'/images/Four.jpg'} alt="" />
-          <DropdownImage src={'/images/Four.jpg'} alt="" />
-        </DropDownDiv>
-        <DropDownDiv>
-          <DropdownItem>Item One </DropdownItem>
-          <DropdownImage src={'/images/Four.jpg'} alt="" />
-          <DropdownImage src={'/images/Four.jpg'} alt="" />
-        </DropDownDiv>
-      </FadeIn>
+      <DropDownDiv>
+        <DropdownItem>Item One </DropdownItem>
+        <DropdownImage src={'/images/Four.jpg'} alt="" />
+        <DropdownImage src={'/images/Four.jpg'} alt="" />
+      </DropDownDiv>
+      <DropDownDiv>
+        <DropdownItem>Item One </DropdownItem>
+        <DropdownImage src={'/images/Four.jpg'} alt="" />
+        <DropdownImage src={'/images/Four.jpg'} alt="" />
+      </DropDownDiv>
+      <DropDownDiv>
+        <DropdownItem>Item One </DropdownItem>
+        <DropdownImage src={'/images/Four.jpg'} alt="" />
+        <DropdownImage src={'/images/Four.jpg'} alt="" />
+      </DropDownDiv>
     </DropDown>
   );
 }

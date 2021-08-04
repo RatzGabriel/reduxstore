@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import GoogleButton from 'react-google-button';
-
-import FormInput from '../../Components/Elements/Form/Form';
 import {
-  emailSignInStart,
   googleSignInStart,
+  signOutUserStart,
+  emailSignInStart,
 } from '../../Redux/User/user.actions';
+import FormInput from '../../Components/Elements/Form/Form';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -16,6 +16,10 @@ const mapState = ({ user }) => ({
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const signOut = () => {
+    dispatch(signOutUserStart());
+  };
 
   const dispatch = useDispatch();
   const { currentUser } = useSelector(mapState);
@@ -35,35 +39,44 @@ function SignIn() {
     event.preventDefault();
     dispatch(emailSignInStart({ email, password }));
   };
-
+  console.log(currentUser);
   return (
     <MainDiv imgUrl={'/images/Two.jpg'}>
-      <MediumDiv>
-        <Form onSubmit={onFormSubmit} action="">
-          <h1>Login:</h1>
-          <FormInput
-            type="text"
-            placeholder="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          ></FormInput>
-          <FormInput
-            type="password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          ></FormInput>
+      {!currentUser && (
+        <MediumDiv>
+          <Form onSubmit={onFormSubmit} action="">
+            <h1>Login:</h1>
+            <FormInput
+              type="text"
+              placeholder="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            ></FormInput>
+            <FormInput
+              type="password"
+              placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            ></FormInput>
 
-          <button bg={'black'} type="submit" color={'white'}>
-            Login
-          </button>
-          <div>
+            <button bg={'black'} type="submit" color={'white'}>
+              Login
+            </button>
             <div>
-              <GoogleButton onClick={handleGoogleSignIn}></GoogleButton>
+              <div>
+                <GoogleButton onClick={handleGoogleSignIn}></GoogleButton>
+              </div>
             </div>
-          </div>
-        </Form>
-      </MediumDiv>
+          </Form>
+        </MediumDiv>
+      )}
+      {currentUser && (
+        <MediumDiv>
+          <h1>You are already logged in with Email : {currentUser.email}</h1>
+
+          <button onClick={() => signOut()}>Sign Out</button>
+        </MediumDiv>
+      )}
     </MainDiv>
   );
 }
@@ -89,6 +102,9 @@ const MediumDiv = styled.div`
   width: 30vw;
   align-items: center;
   justify-content: center;
+  @media (max-width: 962px) {
+    width: 100%;
+  }
 `;
 
 const Form = styled.form`

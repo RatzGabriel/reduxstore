@@ -1,20 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../Redux/Cart/cart.action';
 import styled from 'styled-components';
 import Rosa from 'react-on-scroll-animation';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { addToWL } from '../../../Redux/WishList/wishlist.action';
+import { createStructuredSelector } from 'reselect';
+import {
+  selectWlItems,
+  selectWlTotal,
+} from '../../../Redux/WishList/wishlist.selectors';
+import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
+
+const mapState = createStructuredSelector({
+  wlItems: selectWlItems,
+  total: selectWlTotal,
+});
 
 function Product({ product, pt, pb, wd, height, pPrice }) {
   const dispatch = useDispatch();
 
   const { productThumbnail, productName, productPrice, documentID } = product;
+  const { wlItems } = useSelector(mapState);
   const [buttonStatus, setButtonStatus] = useState(false);
   const [wobble, setWobble] = useState('off');
   const [wobbleCart, setWobbleCart] = useState('off');
+  const [heartStatus, setHeartStatus] = useState('/images/favorite.png');
+
+  useEffect(() => {
+    if (wlItems.length > 0) {
+      wlItems.map((item) => {
+        if (item.documentID === documentID) {
+          console.log('yes');
+          setHeartStatus('/images/redheart.svg');
+        }
+      });
+    }
+  }, []);
+
+  const handleRemoveWlItem = (documentID) => {
+    dispatch(removeWlItem(documentID));
+  };
 
   if (
     !productThumbnail ||
@@ -39,6 +67,26 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
       setWobble('off');
       setWobbleCart('off');
     }, 2000);
+  };
+
+  const isItemInWl = (product) => {
+    if (wlItems.length > 0) {
+      for (let i = 0; i < wlItems.length; i++) {
+        if (wlItems[i].documentID === product.documentID) {
+          console.log('yes it iss');
+          handleRemoveWlItem(product.documentID);
+          setHeartStatus('/images/favorite.png');
+          return;
+        } else {
+          handleAddToWl(product);
+          setHeartStatus('/images/redheart.svg');
+        }
+      }
+    } else {
+      console.log('no it isnt else');
+      handleAddToWl(product);
+      setHeartStatus('/images/redheart.svg');
+    }
   };
 
   return (
@@ -95,10 +143,9 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
                   <span>
                     <img
                       class={wobble}
-                      src={'/images/favorite.png'}
+                      src={heartStatus}
                       alt="favorite"
                       onClick={() => {
-                        handleAddToWl(product);
                         setWobble('on');
                         timeout();
                       }}
@@ -122,10 +169,10 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
             <span>
               <img
                 class={wobble}
-                src={'/images/favorite.png'}
+                src={heartStatus}
                 alt="favorite"
                 onClick={() => {
-                  handleAddToWl(product);
+                  isItemInWl(product);
                   setWobble('on');
                   timeout();
                 }}

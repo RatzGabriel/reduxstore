@@ -89,14 +89,8 @@ const App = () => {
           )}
         </Route>
       </Switch>
-      <Rosa
-        animation="fade-up"
-        duration={1600}
-        anchorPlacement="top-bottom"
-        once
-      >
-        <Footer />
-      </Rosa>
+
+      <Footer />
     </div>
   );
 };
