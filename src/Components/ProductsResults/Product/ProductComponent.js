@@ -120,6 +120,7 @@ const FavDiv = styled.div`
 const Img = styled.img`
   height: 23em;
   width: 23em;
+  border-radius: 20%;
 
   @media (max-width: 962px) {
     width: 100%;

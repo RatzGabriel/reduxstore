@@ -23,18 +23,6 @@ function Directory() {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
   }, []);
 
-  const [bottom, setBottom] = useState(false);
-  useEffect(() => {
-    function handleScroll(e) {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        setBottom(true);
-      } else {
-        setBottom(false);
-      }
-    }
-    window.addEventListener('scroll', handleScroll);
-  }, []);
-
   const { data } = products;
 
   return (
@@ -140,7 +128,6 @@ function Directory() {
           allowfullscreen
         ></Iframe>
       </HalfDiv>
-      {!bottom && <DownArrow src={'/images/15.png'}></DownArrow>}
     </MainDiv>
   );
 }

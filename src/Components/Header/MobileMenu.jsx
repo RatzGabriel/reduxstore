@@ -82,7 +82,7 @@ export default MobileMenu
 const Nav = styled.nav`
  transition: opacity 0.75s, visibility 0.75s, width 0.75s;
  z-index:1;
- width: ${props=>props.statusNavBar?"100%":"0%"};
+ width: ${props=>props.statusNavBar?"100%":"30%"};
  display: flex;
  flex-direction: column;
  background-color: black;
