@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import ClearIcon from '@material-ui/icons/Clear';
 import HomeIcon from '@material-ui/icons/Home';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
@@ -35,7 +34,6 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar})
               onClick={() => setStatusNavBar(false)}
               to="/registration"
             >
-
               <div>
                 <VpnKeyIcon />
                 <p>Registration</p>
@@ -45,15 +43,11 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar})
               onClick={() => setStatusNavBar(false)}
               to="/signIn"
             >
-
               <div>
               <VpnKeyIcon />
                 <p>Sign In</p>
               </div>
             </StyledMobileLinks>
-
-
-            
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/wishlist"

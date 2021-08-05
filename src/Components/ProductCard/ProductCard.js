@@ -24,7 +24,7 @@ function ProductCard() {
 
   useEffect(() => {
     dispatch(fetchProductStart(productID));
-
+    window.scrollTo(0, 0);
     return () => {
       dispatch(setProduct({}));
     };

@@ -37,6 +37,14 @@ function Directory() {
         <Link to="/search">
           <ButtonElement adress="search">See all products</ButtonElement>
         </Link>
+        <RoundLinkDiv>
+          <RoundLink bg={'/images/2.jpeg'} to="/search/vasen">
+            Vasen
+          </RoundLink>
+          <RoundLink bg={'/images/8.jpeg'} to="/andere">
+            Andere
+          </RoundLink>
+        </RoundLinkDiv>
         <MiddleDiv>
           <HeaderTextComponent
             headerText="Our Services"
@@ -133,6 +141,22 @@ function Directory() {
 }
 
 export default Directory;
+
+const RoundLinkDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  width: 90%;
+`;
+
+const RoundLink = styled(Link)`
+  border-radius: 50%;
+  background-image: url(${(props) => props.bg});
+  padding: 2em;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
 
 const MainDiv = styled.div`
   min-height: 100vh;

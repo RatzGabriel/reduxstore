@@ -17,9 +17,15 @@ function MainPageImage({ data }) {
           history.push(`/product/${data[index].documentID}`)
         }
       >
-        <img src={data[0].productThumbnail} alt={data[0].productName} />
-        <img src={data[1].productThumbnail} alt={data[1].productName} />
-        <img src={data[3].productThumbnail} alt={data[2].productName} />
+        {data[0] !== undefined && (
+          <img src={data[0].productThumbnail} alt={data[0].productName} />
+        )}
+        {data[1] !== undefined && (
+          <img src={data[0].productThumbnail} alt={data[1].productName} />
+        )}
+        {data[2] !== undefined && (
+          <img src={data[0].productThumbnail} alt={data[2].productName} />
+        )}
       </Carousel>
     </HideOnDesktopDiv>
   );

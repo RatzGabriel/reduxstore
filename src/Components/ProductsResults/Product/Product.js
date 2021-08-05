@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../Redux/Cart/cart.action';
 import styled from 'styled-components';
 import Rosa from 'react-on-scroll-animation';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import { addToWL } from '../../../Redux/WishList/wishlist.action';
 import { createStructuredSelector } from 'reselect';
 import {
@@ -33,7 +31,6 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
     if (wlItems.length > 0) {
       wlItems.map((item) => {
         if (item.documentID === documentID) {
-          console.log('yes');
           setHeartStatus('/images/redheart.svg');
         }
       });

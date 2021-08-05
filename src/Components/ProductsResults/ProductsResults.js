@@ -20,6 +20,10 @@ const ProductResults = () => {
   const { data } = products;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));
   }, [filterType]);
 

@@ -11,7 +11,6 @@ import {
 import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
 
 function Item({ product, text }) {
-  console.log('text', text);
   const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
   const dispatch = useDispatch();
