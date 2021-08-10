@@ -10,7 +10,7 @@ function MainPageImage({ data }) {
     <HideOnDesktopDiv>
       <Carousel
         showArrows={false}
-        showThumbs={false}
+        showThumbs={true}
         infiniteLoop={true}
         showStatus={false}
         onClickItem={(index) =>
@@ -18,13 +18,22 @@ function MainPageImage({ data }) {
         }
       >
         {data[0] !== undefined && (
-          <img src={data[0].productThumbnail} alt={data[0].productName} />
+          <img src={'/images/tiny1.jpg'} alt={data[0].productName} />
         )}
         {data[1] !== undefined && (
-          <img src={data[0].productThumbnail} alt={data[1].productName} />
+          <img src={'/images/tiny2.jpg'} alt={data[1].productName} />
         )}
         {data[2] !== undefined && (
-          <img src={data[0].productThumbnail} alt={data[2].productName} />
+          <img src={'/images/tiny3.jpg'} alt={data[2].productName} />
+        )}
+        {data[2] !== undefined && (
+          <img src={'/images/tiny3.jpg'} alt={data[2].productName} />
+        )}
+        {data[2] !== undefined && (
+          <img src={'/images/tiny3.jpg'} alt={data[2].productName} />
+        )}
+        {data[2] !== undefined && (
+          <img src={'/images/tiny3.jpg'} alt={data[2].productName} />
         )}
       </Carousel>
     </HideOnDesktopDiv>
@@ -34,6 +43,7 @@ function MainPageImage({ data }) {
 export default MainPageImage;
 
 const HideOnDesktopDiv = styled.div`
+  width: 100%;
   @media (min-width: 962px) {
     display: none;
   }

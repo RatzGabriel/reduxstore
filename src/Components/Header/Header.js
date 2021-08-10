@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,17 +15,37 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SignedOut from './SignedOut';
 import MobileMenu from './MobileMenu';
 import LoggedIn from './LoggedIn';
+import { darkMode } from '../../Redux/darkmode/darkmode';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
   totalNumCartItems: selectCartItemsCount(state),
+  darkmodefromState: state.darkmode,
 });
 
 function Header() {
-  const { currentUser, totalNumCartItems } = useSelector(mapState);
+  const { currentUser, totalNumCartItems, darkmodefromState } =
+    useSelector(mapState);
+  console.log('>>>>>', darkmodefromState);
   const [statusNavBar, setStatusNavBar] = useState(false);
-
   const dispatch = useDispatch();
+  const [darkmode, setDarkmode] = useState('off');
+
+  const changeDarkMode = () => {
+    console.log(darkmode);
+    if (darkmode === 'off') {
+      console.log('dm off');
+      setDarkmode('on');
+    }
+    if (darkmode === 'on') {
+      console.log('dm on');
+      setDarkmode('off');
+    }
+  };
+
+  useEffect(() => {
+    dispatch(darkMode(darkmode));
+  }, [darkmode]);
 
   const signOut = () => {
     dispatch(signOutUserStart());
@@ -43,9 +63,9 @@ function Header() {
         currentUser={currentUser}
         statusNavBar={statusNavBar}
       />
-
       <WrapDiv>
         <LogoDiv>
+          <button onClick={() => changeDarkMode()}>Darkmode</button>
           <StyledLinkLogoImage to="/">
             <LogoImg src={'/images/Two.jpg'} alt="logo image" />
           </StyledLinkLogoImage>

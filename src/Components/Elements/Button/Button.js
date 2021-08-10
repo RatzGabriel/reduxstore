@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { color } from '../../../colors';
+import { useSelector } from 'react-redux';
+
+const mapState = ({ darkmode }) => ({
+  darkmodefromState: darkmode,
+});
 
 const ButtonElement = ({ children, ...otherProps }) => {
-  return <ButtonStyle {...otherProps}>{children}</ButtonStyle>;
+  const { darkmodefromState } = useSelector(mapState);
+  const [darkmode, setDarkmode] = useState('off');
+
+  useEffect(() => {
+    setDarkmode(darkmodefromState.darkmode);
+  }, [darkmodefromState]);
+
+  return (
+    <ButtonStyle {...otherProps} dm={darkmode}>
+      {children}
+    </ButtonStyle>
+  );
 };
 
 const ButtonStyle = styled.button`
-  color: ${(props) => props.color || 'white'};
-  background-color: ${(props) => props.bg || 'brown'};
+  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  background-color: ${(props) => (props.dm === 'on' ? 'white' : color)};
   padding: 1em 1em;
   margin: 0em 0em;
   border-radius: 35px;

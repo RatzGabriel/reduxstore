@@ -232,8 +232,9 @@ const ButtonElementMobile = styled.button`
 
 const TestDivText = styled.div`
   display: flex;
-  background-color: brown;
-  color: white;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
   @media (max-width: 962px) {
   }
 `;

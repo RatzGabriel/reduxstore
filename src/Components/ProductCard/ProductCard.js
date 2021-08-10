@@ -53,7 +53,7 @@ function ProductCard() {
           <p>{productPrice}€</p>
           <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
           <Name>Add to cart</Name>
-          <ButtonProduct>Buy with Gpayy</ButtonProduct>
+          <ButtonProduct bg={'/images/gpay.png'}></ButtonProduct>
         </ProductDetailsDiv>
       </ProductDiv>
     </MainDiv>
@@ -83,24 +83,28 @@ const Name = styled.button`
   top: 10%;
   left: 40%;
   color: white;
-  background-color: brown;
+  background-color: rgb(58, 180, 197);
   width: 100%;
 `;
 
 const ButtonProduct = styled.button`
   margin: 2em 0em;
-  padding: 1em;
+  padding: 1em 3em;
   border: none;
+  background-image: url(${(props) => props.bg});
+  background-size: cover;
+  border: 1px solid black;
+  cursor: pointer;
 `;
 
 const ProductDetailsDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 70%;
+  align-items: center;
   justify-content: flex-start;
   @media (max-width: 962px) {
-    padding: 3em 0em;
+    padding: 0em 0em;
   }
 `;
 
@@ -108,7 +112,7 @@ const ProductDiv = styled.div`
   display: flex;
   width: 90%;
   height: 80%;
-
+  margin: 0;
   padding: 0em 0em 0em 0em;
   @media (max-width: 962px) {
     display: flex;

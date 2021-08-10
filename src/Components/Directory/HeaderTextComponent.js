@@ -16,7 +16,8 @@ function HeaderTextComponent({ headerText, title, text, buttonText, linkTo }) {
 export default HeaderTextComponent;
 
 const P = styled.p`
-  color: brown;
+  color: rgb(58, 180, 197);
+  border-bottom: 1px solid rgb(58, 180, 197);
 
   letter-spacing: 0.2em;
 `;
@@ -34,6 +35,6 @@ const TextDiv = styled.div`
     height: ${(props) => props.height || '100%'};
     width: 90%;
     align-items: center;
-    margin: 2em 0;
+    margin: 4em 0 0 0em;
   }
 `;

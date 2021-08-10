@@ -47,21 +47,20 @@ const A = styled.a`
 const ColumnTextDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  padding: 1em;
   height: 100%;
+  align-items: center;
+  width: 100%;
   @media (max-width: 962px) {
-    padding: 1em;
   }
 `;
 
 const MainDiv = styled.div`
   display: flex;
-  width: 70%;
-  margin: 0 auto;
   justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   @media (max-width: 962px) {
-    display: block;
-    width: 100%;
   }
 `;
 

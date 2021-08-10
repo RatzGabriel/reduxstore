@@ -13,6 +13,7 @@ import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import './ProductComponent.css';
+import { color } from '../../../colors';
 
 const mapState = createStructuredSelector({
   wlItems: selectWlItems,
@@ -23,7 +24,7 @@ function ProductComponent({ product, pPrice }) {
   const dispatch = useDispatch();
   const { wlItems } = useSelector(mapState);
   const [wobble, setWobble] = useState('off');
-  const [heartStatus, setHeartStatus] = useState('/images/favorite.png');
+  const [heartStatus, setHeartStatus] = useState('/images/heart.svg');
 
   const { productThumbnail, productName, productPrice, documentID } = product;
 
@@ -36,7 +37,7 @@ function ProductComponent({ product, pPrice }) {
         }
       });
     } else {
-      setHeartStatus('/images/favorite.png');
+      setHeartStatus('/images/heart.svg');
     }
   }, []);
 
@@ -67,9 +68,8 @@ function ProductComponent({ product, pPrice }) {
     if (wlItems.length > 0) {
       for (let i = 0; i < wlItems.length; i++) {
         if (wlItems[i].documentID === product.documentID) {
-          console.log('yes it isss');
           handleRemoveWlItem(product.documentID);
-          setHeartStatus('/images/favorite.png');
+          setHeartStatus('/images/heart.svg');
           return;
         } else {
           handleAddToWl(product);
@@ -78,67 +78,79 @@ function ProductComponent({ product, pPrice }) {
       }
     }
     if (wlItems.length === 0) {
-      console.log('no it isssnt else');
       handleAddToWl(product);
       setHeartStatus('/images/redheart.svg');
     }
   };
 
   return (
-    <MainDiv>
-      <Link to={`/product/${documentID}`}>
-        <Img src={productThumbnail} alt="" />
-      </Link>
-      <PriceTagDiv>
-        <FavDiv>
-          <img
-            class={wobble}
-            src={heartStatus}
-            alt="favorite"
-            onClick={() => {
-              setWobble('on');
-              isItemInWl(product);
-              timeout();
-            }}
-          />
-        </FavDiv>
-        {pPrice}€
-        <Link to={`/product/${documentID}`}>
+    <MainDiv bg={productThumbnail}>
+      <InnerDiv>
+        <Img
+          class={wobble}
+          src={heartStatus}
+          alt="favorite"
+          onClick={() => {
+            setWobble('on');
+            isItemInWl(product);
+            timeout();
+          }}
+        />
+        <PDiv>
+          <P>{pPrice}$</P>
+        </PDiv>
+        <FavLinkTwo to={`/product/${documentID}`}>
           <VisibilityIcon />
-        </Link>
-      </PriceTagDiv>
+        </FavLinkTwo>
+      </InnerDiv>
     </MainDiv>
   );
 }
 
 export default ProductComponent;
 
-const FavDiv = styled.div`
-  padding-left: 0.3em;
+const PDiv = styled.div`
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: underline;
+`;
+
+const InnerDiv = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+  height: 20%;
+  bottom: 0%;
+  color: black;
+  font-weight: 600;
+`;
+
+const P = styled.p`
+  margin: 0;
+`;
+
+const FavLinkTwo = styled(Link)`
+  color: ${color};
 `;
 
 const Img = styled.img`
-  height: 23em;
-  width: 23em;
+  height: 1em;
+  width: 1em;
   border-radius: 20%;
-
+  z-index: 888;
   @media (max-width: 962px) {
-    width: 100%;
-    height: 100%;
   }
 `;
 
 const MainDiv = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   height: 100%;
-`;
-
-const PriceTagDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
   width: 100%;
-  margin: 0 auto;
+  position: relative;
+  background-image: url(${(props) => props.bg});
+  background-position: center;
+  background-size: cover;
 `;

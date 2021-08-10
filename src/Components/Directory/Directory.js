@@ -10,14 +10,22 @@ import ProductComponent from '../ProductsResults/Product/ProductComponent';
 import HeaderTextComponent from './HeaderTextComponent';
 import MainPageImage from './MainPageImage';
 import ButtonElement from '../Elements/Button/Button';
+import { color } from '../../colors';
 
-const mapState = ({ productsData }) => ({
+const mapState = ({ productsData, darkmode }) => ({
   products: productsData.products,
+  darkmodefromState: darkmode,
 });
 
 function Directory() {
-  const { products } = useSelector(mapState);
+  const { products, darkmodefromState } = useSelector(mapState);
+
   const dispatch = useDispatch();
+  const [darkmode, setDarkmode] = useState('off');
+
+  useEffect(() => {
+    setDarkmode(darkmodefromState.darkmode);
+  }, [darkmodefromState]);
 
   useEffect(() => {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
@@ -26,11 +34,12 @@ function Directory() {
   const { data } = products;
 
   return (
-    <MainDiv>
+    <MainDiv dm={darkmode}>
       <MainWrapper>
         {Array.isArray(data) && data.length > 0 && (
           <MainPageImage data={data} />
         )}
+
         <DeskTopDivMain>
           <DesktopImg src="/images/18.jpeg" alt="" />
         </DeskTopDivMain>
@@ -41,17 +50,17 @@ function Directory() {
           <RoundLink bg={'/images/2.jpeg'} to="/search/vasen">
             Vasen
           </RoundLink>
-          <RoundLink bg={'/images/8.jpeg'} to="/andere">
+          <RoundLink bg={'/images/8.jpeg'} to="/search/andere">
             Andere
           </RoundLink>
         </RoundLinkDiv>
         <MiddleDiv>
           <HeaderTextComponent
             headerText="Our Services"
-            title="Fresh Product From Our Farm To Your Home"
-            text=" In a professional context it often happens that private or
-              corporate clients corder a publication to be made and presented ."
+            title="We produce tiny Ceramic"
+            text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci nesciunt in accusamus eaque nam consectetur numquam magnam doloremque ad.  ."
           />
+
           <Link to="/search">
             <ButtonElement adress="search">Read More</ButtonElement>
           </Link>
@@ -123,7 +132,7 @@ function Directory() {
         </MiddleDiv>
 
         <MindShapingDiv>
-          <MindShapingImg src={'/images/Musk.jpg'} alt="Elon Musk" />
+          <MindShapingImg src={'/images/ceramic.jpg'} alt="Elon Musk" />
         </MindShapingDiv>
       </MainWrapper>
 
@@ -146,26 +155,40 @@ const RoundLinkDiv = styled.div`
   display: flex;
   justify-content: space-around;
 
-  width: 90%;
+  height: 12em;
+  width: 100%;
+  @media (min-width: 962px) {
+    display: none;
+  }
 `;
 
 const RoundLink = styled(Link)`
   border-radius: 50%;
   background-image: url(${(props) => props.bg});
-  padding: 2em;
-  background-position: center center;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  margin: 0.5em;
 `;
 
 const MainDiv = styled.div`
   min-height: 100vh;
   height: 100%;
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
   @media (max-width: 960px) {
   }
 `;
@@ -185,6 +208,7 @@ const MainWrapper = styled.div`
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
+  width: 100%;
 
   @media (max-width: 960px) {
     flex-wrap: wrap;
@@ -270,9 +294,10 @@ const BestsellerTitleDiv = styled.div`
   }
 `;
 const P = styled.p`
-  color: brown;
+  color: ${color};
   padding-top: 3em;
   letter-spacing: 0.2em;
+  border-bottom: 1px solid ${color};
 `;
 
 const H1 = styled.h1`
@@ -315,15 +340,14 @@ const MiniDiv = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 20em;
   padding: 3em 0;
   @media (max-width: 962px) {
     align-items: center;
     flex-direction: column;
     width: 40%;
     margin: 1em 1em;
-    height: 13em;
   }
 `;
 

@@ -13,6 +13,7 @@ import {
 import {clearWL} from "../../Redux/WishList/wishlist.action";
 import { useDispatch } from 'react-redux';
 import ButtonElement from '../Elements/Button/Button';
+import {color} from "../../colors"
 
 const mapState = createStructuredSelector({
   wlItems: selectWlItems,
@@ -105,7 +106,7 @@ const ItemDiv = styled.div`
 
 const StyledLink = styled(Link)`
   color: ${(props) => props.color || 'white'};
-  background-color: ${(props) => props.bg || 'brown'};
+  background-color: ${color};
   border-radius: 35px;
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;

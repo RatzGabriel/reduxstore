@@ -64,7 +64,9 @@ function SignIn() {
             </button>
             <div>
               <div>
-                <GoogleButton onClick={handleGoogleSignIn}></GoogleButton>
+                <GoogleButton onClick={handleGoogleSignIn}>
+                  Continue with Google
+                </GoogleButton>
               </div>
             </div>
           </Form>
