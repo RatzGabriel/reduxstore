@@ -12,7 +12,7 @@ const mapState = ({ user }) => ({
   userErr: user.userErr,
 });
 
-function Registration() {
+function Registration({ darkmode }) {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,7 +55,7 @@ function Registration() {
   };
 
   return (
-    <MainDiv imgUrl={'/images/Two.jpg'}>
+    <MainDiv darkmode={darkmode} imgUrl={'/images/Two.jpg'}>
       <MediumDiv>
         <Form onSubmit={handleFormSubmit}>
           <h1>Registration:</h1>
@@ -102,7 +102,9 @@ const MainDiv = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: ${(props) => `url(${props.imgUrl})`};
+  background-image: ${(props) =>
+    props.darkmode === 'on' ? 'none' : `url(${props.imgUrl})`};
+  background-color: black;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -128,4 +130,5 @@ const GoogleImg = styled.img`
   cursor: pointer;
   height: 2rem;
   margin: 3em 0em;
+  border: 2px solid black;
 `;

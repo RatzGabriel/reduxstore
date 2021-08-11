@@ -13,7 +13,7 @@ const mapState = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
-function SignIn() {
+function SignIn({ darkmode }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -41,9 +41,9 @@ function SignIn() {
   };
   console.log(currentUser);
   return (
-    <MainDiv imgUrl={'/images/Two.jpg'}>
+    <MainDiv darkmode={darkmode} imgUrl={'/images/Two.jpg'}>
       {!currentUser && (
-        <MediumDiv>
+        <MediumDiv darkmode={darkmode}>
           <Form onSubmit={onFormSubmit} action="">
             <h1>Login:</h1>
             <FormInput
@@ -59,9 +59,9 @@ function SignIn() {
               value={password}
             ></FormInput>
 
-            <button bg={'black'} type="submit" color={'white'}>
-              Login
-            </button>
+            <ButtonLogin bg={'black'} type="submit" color={'white'}>
+              Click to Login
+            </ButtonLogin>
             <div>
               <div>
                 <GoogleButton onClick={handleGoogleSignIn}>
@@ -85,19 +85,28 @@ function SignIn() {
 
 export default SignIn;
 
+const ButtonLogin = styled.button`
+  width: 100%;
+  padding: 1em;
+  margin: 1em;
+`;
+
 const MainDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: ${(props) => `url(${props.imgUrl})`};
+  background-image: ${(props) =>
+    props.darkmode === 'on' ? 'none' : `url(${props.imgUrl})`};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: black;
 `;
 
 const MediumDiv = styled.div`
-  background-color: white;
+  background-color: ${(props) => (props.darkmode === 'on' ? 'black' : `white`)};
+  color: ${(props) => (props.darkmode === 'on' ? 'white' : `black`)};
   height: 50vh;
   display: flex;
   flex-direction: column;

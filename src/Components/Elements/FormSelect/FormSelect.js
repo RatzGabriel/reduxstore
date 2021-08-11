@@ -1,19 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import { color } from '../../../colors';
 
 const FormSelect = ({
   options,
   defaultValue,
   handleChange,
   label,
+  dm,
   ...otherProps
 }) => {
   if (!Array.isArray(options) || options.length < 1) return null;
-
+  console.log(dm);
   return (
     <FormDiv>
       {label && <label>{label}</label>}
-      <Select value={defaultValue} onChange={handleChange} {...otherProps}>
+      <Select
+        value={defaultValue}
+        onChange={handleChange}
+        {...otherProps}
+        dm={dm}
+      >
         {options.map((option, index) => {
           const { value, name } = option;
 
@@ -41,8 +48,8 @@ const Select = styled.select`
   font-weight: 600;
   min-height: 40px;
   font-size: 18px;
-  background-color: brown;
-  color: white;
+  background-color: ${(props) => (props.dm === 'on' ? 'white' : color)};
+  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
   border: none;
   outline: none;
 `;

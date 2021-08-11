@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { color } from '../../../colors';
 
 //action
 import {
@@ -10,7 +11,7 @@ import {
 } from '../../../Redux/Cart/cart.action';
 import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
 
-function Item({ product, text }) {
+function Item({ product, text, dm }) {
   const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function Item({ product, text }) {
   };
 
   return (
-    <MainDiv>
+    <MainDiv dm={dm}>
       <Left>
         <Img src={productThumbnail} alt="" />
         <ColumnDiv>
@@ -46,27 +47,31 @@ function Item({ product, text }) {
         <RowDiv>
           {text === 'wishlist' && (
             <Button
+              dm={dm}
               onClick={() => handleAddProduct(product)}
             >{`Add to Cart`}</Button>
           )}
           {text === 'cart' && (
-            <Button onClick={() => removeItem(product)}>{`-`}</Button>
+            <Button dm={dm} onClick={() => removeItem(product)}>{`-`}</Button>
           )}
           {text === 'cart' && <span>{quantity}</span>}
           {text === 'cart' && (
-            <Button onClick={() => handleAddProduct(product)}>{`+`}</Button>
+            <Button
+              dm={dm}
+              onClick={() => handleAddProduct(product)}
+            >{`+`}</Button>
           )}
         </RowDiv>
         <RowDiv>
           {text === 'cart' && (
-            <SpanSmall onClick={() => handleRemoveCartItem(documentID)}>
+            <SpanSmallRemove onClick={() => handleRemoveCartItem(documentID)}>
               Remove
-            </SpanSmall>
+            </SpanSmallRemove>
           )}
           {text === 'wishlist' && (
-            <SpanSmall onClick={() => handleRemoveWlItem(documentID)}>
+            <SpanSmallRemove onClick={() => handleRemoveWlItem(documentID)}>
               Remove
-            </SpanSmall>
+            </SpanSmallRemove>
           )}
         </RowDiv>
       </Right>
@@ -92,11 +97,16 @@ const Button = styled.button`
   display: flex;
   border: none;
   background-color: transparent;
-  color: white;
+  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
 `;
 
 const SpanSmall = styled.span`
   font-size: 0.5em;
+`;
+
+const SpanSmallRemove = styled.span`
+  font-size: 0.5em;
+  border: 1px solid black;
 `;
 const RowDiv = styled.div`
   display: flex;
@@ -113,6 +123,8 @@ const MainDiv = styled.div`
   align-items: center;
   width: 100%;
   justify-content: space-between;
+  background-color: ${(props) => (props.dm === 'on' ? 'white' : color)};
+  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
 `;
 
 const Img = styled.img`

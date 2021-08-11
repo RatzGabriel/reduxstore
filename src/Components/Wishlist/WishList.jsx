@@ -20,7 +20,7 @@ const mapState = createStructuredSelector({
   total: selectWlTotal,
 });
 
-function WishList() {
+function WishList({dm}) {
   const history = useHistory();
   const { wlItems, total } = useSelector(mapState);
   const errMsg = 'You have no items in your WishList.';
@@ -30,7 +30,7 @@ function WishList() {
     dispatch(clearWL())
   }
   return (
-    <MainMainDiv>
+    <MainMainDiv dm={dm}>
       <div>
         <Img src="./images/cart.jpeg" alt="" />
         <h1>WishList:</h1>
@@ -42,17 +42,17 @@ function WishList() {
               
               return (
                 <ItemDiv key={pos}>
-                  <Item product={item} text={"wishlist"} />
+                  <Item dm={dm}product={item} text={"wishlist"} />
                 </ItemDiv>
               );
             })}
             <BuyDiv>
               <h3>Total: £{(Math.round(total * 100) / 100).toFixed(2)}</h3>
               
-              <StyledLink onClick={() => history.goBack()}>
+              <StyledLink dm={dm}onClick={() => history.goBack()}>
                 Continue Shopping
               </StyledLink>
-              <StyledLink onClick={() => history.push('/payment')}>
+              <StyledLink dm={dm}onClick={() => history.push('/payment')}>
                 Checkout
               </StyledLink>
               <ButtonElement onClick={()=>handleClearWl()}>Clear Wishlist</ButtonElement>
@@ -75,8 +75,11 @@ width: 100%;
 const MainMainDiv = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: center;
   width: 70%;
   margin: 0 auto;
+  background-color:${props=>props.dm==="on"?"black":"white"};
+  color:${props=>props.dm==="on"?"white":"black"};
   @media(max-width:962px){
     width: 100%;
   }
@@ -87,11 +90,14 @@ const MainMainDiv = styled.div`
 const BuyDiv = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   
 `;
 
@@ -100,13 +106,13 @@ const ItemDiv = styled.div`
   margin: 1em 0em;
   display: flex;
   background-color: gray;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  width: 100%;
+  
 `;
 
 const StyledLink = styled(Link)`
-  color: ${(props) => props.color || 'white'};
-  background-color: ${color};
+  color: ${props=>props.dm==="on"?"black":"white"};
+  background-color: ${props=>props.dm==="on"?"white":color};
   border-radius: 35px;
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;

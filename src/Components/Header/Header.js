@@ -11,7 +11,7 @@ import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
 //Material Imports
 
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import './Header.css';
 import SignedOut from './SignedOut';
 import MobileMenu from './MobileMenu';
 import LoggedIn from './LoggedIn';
@@ -32,7 +32,6 @@ function Header() {
   const [darkmode, setDarkmode] = useState('off');
 
   const changeDarkMode = () => {
-    console.log(darkmode);
     if (darkmode === 'off') {
       console.log('dm off');
       setDarkmode('on');
@@ -56,7 +55,7 @@ function Header() {
   };
 
   return (
-    <MainMainDiv>
+    <MainMainDiv dm={darkmode}>
       <MobileMenu
         setStatusNavBar={setStatusNavBar}
         checkUserIsAdmin={checkUserIsAdmin}
@@ -65,20 +64,24 @@ function Header() {
       />
       <WrapDiv>
         <LogoDiv>
-          <button onClick={() => changeDarkMode()}>Darkmode</button>
+          <label class="switch">
+            <input type="checkbox" />
+            <span onClick={() => changeDarkMode()} class="slider"></span>
+          </label>
+
           <StyledLinkLogoImage to="/">
             <LogoImg src={'/images/Two.jpg'} alt="logo image" />
           </StyledLinkLogoImage>
           <ShopNameDiv>
-            <LogoTextUpper>Machua</LogoTextUpper>
-            <LogoTextLower>Peru</LogoTextLower>
+            <LogoTextUpper dm={darkmode}>Machua</LogoTextUpper>
+            <LogoTextLower dm={darkmode}>Peru</LogoTextLower>
           </ShopNameDiv>
         </LogoDiv>
         <BurgerDiv>
           <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
-            <BarOne statusNavBar={statusNavBar}></BarOne>
-            <BarTwo statusNavBar={statusNavBar}></BarTwo>
-            <BarThree statusNavBar={statusNavBar}></BarThree>
+            <BarOne dm={darkmode} statusNavBar={statusNavBar}></BarOne>
+            <BarTwo dm={darkmode} statusNavBar={statusNavBar}></BarTwo>
+            <BarThree dm={darkmode} statusNavBar={statusNavBar}></BarThree>
           </BurgerDivMain>
         </BurgerDiv>
         <HeaderDivs>
@@ -109,7 +112,7 @@ export default Header;
 const BarOne = styled.div`
   width: 2rem;
   height: 0.25rem;
-  background: #333b54;
+  background: ${(props) => (props.dm === 'on' ? 'white' : '#333b54')};
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -119,7 +122,8 @@ const BarOne = styled.div`
 const BarTwo = styled.div`
   width: 2rem;
   height: 0.25rem;
-  background: #333b54;
+  background: ${(props) => (props.dm === 'on' ? 'white' : '#333b54')};
+
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -131,7 +135,7 @@ const BarTwo = styled.div`
 const BarThree = styled.div`
   width: 2rem;
   height: 0.25rem;
-  background: #333b54;
+  background: ${(props) => (props.dm === 'on' ? 'white' : '#333b54')};
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -144,9 +148,11 @@ const MainMainDiv = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  color: white;
   height: 10vh;
   z-index: 999;
+  border: none;
 `;
 
 const WrapDiv = styled.div`
@@ -201,13 +207,13 @@ const ShopNameDiv = styled.div`
 const LogoTextLower = styled.p`
   font-family: 'Dancing Script', cursive;
   font-weight: 800;
-  color: black;
+  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
   margin: 0;
 `;
 const LogoTextUpper = styled.p`
   font-family: 'Dancing Script', cursive;
   font-weight: 400;
-  color: black;
+  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
   margin: 0;
 `;
 
@@ -246,7 +252,6 @@ const BurgerDiv = styled.div`
 
 const BurgerDivMain = styled.div`
   display: none;
-
   @media (max-width: 962px) {
     display: flex;
     flex-direction: column;
@@ -259,20 +264,3 @@ const BurgerDivMain = styled.div`
     top: 20px;
   }
 `;
-
-const BurgerDivLine = styled.div`
-  width: 25px;
-  height: 3px;
-  background-color: black;
-  margin: 3px;
-  z-index: 999;
-`;
-
-/* <HeaderDivs>
-        <NavItem itemName={'Vase'}>
-          <DropdownMenu />
-        </NavItem>
-        <NavItem itemName={'andere'}>
-          <DropdownMenu />
-        </NavItem>
-      </HeaderDivs> */

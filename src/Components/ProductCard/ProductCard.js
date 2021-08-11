@@ -13,10 +13,13 @@ import {
 
 const mapState = (state) => ({
   product: state.productsData.product,
+  darkmodeFromState: state.darkmode,
 });
 
 function ProductCard() {
-  const { product } = useSelector(mapState);
+  const { product, darkmodeFromState } = useSelector(mapState);
+  const darkmode = darkmodeFromState.darkmode;
+  console.log('check it', darkmode);
   const dispatch = useDispatch();
   const { productID } = useParams();
   const { productName, productThumbnail, productPrice, productDescription } =
@@ -31,7 +34,7 @@ function ProductCard() {
   }, []);
 
   return (
-    <MainDiv>
+    <MainDiv dm={darkmode}>
       <Testing>
         <Carousel infiniteLoop={true} showStatus={false} showArrows={false}>
           {Array.isArray(product.thumbnailArray) &&
@@ -126,9 +129,10 @@ const MainDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
   @media (max-width: 962px) {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     padding-top: 8em;
   }

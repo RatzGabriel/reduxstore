@@ -17,7 +17,7 @@ const mapState = createStructuredSelector({
   total: selectWlTotal,
 });
 
-function Product({ product, pt, pb, wd, height, pPrice }) {
+function Product({ product, pt, pb, wd, height, pPrice, dm }) {
   const dispatch = useDispatch();
 
   const { productThumbnail, productName, productPrice, documentID } = product;
@@ -213,6 +213,7 @@ const NewMainDiv = styled.div`
   display: flex;
   width: 30%;
   justify-content: space-around;
+
   @media (max-width: 962px) {
     width: 40%;
   }

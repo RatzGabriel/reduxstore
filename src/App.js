@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Rosa from 'react-on-scroll-animation';
 //Pages
@@ -24,14 +24,21 @@ import WithAdminAuth from './hoc/withAdminAuth';
 import AdminLayout from './Layouts/AdminLayout';
 import DashBoardLayout from './Layouts/DashboardLayout';
 import Directory from './Components/Directory/Directory';
+import ProductResults from './Components/ProductsResults/ProductsResults';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
+  darkmodefromState: state.darkmode,
 });
 
 const App = () => {
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, darkmodefromState } = useSelector(mapState);
+  const [darkmode, setDarkmode] = useState('off');
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setDarkmode(darkmodefromState.darkmode);
+  }, [darkmodefromState]);
 
   useEffect(() => {
     dispatch(checkUserSession());
@@ -42,8 +49,11 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" render={() => <Directory />} />
-        <Route path="/registration" render={() => <Registration />} />
-        <Route path="/signIn" render={() => <SignIn />} />
+        <Route
+          path="/registration"
+          render={() => <Registration darkmode={darkmode} />}
+        />
+        <Route path="/signIn" render={() => <SignIn darkmode={darkmode} />} />
         <Route path="/forgotPassword">
           <FortgotPassword />
         </Route>
@@ -55,7 +65,7 @@ const App = () => {
           </WithAdminAuth>
         </Route>
         <Route exact path="/search">
-          <Search />
+          <ProductResults darkmode={darkmode} />
         </Route>
         <Route path="/search/:filterType">
           <Search />
@@ -64,10 +74,10 @@ const App = () => {
           <ProductDetails />
         </Route>
         <Route path="/cart">
-          <Cart />
+          <Cart dm={darkmode} />
         </Route>
         <Route path="/wishlist">
-          <WishList />
+          <WishList dm={darkmode} />
         </Route>
         <Route path="/payment">
           {currentUser && <Payment></Payment>}
@@ -90,7 +100,7 @@ const App = () => {
         </Route>
       </Switch>
 
-      <Footer />
+      <Footer darkmode={darkmode} />
     </div>
   );
 };

@@ -17,14 +17,15 @@ const mapState = createStructuredSelector({
   total: selectCartTotal,
 });
 
-function Checkout() {
+function Checkout({ dm }) {
   const history = useHistory();
   const { cartItems, total } = useSelector(mapState);
   const errMsg = 'You have no items in your cart.';
   return (
-    <MainMainDiv>
+    <MainMainDiv dm={dm}>
       <div>
         <MainImg src="./images/cart.jpeg" alt="" />
+        <h1>Cart:</h1>
       </div>
       <div>
         {cartItems.length > 0 ? (
@@ -32,16 +33,16 @@ function Checkout() {
             {cartItems.map((item, pos) => {
               return (
                 <ItemDiv key={pos}>
-                  <Item product={item} text={'cart'} />
+                  <Item dm={dm} product={item} text={'cart'} />
                 </ItemDiv>
               );
             })}
             <BuyDiv>
               <h1>Total: {(Math.round(total * 100) / 100).toFixed(2)}</h1>
-              <StyledLink onClick={() => history.goBack()}>
+              <StyledLink dm={dm} onClick={() => history.goBack()}>
                 Continue Shopping
               </StyledLink>
-              <StyledLink onClick={() => history.push('/payment')}>
+              <StyledLink dm={dm} onClick={() => history.push('/payment')}>
                 Checkout
               </StyledLink>
             </BuyDiv>
@@ -64,13 +65,17 @@ const MainImg = styled.img`
 const MainMainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  text-align: center;
+  width: 100%;
   margin: 0 auto;
+  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
 `;
 
 const BuyDiv = styled.div`
   display: flex;
   flex-direction: column;
+  align-self: center;
 `;
 
 const MainDiv = styled.div`
@@ -92,8 +97,8 @@ const ItemDiv = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: ${(props) => props.color || 'white'};
-  background-color: ${color};
+  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  background-color: ${(props) => (props.dm === 'on' ? 'white' : color)};
   border-radius: 35px;
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;

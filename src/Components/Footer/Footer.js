@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-function Footer() {
+function Footer({ darkmode }) {
+  const dm = darkmode;
   return (
-    <MainDiv>
+    <MainDiv dm={dm}>
       <LogoDiv>
         <LogoImg src={'/images/Two.jpg'} alt="logo image" />
         <ShopNameDiv>
@@ -14,18 +15,22 @@ function Footer() {
       </LogoDiv>
       <ColumnTextDiv>
         <h1>Company</h1>
-        <LinkElement adress="/">
+        <LinkElement dm={dm} adress="/">
           <p>Home</p>
         </LinkElement>
-        <LinkElement>
+        <LinkElement dm={dm}>
           <p>About us</p>
         </LinkElement>
-        <LinkElement>Contact us</LinkElement>
+        <LinkElement dm={dm}>Contact us</LinkElement>
       </ColumnTextDiv>
       <ColumnTextDiv>
         <h1>Contact</h1>
-        <A href="tel:+499123456789">Call Us</A>
-        <A href="mailto:gabrielratz84@gmail.com">Mail us</A>
+        <A dm={dm} href="tel:+499123456789">
+          Call Us
+        </A>
+        <A dm={dm} href="mailto:gabrielratz84@gmail.com">
+          Mail us
+        </A>
       </ColumnTextDiv>
       <ColumnTextDiv>
         <h1>Adress</h1>
@@ -41,7 +46,8 @@ export default Footer;
 
 const A = styled.a`
   text-decoration: none;
-  color: brown;
+  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
 `;
 
 const ColumnTextDiv = styled.div`
@@ -60,6 +66,8 @@ const MainDiv = styled.div`
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
+  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
   @media (max-width: 962px) {
   }
 `;
@@ -102,5 +110,5 @@ const LogoTextUpper = styled.p`
 
 const LinkElement = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
 `;

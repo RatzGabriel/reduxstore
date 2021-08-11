@@ -7,15 +7,17 @@ import styled from 'styled-components';
 import Product from './Product/Product';
 import FormSelect from '../Elements/FormSelect/FormSelect';
 
-const mapState = ({ productsData }) => ({
+const mapState = ({ productsData, darkmode }) => ({
   products: productsData.products,
+  darkmodefromState: darkmode,
 });
 
 const ProductResults = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { filterType } = useParams();
-  const { products } = useSelector(mapState);
+  const { products, darkmodefromState } = useSelector(mapState);
+  let darkmode = darkmodefromState.darkmode;
 
   const { data } = products;
 
@@ -61,9 +63,9 @@ const ProductResults = () => {
   };
 
   return (
-    <Div1>
+    <Div1 dm={darkmode}>
       <TextDiv>
-        <FormSelect {...configFilters} />
+        <FormSelect {...configFilters} dm={darkmode} />
       </TextDiv>
       <InnerDiv>
         {data.map((item) => {
@@ -97,6 +99,7 @@ const Div1 = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
 
   @media (max-width: 962px) {
     width: 100%;

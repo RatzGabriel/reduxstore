@@ -76,7 +76,7 @@ function Directory() {
             </SmallDiv>
           </ImageRowDiv>
         </MiddleDiv>
-        <BestSellerDiv>
+        <BestSellerDiv dm={darkmode}>
           <BestsellerTitleDiv>
             <P>Best Selling</P>
             <H1>Best Seller products</H1>
@@ -266,12 +266,7 @@ const Img = styled.img`
 `;
 
 const BestSellerDiv = styled.div`
-  background: linear-gradient(
-    183deg,
-    rgb(114, 114, 114) 0%,
-    rgb(197, 197, 197) 46%,
-    rgb(114, 114, 114) 100%
-  );
+  background: ${(props) => (props.dm === 'on' ? 'black' : 'lightblue')};
   width: 70%;
   margin: 0 auto;
   @media (max-width: 960px) {
