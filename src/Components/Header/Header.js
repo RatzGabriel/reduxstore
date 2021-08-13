@@ -26,18 +26,16 @@ const mapState = (state) => ({
 function Header() {
   const { currentUser, totalNumCartItems, darkmodefromState } =
     useSelector(mapState);
-  console.log('>>>>>', darkmodefromState);
+
   const [statusNavBar, setStatusNavBar] = useState(false);
   const dispatch = useDispatch();
   const [darkmode, setDarkmode] = useState('off');
 
   const changeDarkMode = () => {
     if (darkmode === 'off') {
-      console.log('dm off');
       setDarkmode('on');
     }
     if (darkmode === 'on') {
-      console.log('dm on');
       setDarkmode('off');
     }
   };
@@ -61,6 +59,7 @@ function Header() {
         checkUserIsAdmin={checkUserIsAdmin}
         currentUser={currentUser}
         statusNavBar={statusNavBar}
+        dm={darkmodefromState}
       />
       <WrapDiv>
         <LogoDiv>

@@ -19,13 +19,8 @@ const mapState = ({ productsData, darkmode }) => ({
 
 function Directory() {
   const { products, darkmodefromState } = useSelector(mapState);
-
   const dispatch = useDispatch();
-  const [darkmode, setDarkmode] = useState('off');
-
-  useEffect(() => {
-    setDarkmode(darkmodefromState.darkmode);
-  }, [darkmodefromState]);
+  const darkmode = darkmodefromState.darkmode;
 
   useEffect(() => {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
@@ -266,7 +261,7 @@ const Img = styled.img`
 `;
 
 const BestSellerDiv = styled.div`
-  background: ${(props) => (props.dm === 'on' ? 'black' : 'lightblue')};
+  background: ${(props) => (props.dm === 'on' ? 'black' : color)};
   width: 70%;
   margin: 0 auto;
   @media (max-width: 960px) {

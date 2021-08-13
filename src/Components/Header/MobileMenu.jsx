@@ -6,12 +6,14 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link} from "react-router-dom";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import {color} from "../../colors"
 
 
 
-function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar}) {
+function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,dm}) {
+  
   return (
-    <Nav statusNavBar={statusNavBar}>
+    <Nav statusNavBar={statusNavBar} dm={dm.darkmode}>
             <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
               <div>
                 <HomeIcon></HomeIcon>
@@ -79,7 +81,7 @@ const Nav = styled.nav`
  width: ${props=>props.statusNavBar?"100%":"30%"};
  display: flex;
  flex-direction: column;
- background-color: black;
+ background-color: ${props=>props.dm==="on"?"black":color};
  align-items: center;
  justify-content: center;
  position: fixed;
