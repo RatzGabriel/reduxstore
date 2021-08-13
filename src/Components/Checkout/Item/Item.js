@@ -97,7 +97,7 @@ const Button = styled.button`
   display: flex;
   border: none;
   background-color: transparent;
-  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  color: ${(props) => (props.dm ? 'black' : 'white')};
 `;
 
 const SpanSmall = styled.span`
@@ -123,8 +123,8 @@ const MainDiv = styled.div`
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  background-color: ${(props) => (props.dm === 'on' ? 'white' : color)};
-  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  background-color: ${(props) => (props.dm ? 'white' : color)};
+  color: ${(props) => (props.dm ? 'black' : 'white')};
 `;
 
 const Img = styled.img`

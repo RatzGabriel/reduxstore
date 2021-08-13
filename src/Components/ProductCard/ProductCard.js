@@ -19,11 +19,9 @@ const mapState = (state) => ({
 function ProductCard() {
   const { product, darkmodeFromState } = useSelector(mapState);
   const darkmode = darkmodeFromState.darkmode;
-  console.log('check it', darkmode);
   const dispatch = useDispatch();
   const { productID } = useParams();
-  const { productName, productThumbnail, productPrice, productDescription } =
-    product;
+  const { productName, productPrice, productDescription } = product;
 
   useEffect(() => {
     dispatch(fetchProductStart(productID));
@@ -129,8 +127,8 @@ const MainDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
-  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
   @media (max-width: 962px) {
     width: 100%;
     margin: 0 auto;

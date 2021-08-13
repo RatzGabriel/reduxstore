@@ -182,8 +182,8 @@ const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
-  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
   @media (max-width: 960px) {
   }
 `;
@@ -261,7 +261,7 @@ const Img = styled.img`
 `;
 
 const BestSellerDiv = styled.div`
-  background: ${(props) => (props.dm === 'on' ? 'black' : color)};
+  background: ${(props) => (props.dm ? 'black' : color)};
   width: 70%;
   margin: 0 auto;
   @media (max-width: 960px) {

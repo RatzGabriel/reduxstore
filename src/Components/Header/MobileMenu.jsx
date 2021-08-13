@@ -81,7 +81,7 @@ const Nav = styled.nav`
  width: ${props=>props.statusNavBar?"100%":"30%"};
  display: flex;
  flex-direction: column;
- background-color: ${props=>props.dm==="on"?"black":color};
+ background-color: ${props=>props.dm?"black":color};
  align-items: center;
  justify-content: center;
  position: fixed;

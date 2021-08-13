@@ -78,8 +78,8 @@ const MainMainDiv = styled.div`
   text-align: center;
   width: 70%;
   margin: 0 auto;
-  background-color:${props=>props.dm==="on"?"black":"white"};
-  color:${props=>props.dm==="on"?"white":"black"};
+  background-color:${props=>props.dm?"black":"white"};
+  color:${props=>props.dm?"white":"black"};
   @media(max-width:962px){
     width: 100%;
   }
@@ -111,8 +111,8 @@ const ItemDiv = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: ${props=>props.dm==="on"?"black":"white"};
-  background-color: ${props=>props.dm==="on"?"white":color};
+  color: ${props=>props.dm?"black":"white"};
+  background-color: ${props=>props.dm?"white":color};
   border-radius: 35px;
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;

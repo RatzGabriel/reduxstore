@@ -46,8 +46,8 @@ export default Footer;
 
 const A = styled.a`
   text-decoration: none;
-  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
-  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
 `;
 
 const ColumnTextDiv = styled.div`
@@ -66,8 +66,8 @@ const MainDiv = styled.div`
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
-  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
   @media (max-width: 962px) {
   }
 `;
@@ -110,5 +110,5 @@ const LogoTextUpper = styled.p`
 
 const LinkElement = styled(Link)`
   text-decoration: none;
-  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
 `;

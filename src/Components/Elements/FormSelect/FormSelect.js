@@ -48,8 +48,8 @@ const Select = styled.select`
   font-weight: 600;
   min-height: 40px;
   font-size: 18px;
-  background-color: ${(props) => (props.dm === 'on' ? 'white' : color)};
-  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  background-color: ${(props) => (props.dm ? 'white' : color)};
+  color: ${(props) => (props.dm ? 'black' : 'white')};
   border: none;
   outline: none;
 `;

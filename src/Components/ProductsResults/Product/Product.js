@@ -17,7 +17,7 @@ const mapState = createStructuredSelector({
   total: selectWlTotal,
 });
 
-function Product({ product, pt, pb, wd, height, pPrice, dm }) {
+function Product({ product, pt, pb, wd, height, pPrice }) {
   const dispatch = useDispatch();
 
   const { productThumbnail, productName, productPrice, documentID } = product;

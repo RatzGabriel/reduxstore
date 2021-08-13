@@ -9,11 +9,8 @@ const mapState = ({ darkmode }) => ({
 
 const ButtonElement = ({ children, ...otherProps }) => {
   const { darkmodefromState } = useSelector(mapState);
-  const [darkmode, setDarkmode] = useState('off');
 
-  useEffect(() => {
-    setDarkmode(darkmodefromState.darkmode);
-  }, [darkmodefromState]);
+  const darkmode = darkmodefromState.darkmode;
 
   return (
     <ButtonStyle {...otherProps} dm={darkmode}>
@@ -23,8 +20,8 @@ const ButtonElement = ({ children, ...otherProps }) => {
 };
 
 const ButtonStyle = styled.button`
-  color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
-  background-color: ${(props) => (props.dm === 'on' ? 'white' : color)};
+  color: ${(props) => (props.dm ? 'black' : 'white')};
+  background-color: ${(props) => (props.dm ? 'white' : color)};
   padding: 1em 1em;
   margin: 0em 0em;
   border-radius: 35px;

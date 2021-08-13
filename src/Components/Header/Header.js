@@ -29,16 +29,7 @@ function Header() {
 
   const [statusNavBar, setStatusNavBar] = useState(false);
   const dispatch = useDispatch();
-  const [darkmode, setDarkmode] = useState('off');
-
-  const changeDarkMode = () => {
-    if (darkmode === 'off') {
-      setDarkmode('on');
-    }
-    if (darkmode === 'on') {
-      setDarkmode('off');
-    }
-  };
+  const [darkmode, setDarkmode] = useState(false);
 
   useEffect(() => {
     dispatch(darkMode(darkmode));
@@ -65,7 +56,7 @@ function Header() {
         <LogoDiv>
           <label class="switch">
             <input type="checkbox" />
-            <span onClick={() => changeDarkMode()} class="slider"></span>
+            <span onClick={() => setDarkmode(!darkmode)} class="slider"></span>
           </label>
 
           <StyledLinkLogoImage to="/">
@@ -111,7 +102,7 @@ export default Header;
 const BarOne = styled.div`
   width: 2rem;
   height: 0.25rem;
-  background: ${(props) => (props.dm === 'on' ? 'white' : '#333b54')};
+  background: ${(props) => (props.dm ? 'white' : '#333b54')};
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -121,7 +112,7 @@ const BarOne = styled.div`
 const BarTwo = styled.div`
   width: 2rem;
   height: 0.25rem;
-  background: ${(props) => (props.dm === 'on' ? 'white' : '#333b54')};
+  background: ${(props) => (props.dm ? 'white' : '#333b54')};
 
   border-radius: 10px;
   transition: all 0.3s linear;
@@ -134,7 +125,7 @@ const BarTwo = styled.div`
 const BarThree = styled.div`
   width: 2rem;
   height: 0.25rem;
-  background: ${(props) => (props.dm === 'on' ? 'white' : '#333b54')};
+  background: ${(props) => (props.dm ? 'white' : '#333b54')};
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -147,7 +138,7 @@ const MainMainDiv = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
   color: white;
   height: 10vh;
   z-index: 999;
@@ -206,13 +197,13 @@ const ShopNameDiv = styled.div`
 const LogoTextLower = styled.p`
   font-family: 'Dancing Script', cursive;
   font-weight: 800;
-  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
   margin: 0;
 `;
 const LogoTextUpper = styled.p`
   font-family: 'Dancing Script', cursive;
   font-weight: 400;
-  color: ${(props) => (props.dm === 'on' ? 'white' : 'black')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
   margin: 0;
 `;
 

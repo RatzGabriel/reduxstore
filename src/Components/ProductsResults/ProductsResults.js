@@ -99,7 +99,7 @@ const Div1 = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  background-color: ${(props) => (props.dm === 'on' ? 'black' : 'white')};
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
 
   @media (max-width: 962px) {
     width: 100%;

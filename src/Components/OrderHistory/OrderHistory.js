@@ -43,7 +43,6 @@ const formatText = (columnName, columnValue) => {
 };
 
 function OrderHistory({ orders }) {
-  console.log('orders', orders);
   const history = useHistory();
   return (
     <div>
