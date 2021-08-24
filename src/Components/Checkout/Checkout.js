@@ -96,6 +96,7 @@ const ItemDiv = styled.div`
   border-bottom: 1px solid black;
 `;
 console.log('test');
+console.log('test2');
 const StyledLink = styled(Link)`
   color: ${(props) => (props.dm ? 'black' : 'white')};
   background-color: ${(props) => (props.dm ? 'white' : color)};
