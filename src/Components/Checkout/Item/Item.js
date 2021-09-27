@@ -31,7 +31,7 @@ function Item({ product, text, dm }) {
   const removeItem = (reduceCartIt) => {
     dispatch(reduceCartItem(reduceCartIt));
   };
-  console.log('testing');
+  console.log('test');
 
   return (
     <MainDiv dm={dm}>
