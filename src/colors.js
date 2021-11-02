@@ -1,4 +1,4 @@
-let color = 'rgb(63, 105, 93)';
+let color = 'rgb(47, 48, 97)';
 
 let darkmode = 'black';
 
