@@ -32,6 +32,7 @@ const mapState = (state) => ({
 });
 
 const App = () => {
+  console.log('app');
   const { currentUser, darkmodefromState } = useSelector(mapState);
   const [darkmode, setDarkmode] = useState('off');
   const dispatch = useDispatch();
