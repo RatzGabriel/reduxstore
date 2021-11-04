@@ -23,14 +23,12 @@ const ButtonStyle = styled.button`
   color: ${(props) => (props.dm ? 'black' : 'white')};
   background-color: ${(props) => (props.dm ? 'white' : color)};
   padding: 1em 1em;
-  margin: 0em 0em;
-  border-radius: 35px;
+  margin: 1em 0em;
   border: none;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  width: 10em;
-  margin: 3em 0em;
+  width: 13em;
   @media (max-width: 768px) {
     font-size: 1em;
   }

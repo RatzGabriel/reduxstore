@@ -11,6 +11,8 @@ import HeaderTextComponent from './HeaderTextComponent';
 import MainPageImage from './MainPageImage';
 import ButtonElement from '../Elements/Button/Button';
 import { color } from '../../colors';
+import ImageRow from './ImageRow';
+import Bestseller from './Bestseller';
 
 const mapState = ({ productsData, darkmode }) => ({
   products: productsData.products,
@@ -34,45 +36,17 @@ function Directory() {
         {Array.isArray(data) && data.length > 0 && (
           <MainPageImage data={data} />
         )}
-
-        <DeskTopDivMain>
-          <DesktopImg src="/images/18.jpeg" alt="" />
-        </DeskTopDivMain>
-        <Link to="/search">
-          <ButtonElement adress="search">See all products</ButtonElement>
-        </Link>
-        <RoundLinkDiv>
-          <RoundLink bg={'/images/2.jpeg'} to="/search/vasen">
-            Vasen
-          </RoundLink>
-          <RoundLink bg={'/images/8.jpeg'} to="/search/andere">
-            Andere
-          </RoundLink>
-        </RoundLinkDiv>
         <MiddleDiv>
           <HeaderTextComponent
-            headerText="Our Services"
-            title="We produce tiny Ceramic"
-            text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci nesciunt in accusamus eaque nam consectetur numquam magnam doloremque ad.  ."
+            headerText="Our Service"
+            title="We produce tiny Ceramic items"
+            text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci emque ad.  ."
           />
-
-          <Link to="/search">
-            <ButtonElement adress="search">Read More</ButtonElement>
-          </Link>
-          <ImageRowDiv>
-            <SmallDiv>
-              <Img src={'/images/Two.jpg'} alt="" />
-            </SmallDiv>
-            <SmallDiv>
-              <Img pt={'7em'} src={'/images/Two.jpg'} alt="" />
-            </SmallDiv>
-            <SmallDiv>
-              <Img src={'/images/5.jpeg'} alt="" />
-            </SmallDiv>
-          </ImageRowDiv>
+          <ImageRow />
         </MiddleDiv>
         <BestSellerDiv dm={darkmode}>
-          <BestsellerTitleDiv>
+          <Bestseller />
+          {/* <BestsellerTitleDiv>
             <P>Best Selling</P>
             <H1>Best Seller products</H1>
           </BestsellerTitleDiv>
@@ -99,9 +73,9 @@ function Directory() {
             <Link to="/search">
               <ButtonElement adress="search">Go To Shop</ButtonElement>
             </Link>
-          </ButtonDiv>
+          </ButtonDiv> */}
         </BestSellerDiv>
-        <MiddleDiv>
+        {/* <MiddleDiv>
           <HeaderTextComponent
             headerText="About Us"
             title="An Exceptionally Unique Experience Tailored To You"
@@ -118,13 +92,13 @@ function Directory() {
             <HideImgOnMobile src={'/images/Two.jpg'} alt="" />
           </div>
           <InformationText />
-        </MiddleDiv>
-        <MiddleDiv>
+        </MiddleDiv> */}
+        {/* <MiddleDiv>
           <HeaderTextComponent
             title="Meet The Minds Shaping An Industry"
             headerText="Our Team"
           />
-        </MiddleDiv>
+        </MiddleDiv> */}
 
         <MindShapingDiv>
           <MindShapingImg src={'/images/ceramic.jpg'} alt="Elon Musk" />
@@ -215,14 +189,10 @@ const MainWrapper = styled.div`
 `;
 
 const MiddleDiv = styled.div`
-  width: 90%;
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
   flex-direction: column;
-  text-align: center;
   @media (max-width: 960px) {
     height: 100%;
   }
@@ -238,30 +208,8 @@ const ImageRowDiv = styled.div`
   }
 `;
 
-const SmallDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  align-items: center;
-  width: 20%;
-
-  @media (max-width: 960px) {
-    display: none;
-  }
-`;
-const Img = styled.img`
-  height: ${(props) => props.height || '60%'};
-  margin-top: ${(props) => props.pt || 0};
-  width: 100%;
-  padding: 0em 1em;
-  @media (max-width: 960px) {
-    padding-bottom: 1em;
-    margin-top: 0;
-  }
-`;
-
 const BestSellerDiv = styled.div`
-  background: ${(props) => (props.dm ? 'black' : color)};
+  background: ${(props) => (props.dm ? 'black' : 'white')};
   width: 70%;
   margin: 0 auto;
   @media (max-width: 960px) {

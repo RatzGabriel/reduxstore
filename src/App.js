@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Rosa from 'react-on-scroll-animation';
+
 //Pages
 import Admin from './Pages/Admin/Admin';
 import Cart from './Pages/Cart/Cart';
@@ -32,7 +32,6 @@ const mapState = (state) => ({
 });
 
 const App = () => {
-  console.log('app');
   const { currentUser, darkmodefromState } = useSelector(mapState);
   const [darkmode, setDarkmode] = useState('off');
   const dispatch = useDispatch();

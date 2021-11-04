@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
@@ -10,31 +11,31 @@ function MainPageImage({ data }) {
     <HideOnDesktopDiv>
       <Carousel
         showArrows={false}
-        showThumbs={true}
+        showThumbs={false}
         infiniteLoop={true}
         showStatus={false}
-        onClickItem={(index) =>
-          history.push(`/product/${data[index].documentID}`)
-        }
+        onClickItem={(index) => history.push(`/search`)}
       >
-        {data[0] !== undefined && (
-          <img src={'/images/tiny1.jpg'} alt={data[0].productName} />
-        )}
-        {data[1] !== undefined && (
-          <img src={'/images/tiny2.jpg'} alt={data[1].productName} />
-        )}
-        {data[2] !== undefined && (
-          <img src={'/images/tiny3.jpg'} alt={data[2].productName} />
-        )}
-        {data[2] !== undefined && (
-          <img src={'/images/tiny3.jpg'} alt={data[2].productName} />
-        )}
-        {data[2] !== undefined && (
-          <img src={'/images/tiny3.jpg'} alt={data[2].productName} />
-        )}
-        {data[2] !== undefined && (
-          <img src={'/images/tiny3.jpg'} alt={data[2].productName} />
-        )}
+        <Div>
+          {data[0] !== undefined && (
+            <Img src={'/images/ceramic.jpg'} alt={data[0].productName} />
+          )}
+          <Link to="/search">
+            <Button>
+              <ButtonText>Store</ButtonText>
+            </Button>
+          </Link>
+        </Div>
+        <Div>
+          {data[0] !== undefined && (
+            <Img src={'/images/27.jpeg'} alt={data[0].productName} />
+          )}
+          <Link to="/search">
+            <Button>
+              <ButtonText>About Us</ButtonText>
+            </Button>
+          </Link>
+        </Div>
       </Carousel>
     </HideOnDesktopDiv>
   );
@@ -47,4 +48,32 @@ const HideOnDesktopDiv = styled.div`
   @media (min-width: 962px) {
     display: none;
   }
+`;
+
+const ButtonText = styled.p`
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  margin: 0;
+`;
+
+const Img = styled.img`
+  height: 90vh;
+`;
+
+const Div = styled.div`
+  position: relative;
+`;
+
+const Button = styled.button`
+  position: absolute;
+  width: 196px;
+  height: 74px;
+  left: 82px;
+  top: 28rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
