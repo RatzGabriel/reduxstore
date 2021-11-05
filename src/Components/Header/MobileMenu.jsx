@@ -15,68 +15,91 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,d
   return (
     <Nav statusNavBar={statusNavBar} dm={dm.darkmode}>
             <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
-              <div>
+              <DivInner>
                 <HomeIcon></HomeIcon>
-                <p>Home</p>
-              </div>
+                <PTextMenu>Home</PTextMenu>
+              </DivInner>
             </StyledMobileLinks>
-            {checkUserIsAdmin(currentUser) && (
+            {/* {checkUserIsAdmin(currentUser) && (
               <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/admin">Admin</StyledMobileLinks>
-            )}
+            )} */}
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/search"
             >
-              <div>
+              <DivInner>
                 <StorefrontIcon />
-                <p>Shop</p>
-              </div>
+                <PTextMenu>Shop</PTextMenu>
+              </DivInner>
             </StyledMobileLinks>
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/registration"
             >
-              <div>
+              <DivInner>
                 <VpnKeyIcon />
-                <p>Registration</p>
-              </div>
+                <PTextMenu>Darkmode</PTextMenu>
+              </DivInner>
             </StyledMobileLinks>
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/signIn"
             >
-              <div>
+              <DivInner>
               <VpnKeyIcon />
-                <p>Sign In</p>
-              </div>
+                <PTextMenu>Sign In</PTextMenu>
+              </DivInner>
             </StyledMobileLinks>
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/wishlist"
             >
-              <div>
+              <DivInner>
                 <FavoriteBorderIcon />
-                <p>Wishlist</p>
-              </div>
+                <PTextMenu>Wishlist</PTextMenu>
+              </DivInner>
             </StyledMobileLinks>
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/cart"
             >
-              <div>
+              <DivInner>
                 <ShoppingCartIcon />
-                <p>Cart</p>
-              </div>
+                <PTextMenu>Cart</PTextMenu>
+              </DivInner>
             </StyledMobileLinks>
           </Nav>
   )
 }
 
+
+
 export default MobileMenu
+
+const PTextMenu=styled.p`
+font-family: abel;
+font-size: 18px;
+font-weight: lighter;
+
+
+`
+
+const DivInner=styled.div`
+display: flex;
+justify-content: space-between;
+border-bottom: 1px solid white;
+width: 80%;
+margin-left: 1em;
+
+
+
+
+`
 
 
 const Nav = styled.nav`
  transition: opacity 0.75s, visibility 0.75s, width 0.75s;
+ 
  z-index:1;
  width: ${props=>props.statusNavBar?"100%":"30%"};
  display: flex;
@@ -98,14 +121,14 @@ const Nav = styled.nav`
 const StyledMobileLinks = styled(Link)`
   @media (max-width: 962px) {
    width: 100%;
-   text-align: center;
    text-decoration: none;
    font-size: 2rem;
    color: white;
    font-weight: 600;
    padding: 0.5rem;
    border-radius: 3px;
-   margin: 0 0.5rem;
+   
+   
   }
 `;
 

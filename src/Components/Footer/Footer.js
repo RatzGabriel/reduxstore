@@ -43,7 +43,7 @@ function Footer({ darkmode }) {
         <AccountBalanceIcon />
       </DivPayment>
       <DivDisclaimer>
-        <p>Copyright 2021 Machua Peru All Rights reserved</p>
+        <p>Copyright 2021 Machua Peru All Rights reserved</p>
       </DivDisclaimer>
     </DivMain>
   );
@@ -55,7 +55,7 @@ const DivDisclaimer = styled.div`
   color: white;
   margin-left: 2em;
   width: 70%;
-  padding-bottom: 1em;
+  padding-bottom: 3em;
 `;
 
 const DivPayment = styled.div`
@@ -75,7 +75,6 @@ const LinkElement = styled(Link)`
 const DivMain = styled.div`
   background-color: ${(props) => props.color};
   height: 90vh;
-  margin-top: 5em;
 `;
 
 const ALinks = styled.a`

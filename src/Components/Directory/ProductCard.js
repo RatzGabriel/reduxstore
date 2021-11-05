@@ -23,7 +23,7 @@ export default ProductCard;
 
 const ProductCardDiv = styled.div`
   display: flex;
-  height: 10rem;
+  height: 9rem;
   color: white;
   text-align: left;
   background-color: ${(props) => props.color};

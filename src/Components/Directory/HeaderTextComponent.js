@@ -33,9 +33,9 @@ function HeaderTextComponent({
 export default HeaderTextComponent;
 
 const BannerImg = styled.img`
-  height: 10rem;
+  height: 8rem;
   width: 100%;
-  margin: 4em 0 0em 0em;
+  margin: 0em 0 0em 0em;
 `;
 
 const SmallImageDiv = styled.div`

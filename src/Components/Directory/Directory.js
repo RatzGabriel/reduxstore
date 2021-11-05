@@ -36,7 +36,7 @@ function Directory() {
   return (
     <MainDiv dm={darkmode}>
       <MainWrapper>
-        <ReactPageScroller>
+        <ReactPageScroller animationTimer={400}>
           {Array.isArray(data) && data.length > 0 && (
             <MainPageImage data={data} />
           )}
@@ -172,11 +172,11 @@ const ImageRowDiv = styled.div`
 
 const BestSellerDiv = styled.div`
   background: ${(props) => (props.dm ? 'black' : 'white')};
-  width: 70%;
   margin: 0 auto;
   @media (max-width: 960px) {
     text-align: center;
     width: 100%;
+    height: 100%;
   }
 `;
 const BestsellerTitleDiv = styled.div`

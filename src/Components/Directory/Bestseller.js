@@ -45,9 +45,8 @@ function Bestseller() {
 export default Bestseller;
 
 const BannerImg = styled.img`
-  height: 129px;
-  width: 100%;
-  margin: 0 0 0em 0em;
+  height: 8rem;
+  width: 90%;
 `;
 
 /* <BestsellerTitleDiv>
