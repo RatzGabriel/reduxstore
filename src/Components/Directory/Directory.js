@@ -13,6 +13,9 @@ import ButtonElement from '../Elements/Button/Button';
 import { color } from '../../colors';
 import ImageRow from './ImageRow';
 import Bestseller from './Bestseller';
+import Footer from '../Footer/Footer';
+
+import ReactPageScroller from 'react-page-scroller';
 
 const mapState = ({ productsData, darkmode }) => ({
   products: productsData.products,
@@ -33,87 +36,46 @@ function Directory() {
   return (
     <MainDiv dm={darkmode}>
       <MainWrapper>
-        {Array.isArray(data) && data.length > 0 && (
-          <MainPageImage data={data} />
-        )}
-        <MiddleDiv>
-          <HeaderTextComponent
-            headerText="Our Service"
-            title="We produce tiny Ceramic items"
-            text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci emque ad.  ."
-          />
-          <ImageRow />
-        </MiddleDiv>
-        <BestSellerDiv dm={darkmode}>
-          <Bestseller />
-          {/* <BestsellerTitleDiv>
-            <P>Best Selling</P>
-            <H1>Best Seller products</H1>
-          </BestsellerTitleDiv>
-
-          <BestsellerCards>
-            {Array.isArray(data) &&
-              data.length > 0 &&
-              data.map((item, index) => {
-                if (item.bestseller === 'bestseller') {
-                  return (
-                    <MiniDiv id={index}>
-                      <ProductComponent
-                        product={item}
-                        pPrice={item.productPrice}
-                        pName={item.productName}
-                      />
-                    </MiniDiv>
-                  );
-                } else return null;
-              })}
-          </BestsellerCards>
-
-          <ButtonDiv>
-            <Link to="/search">
-              <ButtonElement adress="search">Go To Shop</ButtonElement>
-            </Link>
-          </ButtonDiv> */}
-        </BestSellerDiv>
-        {/* <MiddleDiv>
-          <HeaderTextComponent
-            headerText="About Us"
-            title="An Exceptionally Unique Experience Tailored To You"
-            text="  There are many variations of passages of Lorem Ipsum available,
+        <ReactPageScroller>
+          {Array.isArray(data) && data.length > 0 && (
+            <MainPageImage data={data} />
+          )}
+          <MiddleDiv>
+            <HeaderTextComponent
+              headerText="Our Service"
+              title="We produce tiny Ceramic items"
+              text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci emque ad.  ."
+              imgOne="/images/Two.jpg"
+              buttonText="Read Moore"
+              linkTo="search"
+            />
+            <ImageRow />
+          </MiddleDiv>
+          <BestSellerDiv dm={darkmode}>
+            <Bestseller />
+          </BestSellerDiv>
+          <MiddleDiv>
+            <HeaderTextComponent
+              title="Meet The Minds Shaping An Industry"
+              headerText="Our Team"
+              imgOne="/images/buffett.jpeg"
+              buttonText="Read More"
+              text="  There are many variations of passages of Lorem Ipsum available,
             but the majority have suffered alteration in some form ."
-          />
-
-          <Link to="/search">
-            <ButtonElement adress="search">Get Started</ButtonElement>
-          </Link>
-        </MiddleDiv>
-        <MiddleDiv>
-          <div>
-            <HideImgOnMobile src={'/images/Two.jpg'} alt="" />
-          </div>
-          <InformationText />
-        </MiddleDiv> */}
-        {/* <MiddleDiv>
-          <HeaderTextComponent
-            title="Meet The Minds Shaping An Industry"
-            headerText="Our Team"
-          />
-        </MiddleDiv> */}
-
-        <MindShapingDiv>
-          <MindShapingImg src={'/images/ceramic.jpg'} alt="Elon Musk" />
-        </MindShapingDiv>
+            />
+          </MiddleDiv>
+          <HalfDiv>
+            <Iframe
+              src="https://www.youtube.com/embed/0pt0MdReMts"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></Iframe>
+          </HalfDiv>
+          <Footer darkmode={darkmode} />
+        </ReactPageScroller>
       </MainWrapper>
-
-      <HalfDiv>
-        <Iframe
-          src="https://www.youtube.com/embed/0pt0MdReMts"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></Iframe>
-      </HalfDiv>
     </MainDiv>
   );
 }
@@ -312,10 +274,7 @@ const MindShapingImg = styled.img`
 `;
 
 const HalfDiv = styled.div`
-  height: 60vh;
+  height: 100vh;
   margin: 0 auto;
-  width: 100%;
-  @media (max-width: 960px) {
-    max-width: 100%;
-  }
+  width: 80%;
 `;

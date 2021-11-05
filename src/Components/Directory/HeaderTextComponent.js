@@ -1,27 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
-import LinkEement from '../Elements/LinkElement/LinkElement';
 import { color } from '../../colors';
 import { Link } from 'react-router-dom';
 import ButtonElement from '../Elements/Button/Button';
-function HeaderTextComponent({ headerText, title, text, buttonText, linkTo }) {
+function HeaderTextComponent({
+  headerText,
+  title,
+  text,
+  buttonText,
+  linkTo,
+  imgOne,
+}) {
   return (
     <TextDiv>
       <BannerImg src="/images/banner1.jpeg" alt="" />
       {headerText && <P color={color}>{headerText}</P>}
       {title && <H1>{title}</H1>}
       <SmallImageDiv>
-        <SmallImageRound src="/images/Two.jpg" alt="" />
-        <SmallImageRound src="/images/Two.jpg" alt="" />
-        <SmallImageRound src="/images/Two.jpg" alt="" />
-        <SmallImageRound src="/images/Two.jpg" alt="" />
+        <SmallImageRound src={imgOne} alt="" />
+        <SmallImageRound src={imgOne} alt="" />
+        <SmallImageRound src={imgOne} alt="" />
+        <SmallImageRound src={imgOne} alt="" />
       </SmallImageDiv>
-
       {text && <ItemDescription>{text}</ItemDescription>}
-      {buttonText && <LinkEement adress={linkTo}>{buttonText}</LinkEement>}
-
-      <Link to="/search">
-        <ButtonElement adress="search">Read More</ButtonElement>
+      <Link to={linkTo}>
+        <ButtonElement adress={linkTo}>{buttonText}</ButtonElement>
       </Link>
     </TextDiv>
   );

@@ -99,8 +99,6 @@ const App = () => {
           )}
         </Route>
       </Switch>
-
-      <Footer darkmode={darkmode} />
     </div>
   );
 };
