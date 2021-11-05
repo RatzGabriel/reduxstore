@@ -34,6 +34,10 @@ function Bestseller() {
         header="Our Bestseller"
         product1={(product1, product2, product3)}
       />
+      <ProductSlider
+        header="New Products"
+        product1={(product1, product2, product3)}
+      />
     </div>
   );
 }
@@ -45,3 +49,32 @@ const BannerImg = styled.img`
   width: 100%;
   margin: 0 0 0em 0em;
 `;
+
+/* <BestsellerTitleDiv>
+            <P>Best Selling</P>
+            <H1>Best Seller products</H1>
+          </BestsellerTitleDiv>
+
+          <BestsellerCards>
+            {Array.isArray(data) &&
+              data.length > 0 &&
+              data.map((item, index) => {
+                if (item.bestseller === 'bestseller') {
+                  return (
+                    <MiniDiv id={index}>
+                      <ProductComponent
+                        product={item}
+                        pPrice={item.productPrice}
+                        pName={item.productName}
+                      />
+                    </MiniDiv>
+                  );
+                } else return null;
+              })}
+          </BestsellerCards>
+
+          <ButtonDiv>
+            <Link to="/search">
+              <ButtonElement adress="search">Go To Shop</ButtonElement>
+            </Link>
+          </ButtonDiv> */

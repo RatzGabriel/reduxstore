@@ -53,6 +53,7 @@ const P = styled.p`
   width: 100%;
   font-size: 1.5rem;
   color: ${(props) => props.color};
+  margin: 1em 0;
 `;
 
 const H1 = styled.h1`
@@ -73,7 +74,7 @@ const TextDiv = styled.div`
     height: ${(props) => props.height || '100%'};
     width: 90%;
     align-items: center;
-    margin: 1em 0 0 0em;
+    margin: 0em 0 3em 0em;
     text-align: left;
   }
 `;
