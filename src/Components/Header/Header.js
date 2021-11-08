@@ -16,6 +16,9 @@ import SignedOut from './SignedOut';
 import MobileMenu from './MobileMenu';
 import LoggedIn from './LoggedIn';
 import { darkMode } from '../../Redux/darkmode/darkmode';
+import CloseIcon from '@material-ui/icons/Close';
+import MenuIcon from '@material-ui/icons/Menu';
+import { color } from '../../colors';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -27,13 +30,10 @@ function Header() {
   const { currentUser, totalNumCartItems, darkmodefromState } =
     useSelector(mapState);
 
-  const [statusNavBar, setStatusNavBar] = useState(false);
-  const dispatch = useDispatch();
   const [darkmode, setDarkmode] = useState(false);
 
-  useEffect(() => {
-    dispatch(darkMode(darkmode));
-  }, [darkmode]);
+  const [statusNavBar, setStatusNavBar] = useState(false);
+  const dispatch = useDispatch();
 
   const signOut = () => {
     dispatch(signOutUserStart());
@@ -43,28 +43,41 @@ function Header() {
     dispatch(googleSignInStart());
   };
 
+  useEffect(() => {
+    setDarkmode(darkmodefromState.darkmode);
+  }, [darkmodefromState]);
+
   return (
-    <MainMainDiv dm={darkmode}>
+    <MainDiv color={color} dm={darkmode}>
       <MobileMenu
         setStatusNavBar={setStatusNavBar}
         checkUserIsAdmin={checkUserIsAdmin}
         currentUser={currentUser}
         statusNavBar={statusNavBar}
-        dm={darkmodefromState}
+        dm={darkmode}
       />
       <WrapDiv>
-        <BurgerDiv>
-          <BurgerDivMain onClick={() => setStatusNavBar(!statusNavBar)}>
-            <BarOne dm={darkmode} statusNavBar={statusNavBar}></BarOne>
-            <BarTwo dm={darkmode} statusNavBar={statusNavBar}></BarTwo>
-            <BarThree dm={darkmode} statusNavBar={statusNavBar}></BarThree>
-          </BurgerDivMain>
-        </BurgerDiv>
-        <LogoText>Machua Peru</LogoText>
+        <Iopen
+          statusNavBar={statusNavBar}
+          onClick={() => setStatusNavBar(!statusNavBar)}
+          dm={darkmode}
+        >
+          <CloseIcon />
+        </Iopen>
+        <Iclosed
+          statusNavBar={statusNavBar}
+          onClick={() => setStatusNavBar(!statusNavBar)}
+          dm={darkmode}
+        >
+          <MenuIcon />
+        </Iclosed>
+        <LinkLogo dm={darkmode} to="/">
+          <LogoText>Machua Peru</LogoText>
+        </LinkLogo>
         <HeaderDivs>
-          {/* {checkUserIsAdmin(currentUser) && (
+          {checkUserIsAdmin(currentUser) && (
             <StyledLink to="/admin">Admin</StyledLink>
-          )} */}
+          )}
           {<StyledLink to="/search">Shop</StyledLink>}
           {!currentUser && <SignedOut signIn={signIn} />}
 
@@ -76,7 +89,7 @@ function Header() {
           </StyledLink>
         </HeaderDivs>
       </WrapDiv>
-    </MainMainDiv>
+    </MainDiv>
   );
 }
 
@@ -86,6 +99,21 @@ Header.defaultProps = {
 
 export default Header;
 
+const LinkLogo = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => (props.dm ? 'white' : 'black')};
+`;
+
+const Iclosed = styled.i`
+  display: ${(props) => (props.statusNavBar ? 'none' : 'block')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
+`;
+
+const Iopen = styled.i`
+  display: ${(props) => (props.statusNavBar ? 'block' : 'none')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
+`;
+
 const LogoText = styled.p`
   font-family: rochester;
   font-style: normal;
@@ -94,14 +122,12 @@ const LogoText = styled.p`
   margin: 0;
 `;
 
-const MainMainDiv = styled.div`
+const MainDiv = styled.div`
   position: fixed;
   width: 100%;
-  background-color: ${(props) => (props.dm ? 'black' : 'white')};
-  color: black;
   z-index: 999;
   border: none;
-  color: #1a2f3c;
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
 `;
 
 const WrapDiv = styled.div`
@@ -140,72 +166,3 @@ const StyledLink = styled(Link)`
 const ItemCountP = styled.p`
   font-size: 10px;
 `;
-
-const BurgerDiv = styled.div`
-  display: flex;
-  z-index: 999;
-
-  @media (min-width: 962px) {
-    display: none;
-  }
-`;
-
-const BurgerDivMain = styled.div`
-  display: none;
-  @media (max-width: 962px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 1rem;
-    height: 1rem;
-  }
-`;
-
-const BarOne = styled.div`
-  width: 1.5rem;
-  height: 0.15rem;
-  background: ${(props) => (props.dm ? 'white' : '#1a2f3c')};
-  border-radius: 10px;
-  transition: all 0.3s linear;
-  position: relative;
-  transform-origin: 1px;
-  transform: ${(props) => (props.statusNavBar ? 'rotate(45deg)' : 'rotate(0)')};
-`;
-const BarTwo = styled.div`
-  width: 1.5rem;
-  height: 0.15rem;
-  background: ${(props) => (props.dm ? 'white' : '#1a2f3c')};
-  border-radius: 10px;
-  transition: all 0.3s linear;
-  position: relative;
-  transform-origin: 1px;
-  opacity: ${(props) => (props.statusNavBar ? '0' : 1)};
-  transform: ${(props) =>
-    props.statusNavBar ? 'translateX(20px)' : 'translateX(0)'};
-`;
-const BarThree = styled.div`
-  width: 1.5rem;
-  height: 0.15rem;
-  background: ${(props) => (props.dm ? 'white' : '#1a2f3c')};
-  border-radius: 10px;
-  transition: all 0.3s linear;
-  position: relative;
-  transform-origin: 1px;
-  transform: ${(props) =>
-    props.statusNavBar ? 'rotate(-45deg)' : 'rotate(0)'};
-`;
-
-/* <LogoDiv>
-          <label class="switch">
-            <input type="checkbox" />
-            <span onClick={() => setDarkmode(!darkmode)} class="slider"></span>
-          </label>
-
-          <StyledLinkLogoImage to="/">
-            <LogoImg src={'/images/Two.jpg'} alt="logo image" />
-          </StyledLinkLogoImage>
-          <ShopNameDiv>
-            <LogoTextUpper dm={darkmode}>Machua</LogoTextUpper>
-            <LogoTextLower dm={darkmode}>Peru</LogoTextLower>
-          </ShopNameDiv>
-        </LogoDiv> */

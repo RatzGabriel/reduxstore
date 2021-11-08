@@ -7,13 +7,14 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link} from "react-router-dom";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {color} from "../../colors"
+import DarkModeSlider from './DarkModeSlider';
 
 
 
 function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,dm}) {
   
   return (
-    <Nav statusNavBar={statusNavBar} dm={dm.darkmode}>
+    <Nav statusNavBar={statusNavBar} dm={dm}>
             <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
               <DivInner>
                 <HomeIcon></HomeIcon>
@@ -33,11 +34,10 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,d
               </DivInner>
             </StyledMobileLinks>
             <StyledMobileLinks
-              onClick={() => setStatusNavBar(false)}
-              to="/registration"
             >
               <DivInner>
                 <VpnKeyIcon />
+               <DarkModeSlider/>
                 <PTextMenu>Darkmode</PTextMenu>
               </DivInner>
             </StyledMobileLinks>
@@ -76,6 +76,7 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,d
 
 export default MobileMenu
 
+
 const PTextMenu=styled.p`
 font-family: abel;
 font-size: 18px;
@@ -99,7 +100,6 @@ margin-left: 1em;
 
 const Nav = styled.nav`
  transition: opacity 0.75s, visibility 0.75s, width 0.75s;
- 
  z-index:1;
  width: ${props=>props.statusNavBar?"100%":"30%"};
  display: flex;
@@ -127,8 +127,6 @@ const StyledMobileLinks = styled(Link)`
    font-weight: 600;
    padding: 0.5rem;
    border-radius: 3px;
-   
-   
   }
 `;
 
