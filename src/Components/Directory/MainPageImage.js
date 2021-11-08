@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { useHistory } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
+
+import SwiperCore, { Pagination } from 'swiper';
+
+import 'swiper';
+import './styles.css';
+SwiperCore.use([Pagination]);
 
 function MainPageImage({ data }) {
   const history = useHistory();

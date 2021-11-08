@@ -24,13 +24,21 @@ function HeaderTextComponent({
       </SmallImageDiv>
       {text && <ItemDescription>{text}</ItemDescription>}
       <Link to={linkTo}>
-        <ButtonElement adress={linkTo}>{buttonText}</ButtonElement>
+        <ButtonElement margin={'3em'} adress={linkTo}>
+          {buttonText}
+        </ButtonElement>
       </Link>
     </TextDiv>
   );
 }
 
 export default HeaderTextComponent;
+
+const H1Title = styled.h1`
+  font-family: Jacques Francois;
+  margin: 1em 0;
+  font-size: large;
+`;
 
 const BannerImg = styled.img`
   height: 8rem;
@@ -52,20 +60,22 @@ const SmallImageRound = styled.img`
 `;
 
 const P = styled.p`
-  font-family: 'Jacques Francois', serif;
+  font-family: Jacques Francois;
+  margin: 1em 0;
+  font-size: larger;
   width: 100%;
-  font-size: 1.5rem;
   color: ${(props) => props.color};
   margin: 1em 0;
 `;
 
 const H1 = styled.h1`
   font-family: Roboto;
-  font-size: 1.1rem;
+  font-size: small;
+
   line-height: 21px;
   /* identical to box height */
   width: 100%;
-  text-decoration-line: underline;
+  text-decoration-line: none;
   color: rgba(0, 0, 0, 0.5);
   text-align: left;
 `;
@@ -77,7 +87,6 @@ const TextDiv = styled.div`
     height: ${(props) => props.height || '100%'};
     width: 90%;
     align-items: center;
-    margin: 0em 0 3em 0em;
     text-align: left;
   }
 `;

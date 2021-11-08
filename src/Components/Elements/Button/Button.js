@@ -23,7 +23,7 @@ const ButtonStyle = styled.button`
   color: ${(props) => (props.dm ? 'black' : 'white')};
   background-color: ${(props) => (props.dm ? 'white' : color)};
   padding: 1em 1em;
-  margin: 1em 0em;
+  margin: ${(props) => (props.margin ? props.margin : '1em')};
   border: none;
   cursor: pointer;
   text-decoration: none;

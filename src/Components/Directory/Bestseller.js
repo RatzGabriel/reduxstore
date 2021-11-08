@@ -31,7 +31,7 @@ function Bestseller() {
     <div>
       <BannerImg src="/images/banner1.jpeg" alt="" />
       <ProductSlider
-        header="Our Bestseller"
+        header="Bestseller"
         product1={(product1, product2, product3)}
       />
       <ProductSlider

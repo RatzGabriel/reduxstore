@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-
+import { color } from '../../colors';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {
   fetchProductStart,
   setProduct,
 } from '../../Redux/Products/products.actions';
+import ButtonElement from '../Elements/Button/Button';
+
+import { addProduct, reduceCartItem } from '../../Redux/Cart/cart.action';
 
 const mapState = (state) => ({
   product: state.productsData.product,
@@ -18,10 +21,19 @@ const mapState = (state) => ({
 
 function ProductCard() {
   const { product, darkmodeFromState } = useSelector(mapState);
+
   const darkmode = darkmodeFromState.darkmode;
   const dispatch = useDispatch();
   const { productID } = useParams();
-  const { productName, productPrice, productDescription } = product;
+  const { productName, productPrice, productDescription, quantity } = product;
+
+  const handleAddProduct = (product) => {
+    dispatch(addProduct(product));
+  };
+
+  const removeItem = (reduceCartIt) => {
+    dispatch(reduceCartItem(reduceCartIt));
+  };
 
   useEffect(() => {
     dispatch(fetchProductStart(productID));
@@ -33,105 +45,90 @@ function ProductCard() {
 
   return (
     <MainDiv dm={darkmode}>
-      <Testing>
-        <Carousel infiniteLoop={true} showStatus={false} showArrows={false}>
-          {Array.isArray(product.thumbnailArray) &&
-            product.thumbnailArray.length > 0 &&
-            product.thumbnailArray.map((item, index) => {
-              if (item.length > 0) {
-                return (
-                  <ImageDiv>
-                    <Image src={item} alt="test" />
-                  </ImageDiv>
-                );
-              }
-            })}
-        </Carousel>
-      </Testing>
-      <ProductDiv>
-        <ProductDetailsDiv>
-          <h1>{productName}</h1>
-          <p>{productPrice}€</p>
-          <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
-          <Name>Add to cart</Name>
-          <ButtonProduct bg={'/images/gpay.png'}></ButtonProduct>
-        </ProductDetailsDiv>
+      <Carousel
+        infiniteLoop={true}
+        showStatus={false}
+        showArrows={false}
+        showThumbs={false}
+        showIndicators={false}
+      >
+        {Array.isArray(product.thumbnailArray) &&
+          product.thumbnailArray.length > 0 &&
+          product.thumbnailArray.map((item, index) => {
+            if (item.length > 0) {
+              return (
+                <DivTest>
+                  <Image src={item} alt="test" />
+                </DivTest>
+              );
+            }
+          })}
+      </Carousel>
+      <ProductDiv color={color}>
+        <DivTitle>
+          <H1Title>{productName}</H1Title>
+          <FavoriteBorderIcon />
+        </DivTitle>
+
+        <Pprice>
+          <h3>{productPrice}€</h3>
+        </Pprice>
+        {!productDescription && <ButtonElement>GO TO SHOP</ButtonElement>}
+        <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
+        <div>
+          <ButtonElement>ADD TO BASKET</ButtonElement>
+        </div>
       </ProductDiv>
     </MainDiv>
   );
 }
 
 export default ProductCard;
-const ImageDiv = styled.div`
-  height: 100%;
+
+const DivTest = styled.div`
+  height: 17em;
+`;
+
+const Pprice = styled.p`
+  margin: 0em 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.5);
+`;
+
+const H1Title = styled.h1`
+  font-family: roboto;
+`;
+
+const DivTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 2em 0 1em 0;
 `;
 
 const Image = styled.img`
   height: 100%;
 `;
 
-const Testing = styled.div`
-  width: 50%;
-  height: 50%;
-  @media (max-width: 962px) {
-    width: 100%;
-  }
-`;
-
-const Name = styled.button`
-  color: black;
-  border: none;
-  top: 10%;
-  left: 40%;
-  color: white;
-  background-color: rgb(58, 180, 197);
-  width: 100%;
-`;
-
-const ButtonProduct = styled.button`
-  margin: 2em 0em;
-  padding: 1em 3em;
-  border: none;
-  background-image: url(${(props) => props.bg});
-  background-size: cover;
-  border: 1px solid black;
-  cursor: pointer;
-`;
-
-const ProductDetailsDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  justify-content: flex-start;
-  @media (max-width: 962px) {
-    padding: 0em 0em;
-  }
-`;
-
 const ProductDiv = styled.div`
   display: flex;
-  width: 90%;
-  height: 80%;
-  margin: 0;
-  padding: 0em 0em 0em 0em;
+  margin: 0em 1em;
+  color: ${(props) => props.color};
+
   @media (max-width: 962px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 `;
 
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: ${(props) => (props.dm ? 'black' : 'white')};
   color: ${(props) => (props.dm ? 'white' : 'black')};
   @media (max-width: 962px) {
     width: 100%;
     margin: 0 auto;
-    padding-top: 8em;
+    padding: 4em 0;
   }
 `;

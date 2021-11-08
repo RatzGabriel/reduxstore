@@ -1,7 +1,6 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import styled from 'styled-components';
-import { Carousel } from 'react-responsive-carousel';
 import { useHistory } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
@@ -50,5 +49,6 @@ const DivMain = styled.div`
 
 const H1Title = styled.h1`
   font-family: Jacques Francois;
-  margin: 0.5em 0;
+  margin: 1em 0;
+  font-size: large;
 `;
