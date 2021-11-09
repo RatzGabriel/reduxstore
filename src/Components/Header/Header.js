@@ -19,6 +19,7 @@ import { darkMode } from '../../Redux/darkmode/darkmode';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
 import { color } from '../../colors';
+import CartMenu from './CartMenu';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -33,6 +34,8 @@ function Header() {
   const [darkmode, setDarkmode] = useState(false);
 
   const [statusNavBar, setStatusNavBar] = useState(false);
+  const [statusCart, setStatusCart] = useState(false);
+
   const dispatch = useDispatch();
 
   const signOut = () => {
@@ -56,21 +59,36 @@ function Header() {
         statusNavBar={statusNavBar}
         dm={darkmode}
       />
+      <CartMenu
+        setStatusNavBar={setStatusCart}
+        checkUserIsAdmin={checkUserIsAdmin}
+        currentUser={currentUser}
+        statusNavBar={statusCart}
+        dm={darkmode}
+      />
+
       <WrapDiv>
-        <Iopen
-          statusNavBar={statusNavBar}
-          onClick={() => setStatusNavBar(!statusNavBar)}
-          dm={darkmode}
-        >
-          <CloseIcon />
-        </Iopen>
-        <Iclosed
-          statusNavBar={statusNavBar}
-          onClick={() => setStatusNavBar(!statusNavBar)}
-          dm={darkmode}
-        >
-          <MenuIcon />
-        </Iclosed>
+        <DivHeaderRight>
+          <ShoppingCartIcon
+            statusCart={statusCart}
+            onClick={() => setStatusCart(!statusCart)}
+          />
+          <Iopen
+            statusNavBar={statusNavBar}
+            onClick={() => setStatusNavBar(!statusNavBar)}
+            dm={darkmode}
+          >
+            <CloseIcon />
+          </Iopen>
+          <Iclosed
+            statusNavBar={statusNavBar}
+            onClick={() => setStatusNavBar(!statusNavBar)}
+            dm={darkmode}
+          >
+            <MenuIcon />
+          </Iclosed>
+        </DivHeaderRight>
+
         <LinkLogo dm={darkmode} to="/">
           <LogoText>Machua Peru</LogoText>
         </LinkLogo>
@@ -98,6 +116,13 @@ Header.defaultProps = {
 };
 
 export default Header;
+
+const DivHeaderRight = styled.div`
+  display: flex;
+  width: 30%;
+
+  justify-content: space-around;
+`;
 
 const LinkLogo = styled(Link)`
   text-decoration: none;

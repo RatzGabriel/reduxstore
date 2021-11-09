@@ -73,10 +73,18 @@ function ProductCard() {
         <Pprice>
           <h3>{productPrice}€</h3>
         </Pprice>
-        {!productDescription && <ButtonElement>GO TO SHOP</ButtonElement>}
+        {!productDescription && (
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum,
+            dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Illum, dolor.
+          </p>
+        )}
         <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
         <div>
-          <ButtonElement>ADD TO BASKET</ButtonElement>
+          <ButtonElement onClick={() => handleAddProduct(product)}>
+            ADD TO BASKET
+          </ButtonElement>
         </div>
       </ProductDiv>
     </MainDiv>
@@ -92,7 +100,7 @@ const DivTest = styled.div`
 const Pprice = styled.p`
   margin: 0em 0;
   padding: 0;
-  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.8rem;
 `;
 
 const H1Title = styled.h1`
@@ -104,6 +112,7 @@ const DivTitle = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 2em 0 1em 0;
+  align-items: center;
 `;
 
 const Image = styled.img`

@@ -36,45 +36,45 @@ function Directory() {
   return (
     <MainDiv dm={darkmode}>
       <MainWrapper>
-        <ReactPageScroller animationTimer={400}>
-          {Array.isArray(data) && data.length > 0 && (
-            <MainPageImage data={data} />
-          )}
-          <MiddleDiv>
-            <HeaderTextComponent
-              headerText="Our Service"
-              title="We produce tiny Ceramic items"
-              text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci emque ad.  ."
-              imgOne="/images/Two.jpg"
-              buttonText="Read Moore"
-              linkTo="search"
-            />
-            <ImageRow />
-          </MiddleDiv>
-          <BestSellerDiv dm={darkmode}>
-            <Bestseller />
-          </BestSellerDiv>
-          <MiddleDiv>
-            <HeaderTextComponent
-              title="Meet The Minds Shaping An Industry"
-              headerText="Our Team"
-              imgOne="/images/buffett.jpeg"
-              buttonText="Read More"
-              text="  There are many variations of passages of Lorem Ipsum available,
+        {/* <ReactPageScroller animationTimer={400}> */}
+        {Array.isArray(data) && data.length > 0 && (
+          <MainPageImage data={data} />
+        )}
+        <MiddleDiv>
+          <HeaderTextComponent
+            headerText="Our Service"
+            title="We produce tiny Ceramic items"
+            text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci emque ad.  ."
+            imgOne="/images/Two.jpg"
+            buttonText="Read More"
+            linkTo="search"
+          />
+          <ImageRow />
+        </MiddleDiv>
+        <BestSellerDiv dm={darkmode}>
+          <Bestseller />
+        </BestSellerDiv>
+        <MiddleDiv>
+          <HeaderTextComponent
+            title="Meet The Minds Shaping An Industry"
+            headerText="Our Team"
+            imgOne="/images/buffett.jpeg"
+            buttonText="Read More"
+            text="  There are many variations of passages of Lorem Ipsum available,
             but the majority have suffered alteration in some form ."
-            />
-          </MiddleDiv>
-          <HalfDiv>
-            <Iframe
-              src="https://www.youtube.com/embed/0pt0MdReMts"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></Iframe>
-          </HalfDiv>
-          <Footer darkmode={darkmode} />
-        </ReactPageScroller>
+          />
+        </MiddleDiv>
+        <HalfDiv>
+          <Iframe
+            src="https://www.youtube.com/embed/0pt0MdReMts"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></Iframe>
+        </HalfDiv>
+        <Footer darkmode={darkmode} />
+        {/* </ReactPageScroller> */}
       </MainWrapper>
     </MainDiv>
   );

@@ -9,7 +9,7 @@ import {
   selectCartTotal,
 } from '../../Redux/Cart/cart.selectors';
 import { color } from '../../colors';
-
+import { useDispatch } from 'react-redux';
 import Item from './Item/Item';
 
 const mapState = createStructuredSelector({

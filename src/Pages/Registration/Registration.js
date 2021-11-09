@@ -6,6 +6,8 @@ import { signUpUserStart } from '../../Redux/User/user.actions';
 import { googleSignInStart } from '../../Redux/User/user.actions';
 
 import styled from 'styled-components';
+import Banner from '../../Components/Elements/Banner/Banner';
+import ButtonElement from '../../Components/Elements/Button/Button';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -57,8 +59,9 @@ function Registration({ darkmode }) {
   return (
     <MainDiv darkmode={darkmode} imgUrl={'/images/Two.jpg'}>
       <MediumDiv>
+        <Banner src="/images/banner1.jpeg" />
         <Form onSubmit={handleFormSubmit}>
-          <h1>Registration:</h1>
+          <H1Header>Registration</H1Header>
           <FormInput
             onChange={(e) => setDisplayName(e.target.value)}
             label="DisplayName"
@@ -83,13 +86,11 @@ function Registration({ darkmode }) {
             type="password"
             value={confirmPassword}
           />
-          <button bg={'black'} type="submit" color={'white'}>
-            Submit
-          </button>
+          <ButtonElement margin="2em 0em 2em 0em">Submit</ButtonElement>
 
-          <h1>{userErr}</h1>
+          <H1ErrorMessage>{userErr}</H1ErrorMessage>
         </Form>
-        <GoogleImg src={'/images/google.png'} onClick={signIn} />
+        <Ptext onClick={() => signIn()}>Or Sign In With Google</Ptext>
       </MediumDiv>
     </MainDiv>
   );
@@ -97,38 +98,37 @@ function Registration({ darkmode }) {
 
 export default Registration;
 
+const H1ErrorMessage = styled.h1`
+  color: red;
+`;
+
+const H1Header = styled.h1`
+  font-family: Jacques Francois;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 1.5rem;
+`;
+
 const MainDiv = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: ${(props) =>
-    props.darkmode === 'on' ? 'none' : `url(${props.imgUrl})`};
-  background-color: black;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 4em;
 `;
 
 const MediumDiv = styled.div`
-  background-color: white;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  align-items: center;
-  justify-content: space-between;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-
-  justify-content: space-around;
 `;
 
-const GoogleImg = styled.img`
-  cursor: pointer;
-  height: 2rem;
-  margin: 3em 0em;
-  border: 2px solid black;
+const Ptext = styled.p`
+  font-family: roboto;
+  text-decoration: underline;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
 `;

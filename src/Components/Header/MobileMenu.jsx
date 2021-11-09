@@ -81,6 +81,7 @@ const PTextMenu=styled.p`
 font-family: abel;
 font-size: 18px;
 font-weight: lighter;
+color: white;
 `
 
 const DivInner=styled.div`
@@ -89,6 +90,7 @@ justify-content: space-between;
 border-bottom: 1px solid white;
 width: 80%;
 margin-left: 1em;
+color: white;
 `
 
 
@@ -106,7 +108,8 @@ const Nav = styled.nav`
  visibility: ${props=>props.statusNavBar?"visible":"hidden"};
  height: ${props=>props.statusNavBar?'100vh':"100vh"};
  overflow: hidden;
- top: 9vh;
+ top: 4em;
+ 
   @media(min-width:962px){
     display: none;
   }

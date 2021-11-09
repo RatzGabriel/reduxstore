@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { color } from '../../colors';
 import { Link } from 'react-router-dom';
 import ButtonElement from '../Elements/Button/Button';
+import Banner from '../Elements/Banner/Banner';
 function HeaderTextComponent({
   headerText,
   title,
@@ -13,7 +14,8 @@ function HeaderTextComponent({
 }) {
   return (
     <TextDiv>
-      <BannerImg src="/images/banner1.jpeg" alt="" />
+      <Banner src={'/images/banner1.jpeg'} />
+
       {headerText && <P color={color}>{headerText}</P>}
       {title && <H1>{title}</H1>}
       <SmallImageDiv>
@@ -88,6 +90,7 @@ const TextDiv = styled.div`
     width: 90%;
     align-items: center;
     text-align: left;
+    margin: 3em 0;
   }
 `;
 
