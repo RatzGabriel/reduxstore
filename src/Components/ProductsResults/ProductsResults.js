@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import Product from './Product/Product';
 import FormSelect from '../Elements/FormSelect/FormSelect';
-
+import { color } from '../../colors';
 const mapState = ({ productsData, darkmode }) => ({
   products: productsData.products,
   darkmodefromState: darkmode,
@@ -64,6 +64,9 @@ const ProductResults = () => {
 
   return (
     <Div1 dm={darkmode}>
+      <DivBanner color={color}>
+        <H1Banner>Shop</H1Banner>
+      </DivBanner>
       <TextDiv>
         <FormSelect {...configFilters} dm={darkmode} />
       </TextDiv>
@@ -78,19 +81,26 @@ const ProductResults = () => {
 
 export default ProductResults;
 
-const InnerDiv = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-
-  margin: 0 auto;
+const H1Banner = styled.h1`
+  color: white;
+  margin-left: 1em;
+  font-size: 1.5rem;
 `;
 
-const TextDiv = styled.div`
-  justify-content: center;
+const DivBanner = styled.div`
+  padding-top: 4em;
+  background-color: ${(props) => props.color};
+  height: 8em;
   display: flex;
-  padding: 8em 0 0 0;
+  align-items: center;
+`;
 
+const InnerDiv = styled.div``;
+
+const TextDiv = styled.div`
+  display: flex;
+  padding: 1em 0 0 0;
+  margin-left: 1em;
   @media (max-width: 962px) {
   }
 `;

@@ -6,14 +6,28 @@ import { store, persistor } from './Redux/createStore';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <PersistGate persistor={persistor}>
-        <App />
-      </PersistGate>
-    </BrowserRouter>
-  </Provider>,
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#FFFFFF', // This is an orange looking color
+    },
+    secondary: {
+      main: 'rgb(166, 15, 15)', //Another orange-ish color
+    },
+  },
+});
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </BrowserRouter>
+    </Provider>
+    ,
+  </ThemeProvider>,
   document.getElementById('root')
 );

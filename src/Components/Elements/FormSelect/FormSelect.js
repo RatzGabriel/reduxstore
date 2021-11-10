@@ -11,7 +11,6 @@ const FormSelect = ({
   ...otherProps
 }) => {
   if (!Array.isArray(options) || options.length < 1) return null;
-  console.log(dm);
   return (
     <FormDiv>
       {label && <label>{label}</label>}
@@ -37,19 +36,15 @@ const FormSelect = ({
 
 export default FormSelect;
 
-const FormDiv = styled.div`
-  margin-bottom: 1em;
-`;
+const FormDiv = styled.div``;
 
 const Select = styled.select`
   padding-left: 15px;
   padding-right: 15px;
-  border-radius: 35px;
-  font-weight: 600;
   min-height: 40px;
   font-size: 18px;
   background-color: ${(props) => (props.dm ? 'white' : color)};
-  color: ${(props) => (props.dm ? 'black' : 'white')};
+  color: ${(props) => (props.dm ? 'black' : '#B0ACAC')};
   border: none;
   outline: none;
 `;

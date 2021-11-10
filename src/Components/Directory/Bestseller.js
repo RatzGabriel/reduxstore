@@ -4,26 +4,26 @@ import ProductSlider from './ProductSlider';
 
 function Bestseller() {
   const product1 = {
-    title: 'Vase1',
-    img: '/images/16.jpeg',
-    price: '9.80 Euro',
-    description:
+    productName: 'Vase1',
+    productThumbnail: '/images/16.jpeg',
+    productPrice: '9.80 Euro',
+    productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
   };
 
   const product2 = {
-    title: 'Vase2',
-    img: '/images/16.jpeg',
-    price: '9.80 Euro',
-    description:
+    productName: 'Vase2',
+    productThumbnail: '/images/16.jpeg',
+    productPrice: '9.80 Euro',
+    productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
   };
 
   const product3 = {
-    title: 'Vase3',
-    img: '/images/16.jpeg',
-    price: '9.80 Euro',
-    description:
+    productName: 'Vase3',
+    productThumbnail: '/images/16.jpeg',
+    productPrice: '9.80 Euro',
+    productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
   };
 

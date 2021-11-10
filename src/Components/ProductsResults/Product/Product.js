@@ -1,161 +1,80 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { addProduct } from '../../../Redux/Cart/cart.action';
 import styled from 'styled-components';
-import Rosa from 'react-on-scroll-animation';
-import { addToWL } from '../../../Redux/WishList/wishlist.action';
-import { createStructuredSelector } from 'reselect';
-import {
-  selectWlItems,
-  selectWlTotal,
-} from '../../../Redux/WishList/wishlist.selectors';
-import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
-
-const mapState = createStructuredSelector({
-  wlItems: selectWlItems,
-  total: selectWlTotal,
-});
+import ProductCard from '../../Directory/ProductCard';
 
 function Product({ product, pt, pb, wd, height, pPrice }) {
-  const dispatch = useDispatch();
-
-  const { productThumbnail, productName, productPrice, documentID } = product;
-  const { wlItems } = useSelector(mapState);
-  const [buttonStatus, setButtonStatus] = useState(false);
-  const [wobble, setWobble] = useState('off');
-  const [wobbleCart, setWobbleCart] = useState('off');
-  const [heartStatus, setHeartStatus] = useState('/images/favorite.png');
-
-  useEffect(() => {
-    if (wlItems.length > 0) {
-      wlItems.map((item) => {
-        if (item.documentID === documentID) {
-          setHeartStatus('/images/redheart.svg');
-        }
-      });
-    }
-  }, []);
-
-  const handleRemoveWlItem = (documentID) => {
-    dispatch(removeWlItem(documentID));
-  };
-
-  if (
-    !productThumbnail ||
-    !productName ||
-    typeof productPrice === 'undefined'
-  ) {
-    return <div>nothing to show</div>;
-  }
-
-  const handleAddToCard = (product) => {
-    if (!product) return;
-    dispatch(addProduct(product));
-  };
-
-  const handleAddToWl = (product) => {
-    if (!product) return;
-    dispatch(addToWL(product));
-  };
-
-  const timeout = () => {
-    setTimeout(function () {
-      setWobble('off');
-      setWobbleCart('off');
-    }, 2000);
-  };
-
-  const isItemInWl = (product) => {
-    if (wlItems.length > 0) {
-      for (let i = 0; i < wlItems.length; i++) {
-        if (wlItems[i].documentID === product.documentID) {
-          console.log('yes it iss');
-          handleRemoveWlItem(product.documentID);
-          setHeartStatus('/images/favorite.png');
-          return;
-        } else {
-          handleAddToWl(product);
-          setHeartStatus('/images/redheart.svg');
-        }
-      }
-    } else {
-      console.log('no it isnt else');
-      handleAddToWl(product);
-      setHeartStatus('/images/redheart.svg');
-    }
-  };
-
   return (
-    <NewMainDiv>
-      <StyledLink
-        height={height}
-        paddin={pt}
-        margin={pt}
-        pb={pb}
-        wd={wd}
-        to={`/product/${documentID}`}
-        onMouseEnter={() => {
-          setButtonStatus(true);
-        }}
-        onMouseLeave={() => {
-          setButtonStatus(false);
-        }}
-      >
-        <Img src={productThumbnail}></Img>
-        {buttonStatus && (
-          <NewTestDiv>
-            <TestDiv top="25%">
-              <Rosa
-                animation="fade-down"
-                duration={800}
-                anchorPlacement={'top-center'}
-                offset={1200}
-              >
-                <ButtonElement
-                  content="Add to Cart"
-                  type="button"
-                  vis={buttonStatus}
-                  onClick={() => handleAddToCard(product)}
-                >
-                  <span> {productPrice} € </span>
-                </ButtonElement>
-              </Rosa>
-            </TestDiv>
-            <TestDiv top="70%">
-              <Rosa
-                animation="fade-down"
-                duration={800}
-                anchorPlacement={'top-center'}
-                offset={1200}
-              >
-                <ButtonElement
-                  content="Add to WishList"
-                  type="button"
-                  vis={buttonStatus}
-                  onClick={() => {
-                    handleAddToCard(product);
-                  }}
-                >
-                  <span>
-                    <img
-                      class={wobble}
-                      src={heartStatus}
-                      alt="favorite"
-                      onClick={() => {
-                        setWobble('on');
-                        timeout();
-                      }}
-                    />
-                  </span>
-                </ButtonElement>
-              </Rosa>
-            </TestDiv>
-          </NewTestDiv>
-        )}
-      </StyledLink>
-      {/* Mobile */}
-      <ProductDiv>
+    <ProductCard product={product} />
+    // <NewMainDiv>
+    //   <StyledLink
+    //     height={height}
+    //     paddin={pt}
+    //     margin={pt}
+    //     pb={pb}
+    //     wd={wd}
+    //     to={`/product/${documentID}`}
+    //     onMouseEnter={() => {
+    //       setButtonStatus(true);
+    //     }}
+    //     onMouseLeave={() => {
+    //       setButtonStatus(false);
+    //     }}
+    //   >
+    //     <Img src={productThumbnail}></Img>
+    //     {buttonStatus && (
+    //       <NewTestDiv>
+    //         <TestDiv top="25%">
+    //           <Rosa
+    //             animation="fade-down"
+    //             duration={800}
+    //             anchorPlacement={'top-center'}
+    //             offset={1200}
+    //           >
+    //             <ButtonElement
+    //               content="Add to Cart"
+    //               type="button"
+    //               vis={buttonStatus}
+    //               onClick={() => handleAddToCard(product)}
+    //             >
+    //               <span> {productPrice} € </span>
+    //             </ButtonElement>
+    //           </Rosa>
+    //         </TestDiv>
+    //         <TestDiv top="70%">
+    //           <Rosa
+    //             animation="fade-down"
+    //             duration={800}
+    //             anchorPlacement={'top-center'}
+    //             offset={1200}
+    //           >
+    //             <ButtonElement
+    //               content="Add to WishList"
+    //               type="button"
+    //               vis={buttonStatus}
+    //               onClick={() => {
+    //                 handleAddToCard(product);
+    //               }}
+    //             >
+    //               <span>
+    //                 <img
+    //                   class={wobble}
+    //                   src={heartStatus}
+    //                   alt="favorite"
+    //                   onClick={() => {
+    //                     setWobble('on');
+    //                     timeout();
+    //                   }}
+    //                 />
+    //               </span>
+    //             </ButtonElement>
+    //           </Rosa>
+    //         </TestDiv>
+    //       </NewTestDiv>
+    //     )}
+    //   </StyledLink>
+    /* Mobile */
+    /* <ProductDiv>
         <PositionDiv>
           <Link to={`/product/${documentID}`}>
             <Img src={productThumbnail}></Img>
@@ -197,12 +116,64 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
             </span>
           </ButtonElementMobile>
         </TestDivText>
-      </ProductDiv>
-    </NewMainDiv>
+      </ProductDiv> */
+    // </NewMainDiv>
   );
 }
 
 export default Product;
+
+const DescriptionP = styled.p`
+  font-size: 7px;
+  margin: 0;
+  color: white;
+`;
+
+const TitleH1 = styled.h1`
+  margin: 0;
+  color: white;
+`;
+
+const PriceP = styled.p`
+  font-family: Roboto;
+  font-weight: 200;
+  font-size: 9px;
+  line-height: 11px;
+  opacity: 0.3;
+  margin: 0;
+  color: white;
+`;
+
+const TextDiv = styled.div`
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+`;
+
+const InnerText = styled.div`
+  width: 50%;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+`;
+
+const DivMain = styled.div`
+  display: flex;
+  text-align: left;
+  background-color: ${(props) => props.color};
+  margin: 1em 1em;
+`;
+
+const Image = styled.img`
+  height: 100%;
+`;
+
+const ImageDiv = styled.div`
+  width: 50%;
+  height: 10em;
+`;
 
 const NewTestDiv = styled.div`
   display: flex;
@@ -211,11 +182,10 @@ const NewTestDiv = styled.div`
 
 const NewMainDiv = styled.div`
   display: flex;
-  width: 30%;
-  justify-content: space-around;
-
+  margin-top: 1em;
+  background-color: red;
   @media (max-width: 962px) {
-    width: 40%;
+    width: 80%;
   }
 `;
 

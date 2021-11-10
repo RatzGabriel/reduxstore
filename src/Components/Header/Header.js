@@ -120,7 +120,6 @@ export default Header;
 const DivHeaderRight = styled.div`
   display: flex;
   width: 30%;
-
   justify-content: space-around;
 `;
 
@@ -160,10 +159,10 @@ const WrapDiv = styled.div`
   height: 4rem;
   align-items: center;
   justify-content: space-between;
-
   @media (max-width: 962px) {
-    padding: 0px 2rem;
+    padding: 0px 0em;
     flex-direction: row-reverse;
+    margin: 0 1.5em;
   }
 `;
 
