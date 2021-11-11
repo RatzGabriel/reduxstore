@@ -1,7 +1,6 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
 
@@ -10,7 +9,6 @@ import './styles.css';
 SwiperCore.use([Pagination]);
 
 function ProductSlider({ header, product1, product2, product3 }) {
-  const history = useHistory();
   return (
     <DivMain>
       <div>

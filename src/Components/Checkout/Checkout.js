@@ -8,8 +8,8 @@ import {
   selectCartItems,
   selectCartTotal,
 } from '../../Redux/Cart/cart.selectors';
+
 import { color } from '../../colors';
-import { useDispatch } from 'react-redux';
 import Item from './Item/Item';
 
 const mapState = createStructuredSelector({
@@ -22,14 +22,14 @@ function Checkout({ dm }) {
   const { cartItems, total } = useSelector(mapState);
   const errMsg = 'You have no items in your cart.';
   return (
-    <MainMainDiv dm={dm}>
+    <DivMain dm={dm}>
       <div>
-        <MainImg src="./images/cart.jpeg" alt="" />
+        <ImgMain src="./images/cart.jpeg" alt="" />
         <h1>Cart:</h1>
       </div>
       <div>
         {cartItems.length > 0 ? (
-          <MainDiv>
+          <DivItems>
             {cartItems.map((item, pos) => {
               return (
                 <ItemDiv key={pos}>
@@ -37,32 +37,36 @@ function Checkout({ dm }) {
                 </ItemDiv>
               );
             })}
-            <BuyDiv>
+            <DivBuy>
               <h1>Total: {(Math.round(total * 100) / 100).toFixed(2)}</h1>
-              <StyledLink dm={dm} onClick={() => history.goBack()}>
+              <StyledLink
+                color={color}
+                dm={dm}
+                onClick={() => history.goBack()}
+              >
                 Continue Shopping
               </StyledLink>
               <StyledLink dm={dm} onClick={() => history.push('/payment')}>
                 Checkout
               </StyledLink>
-            </BuyDiv>
-          </MainDiv>
+            </DivBuy>
+          </DivItems>
         ) : (
           <p>{errMsg}</p>
         )}
       </div>
-    </MainMainDiv>
+    </DivMain>
   );
 }
 
 export default Checkout;
 
-const MainImg = styled.img`
+const ImgMain = styled.img`
   width: 100%;
   height: 50vh;
 `;
 
-const MainMainDiv = styled.div`
+const DivMain = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -72,13 +76,13 @@ const MainMainDiv = styled.div`
   color: ${(props) => (props.dm ? 'white' : 'black')};
 `;
 
-const BuyDiv = styled.div`
+const DivBuy = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
 `;
 
-const MainDiv = styled.div`
+const DivItems = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -95,8 +99,7 @@ const ItemDiv = styled.div`
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 `;
-console.log('test');
-console.log('test2');
+
 const StyledLink = styled(Link)`
   color: ${(props) => (props.dm ? 'black' : 'white')};
   background-color: ${(props) => (props.dm ? 'white' : color)};

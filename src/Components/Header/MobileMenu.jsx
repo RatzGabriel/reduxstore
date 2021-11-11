@@ -9,8 +9,6 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {color} from "../../colors"
 import DarkModeSlider from './DarkModeSlider';
 
-
-
 function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,dm}) {
   
   return (
@@ -21,9 +19,9 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,d
                 <PTextMenu>Home</PTextMenu>
               </DivInner>
             </StyledMobileLinks>
-            {/* {checkUserIsAdmin(currentUser) && (
+            {checkUserIsAdmin(currentUser) && (
               <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/admin">Admin</StyledMobileLinks>
-            )} */}
+            )}
             <StyledMobileLinks
               onClick={() => setStatusNavBar(false)}
               to="/search"
@@ -36,7 +34,6 @@ function MobileMenu({setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,d
             <StyledMobileLinks
             >
               <DivInner>
-                <VpnKeyIcon />
                <DarkModeSlider/>
                 <PTextMenu>Darkmode</PTextMenu>
               </DivInner>
@@ -91,6 +88,9 @@ border-bottom: 1px solid white;
 width: 80%;
 margin-left: 1em;
 color: white;
+align-items: center;
+height: 1.5em;
+position: relative;
 `
 
 

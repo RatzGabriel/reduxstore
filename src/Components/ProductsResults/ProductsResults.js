@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Product from './Product/Product';
 import FormSelect from '../Elements/FormSelect/FormSelect';
 import { color } from '../../colors';
+
 const mapState = ({ productsData, darkmode }) => ({
   products: productsData.products,
   darkmodefromState: darkmode,

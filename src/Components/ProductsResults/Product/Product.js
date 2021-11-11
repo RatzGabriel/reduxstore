@@ -5,7 +5,9 @@ import ProductCard from '../../Directory/ProductCard';
 
 function Product({ product, pt, pb, wd, height, pPrice }) {
   return (
-    <ProductCard product={product} />
+    <DivMain>
+      <ProductCard product={product} />
+    </DivMain>
     // <NewMainDiv>
     //   <StyledLink
     //     height={height}
@@ -123,6 +125,10 @@ function Product({ product, pt, pb, wd, height, pPrice }) {
 
 export default Product;
 
+const DivMain = styled.div`
+  margin: 1em;
+`;
+
 const DescriptionP = styled.p`
   font-size: 7px;
   margin: 0;
@@ -157,13 +163,6 @@ const InnerText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-`;
-
-const DivMain = styled.div`
-  display: flex;
-  text-align: left;
-  background-color: ${(props) => props.color};
-  margin: 1em 1em;
 `;
 
 const Image = styled.img`

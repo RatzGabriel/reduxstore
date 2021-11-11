@@ -9,7 +9,6 @@ function LoggedIn({signOut}) {
         <StyledLink to="/payment">
                   <EuroSymbolIcon />
                 </StyledLink>
-               
                 <StyledLink to="/dashboard">Dashboard</StyledLink>
                 <StyledLink to="/wishlist">WishList</StyledLink>
                 <StyledLink onClick={() => signOut()}>Logout</StyledLink>

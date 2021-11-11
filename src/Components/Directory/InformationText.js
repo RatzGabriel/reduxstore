@@ -1,5 +1,4 @@
 import React from 'react';
-import Rosa from 'react-on-scroll-animation';
 import styled from 'styled-components';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MoveToInboxIcon from '@material-ui/icons/MoveToInbox';

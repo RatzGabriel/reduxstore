@@ -4,6 +4,7 @@ import { color } from '../../colors';
 import { Link } from 'react-router-dom';
 import ButtonElement from '../Elements/Button/Button';
 import Banner from '../Elements/Banner/Banner';
+
 function HeaderTextComponent({
   headerText,
   title,
@@ -35,18 +36,6 @@ function HeaderTextComponent({
 }
 
 export default HeaderTextComponent;
-
-const H1Title = styled.h1`
-  font-family: Jacques Francois;
-  margin: 1em 0;
-  font-size: large;
-`;
-
-const BannerImg = styled.img`
-  height: 8rem;
-  width: 100%;
-  margin: 0em 0 0em 0em;
-`;
 
 const SmallImageDiv = styled.div`
   display: flex;

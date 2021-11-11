@@ -1,4 +1,14 @@
 /* The switch - the box around the slider */
+/* 
+<LogoDiv>
+<label class="switch">
+  <input type="checkbox" />
+  <span
+    onClick={() => setDarkmode(!darkmode)}
+    class="slider round"
+  ></span>
+</label>
+</LogoDiv> */
 .switch {
   position: relative;
   display: inline-block;

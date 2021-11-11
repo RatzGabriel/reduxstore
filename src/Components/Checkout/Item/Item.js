@@ -1,9 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { color } from '../../../colors';
-
-//action
 import {
   addProduct,
   reduceCartItem,
@@ -11,8 +8,9 @@ import {
 } from '../../../Redux/Cart/cart.action';
 import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
 
+import { color } from '../../../colors';
+
 function Item({ product, text, dm }) {
-  console.log(text);
   const { productName, productThumbnail, productPrice, quantity, documentID } =
     product;
   const dispatch = useDispatch();
@@ -34,18 +32,18 @@ function Item({ product, text, dm }) {
   };
 
   return (
-    <MainDiv dm={dm}>
-      <Left>
+    <DivMain dm={dm}>
+      <DivLeft>
         <Img src={productThumbnail} alt="" />
-        <ColumnDiv>
+        <DivColumn>
           {productName}
           <SpanSmall>
             {(Math.round(productPrice * 100) / 100).toFixed(2)} Euro
           </SpanSmall>
-        </ColumnDiv>
-      </Left>
-      <Right>
-        <RowDiv>
+        </DivColumn>
+      </DivLeft>
+      <DivRight>
+        <DivRow>
           {text === 'wishlist' && (
             <Button
               dm={dm}
@@ -62,8 +60,8 @@ function Item({ product, text, dm }) {
               onClick={() => handleAddProduct(product)}
             >{`+`}</Button>
           )}
-        </RowDiv>
-        <RowDiv>
+        </DivRow>
+        <DivRow>
           {text === 'cart' && (
             <SpanSmallRemove onClick={() => handleRemoveCartItem(documentID)}>
               Remove
@@ -74,21 +72,21 @@ function Item({ product, text, dm }) {
               Remove
             </SpanSmallRemove>
           )}
-        </RowDiv>
-      </Right>
-    </MainDiv>
+        </DivRow>
+      </DivRight>
+    </DivMain>
   );
 }
 
 export default Item;
 
-const Right = styled.div`
+const DivRight = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
 `;
 
-const Left = styled.div`
+const DivLeft = styled.div`
   justify-content: flex-start;
   display: flex;
   align-items: center;
@@ -109,17 +107,17 @@ const SpanSmallRemove = styled.span`
   font-size: 0.5em;
   border: 1px solid black;
 `;
-const RowDiv = styled.div`
+const DivRow = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const ColumnDiv = styled.div`
+const DivColumn = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const MainDiv = styled.div`
+const DivMain = styled.div`
   display: flex;
   align-items: center;
   width: 100%;

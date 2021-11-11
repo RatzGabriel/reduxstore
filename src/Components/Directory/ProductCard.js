@@ -12,7 +12,6 @@ import { removeWlItem } from '../../Redux/WishList/wishlist.action';
 import { addProduct } from '../../Redux/Cart/cart.action';
 import { addToWL } from '../../Redux/WishList/wishlist.action';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const mapState = createStructuredSelector({
@@ -30,7 +29,6 @@ function ProductCard({ product }) {
   } = product;
   const dispatch = useDispatch();
   const { wlItems } = useSelector(mapState);
-  const [buttonStatus, setButtonStatus] = useState(false);
   const [wobble, setWobble] = useState('off');
   const [wobbleCart, setWobbleCart] = useState('off');
   const [heartStatus, setHeartStatus] = useState('primary');
@@ -39,8 +37,8 @@ function ProductCard({ product }) {
     if (wlItems.length > 0) {
       wlItems.map((item) => {
         if (item.documentID === documentID) {
-          setHeartStatus('secondary');
-        }
+          return setHeartStatus('secondary');
+        } else return setHeartStatus('secondary');
       });
     }
   }, []);
@@ -119,23 +117,25 @@ function ProductCard({ product }) {
           </span>
         </ButtonElementMobile>
       </DivIcons>
-      <ImageDiv>
-        <Link to={`/product/${documentID}`}>
-          <Image src={productThumbnail} alt={productName} />
-        </Link>
-      </ImageDiv>
+      <LinkImage
+        to={`/product/${documentID}`}
+        image={productThumbnail}
+      ></LinkImage>
       <TextDiv>
         <InnerText>
           <TitleH1>{productName}</TitleH1>
           <PriceP>{productPrice}</PriceP>
-          {productDescription && (
-            <DescriptionP>{productDescription}</DescriptionP>
+          {productDescription.length > 131 ? (
+            <DescriptionP>
+              {productDescription.substring(0, 130)}...
+            </DescriptionP>
+          ) : (
+            <DescriptionP>{productDescription}!</DescriptionP>
           )}
+
           {!productDescription && (
             <DescriptionP>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam,
-              sint officia? Harum dicta perspiciatis possimus modi veniam
-              provident quae necessitatibus.
+              Please click on the image to see more Details on this Item.
             </DescriptionP>
           )}
         </InnerText>
@@ -145,6 +145,12 @@ function ProductCard({ product }) {
 }
 
 export default ProductCard;
+
+const LinkImage = styled(Link)`
+  width: 40%;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+`;
 
 const DivIcons = styled.div`
   width: 100%;
@@ -157,40 +163,37 @@ const ProductCardDiv = styled.div`
   display: flex;
   height: 11rem;
   color: white;
-  text-align: left;
   background-color: ${(props) => props.color};
-  margin: 1em;
   position: relative;
 `;
 
 //Wrapper Divs
 const ImageDiv = styled.div`
-  width: 50%;
+  width: 40%;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
 `;
 
 const TextDiv = styled.div`
   display: flex;
   width: 50%;
+  margin: 0 auto;
 `;
 
 const InnerText = styled.div`
-  margin: auto;
+  margin: auto auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100%;
 `;
 
 //
 const Image = styled.img`
-  height: 100%;
-  max-width: 80%;
+  height: 70%;
 `;
 
 //Text Styles
 const DescriptionP = styled.p`
   font-size: 7px;
-  margin: 0;
   color: white;
 `;
 

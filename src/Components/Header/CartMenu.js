@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import CloseIcon from '@material-ui/icons/Close';
 import {
   selectCartItems,
@@ -16,13 +15,7 @@ const mapState = createStructuredSelector({
   total: selectCartTotal,
 });
 
-function CartMenu({
-  setStatusNavBar,
-  checkUserIsAdmin,
-  currentUser,
-  statusNavBar,
-  dm,
-}) {
+function CartMenu({ setStatusNavBar, statusNavBar, dm }) {
   const { cartItems, total } = useSelector(mapState);
   console.log(cartItems);
   const errMsg = 'You have no items in your cart.';
@@ -47,7 +40,7 @@ function CartMenu({
           <H1Title>{(Math.round(total * 100) / 100).toFixed(2)}</H1Title>
         </DivTotal>
         <div>
-          <ButtonCheckout>Checkout</ButtonCheckout>
+          <ButtonCheckout color={color}>Checkout</ButtonCheckout>
         </div>
       </DivButton>
     </Nav>
@@ -71,10 +64,9 @@ const DivButton = styled.div`
 `;
 
 const ButtonCheckout = styled.button`
-  color: #1a2f3c;
+  color: ${(props) => props.color};
   padding: 1em;
   width: 10em;
-
   border: none;
 `;
 

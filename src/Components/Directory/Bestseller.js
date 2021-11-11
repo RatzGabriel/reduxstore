@@ -28,7 +28,7 @@ function Bestseller() {
   };
 
   return (
-    <div>
+    <>
       <BannerImg src="/images/banner1.jpeg" alt="" />
       <ProductSlider
         header="Bestseller"
@@ -38,7 +38,7 @@ function Bestseller() {
         header="New Products"
         product1={(product1, product2, product3)}
       />
-    </div>
+    </>
   );
 }
 

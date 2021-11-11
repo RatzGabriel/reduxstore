@@ -8,7 +8,6 @@ import {
 } from '../../Redux/User/user.actions';
 import { checkUserIsAdmin } from '../../CustomHooks/checkUserIsAdmin';
 import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
-//Material Imports
 
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import './Header.css';
@@ -68,12 +67,13 @@ function Header() {
       />
 
       <WrapDiv>
-        <DivHeaderRight>
+        <DivHeaderRight color={color}>
           <ShoppingCartIcon
             statusCart={statusCart}
             onClick={() => setStatusCart(!statusCart)}
           />
           <Iopen
+            color={color}
             statusNavBar={statusNavBar}
             onClick={() => setStatusNavBar(!statusNavBar)}
             dm={darkmode}
@@ -81,6 +81,7 @@ function Header() {
             <CloseIcon />
           </Iopen>
           <Iclosed
+            color={color}
             statusNavBar={statusNavBar}
             onClick={() => setStatusNavBar(!statusNavBar)}
             dm={darkmode}
@@ -90,7 +91,7 @@ function Header() {
         </DivHeaderRight>
 
         <LinkLogo dm={darkmode} to="/">
-          <LogoText>Machua Peru</LogoText>
+          <LogoText color={color}>Machua Peru</LogoText>
         </LinkLogo>
         <HeaderDivs>
           {checkUserIsAdmin(currentUser) && (
@@ -121,6 +122,7 @@ const DivHeaderRight = styled.div`
   display: flex;
   width: 30%;
   justify-content: space-around;
+  color: ${(props) => (props.color ? props.color : 'green')};
 `;
 
 const LinkLogo = styled(Link)`
@@ -131,11 +133,12 @@ const LinkLogo = styled(Link)`
 const Iclosed = styled.i`
   display: ${(props) => (props.statusNavBar ? 'none' : 'block')};
   color: ${(props) => (props.dm ? 'white' : 'black')};
+  color: ${(props) => (props.color ? props.color : 'green')};
 `;
 
 const Iopen = styled.i`
   display: ${(props) => (props.statusNavBar ? 'block' : 'none')};
-  color: ${(props) => (props.dm ? 'white' : 'black')};
+  color: ${(props) => (props.color ? props.color : 'green')};
 `;
 
 const LogoText = styled.p`
@@ -144,6 +147,7 @@ const LogoText = styled.p`
   font-weight: normal;
   font-size: 1.1rem;
   margin: 0;
+  color: ${(props) => (props.color ? props.color : 'red')};
 `;
 
 const MainDiv = styled.div`

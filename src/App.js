@@ -17,7 +17,6 @@ import ProductDetails from './Pages/ProductDetails.js/ProductDetails';
 //Components
 import Header from './Components/Header/Header';
 import WishList from './Components/Wishlist/WishList';
-import Footer from './Components/Footer/Footer';
 
 import { checkUserSession } from './Redux/User/user.actions';
 import WithAdminAuth from './hoc/withAdminAuth';

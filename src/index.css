@@ -166,14 +166,13 @@ table {
   }
 }
 
-.wobble {
-  width: 1em;
-  fill: white;
-}
 .on {
   fill: white;
+  animation: wobble 1s 1;
+  width: 1.3em;
 }
 
 .off {
   fill: white;
+  width: 1.3em;
 }

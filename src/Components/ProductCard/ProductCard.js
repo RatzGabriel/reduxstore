@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { color } from '../../colors';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+
 import {
   fetchProductStart,
   setProduct,
@@ -67,7 +67,6 @@ function ProductCard() {
       <ProductDiv color={color}>
         <DivTitle>
           <H1Title>{productName}</H1Title>
-          <FavoriteBorderIcon />
         </DivTitle>
 
         <Pprice>
@@ -98,7 +97,7 @@ const DivTest = styled.div`
 `;
 
 const Pprice = styled.p`
-  margin: 0em 0;
+  margin: 1em 0;
   padding: 0;
   font-size: 1.8rem;
 `;
