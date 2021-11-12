@@ -10,10 +10,9 @@ import PaymentIcon from '@material-ui/icons/Payment';
 import ContactlessIcon from '@material-ui/icons/Contactless';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
-function Footer({ darkmode }) {
-  const dm = darkmode;
+function Footer({ dm }) {
   return (
-    <DivMain color={color}>
+    <DivMain color={color} dm={dm}>
       <DivIcons>
         <ALinks href="#">
           <FacebookIcon />
@@ -43,7 +42,7 @@ function Footer({ darkmode }) {
         <AccountBalanceIcon />
       </DivPayment>
       <DivDisclaimer>
-        <p>Copyright 2021 Machua Peru All Rights reserved</p>
+        <P>Copyright 2021 Machua Peru All Rights reserved</P>
       </DivDisclaimer>
     </DivMain>
   );
@@ -51,11 +50,14 @@ function Footer({ darkmode }) {
 
 export default Footer;
 
+const P = styled.p`
+  color: white;
+`;
+
 const DivDisclaimer = styled.div`
   color: white;
   margin-left: 2em;
   width: 70%;
-  padding-bottom: 3em;
 `;
 
 const DivPayment = styled.div`
@@ -73,8 +75,8 @@ const LinkElement = styled(Link)`
 `;
 
 const DivMain = styled.div`
-  background-color: ${(props) => props.color};
-  height: 90vh;
+  background-color: ${(props) => (props.dm ? 'black' : props.color)};
+  height: 100vh;
 `;
 
 const ALinks = styled.a`

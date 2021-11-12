@@ -30,7 +30,7 @@ const mapState = createStructuredSelector({
   cartItems: selectCartItems,
 });
 
-function PaymentDetails() {
+function PaymentDetails({ dm }) {
   const dispatch = useDispatch();
   const elements = useElements();
   const stripe = useStripe();
@@ -41,6 +41,7 @@ function PaymentDetails() {
   });
   const [recipientName, setRecipientName] = useState('');
   const [nameOnCard, setNameOnCard] = useState('');
+  const [paymentSuccess, setPaymentSuccess] = useState(true);
 
   useEffect(() => {
     if (itemCount < 1) {
@@ -134,6 +135,7 @@ function PaymentDetails() {
                   }),
                 };
                 dispatch(saveOrderHistory(configOrder));
+                setPaymentSuccess(true);
               });
           });
       });
@@ -150,15 +152,17 @@ function PaymentDetails() {
   };
 
   return (
-    <MainDiv>
+    <MainDiv dm={dm}>
       <DivBanner color={color}>
         <H1Banner>Total:</H1Banner>
-        <H1Banner>{total}</H1Banner>
+        <H1Banner>{total.toFixed(2)} €</H1Banner>
       </DivBanner>
       <DivInner>
         <form onSubmit={handleFormSubmit} action="">
           <div>
-            <h2>Shipping Address</h2>
+            <H2Title dm={dm} color={color}>
+              Shipping Address
+            </H2Title>
 
             <FormInput
               label="Recipient Name"
@@ -223,7 +227,9 @@ function PaymentDetails() {
             />
           </div>
           <div>
-            <h2>Billing Address</h2>
+            <H2Title dm={dm} color={color}>
+              Billing Address
+            </H2Title>
             <FormInput
               type="text"
               required
@@ -287,9 +293,9 @@ function PaymentDetails() {
               }
             />
           </div>
-          <CardDetailsDiv>
-            {total} Euro
-            <h2>Card Details</h2>
+          <CardDetailsDiv dm={dm} color={color}>
+            {total.toFixed(2)} Euro
+            <H2Title dm={dm}>Card Details</H2Title>
             <CardElementDiv>
               <CardElement options={configCardElement} />
             </CardElementDiv>
@@ -309,21 +315,37 @@ function PaymentDetails() {
             </DivSmallWrapp>
           </DivPay>
           <ButtonGooglePay color={color}>
-            <H1Banner>Google Pay</H1Banner>
+            <ImgGoogleLogo src="/images/gpay.png" alt="test" />
           </ButtonGooglePay>
         </form>
+        {paymentSuccess ? <DivPaymentSuccess></DivPaymentSuccess> : null}
       </DivInner>
     </MainDiv>
   );
 }
 
 export default PaymentDetails;
+
+const H2Title = styled.h2`
+  color: ${(props) => (props.dm ? 'white' : props.color)};
+`;
+
+const ImgGoogleLogo = styled.img`
+  height: 1em;
+`;
+
+const DivPaymentSuccess = styled.div`
+  height: 40vh;
+  background-color: red;
+`;
+
 const ButtonGooglePay = styled.button`
   width: 100%;
   background-color: ${(props) => props.color};
   color: 'white';
   padding: 1em 0em;
   border: none;
+  margin: 1em 0;
 `;
 
 const P = styled.p`
@@ -386,6 +408,10 @@ const CardElementDiv = styled.div`
 
 const MainDiv = styled.div`
   width: 100%;
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
 `;
 
-const CardDetailsDiv = styled.div``;
+const CardDetailsDiv = styled.div`
+  margin: 1em 0;
+  color: ${(props) => (props.dm ? 'white' : props.color)};
+`;

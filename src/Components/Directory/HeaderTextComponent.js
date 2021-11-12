@@ -12,20 +12,24 @@ function HeaderTextComponent({
   buttonText,
   linkTo,
   imgOne,
+  dm,
 }) {
   return (
     <TextDiv>
       <Banner src={'/images/banner1.jpeg'} />
 
-      {headerText && <P color={color}>{headerText}</P>}
-      {title && <H1>{title}</H1>}
+      {headerText && (
+        <P dm={dm} color={color}>
+          {headerText}
+        </P>
+      )}
+      {title && <H1 dm={dm}>{title}</H1>}
       <SmallImageDiv>
         <SmallImageRound src={imgOne} alt="" />
         <SmallImageRound src={imgOne} alt="" />
         <SmallImageRound src={imgOne} alt="" />
-        <SmallImageRound src={imgOne} alt="" />
       </SmallImageDiv>
-      {text && <ItemDescription>{text}</ItemDescription>}
+      {text && <ItemDescription dm={dm}>{text}</ItemDescription>}
       <Link to={linkTo}>
         <ButtonElement margin={'3em'} adress={linkTo}>
           {buttonText}
@@ -39,15 +43,14 @@ export default HeaderTextComponent;
 
 const SmallImageDiv = styled.div`
   display: flex;
+
+  margin: 1.5em 1em;
   width: 100%;
-  margin: 1.5em 0;
+  justify-content: space-between;
 `;
 
 const SmallImageRound = styled.img`
-  border-radius: 50%;
-  width: 3.438rem;
-  height: 3.25rem;
-  margin-right: 2em;
+  height: 5rem;
 `;
 
 const P = styled.p`
@@ -55,19 +58,19 @@ const P = styled.p`
   margin: 1em 0;
   font-size: larger;
   width: 100%;
-  color: ${(props) => props.color};
+  color: ${(props) => (props.dm ? 'white' : props.color)};
   margin: 1em 0;
 `;
 
 const H1 = styled.h1`
   font-family: Roboto;
   font-size: small;
-
+  color: ${(props) => (props.dm ? 'white' : props.color)};
   line-height: 21px;
   /* identical to box height */
   width: 100%;
   text-decoration-line: none;
-  color: rgba(0, 0, 0, 0.5);
+
   text-align: left;
 `;
 
@@ -85,5 +88,5 @@ const TextDiv = styled.div`
 
 const ItemDescription = styled.p`
   font-size: 1.1rem;
-  color: rgba(0, 0, 0, 0.5);
+  color: ${(props) => (props.dm ? 'white' : props.color)};
 `;

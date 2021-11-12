@@ -16,13 +16,11 @@ import { addProduct, reduceCartItem } from '../../Redux/Cart/cart.action';
 
 const mapState = (state) => ({
   product: state.productsData.product,
-  darkmodeFromState: state.darkmode,
 });
 
-function ProductCard() {
-  const { product, darkmodeFromState } = useSelector(mapState);
+function ProductCard({ dm }) {
+  const { product } = useSelector(mapState);
 
-  const darkmode = darkmodeFromState.darkmode;
   const dispatch = useDispatch();
   const { productID } = useParams();
   const { productName, productPrice, productDescription, quantity } = product;
@@ -44,11 +42,11 @@ function ProductCard() {
   }, []);
 
   return (
-    <MainDiv dm={darkmode}>
+    <MainDiv dm={dm}>
       <Carousel
         infiniteLoop={true}
         showStatus={false}
-        showArrows={false}
+        showArrows={true}
         showThumbs={false}
         showIndicators={false}
       >
@@ -66,20 +64,20 @@ function ProductCard() {
       </Carousel>
       <ProductDiv color={color}>
         <DivTitle>
-          <H1Title>{productName}</H1Title>
+          <H1Title dm={dm}>{productName}</H1Title>
         </DivTitle>
 
-        <Pprice>
-          <h3>{productPrice}€</h3>
+        <Pprice dm={dm}>
+          <H3 dm={dm}>{productPrice}€</H3>
         </Pprice>
         {!productDescription && (
-          <p>
+          <P dm={dm}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum,
             dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Illum, dolor.
-          </p>
+          </P>
         )}
-        <span dangerouslySetInnerHTML={{ __html: productDescription }}></span>
+        <P dm={dm}>{productDescription}</P>
         <div>
           <ButtonElement onClick={() => handleAddProduct(product)}>
             ADD TO BASKET
@@ -92,8 +90,17 @@ function ProductCard() {
 
 export default ProductCard;
 
+const P = styled.p`
+  color: ${(props) => (props.dm ? 'white' : 'black')};
+  padding: 0em 0em 2em 0em;
+`;
+
+const H3 = styled.h3`
+  color: ${(props) => (props.dm ? 'white' : 'black')};
+`;
+
 const DivTest = styled.div`
-  height: 17em;
+  height: 20em;
 `;
 
 const Pprice = styled.p`
@@ -104,6 +111,7 @@ const Pprice = styled.p`
 
 const H1Title = styled.h1`
   font-family: roboto;
+  color: ${(props) => (props.dm ? 'white' : 'black')};
 `;
 
 const DivTitle = styled.div`
@@ -138,5 +146,6 @@ const MainDiv = styled.div`
     width: 100%;
     margin: 0 auto;
     padding: 4em 0;
+    min-height: 100vh;
   }
 `;

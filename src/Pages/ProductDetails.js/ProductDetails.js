@@ -1,10 +1,10 @@
 import React from 'react';
 import ProductCard from '../../Components/ProductCard/ProductCard';
 
-function ProductDetails() {
+function ProductDetails({ dm }) {
   return (
     <div>
-      <ProductCard />
+      <ProductCard dm={dm} />
     </div>
   );
 }

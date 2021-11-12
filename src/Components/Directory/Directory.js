@@ -1,25 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import 'react-on-scroll-animation/build/index.css';
-
 import HeaderTextComponent from './HeaderTextComponent';
-
 import ImageRow from './ImageRow';
 import Bestseller from './Bestseller';
 import Footer from '../Footer/Footer';
 import MainPageImage from './MainPageImage';
 
-const mapState = ({ productsData, darkmode }) => ({
+const mapState = ({ productsData }) => ({
   products: productsData.products,
-  darkmodefromState: darkmode,
 });
 
-function Directory() {
-  const { products, darkmodefromState } = useSelector(mapState);
+function Directory({ dm }) {
+  const { products } = useSelector(mapState);
   const dispatch = useDispatch();
-  const darkmode = darkmodefromState.darkmode;
 
   useEffect(() => {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
@@ -28,7 +24,7 @@ function Directory() {
   const { data } = products;
 
   return (
-    <DivMain dm={darkmode}>
+    <DivMain dm={dm}>
       <DivWrapper>
         {Array.isArray(data) && data.length > 0 && (
           <MainPageImage data={data} />
@@ -41,14 +37,16 @@ function Directory() {
             imgOne="/images/Two.jpg"
             buttonText="Read More"
             linkTo="search"
+            dm={dm}
           />
           <ImageRow />
         </DivMiddle>
-        <BestSellerDiv dm={darkmode}>
-          <Bestseller />
+        <BestSellerDiv dm={dm}>
+          <Bestseller dm={dm} />
         </BestSellerDiv>
         <DivMiddle>
           <HeaderTextComponent
+            dm={dm}
             title="Meet The Minds Shaping An Industry"
             headerText="Our Team"
             imgOne="/images/buffett.jpeg"
@@ -66,7 +64,7 @@ function Directory() {
             allowfullscreen
           ></Iframe>
         </DivHalf>
-        <Footer darkmode={darkmode} />
+        <Footer dm={dm} />
       </DivWrapper>
     </DivMain>
   );
@@ -130,7 +128,7 @@ const Iframe = styled.iframe`
 `;
 
 const DivHalf = styled.div`
-  height: 100vh;
+  height: 80vh;
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
 `;

@@ -65,7 +65,7 @@ const ButtonText = styled.p`
 `;
 
 const Img = styled.img`
-  height: 90vh;
+  height: 70vh;
 `;
 
 const Div = styled.div`

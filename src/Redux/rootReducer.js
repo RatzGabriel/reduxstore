@@ -6,7 +6,6 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import ordersReducer from './Orders/orders.reducer';
 import wlReducer from './WishList/wishlist.reducer';
-import darkmodeReducer from './darkmode/darkmode.reducer';
 
 export const rootreducer = combineReducers({
   user: userReducer,
@@ -14,7 +13,6 @@ export const rootreducer = combineReducers({
   cartData: cartReducer,
   ordersData: ordersReducer,
   wlData: wlReducer,
-  darkmode: darkmodeReducer,
 });
 
 const configStorage = {

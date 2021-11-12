@@ -9,6 +9,7 @@ import {
 } from '../../Redux/Cart/cart.selectors';
 import { color } from '../../colors';
 import CartMenuItem from './CartMenuItem';
+import { Link } from 'react-router-dom';
 
 const mapState = createStructuredSelector({
   cartItems: selectCartItems,
@@ -17,7 +18,6 @@ const mapState = createStructuredSelector({
 
 function CartMenu({ setStatusNavBar, statusNavBar, dm }) {
   const { cartItems, total } = useSelector(mapState);
-  console.log(cartItems);
   const errMsg = 'You have no items in your cart.';
   return (
     <Nav statusNavBar={statusNavBar} dm={dm}>
@@ -40,7 +40,14 @@ function CartMenu({ setStatusNavBar, statusNavBar, dm }) {
           <H1Title>{(Math.round(total * 100) / 100).toFixed(2)}</H1Title>
         </DivTotal>
         <div>
-          <ButtonCheckout color={color}>Checkout</ButtonCheckout>
+          <Link to="/payment">
+            <ButtonCheckout
+              onClick={() => setStatusNavBar(!statusNavBar)}
+              color={color}
+            >
+              Checkout
+            </ButtonCheckout>
+          </Link>
         </div>
       </DivButton>
     </Nav>
@@ -88,7 +95,7 @@ const DivTitle = styled.div`
 
 const Nav = styled.nav`
   transition: opacity 0.75s, visibility 0.75s, width 0.75s;
-  z-index: 1;
+  z-index: 999;
   width: ${(props) => (props.statusNavBar ? '80%' : '30%')};
   display: flex;
   flex-direction: column;

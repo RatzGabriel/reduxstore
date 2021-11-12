@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ProductCard from '../../Directory/ProductCard';
 
-function Product({ product, pt, pb, wd, height, pPrice }) {
+function Product({ product, pt, pb, wd, height, pPrice, dm }) {
   return (
     <DivMain>
-      <ProductCard product={product} />
+      <ProductCard dm={dm} product={product} />
     </DivMain>
     // <NewMainDiv>
     //   <StyledLink

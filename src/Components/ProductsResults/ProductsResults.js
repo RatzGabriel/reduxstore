@@ -8,17 +8,15 @@ import Product from './Product/Product';
 import FormSelect from '../Elements/FormSelect/FormSelect';
 import { color } from '../../colors';
 
-const mapState = ({ productsData, darkmode }) => ({
+const mapState = ({ productsData }) => ({
   products: productsData.products,
-  darkmodefromState: darkmode,
 });
 
-const ProductResults = () => {
+const ProductResults = ({ dm }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { filterType } = useParams();
-  const { products, darkmodefromState } = useSelector(mapState);
-  let darkmode = darkmodefromState.darkmode;
+  const { products } = useSelector(mapState);
 
   const { data } = products;
 
@@ -64,16 +62,16 @@ const ProductResults = () => {
   };
 
   return (
-    <Div1 dm={darkmode}>
+    <Div1 dm={dm}>
       <DivBanner color={color}>
         <H1Banner>Shop</H1Banner>
       </DivBanner>
       <TextDiv>
-        <FormSelect {...configFilters} dm={darkmode} />
+        <FormSelect {...configFilters} dm={dm} />
       </TextDiv>
       <InnerDiv>
         {data.map((item) => {
-          return <Product product={item} />;
+          return <Product product={item} dm={dm} />;
         })}
       </InnerDiv>
     </Div1>

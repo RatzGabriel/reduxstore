@@ -3,16 +3,19 @@ import ProductCard from './ProductCard';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
+import { color } from '../../colors';
 
 import 'swiper';
 import './styles.css';
 SwiperCore.use([Pagination]);
 
-function ProductSlider({ header, product1, product2, product3 }) {
+function ProductSlider({ header, product1, product2, product3, dm }) {
   return (
     <DivMain>
       <div>
-        <H1Title>{header}</H1Title>
+        <H1Title dm={dm} color={color}>
+          {header}
+        </H1Title>
       </div>
       <div>
         <>
@@ -49,4 +52,5 @@ const H1Title = styled.h1`
   font-family: Jacques Francois;
   margin: 1em 0;
   font-size: large;
+  color: ${(props) => (props.dm ? 'white' : props.color)};
 `;

@@ -27,17 +27,16 @@ import ProductResults from './Components/ProductsResults/ProductsResults';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
-  darkmodefromState: state.darkmode,
 });
 
 const App = () => {
-  const { currentUser, darkmodefromState } = useSelector(mapState);
-  const [darkmode, setDarkmode] = useState('off');
+  const { currentUser } = useSelector(mapState);
+  const [darkmode, setDarkmode] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setDarkmode(darkmodefromState.darkmode);
-  }, [darkmodefromState]);
+  const setDarkmodeOnApp = () => {
+    setDarkmode(!darkmode);
+  };
 
   useEffect(() => {
     dispatch(checkUserSession());
@@ -45,9 +44,9 @@ const App = () => {
 
   return (
     <div>
-      <Header />
+      <Header setDarkmodeOnApp={setDarkmodeOnApp} dm={darkmode} />
       <Switch>
-        <Route exact path="/" render={() => <Directory />} />
+        <Route exact path="/" render={() => <Directory dm={darkmode} />} />
         <Route
           path="/registration"
           render={() => <Registration darkmode={darkmode} />}
@@ -64,13 +63,13 @@ const App = () => {
           </WithAdminAuth>
         </Route>
         <Route exact path="/search">
-          <ProductResults darkmode={darkmode} />
+          <ProductResults dm={darkmode} />
         </Route>
         <Route path="/search/:filterType">
           <Search />
         </Route>
         <Route path="/product/:productID">
-          <ProductDetails />
+          <ProductDetails dm={darkmode} />
         </Route>
         <Route path="/cart">
           <Cart dm={darkmode} />
@@ -79,8 +78,8 @@ const App = () => {
           <WishList dm={darkmode} />
         </Route>
         <Route path="/payment">
-          {currentUser && <Payment></Payment>}
-          {!currentUser && <SignIn></SignIn>}
+          {currentUser && <Payment dm={darkmode}></Payment>}
+          {!currentUser && <SignIn dm={darkmode}></SignIn>}
         </Route>
         <Route path="/dashboard">
           {currentUser && (

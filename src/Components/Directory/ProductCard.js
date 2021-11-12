@@ -13,13 +13,13 @@ import { addProduct } from '../../Redux/Cart/cart.action';
 import { addToWL } from '../../Redux/WishList/wishlist.action';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
 const mapState = createStructuredSelector({
   wlItems: selectWlItems,
   total: selectWlTotal,
 });
 
-function ProductCard({ product }) {
+function ProductCard({ product, dm }) {
   const {
     productThumbnail,
     productName,
@@ -31,14 +31,14 @@ function ProductCard({ product }) {
   const { wlItems } = useSelector(mapState);
   const [wobble, setWobble] = useState('off');
   const [wobbleCart, setWobbleCart] = useState('off');
-  const [heartStatus, setHeartStatus] = useState('primary');
+  const [heartStatus, setHeartStatus] = useState(false);
 
   useEffect(() => {
     if (wlItems.length > 0) {
       wlItems.map((item) => {
         if (item.documentID === documentID) {
-          return setHeartStatus('secondary');
-        } else return setHeartStatus('secondary');
+          return setHeartStatus(true);
+        } else return setHeartStatus(false);
       });
     }
   }, []);
@@ -76,16 +76,16 @@ function ProductCard({ product }) {
       for (let i = 0; i < wlItems.length; i++) {
         if (wlItems[i].documentID === product.documentID) {
           handleRemoveWlItem(product.documentID);
-          setHeartStatus('primary');
+          setHeartStatus(false);
           return;
         } else {
           handleAddToWl(product);
-          setHeartStatus('secondary');
+          setHeartStatus(true);
         }
       }
     } else {
       handleAddToWl(product);
-      setHeartStatus('secondary');
+      setHeartStatus(true);
     }
   };
 
@@ -94,19 +94,40 @@ function ProductCard({ product }) {
       <DivIcons>
         <ButtonElementMobile type="button">
           <span>
-            <FavoriteBorderIcon
-              color={heartStatus}
+            {heartStatus ? (
+              <FavoriteBorderIcon
+                fontSize="small"
+                htmlColor="white"
+                onClick={() => {
+                  isItemInWl(product);
+                  setWobble('on');
+                  timeout();
+                }}
+              />
+            ) : (
+              <FavoriteIcon
+                fontSize="small"
+                htmlColor="white"
+                onClick={() => {
+                  isItemInWl(product);
+                  setWobble('on');
+                  timeout();
+                }}
+              />
+            )}
+            {/* <FavoriteBorderIcon
               onClick={() => {
                 isItemInWl(product);
                 setWobble('on');
                 timeout();
               }}
-            />
+            /> */}
           </span>
         </ButtonElementMobile>
         <ButtonElementMobile type="button">
           <span>
             <ShoppingCartIcon
+              fontSize="small"
               class={wobbleCart}
               onClick={() => {
                 handleAddToCard(product);

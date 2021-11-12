@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import ProductSlider from './ProductSlider';
 
-function Bestseller() {
+function Bestseller({ dm }) {
   const product1 = {
     productName: 'Vase1',
-    productThumbnail: '/images/16.jpeg',
+    productThumbnail: 'https://i.ibb.co/0htdjhS/16.jpg',
     productPrice: '9.80 Euro',
     productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
@@ -13,7 +13,7 @@ function Bestseller() {
 
   const product2 = {
     productName: 'Vase2',
-    productThumbnail: '/images/16.jpeg',
+    productThumbnail: 'https://i.ibb.co/0htdjhS/16.jpg',
     productPrice: '9.80 Euro',
     productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
@@ -21,7 +21,7 @@ function Bestseller() {
 
   const product3 = {
     productName: 'Vase3',
-    productThumbnail: '/images/16.jpeg',
+    productThumbnail: 'https://i.ibb.co/0htdjhS/16.jpg',
     productPrice: '9.80 Euro',
     productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
@@ -31,10 +31,12 @@ function Bestseller() {
     <>
       <BannerImg src="/images/banner1.jpeg" alt="" />
       <ProductSlider
+        dm={dm}
         header="Bestseller"
         product1={(product1, product2, product3)}
       />
       <ProductSlider
+        dm={dm}
         header="New Products"
         product1={(product1, product2, product3)}
       />

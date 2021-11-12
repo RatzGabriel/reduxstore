@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { darkMode } from '../../Redux/darkmode/darkmode';
+import Brightness3Icon from '@material-ui/icons/Brightness3';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
 
-function DarkModeSlider() {
-  const [darkmode, setDarkmode] = useState(false);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(darkMode(darkmode));
-  }, [darkmode]);
-
+function DarkModeSlider({ dm }) {
   return (
     <LogoDiv>
-      <label class="switch">
-        <input type="checkbox" />
-        <span
-          onClick={() => setDarkmode(!darkmode)}
-          class="slider round"
-        ></span>
-      </label>
+      {dm ? (
+        <Brightness3Icon htmlColor="white" />
+      ) : (
+        <WbSunnyIcon htmlColor="white" />
+      )}
     </LogoDiv>
   );
 }

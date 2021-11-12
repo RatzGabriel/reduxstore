@@ -3,20 +3,8 @@ import styled from 'styled-components';
 import { color } from '../../../colors';
 import { useSelector } from 'react-redux';
 
-const mapState = ({ darkmode }) => ({
-  darkmodefromState: darkmode,
-});
-
 const ButtonElement = ({ children, ...otherProps }) => {
-  const { darkmodefromState } = useSelector(mapState);
-
-  const darkmode = darkmodefromState.darkmode;
-
-  return (
-    <ButtonStyle {...otherProps} dm={darkmode}>
-      {children}
-    </ButtonStyle>
-  );
+  return <ButtonStyle {...otherProps}>{children}</ButtonStyle>;
 };
 
 const ButtonStyle = styled.button`

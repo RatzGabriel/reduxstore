@@ -6,11 +6,11 @@ import { publishableKey } from '../../stripe/config';
 
 const stripePromise = loadStripe(publishableKey);
 
-function Payment() {
+function Payment({ dm }) {
   return (
     <div>
       <Elements stripe={stripePromise}>
-        <PaymentDetails />
+        <PaymentDetails dm={dm} />
       </Elements>
     </div>
   );

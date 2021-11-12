@@ -14,7 +14,6 @@ import './Header.css';
 import SignedOut from './SignedOut';
 import MobileMenu from './MobileMenu';
 import LoggedIn from './LoggedIn';
-import { darkMode } from '../../Redux/darkmode/darkmode';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
 import { color } from '../../colors';
@@ -23,14 +22,10 @@ import CartMenu from './CartMenu';
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
   totalNumCartItems: selectCartItemsCount(state),
-  darkmodefromState: state.darkmode,
 });
 
-function Header() {
-  const { currentUser, totalNumCartItems, darkmodefromState } =
-    useSelector(mapState);
-
-  const [darkmode, setDarkmode] = useState(false);
+function Header({ setDarkmodeOnApp, dm }) {
+  const { currentUser, totalNumCartItems } = useSelector(mapState);
 
   const [statusNavBar, setStatusNavBar] = useState(false);
   const [statusCart, setStatusCart] = useState(false);
@@ -45,38 +40,37 @@ function Header() {
     dispatch(googleSignInStart());
   };
 
-  useEffect(() => {
-    setDarkmode(darkmodefromState.darkmode);
-  }, [darkmodefromState]);
-
   return (
-    <MainDiv color={color} dm={darkmode}>
+    <MainDiv color={color} dm={dm}>
       <MobileMenu
         setStatusNavBar={setStatusNavBar}
         checkUserIsAdmin={checkUserIsAdmin}
         currentUser={currentUser}
         statusNavBar={statusNavBar}
-        dm={darkmode}
+        dm={dm}
+        setDarkmode={setDarkmodeOnApp}
       />
       <CartMenu
         setStatusNavBar={setStatusCart}
         checkUserIsAdmin={checkUserIsAdmin}
         currentUser={currentUser}
         statusNavBar={statusCart}
-        dm={darkmode}
+        dm={dm}
       />
 
       <WrapDiv>
         <DivHeaderRight color={color}>
-          <ShoppingCartIcon
-            statusCart={statusCart}
-            onClick={() => setStatusCart(!statusCart)}
-          />
+          <ICart dm={dm} color={color}>
+            <ShoppingCartIcon
+              statusCart={statusCart}
+              onClick={() => setStatusCart(!statusCart)}
+            />
+          </ICart>
           <Iopen
             color={color}
             statusNavBar={statusNavBar}
             onClick={() => setStatusNavBar(!statusNavBar)}
-            dm={darkmode}
+            dm={dm}
           >
             <CloseIcon />
           </Iopen>
@@ -84,14 +78,16 @@ function Header() {
             color={color}
             statusNavBar={statusNavBar}
             onClick={() => setStatusNavBar(!statusNavBar)}
-            dm={darkmode}
+            dm={dm}
           >
             <MenuIcon />
           </Iclosed>
         </DivHeaderRight>
 
-        <LinkLogo dm={darkmode} to="/">
-          <LogoText color={color}>Machua Peru</LogoText>
+        <LinkLogo dm={dm} to="/">
+          <LogoText color={color} dm={dm}>
+            Machua Peru
+          </LogoText>
         </LinkLogo>
         <HeaderDivs>
           {checkUserIsAdmin(currentUser) && (
@@ -118,6 +114,10 @@ Header.defaultProps = {
 
 export default Header;
 
+const ICart = styled.i`
+  color: ${(props) => (props.dm ? 'white' : props.color)};
+`;
+
 const DivHeaderRight = styled.div`
   display: flex;
   width: 30%;
@@ -127,18 +127,17 @@ const DivHeaderRight = styled.div`
 
 const LinkLogo = styled(Link)`
   text-decoration: none;
-  color: ${(props) => (props.dm ? 'white' : 'black')};
+  color: ${(props) => (props.dm ? 'white' : props.color)};
 `;
 
 const Iclosed = styled.i`
   display: ${(props) => (props.statusNavBar ? 'none' : 'block')};
-  color: ${(props) => (props.dm ? 'white' : 'black')};
-  color: ${(props) => (props.color ? props.color : 'green')};
+  color: ${(props) => (props.dm ? 'white' : props.color)};
 `;
 
 const Iopen = styled.i`
   display: ${(props) => (props.statusNavBar ? 'block' : 'none')};
-  color: ${(props) => (props.color ? props.color : 'green')};
+  color: ${(props) => (props.dm ? 'white' : props.color)};
 `;
 
 const LogoText = styled.p`
@@ -147,7 +146,7 @@ const LogoText = styled.p`
   font-weight: normal;
   font-size: 1.1rem;
   margin: 0;
-  color: ${(props) => (props.color ? props.color : 'red')};
+  color: ${(props) => (props.dm ? 'white' : 'black')};
 `;
 
 const MainDiv = styled.div`
