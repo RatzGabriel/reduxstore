@@ -42,7 +42,7 @@ function Directory({ dm }) {
           <ImageRow />
         </DivMiddle>
         <BestSellerDiv dm={dm}>
-          <Bestseller dm={dm} />
+          <Bestseller dm={dm} data={data} />
         </BestSellerDiv>
         <DivMiddle>
           <HeaderTextComponent

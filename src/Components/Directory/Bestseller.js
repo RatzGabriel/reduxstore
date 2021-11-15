@@ -9,6 +9,7 @@ function Bestseller({ dm }) {
     productPrice: '9.80 Euro',
     productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
+    documentID: '7FXJaI02WunP1Aw3Riey',
   };
 
   const product2 = {
@@ -17,6 +18,7 @@ function Bestseller({ dm }) {
     productPrice: '9.80 Euro',
     productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
+    documentID: '7FXJaI02WunP1Aw3Riey',
   };
 
   const product3 = {
@@ -25,6 +27,7 @@ function Bestseller({ dm }) {
     productPrice: '9.80 Euro',
     productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
+    documentID: '7FXJaI02WunP1Aw3Riey',
   };
 
   return (

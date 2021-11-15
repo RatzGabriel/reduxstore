@@ -40,6 +40,21 @@ function Header({ setDarkmodeOnApp, dm }) {
     dispatch(googleSignInStart());
   };
 
+  function setCart() {
+    if (statusNavBar === true) {
+      setStatusNavBar(false);
+      setStatusCart(true);
+    } else if (statusCart === true) setStatusCart(false);
+    else setStatusCart(true);
+  }
+
+  function setMenu() {
+    if (statusCart === true) {
+      setStatusCart(false);
+      setStatusNavBar(true);
+    } else setStatusNavBar(!statusNavBar);
+  }
+
   return (
     <MainDiv color={color} dm={dm}>
       <MobileMenu
@@ -51,10 +66,10 @@ function Header({ setDarkmodeOnApp, dm }) {
         setDarkmode={setDarkmodeOnApp}
       />
       <CartMenu
-        setStatusNavBar={setStatusCart}
+        setStatusCart={setStatusCart}
         checkUserIsAdmin={checkUserIsAdmin}
         currentUser={currentUser}
-        statusNavBar={statusCart}
+        statusCart={statusCart}
         dm={dm}
       />
 
@@ -63,13 +78,16 @@ function Header({ setDarkmodeOnApp, dm }) {
           <ICart dm={dm} color={color}>
             <ShoppingCartIcon
               statusCart={statusCart}
-              onClick={() => setStatusCart(!statusCart)}
+              onClick={() => setCart()}
             />
           </ICart>
+          <ItemCountP color={color} dm={dm}>
+            ({totalNumCartItems})
+          </ItemCountP>
           <Iopen
             color={color}
             statusNavBar={statusNavBar}
-            onClick={() => setStatusNavBar(!statusNavBar)}
+            onClick={() => setMenu()}
             dm={dm}
           >
             <CloseIcon />
@@ -77,7 +95,7 @@ function Header({ setDarkmodeOnApp, dm }) {
           <Iclosed
             color={color}
             statusNavBar={statusNavBar}
-            onClick={() => setStatusNavBar(!statusNavBar)}
+            onClick={() => setMenu()}
             dm={dm}
           >
             <MenuIcon />
@@ -192,4 +210,6 @@ const StyledLink = styled(Link)`
 
 const ItemCountP = styled.p`
   font-size: 10px;
+  padding-right: 1em;
+  color: ${(props) => (props.dm ? 'white' : props.color)};
 `;

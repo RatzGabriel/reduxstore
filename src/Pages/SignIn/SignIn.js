@@ -2,7 +2,7 @@ import React from 'react';
 
 import LoginForm from '../../Components/LoginForm';
 
-function SignIn({ darkmode }) {
+function SignIn({ dm }) {
   return (
     <div>
       <LoginForm
@@ -10,6 +10,7 @@ function SignIn({ darkmode }) {
         header="Login"
         buttonText="Login"
         smallText="Or Log In In With Google"
+        dm={dm}
       />
     </div>
   );

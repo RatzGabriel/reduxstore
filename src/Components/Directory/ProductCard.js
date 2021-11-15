@@ -96,6 +96,7 @@ function ProductCard({ product, dm }) {
           <span>
             {heartStatus ? (
               <FavoriteBorderIcon
+                class={wobble}
                 fontSize="small"
                 htmlColor="white"
                 onClick={() => {
@@ -106,6 +107,7 @@ function ProductCard({ product, dm }) {
               />
             ) : (
               <FavoriteIcon
+                class={wobble}
                 fontSize="small"
                 htmlColor="white"
                 onClick={() => {

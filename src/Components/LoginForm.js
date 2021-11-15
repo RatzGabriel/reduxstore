@@ -15,7 +15,7 @@ const mapState = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
-function LoginForm({ img, header, buttonText, smallText, registration }) {
+function LoginForm({ img, header, buttonText, smallText, registration, dm }) {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -62,7 +62,7 @@ function LoginForm({ img, header, buttonText, smallText, registration }) {
   };
 
   return (
-    <DivMain>
+    <DivMain dm={dm}>
       <Banner src={img} />
       <H1Header>{header}</H1Header>
       {!currentUser && (
@@ -80,7 +80,7 @@ function LoginForm({ img, header, buttonText, smallText, registration }) {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <ButtonElement type="submit" margin="3em 0em 3em 0em">
+            <ButtonElement dm={dm} type="submit" margin="3em 0em 3em 0em">
               {buttonText}
             </ButtonElement>
             <Ptext onClick={handleGoogleSignIn}>{smallText}</Ptext>
@@ -90,7 +90,11 @@ function LoginForm({ img, header, buttonText, smallText, registration }) {
       {currentUser && (
         <div>
           Logged In Already{' '}
-          <ButtonElement margin="3em 0em 0em 0em" onClick={() => signOut()}>
+          <ButtonElement
+            dm={dm}
+            margin="3em 0em 0em 0em"
+            onClick={() => signOut()}
+          >
             Sign Out
           </ButtonElement>
         </div>
@@ -119,4 +123,5 @@ const DivMain = styled.div`
   width: 90%;
   margin: 0 auto;
   padding-top: 4em;
+  background-color: ${(props) => (props.dm ? 'black' : 'white')};
 `;

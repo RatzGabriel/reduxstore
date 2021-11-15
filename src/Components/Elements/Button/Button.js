@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { color } from '../../../colors';
-import { useSelector } from 'react-redux';
 
 const ButtonElement = ({ children, ...otherProps }) => {
   return <ButtonStyle {...otherProps}>{children}</ButtonStyle>;

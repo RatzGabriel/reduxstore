@@ -16,14 +16,14 @@ const mapState = createStructuredSelector({
   total: selectCartTotal,
 });
 
-function CartMenu({ setStatusNavBar, statusNavBar, dm }) {
+function CartMenu({ setStatusCart, statusCart, dm }) {
   const { cartItems, total } = useSelector(mapState);
   const errMsg = 'You have no items in your cart.';
   return (
-    <Nav statusNavBar={statusNavBar} dm={dm}>
+    <Nav statusNavBar={statusCart} dm={dm}>
       <DivTitle>
         <H1Title>Cart</H1Title>
-        <CloseIcon onClick={() => setStatusNavBar(!statusNavBar)} />
+        <CloseIcon onClick={() => setStatusCart(false)} />
       </DivTitle>
       {cartItems.length > 0 ? (
         <div>
@@ -41,10 +41,7 @@ function CartMenu({ setStatusNavBar, statusNavBar, dm }) {
         </DivTotal>
         <div>
           <Link to="/payment">
-            <ButtonCheckout
-              onClick={() => setStatusNavBar(!statusNavBar)}
-              color={color}
-            >
+            <ButtonCheckout onClick={() => setStatusCart(false)} color={color}>
               Checkout
             </ButtonCheckout>
           </Link>

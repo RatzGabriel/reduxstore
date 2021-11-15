@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
 import { color } from '../../colors';
+import { Link } from 'react-router-dom';
 
 import 'swiper';
 import './styles.css';
@@ -26,13 +27,19 @@ function ProductSlider({ header, product1, product2, product3, dm }) {
             className="mySwiper"
           >
             <SwiperSlide>
-              <ProductCard product={product1} />
+              <Link to={`/product/${product1.documentID}`}>
+                <ProductCard product={product1} />
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <ProductCard product={product1} />
+              <Link to={`/product/${product1.documentID}`}>
+                <ProductCard product={product1} />
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <ProductCard product={product1} />
+              <Link to={`/product/${product1.documentID}`}>
+                <ProductCard product={product1} />
+              </Link>
             </SwiperSlide>
           </Swiper>
         </>
