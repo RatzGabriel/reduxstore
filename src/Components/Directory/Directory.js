@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import 'react-on-scroll-animation/build/index.css';
 import HeaderTextComponent from './HeaderTextComponent';
-import ImageRow from './ImageRow';
+
 import Bestseller from './Bestseller';
 import Footer from '../Footer/Footer';
 import MainPageImage from './MainPageImage';
@@ -39,7 +39,6 @@ function Directory({ dm }) {
             linkTo="search"
             dm={dm}
           />
-          <ImageRow />
         </DivMiddle>
         <BestSellerDiv dm={dm}>
           <Bestseller dm={dm} data={data} />
@@ -82,6 +81,8 @@ const DivMain = styled.div`
   background-color: ${(props) => (props.dm ? 'black' : 'white')};
   color: ${(props) => (props.dm ? 'white' : 'black')};
   @media (max-width: 960px) {
+    width: 100%;
+    margin: 0 auto;
   }
 `;
 
@@ -98,6 +99,7 @@ const DivWrapper = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    flex-direction: row;
   }
 `;
 
@@ -114,6 +116,8 @@ const DivMiddle = styled.div`
 const BestSellerDiv = styled.div`
   background: ${(props) => (props.dm ? 'black' : 'white')};
   margin: 0 auto;
+  width: 90%;
+
   @media (max-width: 960px) {
     text-align: center;
     width: 100%;

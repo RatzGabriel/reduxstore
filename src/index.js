@@ -28,7 +28,6 @@ ReactDOM.render(
         </PersistGate>
       </BrowserRouter>
     </Provider>
-    ,
   </ThemeProvider>,
   document.getElementById('root')
 );

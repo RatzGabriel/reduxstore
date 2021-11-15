@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ProductCard from './ProductCard';
 import ProductSlider from './ProductSlider';
 
 function Bestseller({ dm }) {
@@ -33,6 +34,11 @@ function Bestseller({ dm }) {
   return (
     <>
       <BannerImg src="/images/banner1.jpeg" alt="" />
+      <DivHideOnMobile>
+        <ProductCard product={product1} />
+        <ProductCard product={product1} />
+        <ProductCard product={product1} />
+      </DivHideOnMobile>
       <ProductSlider
         dm={dm}
         header="Bestseller"
@@ -49,9 +55,18 @@ function Bestseller({ dm }) {
 
 export default Bestseller;
 
+const DivHideOnMobile = styled.div`
+  @media (max-width: 962px) {
+    display: none;
+  }
+`;
+
 const BannerImg = styled.img`
   height: 8rem;
   width: 90%;
+  @media (min-width: 962px) {
+    display: none;
+  }
 `;
 
 /* <BestsellerTitleDiv>

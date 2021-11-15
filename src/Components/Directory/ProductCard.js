@@ -14,6 +14,7 @@ import { addToWL } from '../../Redux/WishList/wishlist.action';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+
 const mapState = createStructuredSelector({
   wlItems: selectWlItems,
   total: selectWlTotal,
@@ -117,13 +118,6 @@ function ProductCard({ product, dm }) {
                 }}
               />
             )}
-            {/* <FavoriteBorderIcon
-              onClick={() => {
-                isItemInWl(product);
-                setWobble('on');
-                timeout();
-              }}
-            /> */}
           </span>
         </ButtonElementMobile>
         <ButtonElementMobile type="button">
@@ -144,23 +138,25 @@ function ProductCard({ product, dm }) {
         to={`/product/${documentID}`}
         image={productThumbnail}
       ></LinkImage>
+
       <TextDiv>
         <InnerText>
-          <TitleH1>{productName}</TitleH1>
-          <PriceP>{productPrice}</PriceP>
-          {productDescription.length > 131 ? (
-            <DescriptionP>
-              {productDescription.substring(0, 130)}...
-            </DescriptionP>
-          ) : (
-            <DescriptionP>{productDescription}!</DescriptionP>
-          )}
-
-          {!productDescription && (
-            <DescriptionP>
-              Please click on the image to see more Details on this Item.
-            </DescriptionP>
-          )}
+          <Link to={`/product/${documentID}`}>
+            <TitleH1>{productName}</TitleH1>
+            <PriceP>{productPrice}</PriceP>
+            {productDescription.length > 131 ? (
+              <DescriptionP>
+                {productDescription.substring(0, 130)}...
+              </DescriptionP>
+            ) : (
+              <DescriptionP>{productDescription}!</DescriptionP>
+            )}
+            {!productDescription && (
+              <DescriptionP>
+                Please click on the image to see more Details on this Item.
+              </DescriptionP>
+            )}
+          </Link>
         </InnerText>
       </TextDiv>
     </ProductCardDiv>
@@ -188,6 +184,11 @@ const ProductCardDiv = styled.div`
   color: white;
   background-color: ${(props) => props.color};
   position: relative;
+
+  @media (min-width: 962px) {
+    height: 17rem;
+    width: 25em;
+  }
 `;
 
 //Wrapper Divs

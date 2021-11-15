@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
 import {Link} from "react-router-dom"
+import PersonIcon from '@material-ui/icons/Person';
+
 
 function SignedOut({signIn}) {
   return (
-    <div><StyledLink to="/registration">Registration</StyledLink>
- <StyledLink to="/signIn">Sign In</StyledLink>
- <GoogleImg src={'/images/google.png'} onClick={signIn} />
+    <div><Link to="/registration">
+    <PersonIcon/></Link>
 </div>
   )
 }

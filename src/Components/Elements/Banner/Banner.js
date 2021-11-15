@@ -10,5 +10,9 @@ export default Banner;
 const BannerImg = styled.img`
   height: 8rem;
   width: 100%;
-  margin: 0em 0 0em 0em;
+  @media (max-width: 962px) {
+  }
+  @media (min-width: 962px) {
+    display: none;
+  }
 `;

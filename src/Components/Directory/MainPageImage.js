@@ -15,32 +15,31 @@ function MainPageImage({ data }) {
   return (
     <HideOnDesktopDiv>
       <Carousel
-        showArrows={false}
+        showArrows={true}
+        showIndicators={false}
+        showStatus={false}
         showThumbs={false}
         infiniteLoop={true}
-        showStatus={false}
         onClickItem={(index) => history.push(`/search`)}
       >
-        <Div>
-          {data[0] !== undefined && (
-            <Img src={'/images/ceramic.jpg'} alt={data[0].productName} />
-          )}
-          <Link to="/search">
-            <Button>
-              <ButtonText>Store</ButtonText>
-            </Button>
-          </Link>
-        </Div>
-        <Div>
-          {data[0] !== undefined && (
-            <Img src={'/images/27.jpeg'} alt={data[0].productName} />
-          )}
-          <Link to="/search">
-            <Button>
-              <ButtonText>About Us</ButtonText>
-            </Button>
-          </Link>
-        </Div>
+        {data[0] !== undefined && (
+          <Div src={'/images/ceramic.jpg'}>
+            <LinkButton to="/search">
+              <Button>
+                <ButtonText>Store</ButtonText>
+              </Button>
+            </LinkButton>
+          </Div>
+        )}
+        {data[0] !== undefined && (
+          <Div src={'/images/27.jpeg'}>
+            <LinkButton to="/search">
+              <Button>
+                <ButtonText>About Me</ButtonText>
+              </Button>
+            </LinkButton>
+          </Div>
+        )}
       </Carousel>
     </HideOnDesktopDiv>
   );
@@ -48,9 +47,15 @@ function MainPageImage({ data }) {
 
 export default MainPageImage;
 
+const LinkButton = styled(Link)`
+  text-decoration: none;
+`;
+
 const HideOnDesktopDiv = styled.div`
   width: 100%;
+
   margin-top: 4em;
+
   @media (min-width: 962px) {
     display: none;
   }
@@ -64,20 +69,20 @@ const ButtonText = styled.p`
   margin: 0;
 `;
 
-const Img = styled.img`
-  height: 70vh;
-`;
-
 const Div = styled.div`
-  position: relative;
+  background-image: url(${(props) => props.src});
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
 `;
 
 const Button = styled.button`
-  position: absolute;
-  width: 196px;
+  width: 15rem;
   height: 74px;
-  left: 82px;
-  top: 28rem;
+  bottom: 3em;
   border: none;
   display: flex;
   justify-content: center;

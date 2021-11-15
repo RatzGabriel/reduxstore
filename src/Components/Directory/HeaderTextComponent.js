@@ -30,27 +30,44 @@ function HeaderTextComponent({
         <SmallImageRound src={imgOne} alt="" />
       </SmallImageDiv>
       {text && <ItemDescription dm={dm}>{text}</ItemDescription>}
-      <Link to={linkTo}>
+      <LinkElement to={linkTo}>
         <ButtonElement margin={'3em'} adress={linkTo}>
           {buttonText}
         </ButtonElement>
-      </Link>
+      </LinkElement>
     </TextDiv>
   );
 }
 
 export default HeaderTextComponent;
 
+const LinkElement = styled(Link)`
+  @media (min-width: 962px) {
+    display: none;
+  }
+`;
+
 const SmallImageDiv = styled.div`
   display: flex;
-
   margin: 1.5em 1em;
   width: 100%;
   justify-content: space-between;
+
+  @media (min-width: 962px) {
+    width: 100%;
+    margin: 0 2em 0em 0em;
+  }
 `;
 
 const SmallImageRound = styled.img`
-  height: 5rem;
+  width: 330px;
+  height: 431px;
+  top: 442px;
+  @media (max-width: 962px) {
+    width: 5em;
+    height: 5em;
+    top: 0;
+  }
 `;
 
 const P = styled.p`
@@ -60,6 +77,9 @@ const P = styled.p`
   width: 100%;
   color: ${(props) => (props.dm ? 'white' : props.color)};
   margin: 1em 0;
+  @media (min-width: 962px) {
+    font-size: 4.558rem;
+  }
 `;
 
 const H1 = styled.h1`
@@ -72,6 +92,12 @@ const H1 = styled.h1`
   text-decoration-line: none;
 
   text-align: left;
+  @media (min-width: 962px) {
+    font-size: 1.558rem;
+    margin: 4em 0;
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: underline;
+  }
 `;
 
 const TextDiv = styled.div`
@@ -82,11 +108,17 @@ const TextDiv = styled.div`
     width: 90%;
     align-items: center;
     text-align: left;
-    margin: 3em 0;
+    margin: 3em auto;
+  }
+  @media (min-width: 960px) {
+    align-items: left;
   }
 `;
 
 const ItemDescription = styled.p`
   font-size: 1.1rem;
   color: ${(props) => (props.dm ? 'white' : props.color)};
+  @media (min-width: 962px) {
+    display: none;
+  }
 `;

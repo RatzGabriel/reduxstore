@@ -80,10 +80,11 @@ function Header({ setDarkmodeOnApp, dm }) {
               statusCart={statusCart}
               onClick={() => setCart()}
             />
+            <ItemCountP color={color} dm={dm}>
+              ({totalNumCartItems})
+            </ItemCountP>
           </ICart>
-          <ItemCountP color={color} dm={dm}>
-            ({totalNumCartItems})
-          </ItemCountP>
+
           <Iopen
             color={color}
             statusNavBar={statusNavBar}
@@ -111,11 +112,9 @@ function Header({ setDarkmodeOnApp, dm }) {
           {checkUserIsAdmin(currentUser) && (
             <StyledLink to="/admin">Admin</StyledLink>
           )}
-          {<StyledLink to="/search">Shop</StyledLink>}
-          {!currentUser && <SignedOut signIn={signIn} />}
 
+          {!currentUser && <SignedOut signIn={signIn} />}
           {currentUser && <LoggedIn signOut={signOut} />}
-          {/* {currentUser && <StyledLink to="/dashboard">Dashboard</StyledLink>} */}
           <StyledLink to="/cart">
             <ShoppingCartIcon />
             <ItemCountP>({totalNumCartItems})</ItemCountP>
@@ -134,6 +133,9 @@ export default Header;
 
 const ICart = styled.i`
   color: ${(props) => (props.dm ? 'white' : props.color)};
+  @media (min-width: 962px) {
+    display: none;
+  }
 `;
 
 const DivHeaderRight = styled.div`
@@ -151,6 +153,9 @@ const LinkLogo = styled(Link)`
 const Iclosed = styled.i`
   display: ${(props) => (props.statusNavBar ? 'none' : 'block')};
   color: ${(props) => (props.dm ? 'white' : props.color)};
+  @media (min-width: 962px) {
+    display: none;
+  }
 `;
 
 const Iopen = styled.i`
@@ -173,6 +178,9 @@ const MainDiv = styled.div`
   z-index: 999;
   border: none;
   background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  @media (min-width: 962px) {
+    position: unset;
+  }
 `;
 
 const WrapDiv = styled.div`

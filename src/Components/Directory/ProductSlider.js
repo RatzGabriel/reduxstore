@@ -18,8 +18,13 @@ function ProductSlider({ header, product1, product2, product3, dm }) {
           {header}
         </H1Title>
       </div>
+      <DivDesktop>
+        <ProductCard product={product1} />
+        <ProductCard product={product1} />
+        <ProductCard product={product1} />
+      </DivDesktop>
       <div>
-        <>
+        <DivTest>
           <Swiper
             slidesPerView={'auto'}
             spaceBetween={30}
@@ -27,28 +32,38 @@ function ProductSlider({ header, product1, product2, product3, dm }) {
             className="mySwiper"
           >
             <SwiperSlide>
-              <Link to={`/product/${product1.documentID}`}>
-                <ProductCard product={product1} />
-              </Link>
+              <ProductCard product={product1} />
             </SwiperSlide>
             <SwiperSlide>
-              <Link to={`/product/${product1.documentID}`}>
-                <ProductCard product={product1} />
-              </Link>
+              <ProductCard product={product1} />
             </SwiperSlide>
             <SwiperSlide>
-              <Link to={`/product/${product1.documentID}`}>
-                <ProductCard product={product1} />
-              </Link>
+              <ProductCard product={product1} />
             </SwiperSlide>
           </Swiper>
-        </>
+        </DivTest>
       </div>
     </DivMain>
   );
 }
 
 export default ProductSlider;
+
+const DivDesktop = styled.div`
+  display: flex;
+  width: 100%;
+
+  justify-content: space-between;
+  @media (max-width: 962px) {
+    display: none;
+  }
+`;
+
+const DivTest = styled.div`
+  @media (min-width: 962px) {
+    display: none;
+  }
+`;
 
 const DivMain = styled.div`
   margin-left: 1em;
@@ -60,4 +75,7 @@ const H1Title = styled.h1`
   margin: 1em 0;
   font-size: large;
   color: ${(props) => (props.dm ? 'white' : props.color)};
+  @media (min-width: 962px) {
+    font-size: 4rem;
+  }
 `;
