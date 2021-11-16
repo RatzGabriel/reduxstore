@@ -107,11 +107,17 @@ const Pprice = styled.p`
   margin: 1em 0;
   padding: 0;
   font-size: 1.8rem;
+  @media (min-width: 962px) {
+    font-size: 1em;
+  }
 `;
 
 const H1Title = styled.h1`
   font-family: roboto;
   color: ${(props) => (props.dm ? 'white' : 'black')};
+  @media (min-width: 962px) {
+    font-size: 3em;
+  }
 `;
 
 const DivTitle = styled.div`
@@ -130,11 +136,8 @@ const ProductDiv = styled.div`
   display: flex;
   margin: 0em 1em;
   color: ${(props) => props.color};
-
-  @media (max-width: 962px) {
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
 `;
 
 const MainDiv = styled.div`
@@ -146,6 +149,12 @@ const MainDiv = styled.div`
     width: 100%;
     margin: 0 auto;
     padding: 4em 0;
+    min-height: 100vh;
+  }
+  @media (min-width: 962px) {
+    width: 50%;
+    margin: 0 auto;
+
     min-height: 100vh;
   }
 `;

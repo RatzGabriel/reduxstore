@@ -101,8 +101,7 @@ const Nav = styled.nav`
   opacity: ${(props) => (props.statusNavBar ? '1' : '0')};
   visibility: ${(props) => (props.statusNavBar ? 'visible' : 'hidden')};
   height: ${(props) => (props.statusNavBar ? '100vh' : '100vh')};
-  overflow: hidden;
-  top: 4em;
+  overflow: scroll;
 
   @media (min-width: 962px) {
     display: none;

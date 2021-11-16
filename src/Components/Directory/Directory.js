@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
 import 'react-on-scroll-animation/build/index.css';
 import HeaderTextComponent from './HeaderTextComponent';
-
+import { color } from '../../colors';
 import Bestseller from './Bestseller';
 import Footer from '../Footer/Footer';
 import MainPageImage from './MainPageImage';
+import { Link } from 'react-router-dom';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -25,6 +26,12 @@ function Directory({ dm }) {
 
   return (
     <DivMain dm={dm}>
+      <DivLandingPageDesktop>
+        <IMGLanding src="/images/landing.jpeg" alt="" />
+        <LinkButton to="/search">
+          <ButtonLanding color={color}>GO TO STORE</ButtonLanding>
+        </LinkButton>
+      </DivLandingPageDesktop>
       <DivWrapper>
         {Array.isArray(data) && data.length > 0 && (
           <MainPageImage data={data} />
@@ -71,6 +78,30 @@ function Directory({ dm }) {
 
 export default Directory;
 
+const LinkButton = styled(Link)`
+  text-decoration: none;
+`;
+
+const ButtonLanding = styled.button`
+  height: 5em;
+  color: white;
+  background-color: ${(props) => props.color};
+  border: none;
+  width: 100%;
+`;
+
+const IMGLanding = styled.img`
+  height: 50vh;
+`;
+
+const DivLandingPageDesktop = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 962px) {
+    display: none;
+  }
+`;
+
 const DivMain = styled.div`
   min-height: 100vh;
   height: 100%;
@@ -108,6 +139,7 @@ const DivMiddle = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+
   @media (max-width: 960px) {
     height: 100%;
   }
@@ -123,6 +155,11 @@ const BestSellerDiv = styled.div`
     width: 100%;
     height: 100%;
   }
+  @media (min-width: 960px) {
+    text-align: center;
+    width: 90%;
+    height: 100%;
+  }
 `;
 
 const Iframe = styled.iframe`
@@ -135,4 +172,7 @@ const DivHalf = styled.div`
   height: 80vh;
   margin: 0 auto;
   width: 100%;
+  @media (min-width: 962px) {
+    width: 50%;
+  }
 `;

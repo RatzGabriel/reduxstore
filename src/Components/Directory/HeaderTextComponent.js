@@ -55,7 +55,7 @@ const SmallImageDiv = styled.div`
 
   @media (min-width: 962px) {
     width: 100%;
-    margin: 0 2em 0em 0em;
+    margin: 0 10em 0em 0em;
   }
 `;
 
@@ -90,13 +90,13 @@ const H1 = styled.h1`
   /* identical to box height */
   width: 100%;
   text-decoration-line: none;
-
   text-align: left;
   @media (min-width: 962px) {
     font-size: 1.558rem;
     margin: 4em 0;
     color: rgba(0, 0, 0, 0.5);
     text-decoration: underline;
+    text-align: center;
   }
 `;
 
@@ -112,6 +112,8 @@ const TextDiv = styled.div`
   }
   @media (min-width: 960px) {
     align-items: left;
+
+    text-align: center;
   }
 `;
 

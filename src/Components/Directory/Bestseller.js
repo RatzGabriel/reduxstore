@@ -16,7 +16,7 @@ function Bestseller({ dm }) {
   const product2 = {
     productName: 'Vase2',
     productThumbnail: 'https://i.ibb.co/0htdjhS/16.jpg',
-    productPrice: '9.80 Euro',
+    productPrice: '9.80',
     productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
     documentID: '7FXJaI02WunP1Aw3Riey',
@@ -25,7 +25,7 @@ function Bestseller({ dm }) {
   const product3 = {
     productName: 'Vase3',
     productThumbnail: 'https://i.ibb.co/0htdjhS/16.jpg',
-    productPrice: '9.80 Euro',
+    productPrice: '9.80',
     productDescription:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit.Quidem sequi maxime possimus ',
     documentID: '7FXJaI02WunP1Aw3Riey',
@@ -34,11 +34,7 @@ function Bestseller({ dm }) {
   return (
     <>
       <BannerImg src="/images/banner1.jpeg" alt="" />
-      <DivHideOnMobile>
-        <ProductCard product={product1} />
-        <ProductCard product={product1} />
-        <ProductCard product={product1} />
-      </DivHideOnMobile>
+
       <ProductSlider
         dm={dm}
         header="Bestseller"
@@ -56,6 +52,10 @@ function Bestseller({ dm }) {
 export default Bestseller;
 
 const DivHideOnMobile = styled.div`
+  display: flex;
+  margin: 4em 0;
+  width: 100%;
+  justify-content: space-around;
   @media (max-width: 962px) {
     display: none;
   }

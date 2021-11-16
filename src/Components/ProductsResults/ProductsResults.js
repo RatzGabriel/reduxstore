@@ -90,11 +90,12 @@ const DivBanner = styled.div`
   padding-top: 4em;
   background-color: ${(props) => props.color};
   height: 8em;
-  display: flex;
-  align-items: center;
 `;
 
-const InnerDiv = styled.div``;
+const InnerDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const TextDiv = styled.div`
   display: flex;
@@ -113,5 +114,9 @@ const Div1 = styled.div`
   @media (max-width: 962px) {
     width: 100%;
     flex-direction: column;
+  }
+  @media (min-width: 962px) {
+    width: 50%;
+    margin: 0 auto;
   }
 `;

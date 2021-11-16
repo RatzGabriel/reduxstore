@@ -8,12 +8,13 @@ import {Link} from "react-router-dom";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {color} from "../../colors"
 import DarkModeSlider from './DarkModeSlider';
-
+import CloseIcon from '@material-ui/icons/Close';
 
 function MobileMenu({setDarkmode,setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,dm}) {
   
   return (
     <Nav statusNavBar={statusNavBar} dm={dm}>
+   
             <StyledMobileLinks onClick={() => setStatusNavBar(false)} to="/">
               <DivInner>
                 <HomeIcon></HomeIcon>
@@ -75,6 +76,7 @@ function MobileMenu({setDarkmode,setStatusNavBar,checkUserIsAdmin,currentUser,st
 export default MobileMenu
 
 
+
 const PTextMenu=styled.p`
 font-family: abel;
 font-size: 18px;
@@ -109,8 +111,7 @@ const Nav = styled.nav`
  visibility: ${props=>props.statusNavBar?"visible":"hidden"};
  height: ${props=>props.statusNavBar?'100vh':"100vh"};
  overflow: hidden;
- top: 4em;
- 
+ margin-top: 4em;
   @media(min-width:962px){
     display: none;
   }

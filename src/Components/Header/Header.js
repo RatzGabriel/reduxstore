@@ -56,7 +56,7 @@ function Header({ setDarkmodeOnApp, dm }) {
   }
 
   return (
-    <MainDiv color={color} dm={dm}>
+    <MainDiv color={color} dm={dm} statusNavBar={statusNavBar}>
       <MobileMenu
         setStatusNavBar={setStatusNavBar}
         checkUserIsAdmin={checkUserIsAdmin}
@@ -75,27 +75,26 @@ function Header({ setDarkmodeOnApp, dm }) {
 
       <WrapDiv>
         <DivHeaderRight color={color}>
-          <ICart dm={dm} color={color}>
+          <ICart dm={dm} color={color} statusNavBar={statusNavBar}>
             <ShoppingCartIcon
               statusCart={statusCart}
               onClick={() => setCart()}
             />
-            <ItemCountP color={color} dm={dm}>
+            <ItemCountP color={color} dm={dm} statusNavBar={statusNavBar}>
               ({totalNumCartItems})
             </ItemCountP>
           </ICart>
-
           <Iopen
-            color={color}
             statusNavBar={statusNavBar}
+            color={color}
             onClick={() => setMenu()}
             dm={dm}
           >
             <CloseIcon />
           </Iopen>
           <Iclosed
-            color={color}
             statusNavBar={statusNavBar}
+            color={color}
             onClick={() => setMenu()}
             dm={dm}
           >
@@ -104,7 +103,7 @@ function Header({ setDarkmodeOnApp, dm }) {
         </DivHeaderRight>
 
         <LinkLogo dm={dm} to="/">
-          <LogoText color={color} dm={dm}>
+          <LogoText color={color} dm={dm} statusNavBar={statusNavBar}>
             Machua Peru
           </LogoText>
         </LinkLogo>
@@ -117,7 +116,9 @@ function Header({ setDarkmodeOnApp, dm }) {
           {currentUser && <LoggedIn signOut={signOut} />}
           <StyledLink to="/cart">
             <ShoppingCartIcon />
-            <ItemCountP>({totalNumCartItems})</ItemCountP>
+            <ItemCountP statusNavBar={statusNavBar}>
+              ({totalNumCartItems})
+            </ItemCountP>
           </StyledLink>
         </HeaderDivs>
       </WrapDiv>
@@ -132,7 +133,8 @@ Header.defaultProps = {
 export default Header;
 
 const ICart = styled.i`
-  color: ${(props) => (props.dm ? 'white' : props.color)};
+  color: ${(props) =>
+    props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
   @media (min-width: 962px) {
     display: none;
   }
@@ -140,9 +142,12 @@ const ICart = styled.i`
 
 const DivHeaderRight = styled.div`
   display: flex;
-  width: 30%;
+  width: 20%;
   justify-content: space-around;
   color: ${(props) => (props.color ? props.color : 'green')};
+  @media (min-width: 962px) {
+    width: 0%;
+  }
 `;
 
 const LinkLogo = styled(Link)`
@@ -152,7 +157,8 @@ const LinkLogo = styled(Link)`
 
 const Iclosed = styled.i`
   display: ${(props) => (props.statusNavBar ? 'none' : 'block')};
-  color: ${(props) => (props.dm ? 'white' : props.color)};
+  color: ${(props) =>
+    props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
   @media (min-width: 962px) {
     display: none;
   }
@@ -160,7 +166,8 @@ const Iclosed = styled.i`
 
 const Iopen = styled.i`
   display: ${(props) => (props.statusNavBar ? 'block' : 'none')};
-  color: ${(props) => (props.dm ? 'white' : props.color)};
+  color: ${(props) =>
+    props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
 `;
 
 const LogoText = styled.p`
@@ -169,17 +176,25 @@ const LogoText = styled.p`
   font-weight: normal;
   font-size: 1.1rem;
   margin: 0;
-  color: ${(props) => (props.dm ? 'white' : 'black')};
+  color: ${(props) =>
+    props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
+  @media (min-width: 962px) {
+    font-size: 2em;
+    width: 5em;
+  }
 `;
 
 const MainDiv = styled.div`
   position: fixed;
-  width: 100%;
+  width: 50%;
   z-index: 999;
   border: none;
-  background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  background-color: ${(props) =>
+    props.dm ? 'black' : props.statusNavBar ? props.color : 'white'};
   @media (min-width: 962px) {
     position: unset;
+    width: 100%;
+    margin: 0 auto;
   }
 `;
 
@@ -189,9 +204,14 @@ const WrapDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   @media (max-width: 962px) {
-    padding: 0px 0em;
+    padding: 0em;
     flex-direction: row-reverse;
     margin: 0 1.5em;
+  }
+  @media (min-width: 962px) {
+    height: 8rem;
+    width: 50%;
+    margin: 0 auto;
   }
 `;
 
@@ -219,5 +239,6 @@ const StyledLink = styled(Link)`
 const ItemCountP = styled.p`
   font-size: 10px;
   padding-right: 1em;
-  color: ${(props) => (props.dm ? 'white' : props.color)};
+  color: ${(props) =>
+    props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
 `;

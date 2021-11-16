@@ -51,7 +51,8 @@ export default ProductSlider;
 
 const DivDesktop = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
 
   justify-content: space-between;
   @media (max-width: 962px) {
@@ -68,6 +69,10 @@ const DivTest = styled.div`
 const DivMain = styled.div`
   margin-left: 1em;
   text-align: left;
+
+  @media (min-width: 962px) {
+    text-align: center;
+  }
 `;
 
 const H1Title = styled.h1`

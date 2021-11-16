@@ -76,9 +76,9 @@ const LinkElement = styled(Link)`
 
 const DivMain = styled.div`
   background-color: ${(props) => (props.dm ? 'black' : props.color)};
-  height: 100vh;
+  height: 80vh;
   @media (min-width: 962px) {
-    width: 100%;
+    width: 50%;
   }
 `;
 
