@@ -119,11 +119,16 @@ const MainDiv = styled.div`
 const MediumDiv = styled.div`
   display: flex;
   flex-direction: column;
+  @media (min-width: 962px) {
+    width: 50%;
+    margin: 0 auto;
+  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  font-size: 2em;
 `;
 
 const Ptext = styled.p`

@@ -154,6 +154,7 @@ function ProductCard({ product, dm }) {
             {!productDescription && (
               <DescriptionP>
                 Please click on the image to see more Details on this Item.
+                Please click on the image to see more Details on this Item.
               </DescriptionP>
             )}
           </Link>

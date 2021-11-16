@@ -72,18 +72,27 @@ function Header({ setDarkmodeOnApp, dm }) {
         statusCart={statusCart}
         dm={dm}
       />
+      <DivHeader>
+        <DivLogo>
+          <LinkStyled dm={dm} to="/">
+            <LogoText color={color} dm={dm} statusNavBar={statusNavBar}>
+              Machua Peru
+            </LogoText>
+          </LinkStyled>
+        </DivLogo>
 
-      <WrapDiv>
-        <DivHeaderRight color={color}>
-          <ICart dm={dm} color={color} statusNavBar={statusNavBar}>
-            <ShoppingCartIcon
-              statusCart={statusCart}
-              onClick={() => setCart()}
-            />
-            <ItemCountP color={color} dm={dm} statusNavBar={statusNavBar}>
-              ({totalNumCartItems})
-            </ItemCountP>
-          </ICart>
+        <DivRight>
+          <DivIcon>
+            <IIcons dm={dm} color={color} statusNavBar={statusNavBar}>
+              <ShoppingCartIcon
+                statusCart={statusCart}
+                onClick={() => setCart()}
+              />
+              <ItemCountP color={color} dm={dm} statusNavBar={statusNavBar}>
+                ({totalNumCartItems})
+              </ItemCountP>
+            </IIcons>
+          </DivIcon>
           <Iopen
             statusNavBar={statusNavBar}
             color={color}
@@ -100,13 +109,7 @@ function Header({ setDarkmodeOnApp, dm }) {
           >
             <MenuIcon />
           </Iclosed>
-        </DivHeaderRight>
-
-        <LinkLogo dm={dm} to="/">
-          <LogoText color={color} dm={dm} statusNavBar={statusNavBar}>
-            Machua Peru
-          </LogoText>
-        </LinkLogo>
+        </DivRight>
         <HeaderDivs>
           {checkUserIsAdmin(currentUser) && (
             <StyledLink to="/admin">Admin</StyledLink>
@@ -121,7 +124,7 @@ function Header({ setDarkmodeOnApp, dm }) {
             </ItemCountP>
           </StyledLink>
         </HeaderDivs>
-      </WrapDiv>
+      </DivHeader>
     </MainDiv>
   );
 }
@@ -131,6 +134,38 @@ Header.defaultProps = {
 };
 
 export default Header;
+
+const DivRight = styled.div`
+  display: flex;
+`;
+
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+`;
+
+const DivHeader = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh;
+  @media (min-width: 962px) {
+    justify-content: space-between;
+    width: 50%;
+    margin: 1em auto;
+    border-bottom: 1px solid black;
+  }
+`;
+
+const IIcons = styled.i`
+  display: flex;
+  margin-right: 0.5em;
+  color: ${(props) =>
+    props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
+`;
+
+const DivLogo = styled.div``;
+
+const DivIcon = styled.div``;
 
 const ICart = styled.i`
   color: ${(props) =>
@@ -146,13 +181,17 @@ const DivHeaderRight = styled.div`
   justify-content: space-around;
   color: ${(props) => (props.color ? props.color : 'green')};
   @media (min-width: 962px) {
-    width: 0%;
+    justify-content: unset;
+    width: unset;
   }
 `;
 
 const LinkLogo = styled(Link)`
   text-decoration: none;
   color: ${(props) => (props.dm ? 'white' : props.color)};
+  @media (min-width: 962px) {
+    width: 100%;
+  }
 `;
 
 const Iclosed = styled.i`
@@ -186,14 +225,14 @@ const LogoText = styled.p`
 
 const MainDiv = styled.div`
   position: fixed;
-  width: 50%;
+  width: 100%;
   z-index: 999;
   border: none;
+
   background-color: ${(props) =>
     props.dm ? 'black' : props.statusNavBar ? props.color : 'white'};
   @media (min-width: 962px) {
     position: unset;
-    width: 100%;
     margin: 0 auto;
   }
 `;
@@ -210,7 +249,7 @@ const WrapDiv = styled.div`
   }
   @media (min-width: 962px) {
     height: 8rem;
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
   }
 `;
@@ -221,7 +260,7 @@ const HeaderDivs = styled.div`
   width: 80%;
   justify-content: space-around;
 
-  @media (max-width: 768px) {
+  @media (min-width: 962px) {
     display: none;
   }
 `;

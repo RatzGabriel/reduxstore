@@ -100,7 +100,8 @@ const H3 = styled.h3`
 `;
 
 const DivTest = styled.div`
-  height: 20em;
+  height: 30em;
+  width: 30em;
 `;
 
 const Pprice = styled.p`

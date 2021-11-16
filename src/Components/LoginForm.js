@@ -124,4 +124,9 @@ const DivMain = styled.div`
   margin: 0 auto;
   padding-top: 4em;
   background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  @media (min-width: 962px) {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 2em;
+  }
 `;

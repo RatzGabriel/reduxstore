@@ -90,6 +90,11 @@ const DivBanner = styled.div`
   padding-top: 4em;
   background-color: ${(props) => props.color};
   height: 8em;
+  display: flex;
+  align-items: center;
+  @media (min-width: 962px) {
+    padding-top: 0;
+  }
 `;
 
 const InnerDiv = styled.div`
