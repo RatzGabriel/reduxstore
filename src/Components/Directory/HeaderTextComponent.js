@@ -32,7 +32,7 @@ function HeaderTextComponent({
         <SmallImageRound src={imgThree} alt="" />
       </SmallImageDiv>
       {text && <ItemDescription dm={dm}>{text}</ItemDescription>}
-      <LinkElement to={linkTo}>
+      <LinkElement to={linkTo || '/'}>
         <ButtonElement margin={'3em'} adress={linkTo}>
           {buttonText}
         </ButtonElement>

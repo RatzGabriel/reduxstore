@@ -11,6 +11,7 @@ import {
 } from '../Redux/User/user.actions';
 import { signUpUserStart } from '../Redux/User/user.actions';
 import { Link } from 'react-router-dom';
+import { color } from '../colors';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -65,7 +66,9 @@ function LoginForm({ img, header, buttonText, smallText, registration, dm }) {
   return (
     <DivMain dm={dm}>
       <Banner src={img} />
-      <H1Header>{header}</H1Header>
+      <H1Header color={color} dm={dm}>
+        {header}
+      </H1Header>
       {!currentUser && (
         <div>
           <form onSubmit={onFormSubmit}>
@@ -84,10 +87,12 @@ function LoginForm({ img, header, buttonText, smallText, registration, dm }) {
             <ButtonElement dm={dm} type="submit" margin="3em 0em 3em 0em">
               {buttonText}
             </ButtonElement>
-            <Ptext onClick={handleGoogleSignIn}>{smallText}</Ptext>
+            <Ptext dm={dm} onClick={handleGoogleSignIn}>
+              {smallText}
+            </Ptext>
 
             <LinkToRegister to="/registration">
-              <Ptext>Or Register</Ptext>
+              <Ptext dm={dm}>Or Register</Ptext>
             </LinkToRegister>
           </form>
         </div>
@@ -117,7 +122,8 @@ const LinkToRegister = styled(Link)`
 const Ptext = styled.p`
   font-family: roboto;
   text-decoration: underline;
-  color: rgba(0, 0, 0, 0.5);
+  color: ${(props) => (props.dm ? 'white' : 'rgba(0, 0, 0, 0.5)')};
+
   font-size: 1em;
 `;
 
@@ -126,6 +132,7 @@ const H1Header = styled.h1`
   margin-top: 2em;
   margin-bottom: 1em;
   font-size: 1.5rem;
+  color: ${(props) => (props.dm ? 'white' : props.colo)};
 `;
 
 const DivMain = styled.div`

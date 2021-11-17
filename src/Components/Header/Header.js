@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -84,10 +84,7 @@ function Header({ setDarkmodeOnApp, dm }) {
         <DivRight>
           <DivIcon>
             <IIcons dm={dm} color={color} statusNavBar={statusNavBar}>
-              <ShoppingCartIcon
-                statusCart={statusCart}
-                onClick={() => setCart()}
-              />
+              <ShoppingCartIcon onClick={() => setCart()} />
               <ItemCountP color={color} dm={dm} statusNavBar={statusNavBar}>
                 ({totalNumCartItems})
               </ItemCountP>
@@ -181,33 +178,6 @@ const DivLogo = styled.div`
 
 const DivIcon = styled.div``;
 
-const ICart = styled.i`
-  color: ${(props) =>
-    props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
-  @media (min-width: 962px) {
-    display: none;
-  }
-`;
-
-const DivHeaderRight = styled.div`
-  display: flex;
-  width: 20%;
-  justify-content: space-around;
-  color: ${(props) => (props.color ? props.color : 'green')};
-  @media (min-width: 962px) {
-    justify-content: unset;
-    width: unset;
-  }
-`;
-
-const LinkLogo = styled(Link)`
-  text-decoration: none;
-  color: ${(props) => (props.dm ? 'white' : props.color)};
-  @media (min-width: 962px) {
-    width: 100%;
-  }
-`;
-
 const Iclosed = styled.i`
   display: ${(props) => (props.statusNavBar ? 'none' : 'block')};
   color: ${(props) =>
@@ -247,23 +217,6 @@ const MainDiv = styled.div`
     props.dm ? 'black' : props.statusNavBar ? props.color : 'white'};
   @media (min-width: 962px) {
     position: unset;
-    margin: 0 auto;
-  }
-`;
-
-const WrapDiv = styled.div`
-  display: flex;
-  height: 4rem;
-  align-items: center;
-  justify-content: space-between;
-  @media (max-width: 962px) {
-    padding: 0em;
-    flex-direction: row-reverse;
-    margin: 0 1.5em;
-  }
-  @media (min-width: 962px) {
-    height: 8rem;
-    width: 100%;
     margin: 0 auto;
   }
 `;

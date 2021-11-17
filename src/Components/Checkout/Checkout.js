@@ -61,10 +61,6 @@ function Checkout({ dm }) {
 
 export default Checkout;
 
-const H1 = styled.h1`
-  color: white;
-`;
-
 const ImgMain = styled.img`
   width: 100%;
   height: 50vh;

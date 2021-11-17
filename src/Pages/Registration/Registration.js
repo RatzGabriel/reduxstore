@@ -88,7 +88,7 @@ function Registration({ darkmode }) {
           />
           <ButtonElement margin="2em 0em 2em 0em">Submit</ButtonElement>
 
-          <H1ErrorMessage>{userErr}</H1ErrorMessage>
+          <H1ErrorMessage>{error}</H1ErrorMessage>
         </Form>
         <Ptext onClick={() => signIn()}>Or Sign In With Google</Ptext>
       </MediumDiv>

@@ -12,7 +12,6 @@ import {
 } from '../../Redux/WishList/wishlist.selectors';
 import {clearWL} from "../../Redux/WishList/wishlist.action";
 import { useDispatch } from 'react-redux';
-import ButtonElement from '../Elements/Button/Button';
 import {color} from "../../colors"
 
 const mapState = createStructuredSelector({
@@ -22,7 +21,7 @@ const mapState = createStructuredSelector({
 
 function WishList({dm}) {
   const history = useHistory();
-  const { wlItems, total } = useSelector(mapState);
+  const { wlItems } = useSelector(mapState);
   const errMsg = 'You have no items in your WishList.';
   const dispatch=useDispatch()
 

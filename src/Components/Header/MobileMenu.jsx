@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {color} from "../../colors"
 import DarkModeSlider from './DarkModeSlider';
-import CloseIcon from '@material-ui/icons/Close';
+
 
 function MobileMenu({setDarkmode,setStatusNavBar,checkUserIsAdmin,currentUser,statusNavBar,dm}) {
   
@@ -33,7 +33,7 @@ function MobileMenu({setDarkmode,setStatusNavBar,checkUserIsAdmin,currentUser,st
                 <PTextMenu>Shop</PTextMenu>
               </DivInner>
             </StyledMobileLinks>
-            <StyledMobileLinks
+            <StyledMobileLinks to="/"
             >
               <DivInner onClick={()=>setDarkmode(!dm)}>
                <DarkModeSlider dm={dm}/>

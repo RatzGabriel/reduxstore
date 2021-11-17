@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProductCard from './ProductCard';
 import ProductSlider from './ProductSlider';
 
 function Bestseller({ dm }) {
@@ -50,16 +49,6 @@ function Bestseller({ dm }) {
 }
 
 export default Bestseller;
-
-const DivHideOnMobile = styled.div`
-  display: flex;
-  margin: 4em 0;
-  width: 100%;
-  justify-content: space-around;
-  @media (max-width: 962px) {
-    display: none;
-  }
-`;
 
 const BannerImg = styled.img`
   height: 8rem;

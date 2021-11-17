@@ -28,7 +28,7 @@ function CartMenu({ setStatusCart, statusCart, dm }) {
       {cartItems.length > 0 ? (
         <div>
           {cartItems.map((item, pos) => {
-            return <CartMenuItem item={item} />;
+            return <CartMenuItem item={item} key={pos} />;
           })}
         </div>
       ) : (

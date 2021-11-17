@@ -10,16 +10,15 @@ const mapState = ({ ordersData }) => ({
 });
 
 function Order() {
+  useEffect(() => {
+    dispatch(getOrderDetailsStart(orderID));
+  }, []);
   const { orderDetails } = useSelector(mapState);
   const { orderID } = useParams();
 
   const dispatch = useDispatch();
 
   const { orderTotal } = orderDetails;
-
-  useEffect(() => {
-    dispatch(getOrderDetailsStart(orderID));
-  }, []);
 
   return (
     <div>

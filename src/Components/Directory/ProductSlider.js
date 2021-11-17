@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
 import { color } from '../../colors';
-import { Link } from 'react-router-dom';
 
 import 'swiper';
 import './styles.css';

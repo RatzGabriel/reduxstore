@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -23,14 +23,10 @@ function ProductCard({ dm }) {
 
   const dispatch = useDispatch();
   const { productID } = useParams();
-  const { productName, productPrice, productDescription, quantity } = product;
+  const { productName, productPrice, productDescription } = product;
 
   const handleAddProduct = (product) => {
     dispatch(addProduct(product));
-  };
-
-  const removeItem = (reduceCartIt) => {
-    dispatch(reduceCartItem(reduceCartIt));
   };
 
   useEffect(() => {
@@ -59,7 +55,7 @@ function ProductCard({ dm }) {
                   <Image src={item} alt="test" />
                 </DivTest>
               );
-            }
+            } else return null;
           })}
       </Carousel>
       <ProductDiv color={color}>

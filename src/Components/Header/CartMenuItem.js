@@ -57,13 +57,14 @@ const DivButtons = styled.div`
   align-items: center;
 `;
 
-const DivInnerButton = styled.button`
+const DivInnerButton = styled.div`
   width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: none;
   padding: 0.3em;
+  background-color: white;
 `;
 
 const P = styled.p`

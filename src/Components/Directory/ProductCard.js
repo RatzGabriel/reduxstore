@@ -76,19 +76,16 @@ function ProductCard({ product, dm }) {
     console.log(heartStatus);
     if (wlItems.length > 0) {
       for (let i = 0; i < wlItems.length; i++) {
-        console.log(wlItems[i].documentID, product.documentID);
         if (wlItems[i].documentID === product.documentID) {
           console.log('remove');
           handleRemoveWlItem(product.documentID);
           setHeartStatus(false);
         } else {
-          console.log('add');
           handleAddToWl(product);
           setHeartStatus(true);
         }
       }
     } else {
-      console.log('else add');
       handleAddToWl(product);
       setHeartStatus(true);
       return;
@@ -198,11 +195,6 @@ const ProductCardDiv = styled.div`
 `;
 
 //Wrapper Divs
-const ImageDiv = styled.div`
-  width: 40%;
-  background-image: url(${(props) => props.image});
-  background-size: cover;
-`;
 
 const TextDiv = styled.div`
   display: flex;
@@ -214,11 +206,6 @@ const InnerText = styled.div`
   margin: auto auto;
   display: flex;
   flex-direction: column;
-`;
-
-//
-const Image = styled.img`
-  height: 70%;
 `;
 
 //Text Styles
