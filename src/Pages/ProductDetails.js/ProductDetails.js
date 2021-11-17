@@ -1,10 +1,10 @@
 import React from 'react';
-import ProductCard from '../../Components/ProductCard/ProductCard';
+import ProductCardSinglePage from '../ProductCard/ProductCard';
 
 function ProductDetails({ dm }) {
   return (
     <div>
-      <ProductCard dm={dm} />
+      <ProductCardSinglePage dm={dm} />
     </div>
   );
 }

@@ -27,9 +27,9 @@ function HeaderTextComponent({
       )}
       {title && <H1 dm={dm}>{title}</H1>}
       <SmallImageDiv>
-        <SmallImageRound src={imgOne} alt="" />
-        <SmallImageRound src={imgTwo} alt="" />
-        <SmallImageRound src={imgThree} alt="" />
+        <SmallImage src={imgOne} alt="" />
+        <SmallImage src={imgTwo} alt="" />
+        <SmallImage src={imgThree} alt="" />
       </SmallImageDiv>
       {text && <ItemDescription dm={dm}>{text}</ItemDescription>}
       <LinkElement to={linkTo || '/'}>
@@ -61,7 +61,7 @@ const SmallImageDiv = styled.div`
   }
 `;
 
-const SmallImageRound = styled.img`
+const SmallImage = styled.img`
   width: 25rem;
   height: 30rem;
   @media (max-width: 962px) {

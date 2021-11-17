@@ -5,7 +5,6 @@ import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
 
 import SwiperCore, { Pagination } from 'swiper';
-
 import 'swiper';
 import './styles.css';
 SwiperCore.use([Pagination]);
@@ -33,7 +32,7 @@ function MainPageImage({ data }) {
         )}
         {data[0] !== undefined && (
           <Div src={'/images/27.jpeg'}>
-            <LinkButton to="/search">
+            <LinkButton to="/about">
               <Button>
                 <ButtonText>About Me</ButtonText>
               </Button>
@@ -53,9 +52,7 @@ const LinkButton = styled(Link)`
 
 const HideOnDesktopDiv = styled.div`
   width: 100%;
-
   margin-top: 4em;
-
   @media (min-width: 962px) {
     display: none;
   }

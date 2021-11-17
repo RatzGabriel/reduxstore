@@ -20,7 +20,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         }),
       };
     case cartTypes.REDUCE_CART_ITEM:
-      console.log('REDUCER', state.cartItems, action.payload);
       return {
         ...state,
         cartItems: handleReduceCartItem({

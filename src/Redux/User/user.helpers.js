@@ -1,7 +1,6 @@
 import { auth } from '../../firebase/Utils';
 
 export const handleResetPasswordAPI = (email) => {
-  console.log('email2', email);
   const config = {
     // change this later to live environment
     url: 'http://localhost:3000/login',

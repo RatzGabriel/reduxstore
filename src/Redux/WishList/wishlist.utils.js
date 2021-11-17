@@ -5,7 +5,6 @@ export const existingWlItem = ({ prevWlItems, nextWlItem }) => {
 };
 
 export const handleAddToWl = ({ prevWlItems, nextWlItem }) => {
-  console.log('docid', prevWlItems, 'next', nextWlItem);
   const quantityIncrement = 1;
   const wlItemExists = existingWlItem({ prevWlItems, nextWlItem });
 
@@ -35,7 +34,6 @@ export const handleRemoveWlItem = ({ prevWLItems, wlItemToRemove }) => {
 };
 
 export const handleReduceWlItem = ({ prevWlItems, wlItemToReduce }) => {
-  console.log('check it out,', prevWlItems, wlItemToReduce);
   const existingWlItem = prevWlItems.find(
     (wlItem) => wlItem.documentID === wlItemToReduce.documentID
   );

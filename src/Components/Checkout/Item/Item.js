@@ -7,7 +7,6 @@ import {
   removeCartItem,
 } from '../../../Redux/Cart/cart.action';
 import { removeWlItem } from '../../../Redux/WishList/wishlist.action';
-
 import { color } from '../../../colors';
 
 function Item({ product, text, dm }) {
@@ -131,9 +130,6 @@ const DivMain = styled.div`
   justify-content: space-between;
   background-color: ${(props) => (props.dm ? 'white' : color)};
   color: ${(props) => (props.dm ? 'black' : 'white')};
-  @media (min-width: 962px) {
-    w
-  }
 `;
 
 const Img = styled.img`

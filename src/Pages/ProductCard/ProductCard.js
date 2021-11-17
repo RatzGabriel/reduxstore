@@ -10,15 +10,15 @@ import {
   fetchProductStart,
   setProduct,
 } from '../../Redux/Products/products.actions';
-import ButtonElement from '../Elements/Button/Button';
 
-import { addProduct, reduceCartItem } from '../../Redux/Cart/cart.action';
+import { addProduct } from '../../Redux/Cart/cart.action';
+import ButtonElement from '../../Components/Elements/Button/Button';
 
 const mapState = (state) => ({
   product: state.productsData.product,
 });
 
-function ProductCard({ dm }) {
+function ProductCardSinglePage({ dm }) {
   const { product } = useSelector(mapState);
 
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ function ProductCard({ dm }) {
         </Pprice>
         {!productDescription && (
           <P dm={dm}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum,
+            lLorem ipsum dolor sit amet consectetur adipisicing elit. Illum,
             dolor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Illum, dolor.
           </P>
@@ -84,7 +84,7 @@ function ProductCard({ dm }) {
   );
 }
 
-export default ProductCard;
+export default ProductCardSinglePage;
 
 const P = styled.p`
   color: ${(props) => (props.dm ? 'white' : 'black')};
@@ -151,7 +151,6 @@ const MainDiv = styled.div`
   @media (min-width: 962px) {
     width: 50%;
     margin: 0 auto;
-
     min-height: 100vh;
   }
 `;

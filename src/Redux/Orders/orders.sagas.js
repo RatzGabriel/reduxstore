@@ -36,9 +36,7 @@ export function* saveOrder({ payload }) {
     });
 
     yield put(clearCart());
-  } catch (err) {
-    // console.log('err', err);
-  }
+  } catch (err) {}
 }
 
 export function* onSaveOrderHistoryStart() {
@@ -50,9 +48,7 @@ export function* getOrderDetails({ payload }) {
     const order = yield handleGetOrder(payload);
     console.log('order back', order);
     yield put(setOrderDetails(order));
-  } catch (err) {
-    // console.log(err);
-  }
+  } catch (err) {}
 }
 
 export function* onGetOrderDetailsStart() {

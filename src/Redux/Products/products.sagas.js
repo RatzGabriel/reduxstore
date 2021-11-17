@@ -22,9 +22,7 @@ export function* addProduct({ payload }) {
       createdDate: timestamp,
     });
     yield put(fetchProductsStart());
-  } catch (err) {
-    console.log('err', err);
-  }
+  } catch (err) {}
 }
 
 export function* onAddProductStart() {
@@ -36,9 +34,7 @@ export function* fetchProducts({ payload }) {
     const products = yield handleFetchProducts(payload);
 
     yield put(setProducts(products));
-  } catch (err) {
-    // console.log(err);
-  }
+  } catch (err) {}
 }
 
 export function* onFetchProductsStart() {
@@ -49,9 +45,7 @@ export function* deleteProduct({ payload }) {
   try {
     yield handleDeleteProduct(payload);
     yield put(fetchProductsStart());
-  } catch (err) {
-    console.log('err,', err);
-  }
+  } catch (err) {}
 }
 
 export function* onDeleteProductStart() {
@@ -62,9 +56,7 @@ export function* fetchProduct({ payload }) {
   try {
     const product = yield handleFetchProduct(payload);
     yield put(setProduct(product));
-  } catch (err) {
-    console.log('error:', err);
-  }
+  } catch (err) {}
 }
 
 export function* onFetchProductStart() {

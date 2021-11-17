@@ -1,9 +1,7 @@
 import { firestore } from '../../firebase/Utils';
 
 export const handleSaveOrder = (order) => {
-  console.log('order1');
   return new Promise((resolve, reject) => {
-    console.log('order2');
     firestore
       .collection('orders')
       .doc()
@@ -12,7 +10,6 @@ export const handleSaveOrder = (order) => {
         resolve();
       })
       .catch((err) => {
-        console.log('orderError');
         reject(err);
       });
   });
@@ -51,7 +48,6 @@ export const handleGetOrder = (orderID) => {
       .get()
       .then((snap) => {
         if (snap.exists) {
-          console.log(snap.data(), 'Order id', orderID);
           resolve({
             ...snap.data(),
             documentID: orderID,

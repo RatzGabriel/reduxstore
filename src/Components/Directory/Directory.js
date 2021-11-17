@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsStart } from '../../Redux/Products/products.actions';
-import 'react-on-scroll-animation/build/index.css';
 import HeaderTextComponent from './HeaderTextComponent';
 import { color } from '../../colors';
 import Bestseller from './Bestseller';

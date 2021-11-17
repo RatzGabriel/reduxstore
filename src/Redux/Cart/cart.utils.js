@@ -33,7 +33,6 @@ export const handleRemoveCartItem = ({ prevCartItems, cartItemToRemove }) => {
 };
 
 export const handleReduceCartItem = ({ prevCartItems, cartItemToReduce }) => {
-  console.log('check it out,', prevCartItems, cartItemToReduce);
   const existingCartItem = prevCartItems.find(
     (cartItem) => cartItem.documentID === cartItemToReduce.documentID
   );

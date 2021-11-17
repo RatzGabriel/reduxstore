@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 function LoggedIn({signOut}) {
   return (
     <MainDiv>
-                <StyledLink to="/dashboard">Dashboard</StyledLink>
-                <StyledLink to="/wishlist">WishList</StyledLink>
-                <Button  onClick={() => signOut()}>Logout</Button>
+      <StyledLink to="/dashboard">Dashboard</StyledLink>
+      <StyledLink to="/wishlist">WishList</StyledLink>
+      <Button  onClick={() => signOut()}>Logout</Button>
     </MainDiv>
   )
 }

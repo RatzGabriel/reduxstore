@@ -40,9 +40,7 @@ export function* emailSignIn({ payload: { email, password } }) {
     //  yield put(
     //    signInSuccess()
     //  )
-  } catch (err) {
-    // console.log(err);
-  }
+  } catch (err) {}
 }
 
 export function* onEmailSignInStart() {
@@ -54,9 +52,7 @@ export function* isUserAuthenticated() {
     const userAuth = yield getCurrentUser();
     if (!userAuth) return;
     yield getSnapshotFromUserAuth(userAuth);
-  } catch (err) {
-    console.log('errror', err);
-  }
+  } catch (err) {}
 }
 
 export function* onCheckUserSession() {
@@ -67,9 +63,7 @@ export function* signOutUser() {
   try {
     yield auth.signOut();
     yield put(signOutUserSuccess());
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 export function* signUpUser({
@@ -90,7 +84,7 @@ export function* signUpUser({
     // });
   } catch (e) {
     const err = [`${e}`];
-    console.log(err);
+
     yield put(userError(err));
   }
 }
@@ -104,7 +98,6 @@ export function* onSignOutUserStart() {
 }
 
 export function* resetPassword({ payload: { email } }) {
-  console.log('email', email);
   try {
     yield call(handleResetPasswordAPI, email);
     yield put(resetPasswordSuccess());
@@ -121,9 +114,7 @@ export function* googleSignIn() {
   try {
     const { user } = yield auth.signInWithPopup(GoogleProvider);
     yield getSnapshotFromUserAuth(user);
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 export function* onGoogleSignInStart() {

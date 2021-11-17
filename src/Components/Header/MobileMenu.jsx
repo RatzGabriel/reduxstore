@@ -36,7 +36,7 @@ function MobileMenu({setDarkmode,setStatusNavBar,checkUserIsAdmin,currentUser,st
             <StyledMobileLinks to="/"
             >
               <DivInner onClick={()=>setDarkmode(!dm)}>
-               <DarkModeSlider dm={dm}/>
+              <DarkModeSlider dm={dm}/>
                 <PTextMenu> Darkmode</PTextMenu>
               </DivInner>
             </StyledMobileLinks>

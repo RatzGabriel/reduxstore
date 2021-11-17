@@ -73,11 +73,9 @@ function ProductCard({ product, dm }) {
   };
 
   const isItemInWl = (product) => {
-    console.log(heartStatus);
     if (wlItems.length > 0) {
       for (let i = 0; i < wlItems.length; i++) {
         if (wlItems[i].documentID === product.documentID) {
-          console.log('remove');
           handleRemoveWlItem(product.documentID);
           setHeartStatus(false);
         } else {

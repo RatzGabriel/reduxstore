@@ -32,7 +32,6 @@ function ProductComponent({ product, pPrice }) {
     if (wlItems.length > 0) {
       wlItems.map((item) => {
         if (item.documentID === documentID) {
-          console.log('yes');
           setHeartStatus('/images/redheart.svg');
         }
       });

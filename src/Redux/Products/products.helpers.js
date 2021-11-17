@@ -51,7 +51,6 @@ export const handleFetchProducts = ({
         });
       })
       .catch((err) => {
-        console.log('err', err);
         reject(err);
       });
   });
