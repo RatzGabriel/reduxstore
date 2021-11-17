@@ -64,11 +64,14 @@ const ProductResults = ({ dm }) => {
   return (
     <Div1 dm={dm}>
       <DivBanner color={color}>
-        <H1Banner>Shop</H1Banner>
+        <DivInner>
+          <H1Banner>Shop</H1Banner>
+          <TextDiv>
+            <FormSelect {...configFilters} dm={dm} />
+          </TextDiv>
+        </DivInner>
       </DivBanner>
-      <TextDiv>
-        <FormSelect {...configFilters} dm={dm} />
-      </TextDiv>
+
       <InnerDiv>
         {data.map((item) => {
           return <Product product={item} dm={dm} />;
@@ -80,18 +83,26 @@ const ProductResults = ({ dm }) => {
 
 export default ProductResults;
 
+const DivInner = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const H1Banner = styled.h1`
   color: white;
-  margin-left: 1em;
+
   font-size: 1.5rem;
 `;
 
 const DivBanner = styled.div`
-  padding-top: 4em;
   background-color: ${(props) => props.color};
-  height: 8em;
+  height: 4em;
   display: flex;
   align-items: center;
+  justify-content: space-around;
+
   @media (min-width: 962px) {
     padding-top: 0;
   }
@@ -104,8 +115,8 @@ const InnerDiv = styled.div`
 
 const TextDiv = styled.div`
   display: flex;
-  padding: 1em 0 0 0;
-  margin-left: 1em;
+
+  justify-content: flex-end;
   @media (max-width: 962px) {
   }
 `;
@@ -115,7 +126,7 @@ const Div1 = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   background-color: ${(props) => (props.dm ? 'black' : 'white')};
-
+  margin-top: 5em;
   @media (max-width: 962px) {
     width: 100%;
     flex-direction: column;

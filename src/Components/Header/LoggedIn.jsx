@@ -6,9 +6,6 @@ import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
 function LoggedIn({signOut}) {
   return (
     <MainDiv>
-        <StyledLink to="/payment">
-                  <EuroSymbolIcon />
-                </StyledLink>
                 <StyledLink to="/dashboard">Dashboard</StyledLink>
                 <StyledLink to="/wishlist">WishList</StyledLink>
                 <StyledLink onClick={() => signOut()}>Logout</StyledLink>
@@ -20,6 +17,7 @@ export default LoggedIn
 
 const MainDiv=styled.div`
 display:flex;
+align-items: center;
 
 width: 80%;
 justify-content: space-around;

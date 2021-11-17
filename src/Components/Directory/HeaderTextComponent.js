@@ -12,6 +12,8 @@ function HeaderTextComponent({
   buttonText,
   linkTo,
   imgOne,
+  imgTwo,
+  imgThree,
   dm,
 }) {
   return (
@@ -26,8 +28,8 @@ function HeaderTextComponent({
       {title && <H1 dm={dm}>{title}</H1>}
       <SmallImageDiv>
         <SmallImageRound src={imgOne} alt="" />
-        <SmallImageRound src={imgOne} alt="" />
-        <SmallImageRound src={imgOne} alt="" />
+        <SmallImageRound src={imgTwo} alt="" />
+        <SmallImageRound src={imgThree} alt="" />
       </SmallImageDiv>
       {text && <ItemDescription dm={dm}>{text}</ItemDescription>}
       <LinkElement to={linkTo}>
@@ -51,18 +53,17 @@ const SmallImageDiv = styled.div`
   display: flex;
   margin: 1.5em 1em;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
 
   @media (min-width: 962px) {
     width: 100%;
-    margin: 0 10em 0em 0em;
+    margin: 0;
   }
 `;
 
 const SmallImageRound = styled.img`
-  width: 330px;
-  height: 431px;
-  top: 442px;
+  width: 25rem;
+  height: 30rem;
   @media (max-width: 962px) {
     width: 5em;
     height: 5em;
@@ -95,7 +96,6 @@ const H1 = styled.h1`
     font-size: 1.558rem;
     margin: 4em 0;
     color: rgba(0, 0, 0, 0.5);
-    text-decoration: underline;
     text-align: center;
   }
 `;
@@ -112,8 +112,9 @@ const TextDiv = styled.div`
   }
   @media (min-width: 960px) {
     align-items: left;
-
     text-align: center;
+
+    width: 100%;
   }
 `;
 

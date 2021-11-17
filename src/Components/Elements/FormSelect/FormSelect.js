@@ -45,6 +45,6 @@ const Select = styled.select`
   font-size: 18px;
   background-color: ${(props) => (props.dm ? 'white' : color)};
   color: ${(props) => (props.dm ? 'black' : '#B0ACAC')};
-  border: none;
+  border: 1px solid white;
   outline: none;
 `;

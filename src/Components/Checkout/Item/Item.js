@@ -53,7 +53,7 @@ function Item({ product, text, dm }) {
           {text === 'cart' && (
             <Button dm={dm} onClick={() => removeItem(product)}>{`-`}</Button>
           )}
-          {text === 'cart' && <span>{quantity}</span>}
+          {text === 'cart' && <Span>{quantity}</Span>}
           {text === 'cart' && (
             <Button
               dm={dm}
@@ -79,6 +79,10 @@ function Item({ product, text, dm }) {
 }
 
 export default Item;
+
+const Span = styled.span`
+  color: white;
+`;
 
 const DivRight = styled.div`
   display: flex;
@@ -106,6 +110,8 @@ const SpanSmall = styled.span`
 const SpanSmallRemove = styled.span`
   font-size: 0.5em;
   border: 1px solid black;
+  color: white;
+  border: none;
 `;
 const DivRow = styled.div`
   display: flex;
@@ -115,6 +121,7 @@ const DivRow = styled.div`
 const DivColumn = styled.div`
   display: flex;
   flex-direction: column;
+  color: white;
 `;
 
 const DivMain = styled.div`
@@ -124,6 +131,9 @@ const DivMain = styled.div`
   justify-content: space-between;
   background-color: ${(props) => (props.dm ? 'white' : color)};
   color: ${(props) => (props.dm ? 'black' : 'white')};
+  @media (min-width: 962px) {
+    w
+  }
 `;
 
 const Img = styled.img`

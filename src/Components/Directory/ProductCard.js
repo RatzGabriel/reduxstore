@@ -73,20 +73,25 @@ function ProductCard({ product, dm }) {
   };
 
   const isItemInWl = (product) => {
+    console.log(heartStatus);
     if (wlItems.length > 0) {
       for (let i = 0; i < wlItems.length; i++) {
+        console.log(wlItems[i].documentID, product.documentID);
         if (wlItems[i].documentID === product.documentID) {
+          console.log('remove');
           handleRemoveWlItem(product.documentID);
           setHeartStatus(false);
-          return;
         } else {
+          console.log('add');
           handleAddToWl(product);
           setHeartStatus(true);
         }
       }
     } else {
+      console.log('else add');
       handleAddToWl(product);
       setHeartStatus(true);
+      return;
     }
   };
 
@@ -96,8 +101,8 @@ function ProductCard({ product, dm }) {
         <ButtonElementMobile type="button">
           <span>
             {heartStatus ? (
-              <FavoriteBorderIcon
-                class={wobble}
+              <FavoriteIcon
+                className={wobble}
                 fontSize="small"
                 htmlColor="white"
                 onClick={() => {
@@ -107,8 +112,8 @@ function ProductCard({ product, dm }) {
                 }}
               />
             ) : (
-              <FavoriteIcon
-                class={wobble}
+              <FavoriteBorderIcon
+                className={wobble}
                 fontSize="small"
                 htmlColor="white"
                 onClick={() => {
@@ -188,7 +193,7 @@ const ProductCardDiv = styled.div`
 
   @media (min-width: 962px) {
     height: 17rem;
-    width: 25em;
+    width: 24em;
   }
 `;
 

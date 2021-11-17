@@ -32,10 +32,12 @@ function WishList({dm}) {
   return (
     <MainMainDiv dm={dm}>
       <div>
-        <Img src="./images/cart.jpeg" alt="" />
-        <h1>WishList:</h1>
+        <DivBanner color={color}>
+        <H1BannerText>WishList</H1BannerText>
+        </DivBanner>
+        
       </div>
-      <div>
+      <DivCheckout>
         {wlItems.length > 0 ? (
           <MainDiv>
             {wlItems.map((item, pos) => {
@@ -47,7 +49,7 @@ function WishList({dm}) {
               );
             })}
             <BuyDiv>
-              <h3>Total: £{(Math.round(total * 100) / 100).toFixed(2)}</h3>
+            
               
               <StyledLink dm={dm}onClick={() => history.goBack()}>
                 Continue Shopping
@@ -55,28 +57,42 @@ function WishList({dm}) {
               <StyledLink dm={dm}onClick={() => history.push('/payment')}>
                 Checkout
               </StyledLink>
-              <ButtonElement onClick={()=>handleClearWl()}>Clear Wishlist</ButtonElement>
+              <StyledLink dm={dm}onClick={()=>handleClearWl()}>
+              Clear Wishlist
+              </StyledLink>
+            
             </BuyDiv>
           </MainDiv>
         ) : (
           <p>{errMsg}</p>
         )}
-      </div>
+      </DivCheckout>
     </MainMainDiv>
   );
 }
 
 export default WishList;
 
-const Img=styled.img`
-width: 100%;
+const DivCheckout=styled.div``
+
+const H1BannerText=styled.h1`
+color: white;
+font-size: 3em;
+margin-left: 1em;
+`
+
+const DivBanner=styled.div`
+background-color: ${props=>props.color};
+height: 10vh;
+display: flex;
+align-items: center;
 `
 
 const MainMainDiv = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
   background-color:${props=>props.dm?"black":"white"};
   color:${props=>props.dm?"white":"black"};
@@ -96,7 +112,7 @@ const BuyDiv = styled.div`
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
   
 `;
@@ -113,7 +129,7 @@ const ItemDiv = styled.div`
 const StyledLink = styled(Link)`
   color: ${props=>props.dm?"black":"white"};
   background-color: ${props=>props.dm?"white":color};
-  border-radius: 35px;
+  
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;
   border: none;

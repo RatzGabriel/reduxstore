@@ -6,7 +6,7 @@ import PersonIcon from '@material-ui/icons/Person';
 
 function SignedOut({signIn}) {
   return (
-    <div><Link to="/registration">
+    <div><Link to="/signIn">
     <PersonIcon/></Link>
 </div>
   )

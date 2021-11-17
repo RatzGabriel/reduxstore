@@ -336,7 +336,6 @@ const ImgGoogleLogo = styled.img`
 
 const DivPaymentSuccess = styled.div`
   height: 40vh;
-  background-color: red;
 `;
 
 const ButtonGooglePay = styled.button`
@@ -409,6 +408,7 @@ const CardElementDiv = styled.div`
 const MainDiv = styled.div`
   width: 100%;
   background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  margin-top: 1em;
 `;
 
 const CardDetailsDiv = styled.div`

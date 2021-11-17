@@ -72,6 +72,7 @@ const DivMain = styled.div`
 
   @media (min-width: 962px) {
     text-align: center;
+    margin: 0;
   }
 `;
 

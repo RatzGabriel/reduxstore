@@ -137,6 +137,11 @@ export default Header;
 
 const DivRight = styled.div`
   display: flex;
+  width: 50%;
+  justify-content: space-around;
+  @media (max-width: 962px) {
+    width: 40%;
+  }
 `;
 
 const LinkStyled = styled(Link)`
@@ -145,12 +150,12 @@ const LinkStyled = styled(Link)`
 
 const DivHeader = styled.div`
   display: flex;
-  justify-content: space-around;
   align-items: center;
   height: 10vh;
+  width: 90%;
+  margin: 0 auto;
+
   @media (min-width: 962px) {
-    justify-content: space-between;
-    width: 50%;
     margin: 1em auto;
     border-bottom: 1px solid black;
   }
@@ -161,9 +166,18 @@ const IIcons = styled.i`
   margin-right: 0.5em;
   color: ${(props) =>
     props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
+  @media (min-width: 962px) {
+    display: none;
+  }
 `;
 
-const DivLogo = styled.div``;
+const DivLogo = styled.div`
+  width: 50%;
+
+  @media (max-width: 962px) {
+    width: 90%;
+  }
+`;
 
 const DivIcon = styled.div``;
 
@@ -228,7 +242,7 @@ const MainDiv = styled.div`
   width: 100%;
   z-index: 999;
   border: none;
-
+  top: 0;
   background-color: ${(props) =>
     props.dm ? 'black' : props.statusNavBar ? props.color : 'white'};
   @media (min-width: 962px) {
@@ -257,10 +271,10 @@ const WrapDiv = styled.div`
 const HeaderDivs = styled.div`
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 50%;
   justify-content: space-around;
 
-  @media (min-width: 962px) {
+  @media (max-width: 962px) {
     display: none;
   }
 `;

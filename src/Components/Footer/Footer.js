@@ -77,8 +77,13 @@ const LinkElement = styled(Link)`
 const DivMain = styled.div`
   background-color: ${(props) => (props.dm ? 'black' : props.color)};
   height: 80vh;
+
   @media (min-width: 962px) {
-    width: 50%;
+    width: 90%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 

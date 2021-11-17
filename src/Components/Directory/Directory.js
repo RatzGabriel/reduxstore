@@ -45,6 +45,8 @@ function Directory({ dm }) {
             buttonText="Read More"
             linkTo="search"
             dm={dm}
+            imgTwo="/images/23.jpeg"
+            imgThree="/images/25.jpeg"
           />
         </DivMiddle>
         <BestSellerDiv dm={dm}>
@@ -56,6 +58,8 @@ function Directory({ dm }) {
             title="Meet The Minds Shaping An Industry"
             headerText="Our Team"
             imgOne="/images/buffett.jpeg"
+            imgTwo="/images/buffett.jpg"
+            imgThree="/images/buffett.jpeg"
             buttonText="Read More"
             text="  There are many variations of passages of Lorem Ipsum available,
             but the majority have suffered alteration in some form ."
@@ -90,13 +94,12 @@ const ButtonLanding = styled.button`
   width: 100%;
 `;
 
-const IMGLanding = styled.img`
-  height: 50vh;
-`;
+const IMGLanding = styled.img``;
 
 const DivLandingPageDesktop = styled.div`
   display: flex;
   flex-direction: column;
+  width: 50%;
   @media (max-width: 962px) {
     display: none;
   }
@@ -112,7 +115,6 @@ const DivMain = styled.div`
   background-color: ${(props) => (props.dm ? 'black' : 'white')};
   color: ${(props) => (props.dm ? 'white' : 'black')};
   @media (max-width: 960px) {
-    width: 100%;
     margin: 0 auto;
   }
 `;
@@ -142,6 +144,9 @@ const DivMiddle = styled.div`
 
   @media (max-width: 960px) {
     height: 100%;
+  }
+  @media (min-width: 960px) {
+    width: 90%;
   }
 `;
 
@@ -173,6 +178,7 @@ const DivHalf = styled.div`
   margin: 0 auto;
   width: 100%;
   @media (min-width: 962px) {
-    width: 50%;
+    width: 90%;
+    margin: 6em auto;
   }
 `;

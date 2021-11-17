@@ -10,6 +10,7 @@ import {
   emailSignInStart,
 } from '../Redux/User/user.actions';
 import { signUpUserStart } from '../Redux/User/user.actions';
+import { Link } from 'react-router-dom';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -84,12 +85,16 @@ function LoginForm({ img, header, buttonText, smallText, registration, dm }) {
               {buttonText}
             </ButtonElement>
             <Ptext onClick={handleGoogleSignIn}>{smallText}</Ptext>
+
+            <LinkToRegister to="/registration">
+              <Ptext>Or Register</Ptext>
+            </LinkToRegister>
           </form>
         </div>
       )}
       {currentUser && (
         <div>
-          Logged In Already{' '}
+          Logged In Already
           <ButtonElement
             dm={dm}
             margin="3em 0em 0em 0em"
@@ -105,11 +110,15 @@ function LoginForm({ img, header, buttonText, smallText, registration, dm }) {
 
 export default LoginForm;
 
+const LinkToRegister = styled(Link)`
+  text-decoration: none;
+`;
+
 const Ptext = styled.p`
   font-family: roboto;
   text-decoration: underline;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 12px;
+  font-size: 1em;
 `;
 
 const H1Header = styled.h1`

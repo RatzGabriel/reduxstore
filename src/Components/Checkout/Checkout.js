@@ -61,6 +61,10 @@ function Checkout({ dm }) {
 
 export default Checkout;
 
+const H1 = styled.h1`
+  color: white;
+`;
+
 const ImgMain = styled.img`
   width: 100%;
   height: 50vh;
@@ -70,7 +74,7 @@ const DivMain = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
   background-color: ${(props) => (props.dm ? 'black' : 'white')};
   color: ${(props) => (props.dm ? 'white' : 'black')};
@@ -80,6 +84,7 @@ const DivBuy = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
+  color: white;
 `;
 
 const DivItems = styled.div`
@@ -103,7 +108,7 @@ const ItemDiv = styled.div`
 const StyledLink = styled(Link)`
   color: ${(props) => (props.dm ? 'black' : 'white')};
   background-color: ${(props) => (props.dm ? 'white' : color)};
-  border-radius: 35px;
+
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;
   border: none;
