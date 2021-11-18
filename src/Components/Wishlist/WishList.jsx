@@ -29,7 +29,7 @@ function WishList({dm}) {
     dispatch(clearWL())
   }
   return (
-    <MainMainDiv dm={dm}>
+    <MainMainDiv dm={dm} color={color}>
       <div>
         <DivBanner color={color}>
         <H1BannerText>WishList</H1BannerText>
@@ -93,7 +93,7 @@ const MainMainDiv = styled.div`
   text-align: center;
   width: 90%;
   margin: 0 auto;
-  background-color:${props=>props.dm?"black":"white"};
+  background-color:${props=>props.dm?"black":props.color};
   color:${props=>props.dm?"white":"black"};
   @media(max-width:962px){
     width: 100%;
@@ -106,12 +106,13 @@ const BuyDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 `;
 
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   text-align: center;
   
 `;
@@ -126,12 +127,12 @@ const ItemDiv = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: ${props=>props.dm?"black":"white"};
-  background-color: ${props=>props.dm?"white":color};
-  
+  color: ${props=>props.color};
+  background-color: ${(props) => (props.dm ? 'white' : 'white')};
+  border:1px solid white;
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;
-  border: none;
+  
   cursor: pointer;
   text-decoration: none;
   text-align: center;

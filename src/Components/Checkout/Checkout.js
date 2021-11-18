@@ -22,10 +22,11 @@ function Checkout({ dm }) {
   const { cartItems, total } = useSelector(mapState);
   const errMsg = 'You have no items in your cart.';
   return (
-    <DivMain dm={dm}>
+    <DivMain dm={dm} color={color}>
       <div>
-        <ImgMain src="./images/cart.jpeg" alt="" />
-        <h1>Cart:</h1>
+        <DivBanner color={color}>
+          <H1BannerText>Cart</H1BannerText>
+        </DivBanner>
       </div>
       <div>
         {cartItems.length > 0 ? (
@@ -61,6 +62,19 @@ function Checkout({ dm }) {
 
 export default Checkout;
 
+const H1BannerText = styled.h1`
+  color: white;
+  font-size: 3em;
+  margin-left: 1em;
+`;
+
+const DivBanner = styled.div`
+  background-color: ${(props) => props.color};
+  height: 10vh;
+  display: flex;
+  align-items: center;
+`;
+
 const ImgMain = styled.img`
   width: 100%;
   height: 50vh;
@@ -68,12 +82,16 @@ const ImgMain = styled.img`
 
 const DivMain = styled.div`
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   text-align: center;
   width: 90%;
   margin: 0 auto;
-  background-color: ${(props) => (props.dm ? 'black' : 'white')};
+  background-color: ${(props) => (props.dm ? 'black' : props.color)};
   color: ${(props) => (props.dm ? 'white' : 'black')};
+  @media (min-width: 962px) {
+    min-height: 100vh;
+  }
 `;
 
 const DivBuy = styled.div`
@@ -102,12 +120,11 @@ const ItemDiv = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: ${(props) => (props.dm ? 'black' : 'white')};
-  background-color: ${(props) => (props.dm ? 'white' : color)};
-
+  color: ${(props) => (props.dm ? 'black' : props.color)};
+  background-color: ${(props) => (props.dm ? 'white' : 'white')};
+  border: 1px solid white;
   font-weight: ${(props) => props.fw || '600'};
   font-size: 18px;
-  border: none;
   cursor: pointer;
   text-decoration: none;
   text-align: center;

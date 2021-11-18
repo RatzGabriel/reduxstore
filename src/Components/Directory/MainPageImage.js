@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
-
+import { color } from '../../colors';
 import SwiperCore, { Pagination } from 'swiper';
 import 'swiper';
 import './styles.css';
@@ -19,22 +19,21 @@ function MainPageImage({ data }) {
         showStatus={false}
         showThumbs={false}
         infiniteLoop={true}
-        onClickItem={(index) => history.push(`/search`)}
       >
         {data[0] !== undefined && (
-          <Div src={'/images/ceramic.jpg'}>
+          <Div src={'/images/5.jpeg'}>
             <LinkButton to="/search">
-              <Button>
+              <Button color={color}>
                 <ButtonText>Store</ButtonText>
               </Button>
             </LinkButton>
           </Div>
         )}
         {data[0] !== undefined && (
-          <Div src={'/images/27.jpeg'}>
+          <Div src={'/images/7.jpeg'}>
             <LinkButton to="/about">
-              <Button>
-                <ButtonText>About Me</ButtonText>
+              <Button color={color}>
+                <ButtonText>About</ButtonText>
               </Button>
             </LinkButton>
           </Div>

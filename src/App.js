@@ -24,6 +24,7 @@ import AdminLayout from './Layouts/AdminLayout';
 import DashBoardLayout from './Layouts/DashboardLayout';
 import Directory from './Components/Directory/Directory';
 import ProductResults from './Components/ProductsResults/ProductsResults';
+import About from './Components/About/About';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -76,6 +77,9 @@ const App = () => {
         </Route>
         <Route path="/wishlist">
           <WishList dm={darkmode} />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
         <Route path="/payment">
           {currentUser && <Payment dm={darkmode}></Payment>}

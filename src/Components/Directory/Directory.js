@@ -25,8 +25,8 @@ function Directory({ dm }) {
 
   return (
     <DivMain dm={dm}>
-      <DivLandingPageDesktop>
-        <IMGLanding src="/images/landing.jpeg" alt="" />
+      <DivLandingPageDesktop url={'/images/landing.jpeg'}>
+        {/* <IMGLanding src="/images/landing.jpeg" alt="" /> */}
         <LinkButton to="/search">
           <ButtonLanding color={color}>GO TO STORE</ButtonLanding>
         </LinkButton>
@@ -46,6 +46,7 @@ function Directory({ dm }) {
             dm={dm}
             imgTwo="/images/23.jpeg"
             imgThree="/images/25.jpeg"
+            imgBanner="/images/banner1.jpeg"
           />
         </DivMiddle>
         <BestSellerDiv dm={dm}>
@@ -53,6 +54,7 @@ function Directory({ dm }) {
         </BestSellerDiv>
         <DivMiddle>
           <HeaderTextComponent
+            imgBanner="/images/26.jpeg"
             dm={dm}
             title="Meet The Minds Shaping An Industry"
             headerText="Our Team"
@@ -87,18 +89,22 @@ const LinkButton = styled(Link)`
 
 const ButtonLanding = styled.button`
   height: 5em;
-  color: white;
-  background-color: ${(props) => props.color};
+  color: ${(props) => props.color};
+  background-color: 'white';
   border: none;
-  width: 100%;
+  width: 15em;
 `;
 
 const IMGLanding = styled.img``;
 
 const DivLandingPageDesktop = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 100vh;
+  background-size: cover;
+  background-image: url(${(props) => props.url});
   @media (max-width: 962px) {
     display: none;
   }

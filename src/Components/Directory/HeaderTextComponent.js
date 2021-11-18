@@ -15,10 +15,11 @@ function HeaderTextComponent({
   imgTwo,
   imgThree,
   dm,
+  imgBanner,
 }) {
   return (
     <TextDiv>
-      <Banner src={'/images/banner1.jpeg'} />
+      <Banner src={imgBanner} />
 
       {headerText && (
         <P dm={dm} color={color}>

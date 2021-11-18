@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Banner({ src }) {
-  return <BannerImg src={src} alt={'banner img'} />;
+  console.log(src);
+  return <BannerImg src={src} alt={'banner imag'} />;
 }
 
 export default Banner;

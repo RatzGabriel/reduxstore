@@ -31,12 +31,12 @@ function Item({ product, text, dm }) {
   };
 
   return (
-    <DivMain dm={dm}>
+    <DivMain dm={dm} color={color}>
       <DivLeft>
         <Img src={productThumbnail} alt="" />
-        <DivColumn>
+        <DivColumn dm={dm} color={color}>
           {productName}
-          <SpanSmall>
+          <SpanSmall dm={dm} color={color}>
             {(Math.round(productPrice * 100) / 100).toFixed(2)} Euro
           </SpanSmall>
         </DivColumn>
@@ -46,11 +46,16 @@ function Item({ product, text, dm }) {
           {text === 'wishlist' && (
             <Button
               dm={dm}
+              color={color}
               onClick={() => handleAddProduct(product)}
             >{`Add to Cart`}</Button>
           )}
           {text === 'cart' && (
-            <Button dm={dm} onClick={() => removeItem(product)}>{`-`}</Button>
+            <Button
+              dm={dm}
+              color={color}
+              onClick={() => removeItem(product)}
+            >{`-`}</Button>
           )}
           {text === 'cart' && <Span>{quantity}</Span>}
           {text === 'cart' && (
@@ -62,12 +67,18 @@ function Item({ product, text, dm }) {
         </DivRow>
         <DivRow>
           {text === 'cart' && (
-            <SpanSmallRemove onClick={() => handleRemoveCartItem(documentID)}>
+            <SpanSmallRemove
+              dm={dm}
+              onClick={() => handleRemoveCartItem(documentID)}
+            >
               Remove
             </SpanSmallRemove>
           )}
           {text === 'wishlist' && (
-            <SpanSmallRemove onClick={() => handleRemoveWlItem(documentID)}>
+            <SpanSmallRemove
+              dm={dm}
+              onClick={() => handleRemoveWlItem(documentID)}
+            >
               Remove
             </SpanSmallRemove>
           )}
@@ -99,18 +110,28 @@ const Button = styled.button`
   display: flex;
   border: none;
   background-color: transparent;
-  color: ${(props) => (props.dm ? 'black' : 'white')};
+  color: ${(props) => (props.dm ? props.color : 'white')};
+  @media (min-width: 962px) {
+    border: 1px solid white;
+    margin-right: 1em;
+  }
 `;
 
 const SpanSmall = styled.span`
   font-size: 0.5em;
+  color: ${(props) => (props.dm ? props.color : 'white')};
 `;
 
 const SpanSmallRemove = styled.span`
   font-size: 0.5em;
   border: 1px solid black;
-  color: white;
+  color: ${(props) => (props.dm ? props.color : 'white')};
   border: none;
+  @media (min-width: 962px) {
+    border: 1px solid white;
+    margin-right: 1em;
+    padding: 0.5em;
+  }
 `;
 const DivRow = styled.div`
   display: flex;
@@ -120,7 +141,7 @@ const DivRow = styled.div`
 const DivColumn = styled.div`
   display: flex;
   flex-direction: column;
-  color: white;
+  color: ${(props) => (props.dm ? 'black' : 'white')};
 `;
 
 const DivMain = styled.div`
@@ -130,6 +151,7 @@ const DivMain = styled.div`
   justify-content: space-between;
   background-color: ${(props) => (props.dm ? 'white' : color)};
   color: ${(props) => (props.dm ? 'black' : 'white')};
+  border-bottom: 1px solid white;
 `;
 
 const Img = styled.img`
