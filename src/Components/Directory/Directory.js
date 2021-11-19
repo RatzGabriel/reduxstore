@@ -18,7 +18,7 @@ function Directory({ dm }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProductsStart({ bestseller: 'bestseller' }));
+    dispatch(fetchProductsStart({ bestseller: 'bestseller' })); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { data } = products;
@@ -133,9 +133,7 @@ const DivWrapper = styled.div`
 
   @media (max-width: 960px) {
     flex-wrap: wrap;
-    margin: 0 auto;
     justify-content: center;
-    align-items: center;
     overflow: hidden;
     flex-direction: row;
   }

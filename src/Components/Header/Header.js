@@ -18,6 +18,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
 import { color } from '../../colors';
 import CartMenu from './CartMenu';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -90,6 +91,7 @@ function Header({ setDarkmodeOnApp, dm }) {
               </ItemCountP>
             </IIcons>
           </DivIcon>
+          <FavoriteBorderIcon></FavoriteBorderIcon>
           <Iopen
             statusNavBar={statusNavBar}
             color={color}
@@ -137,7 +139,7 @@ const DivRight = styled.div`
   width: 50%;
   justify-content: space-around;
   @media (max-width: 962px) {
-    width: 40%;
+    width: 70%;
   }
 `;
 
@@ -160,7 +162,7 @@ const DivHeader = styled.div`
 
 const IIcons = styled.i`
   display: flex;
-  margin-right: 0.5em;
+
   color: ${(props) =>
     props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
   @media (min-width: 962px) {

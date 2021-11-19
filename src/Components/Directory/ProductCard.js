@@ -41,7 +41,7 @@ function ProductCard({ product, dm }) {
           return setHeartStatus(true);
         } else return setHeartStatus(false);
       });
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRemoveWlItem = (documentID) => {
@@ -97,24 +97,18 @@ function ProductCard({ product, dm }) {
           <span>
             {heartStatus ? (
               <FavoriteIcon
-                className={wobble}
+                class={wobble}
                 fontSize="small"
-                htmlColor="white"
                 onClick={() => {
                   isItemInWl(product);
-                  setWobble('on');
-                  timeout();
                 }}
               />
             ) : (
               <FavoriteBorderIcon
-                className={wobble}
+                class={wobble}
                 fontSize="small"
-                htmlColor="white"
                 onClick={() => {
                   isItemInWl(product);
-                  setWobble('on');
-                  timeout();
                 }}
               />
             )}

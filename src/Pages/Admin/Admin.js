@@ -45,7 +45,7 @@ const Admin = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProductsStart());
+    dispatch(fetchProductsStart()); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const useStyles = makeStyles((theme) => ({

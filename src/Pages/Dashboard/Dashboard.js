@@ -14,7 +14,7 @@ function Dashboard(props) {
   const { currentUser, orderHistory } = useSelector(mapState);
 
   useEffect(() => {
-    dispatch(getUserOrderHistory(currentUser.id));
+    dispatch(getUserOrderHistory(currentUser.id)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

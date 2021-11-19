@@ -31,6 +31,7 @@ function FortgotPassword() {
       dispatch(resetUserState());
       console.log(history);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetPasswordSuccess]);
 
   const onFormSubmit = (event) => {

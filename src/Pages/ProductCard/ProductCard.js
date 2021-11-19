@@ -34,7 +34,7 @@ function ProductCardSinglePage({ dm }) {
     window.scrollTo(0, 0);
     return () => {
       dispatch(setProduct({}));
-    };
+    }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

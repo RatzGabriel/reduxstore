@@ -75,8 +75,9 @@ const SmallImage = styled.img`
 const P = styled.p`
   font-family: Jacques Francois;
   margin: 1em 0;
-  font-size: larger;
+  font-size: 2em;
   width: 100%;
+
   color: ${(props) => (props.dm ? 'white' : props.color)};
   margin: 1em 0;
   @media (min-width: 962px) {

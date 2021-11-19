@@ -170,9 +170,13 @@ table {
   fill: white;
   animation: wobble 1s 1;
   width: 1.3em;
+  padding: 0.2em;
+  margin: 0.3em;
 }
 
 .off {
   fill: white;
   width: 1.3em;
+  padding: 0.2em;
+  margin: 0.3em;
 }

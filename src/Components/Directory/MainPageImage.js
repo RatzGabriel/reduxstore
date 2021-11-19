@@ -52,6 +52,7 @@ const LinkButton = styled(Link)`
 const HideOnDesktopDiv = styled.div`
   width: 100%;
   margin-top: 4em;
+
   @media (min-width: 962px) {
     display: none;
   }

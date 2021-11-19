@@ -15,7 +15,7 @@ function useAdminAuth() {
   useEffect(() => {
     if (!checkUserIsAdmin(currentUser)) {
       history.push('/');
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   return currentUser;
