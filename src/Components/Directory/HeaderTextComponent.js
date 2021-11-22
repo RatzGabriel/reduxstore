@@ -20,29 +20,90 @@ function HeaderTextComponent({
   return (
     <TextDiv>
       <Banner src={imgBanner} />
+      <DivDesktop>
+        <DivLeft>
+          <div>
+            <P dm={dm} color={color}>
+              {headerText}
+            </P>
+            {title && <H1 dm={dm}>{title}</H1>}
+          </div>
 
-      {headerText && (
-        <P dm={dm} color={color}>
-          {headerText}
-        </P>
-      )}
-      {title && <H1 dm={dm}>{title}</H1>}
-      <SmallImageDiv>
-        <SmallImage src={imgOne} alt="" />
-        <SmallImage src={imgTwo} alt="" />
-        <SmallImage src={imgThree} alt="" />
-      </SmallImageDiv>
-      {text && <ItemDescription dm={dm}>{text}</ItemDescription>}
-      <LinkElement to={linkTo || '/'}>
-        <ButtonElement margin={'3em'} adress={linkTo}>
-          {buttonText}
-        </ButtonElement>
-      </LinkElement>
+          <PDescription>{text}</PDescription>
+          <ButtonElement text="text">{buttonText}</ButtonElement>
+        </DivLeft>
+        <DivRight>
+          <ImgThreeFold src={imgOne} alt="" />
+          <ImgThreeFold src={imgTwo} alt="" />
+          <ImgThreeFold src={imgThree} alt="" />
+        </DivRight>
+      </DivDesktop>
+      <DivMobile>
+        {headerText && (
+          <P dm={dm} color={color}>
+            {headerText}
+          </P>
+        )}
+        {title && <H1 dm={dm}>{title}</H1>}
+        <SmallImageDiv>
+          <SmallImage src={imgOne} alt="" />
+          <SmallImage src={imgTwo} alt="" />
+          <SmallImage src={imgThree} alt="" />
+        </SmallImageDiv>
+        {text && <ItemDescription dm={dm}>{text}</ItemDescription>}
+        <LinkElement to={linkTo || '/'}>
+          <ButtonElement margin={'3em'} adress={linkTo}>
+            {buttonText}
+          </ButtonElement>
+        </LinkElement>
+      </DivMobile>
     </TextDiv>
   );
 }
 
 export default HeaderTextComponent;
+
+const PDescription = styled.div`
+  width: 40%;
+  text-align: left;
+`;
+
+const DivRight = styled.div`
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
+`;
+
+const ImgThreeFold = styled.img`
+  width: 25em;
+  height: 25em;
+  border-radius: 10%;
+`;
+
+const DivLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  text-align: center;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+const DivDesktop = styled.div`
+  display: flex;
+  margin: 4em 0;
+  justify-content: space-around;
+  text-align: left;
+  @media (max-width: 962px) {
+    display: none;
+  }
+`;
+
+const DivMobile = styled.div`
+  @media (min-width: 962px) {
+    display: none;
+  }
+`;
 
 const LinkElement = styled(Link)`
   @media (min-width: 962px) {
@@ -77,11 +138,11 @@ const P = styled.p`
   margin: 1em 0;
   font-size: 2em;
   width: 100%;
-
   color: ${(props) => (props.dm ? 'white' : props.color)};
   margin: 1em 0;
   @media (min-width: 962px) {
-    font-size: 4.558rem;
+    font-size: 4rem;
+    margin: 0;
   }
 `;
 
@@ -96,7 +157,7 @@ const H1 = styled.h1`
   text-align: left;
   @media (min-width: 962px) {
     font-size: 1.558rem;
-    margin: 4em 0;
+    margin: 0.5em 0;
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
   }
@@ -115,7 +176,7 @@ const TextDiv = styled.div`
   @media (min-width: 960px) {
     align-items: left;
     text-align: center;
-
+    margin: 5em 0;
     width: 100%;
   }
 `;

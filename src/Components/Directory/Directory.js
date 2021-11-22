@@ -8,6 +8,7 @@ import Bestseller from './Bestseller';
 import Footer from '../Footer/Footer';
 import MainPageImage from './MainPageImage';
 import { Link } from 'react-router-dom';
+import ButtonElement from '../Elements/Button/Button';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -39,7 +40,7 @@ function Directory({ dm }) {
           <HeaderTextComponent
             headerText="Our Service"
             title="We produce tiny Ceramic items"
-            text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci emque ad.  ."
+            text=" In a world getting bigger and bigger Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt adipisci emque ad.In a world getting bigger and bigger Lorem ipsum dolor sit  ."
             imgOne="/images/Two.jpg"
             buttonText="Read More"
             linkTo="search"
@@ -88,11 +89,12 @@ const LinkButton = styled(Link)`
 `;
 
 const ButtonLanding = styled.button`
-  height: 5em;
-  color: ${(props) => props.color};
-  background-color: 'white';
+  height: 6em;
+  color: white;
+  background-color: ${(props) => props.color};
   border: none;
   width: 15em;
+  cursor: pointer;
 `;
 
 const IMGLanding = styled.img``;

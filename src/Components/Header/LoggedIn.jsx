@@ -44,4 +44,10 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
+  @media(min-width:962px){
+    
+    font-style: normal;
+    font-weight:normal;
+    color: black;
+  }
 `;

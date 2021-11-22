@@ -50,7 +50,7 @@ export default ProductSlider;
 
 const DivDesktop = styled.div`
   display: flex;
-  width: 90%;
+
   margin: 0 auto;
 
   justify-content: space-between;
@@ -70,8 +70,7 @@ const DivMain = styled.div`
   text-align: left;
 
   @media (min-width: 962px) {
-    text-align: center;
-    margin: 0;
+    margin: 0 1em;
   }
 `;
 

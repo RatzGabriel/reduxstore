@@ -155,8 +155,6 @@ const DivHeader = styled.div`
   margin: 0 auto;
 
   @media (min-width: 962px) {
-    margin: 1em auto;
-    border-bottom: 1px solid black;
   }
 `;
 
