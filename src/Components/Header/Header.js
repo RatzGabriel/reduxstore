@@ -73,6 +73,28 @@ function Header({ setDarkmodeOnApp, dm }) {
         statusCart={statusCart}
         dm={dm}
       />
+      <DivHeaderMobile>
+        <div>
+          <LinkStyled dm={dm} to="/">
+            <LogoText dm={dm} statusNavBar={statusNavBar}>
+              Machua Peru
+            </LogoText>
+          </LinkStyled>
+        </div>
+        <DivMiddleHeader>
+          <LinkDesktopHeader to="/store">Store</LinkDesktopHeader>
+          <LinkDesktopHeader to="/about">About</LinkDesktopHeader>
+          <LinkDesktopHeader to="/wishlist">Wishlist</LinkDesktopHeader>
+        </DivMiddleHeader>
+        <div>
+          <StyledLink to="/cart">
+            <ShoppingCartIcon color={'primary'} />
+            <ItemCountP statusNavBar={statusNavBar}>
+              ({totalNumCartItems})
+            </ItemCountP>
+          </StyledLink>
+        </div>
+      </DivHeaderMobile>
       <DivHeader>
         <DivLogo>
           <LinkStyled dm={dm} to="/">
@@ -134,6 +156,27 @@ Header.defaultProps = {
 
 export default Header;
 
+const DivMiddleHeader = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+`;
+
+const LinkDesktopHeader = styled(Link)`
+  text-decoration: none;
+  color: white;
+`;
+
+const DivHeaderMobile = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  margin: 2em 0;
+  @media (max-width: 962px) {
+    display: none;
+  }
+`;
+
 const DivRight = styled.div`
   display: flex;
   width: 50%;
@@ -155,6 +198,7 @@ const DivHeader = styled.div`
   margin: 0 auto;
 
   @media (min-width: 962px) {
+    display: none;
   }
 `;
 
@@ -204,6 +248,7 @@ const LogoText = styled.p`
   @media (min-width: 962px) {
     font-size: 2em;
     width: 5em;
+    color: white;
   }
 `;
 
@@ -216,8 +261,8 @@ const MainDiv = styled.div`
   background-color: ${(props) =>
     props.dm ? 'black' : props.statusNavBar ? props.color : 'white'};
   @media (min-width: 962px) {
-    position: unset;
     margin: 0 auto;
+    background-color: unset;
   }
 `;
 
@@ -247,4 +292,7 @@ const ItemCountP = styled.p`
   padding-right: 1em;
   color: ${(props) =>
     props.dm ? 'white' : props.statusNavBar ? 'white' : 'black'};
+  @media (min-width: 962px) {
+    color: white;
+  }
 `;

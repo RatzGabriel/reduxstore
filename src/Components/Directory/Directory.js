@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import MainPageImage from './MainPageImage';
 import { Link } from 'react-router-dom';
 import ButtonElement from '../Elements/Button/Button';
+import ProductCardNewProducts from './ProductCardNewProducts';
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -28,10 +29,37 @@ function Directory({ dm }) {
     <DivMain dm={dm}>
       <DivLandingPageDesktop url={'/images/landing.jpeg'}>
         {/* <IMGLanding src="/images/landing.jpeg" alt="" /> */}
-        <LinkButton to="/search">
-          <ButtonLanding color={color}>GO TO STORE</ButtonLanding>
-        </LinkButton>
+        <DivTextLandingPage>
+          <div>
+            <H1LandingPage>Our Service</H1LandingPage>
+            <H3>We produce tiny Ceramic Items</H3>
+          </div>
+          <PLandingPage>
+            In a World getting bigger and biger we produce really tiny winy
+            items
+          </PLandingPage>
+          <LinkButton to="/search">
+            <ButtonLanding color={color}>GO TO STORE</ButtonLanding>
+          </LinkButton>
+        </DivTextLandingPage>
       </DivLandingPageDesktop>
+      <DivNewProductsDesktop color={color}>
+        <DivNewProductsHeader>
+          <DivEmpty />
+          <DivNewProductsHeaderLeft>
+            <H1NewProducts>New Products</H1NewProducts>
+            <PNewProductsLeft>
+              The best products in the world,made for you
+            </PNewProductsLeft>
+          </DivNewProductsHeaderLeft>
+          <DivNewProductsHeaderRight>
+            <ButtonNewProducts>Store</ButtonNewProducts>
+          </DivNewProductsHeaderRight>
+        </DivNewProductsHeader>
+        <DivNewProductCards>
+          <ProductCardNewProducts />
+        </DivNewProductCards>
+      </DivNewProductsDesktop>
       <DivWrapper>
         {Array.isArray(data) && data.length > 0 && (
           <MainPageImage data={data} />
@@ -84,26 +112,97 @@ function Directory({ dm }) {
 
 export default Directory;
 
+const DivNewProductCards = styled.div`
+  display: flex;
+`;
+
+const PNewProductsLeft = styled.p`
+  color: white;
+`;
+
+const H1NewProducts = styled.h1`
+  font-size: 4em;
+  color: white;
+`;
+
+const ButtonNewProducts = styled.button`
+  width: 13em;
+  height: 4em;
+  background: #ffffff;
+`;
+
+const DivEmpty = styled.div`
+  width: 50%;
+`;
+
+const DivNewProductsHeaderRight = styled.div`
+  width: 20.6%;
+`;
+
+const DivNewProductsHeaderLeft = styled.div`
+  width: 50%;
+`;
+
+const DivNewProductsHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  height: 30%;
+`;
+
+const DivNewProductsDesktop = styled.div`
+  background-color: ${(props) => props.color};
+  height: 100vh;
+  width: 100%;
+  @media (max-width: 962px) {
+    display: none;
+  }
+`;
+
+const PLandingPage = styled.p`
+  color: white;
+  width: 70%;
+`;
+
+const H1LandingPage = styled.h1`
+  font-size: 3em;
+  color: white;
+`;
+
+const H3 = styled.h3`
+  color: #cbcbcb;
+`;
+
+const DivTextLandingPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 5em;
+  width: 15%;
+  height: 20em;
+  justify-content: space-around;
+`;
+
 const LinkButton = styled(Link)`
   text-decoration: none;
 `;
 
 const ButtonLanding = styled.button`
-  height: 6em;
-  color: white;
-  background-color: ${(props) => props.color};
+  position: absolute;
+  width: 272.53px;
+  height: 75.26px;
+  left: 84px;
+  top: 686px;
   border: none;
-  width: 15em;
-  cursor: pointer;
+  background: #ffffff;
+  box-shadow: -7.98207px -7.98207px 76.3998px #ffffff;
 `;
 
 const IMGLanding = styled.img``;
 
 const DivLandingPageDesktop = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
   height: 100vh;
   background-size: cover;
   background-image: url(${(props) => props.url});
