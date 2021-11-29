@@ -25,7 +25,7 @@ function Directory({ dm }) {
 
   const { data } = products;
   let datastorage = [];
-  console.log(datastorage);
+
   return (
     <DivMain dm={dm}>
       <DivLandingPageDesktop url={'/images/landing.jpeg'}>
