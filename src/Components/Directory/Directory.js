@@ -24,7 +24,8 @@ function Directory({ dm }) {
   }, []);
 
   const { data } = products;
-  let datastorage = [];
+
+  let grapqhL = 'check data log';
 
   return (
     <DivMain dm={dm}>
