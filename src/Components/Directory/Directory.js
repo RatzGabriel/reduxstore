@@ -25,8 +25,6 @@ function Directory({ dm }) {
 
   const { data } = products;
 
-  let grapqhL = 'check data log';
-
   return (
     <DivMain dm={dm}>
       <DivLandingPageDesktop url={'/images/landing.jpeg'}>
