@@ -24,7 +24,7 @@ function Directory({ dm }) {
   }, []);
 
   const { data } = products;
-
+  const h3=  {"<H3>We produce tiny Ceramic Items</H3>"}
   return (
     <DivMain dm={dm}>
       <DivLandingPageDesktop url={'/images/landing.jpeg'}>
