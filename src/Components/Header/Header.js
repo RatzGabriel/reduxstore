@@ -27,7 +27,7 @@ const mapState = (state) => ({
 
 function Header({ setDarkmodeOnApp, dm }) {
   const { currentUser, totalNumCartItems } = useSelector(mapState);
-  console.log('testing');
+
   const [statusNavBar, setStatusNavBar] = useState(false);
   const [statusCart, setStatusCart] = useState(false);
 
