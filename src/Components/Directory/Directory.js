@@ -23,7 +23,9 @@ function Directory({ dm }) {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' })); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { data } = products;
+  const { data } = products
+  let product=data;
+  console.log(product);
   const h3=  {"<H3>We produce tiny Ceramic Items</H3>"}
   return (
     <DivMain dm={dm}>
