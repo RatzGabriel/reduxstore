@@ -23,10 +23,8 @@ function Directory({ dm }) {
     dispatch(fetchProductsStart({ bestseller: 'bestseller' })); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { data } = products
-  let product=data;
-  console.log(product);
-  const h3=  {"<H3>We produce tiny Ceramic Items</H3>"}
+  const { data } = products;
+
   return (
     <DivMain dm={dm}>
       <DivLandingPageDesktop url={'/images/landing.jpeg'}>
@@ -35,7 +33,7 @@ function Directory({ dm }) {
         <DivTextLandingPage>
           <div>
             <H1LandingPage>Our Service</H1LandingPage>
-            <H3>We produce tiny Ceramic Items</H3>
+            <H3>Test</H3>
           </div>
           <PLandingPage>
             In a World getting bigger and biger we produce really tiny winy
